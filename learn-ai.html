@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to AI Like You Mean It</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14232b;
+    --bg-panel: #1c313b;
+    --amber: #e8a33d;
+    --coral: #e4572e;
+    --ink: #f1ece2;
+    --ink-dim: #9fb3ba;
+    --line: #33505b;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+  }
+
+  a { color: var(--amber); }
+
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 90px 0 70px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--coral);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(228,87,46,0.2);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p.sub {
+    font-size: 1.1rem;
+    color: var(--ink-dim);
+    max-width: 540px;
+    margin: 0 0 42px;
+  }
+
+  /* ---------- TERMINAL (signature element) ---------- */
+  .terminal {
+    background: #0f1c22;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #142229;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .terminal-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3c525b;
+  }
+
+  .terminal-bar .label {
+    margin-left: 8px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-dim);
+  }
+
+  .terminal-body {
+    padding: 26px 22px 30px;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+  }
+
+  .prompt-line { color: var(--ink-dim); }
+  .prompt-line::before { content: '$ '; color: var(--amber); }
+
+  .old-prompt {
+    color: #7d8f95;
+    text-decoration: line-through;
+    text-decoration-color: var(--coral);
+    opacity: 0;
+    animation: reveal 0.4s forwards;
+    animation-delay: 0.3s;
+  }
+
+  .new-prompt {
+    color: var(--ink);
+    opacity: 0;
+    animation: reveal 0.4s forwards;
+    animation-delay: 2.1s;
+    display: block;
+    margin-top: 6px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background: var(--amber);
+    vertical-align: text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  .output-tag {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    color: #8fd6a8;
+    opacity: 0;
+    animation: reveal 0.4s forwards;
+    animation-delay: 3.4s;
+    font-size: 0.85rem;
+  }
+
+  @keyframes reveal { to { opacity: 1; } }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .old-prompt, .new-prompt, .output-tag { animation: none; opacity: 1; }
+    .cursor { animation: none; }
+  }
+
+  /* ---------- SWITCHES SECTION ---------- */
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 1.7rem;
+    margin: 0 0 8px;
+  }
+
+  .section-note {
+    color: var(--ink-dim);
+    max-width: 520px;
+    margin: 0 0 36px;
+  }
+
+  .switch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .switch-grid { grid-template-columns: 1fr; }
+  }
+
+  .switch-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px 20px;
+  }
+
+  .switch-toggle {
+    width: 40px;
+    height: 22px;
+    border-radius: 20px;
+    background: var(--amber);
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .switch-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #10181c;
+  }
+
+  .switch-card h3 {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    color: var(--amber);
+  }
+
+  .switch-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- BEFORE / AFTER ---------- */
+  .compare {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .compare-row:last-child { border-bottom: none; }
+
+  .compare-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 16px 14px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .compare-row.vague .compare-tag { color: var(--coral); background: rgba(228,87,46,0.08); }
+  .compare-row.sharp .compare-tag { color: #8fd6a8; background: rgba(143,214,168,0.06); }
+
+  .compare-text {
+    padding: 16px 18px 16px 4px;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  .compare-row.vague .compare-text { color: var(--ink-dim); }
+
+  /* ---------- MISTAKES ---------- */
+  .mistake-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .mistake-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--bg-panel);
+    border-left: 3px solid var(--coral);
+    border-radius: 4px;
+    padding: 14px 18px;
+  }
+
+  .mistake-list .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--coral);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  .mistake-list p { margin: 0; color: var(--ink-dim); font-size: 0.94rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+  }
+
+  .footer-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+  }
+
+  .footer-switch .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #8fd6a8;
+    box-shadow: 0 0 0 4px rgba(143,214,168,0.15);
+  }
+
+  footer h2 {
+    max-width: 460px;
+    margin: 0 auto 10px;
+  }
+
+  footer p { color: var(--ink-dim); font-size: 0.92rem; }
+</style>
+</head>
+<body>
+
+<div class="wrap hero">
+  <div class="eyebrow">A field guide</div>
+  <h1>Talk to AI like you mean it.</h1>
+  <p class="sub">Most people get mediocre answers from AI because they ask mediocre questions. The fix isn't a secret trick — it's three habits, shown below.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span></span><span></span><span></span>
+      <span class="label">prompt.txt</span>
+    </div>
+    <div class="terminal-body">
+      <div class="prompt-line">
+        <span class="old-prompt">write me something about dogs</span>
+        <span class="new-prompt">write a 150-word Instagram caption about my rescue greyhound's first time seeing snow — playful tone, one emoji max<span class="cursor"></span></span>
+      </div>
+      <div class="output-tag">→ this version gets you a caption you'd actually post. the first one gets you generic dog facts.</div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap">
+  <h2>The three switches</h2>
+  <p class="section-note">These aren't steps to follow in order — they're dials you can turn on any prompt, any time, to get a sharper answer.</p>
+
+  <div class="switch-grid">
+    <div class="switch-card">
+      <div class="switch-toggle"></div>
+      <h3>Be specific</h3>
+      <p>Swap "something about X" for the actual thing you need: length, audience, tone, purpose. Vague in, vague out.</p>
+    </div>
+    <div class="switch-card">
+      <div class="switch-toggle"></div>
+      <h3>Give context</h3>
+      <p>AI can't see your inbox, your codebase, or your situation. Paste the relevant bits in, or explain the constraint that matters.</p>
+    </div>
+    <div class="switch-card">
+      <div class="switch-toggle"></div>
+      <h3>Set the format</h3>
+      <p>Say how you want the answer shaped: a table, three bullet points, plain prose, code only. Don't make it guess.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Before / after</h2>
+  <p class="section-note">Same underlying request, rewritten with the switches above.</p>
+
+  <div class="compare">
+    <div class="compare-row vague">
+      <div class="compare-tag">vague</div>
+      <div class="compare-text">help me with my resume</div>
+    </div>
+    <div class="compare-row sharp">
+      <div class="compare-tag">sharp</div>
+      <div class="compare-text">I'm applying for marketing coordinator roles. Here's my current resume — tighten the bullet points to lead with results, not duties, and flag anything that reads as filler.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-row vague">
+      <div class="compare-tag">vague</div>
+      <div class="compare-text">write some code for a website</div>
+    </div>
+    <div class="compare-row sharp">
+      <div class="compare-tag">sharp</div>
+      <div class="compare-text">Write a single HTML file with a contact form (name, email, message) that validates fields before submit — no backend needed yet, just the front end.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-row vague">
+      <div class="compare-tag">vague</div>
+      <div class="compare-text">plan a trip</div>
+    </div>
+    <div class="compare-row sharp">
+      <div class="compare-tag">sharp</div>
+      <div class="compare-text">Plan a 4-day Lisbon itinerary for two adults, moderate budget, big on food and walkable neighborhoods, light on museums.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>What trips people up</h2>
+  <p class="section-note">The most common habits that quietly limit what AI can do for you.</p>
+
+  <ul class="mistake-list">
+    <li>
+      <span class="tag">01</span>
+      <p><strong style="color:var(--ink)">Stopping at the first answer.</strong> Treat the reply as a draft, not a verdict — tell it what's off and let it revise.</p>
+    </li>
+    <li>
+      <span class="tag">02</span>
+      <p><strong style="color:var(--ink)">Not defining "good."</strong> If you know what a great answer looks like, say so up front instead of hoping it guesses.</p>
+    </li>
+    <li>
+      <span class="tag">03</span>
+      <p><strong style="color:var(--ink)">Assuming it remembers your situation.</strong> Unless you've told it in this conversation, it doesn't know your job, your codebase, or your constraints.</p>
+    </li>
+    <li>
+      <span class="tag">04</span>
+      <p><strong style="color:var(--ink)">Asking one giant question.</strong> Big, tangled requests get muddled answers. Break it into the pieces you'd explain to a colleague one at a time.</p>
+    </li>
+  </ul>
+</section>
+
+<footer class="wrap">
+  <div class="footer-switch"><span class="dot"></span> ready</div>
+  <h2>Now go try it.</h2>
+  <p>Pick one thing you'd normally ask vaguely — and turn the three switches before you hit send.</p>
+</footer>
+
+</body>
+</html>
