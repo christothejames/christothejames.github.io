@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAN RANK · humbored.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hot-pink: #ff2fa6;
+    --bubblegum: #ff8fd8;
+    --neon-cyan: #3ef2ff;
+    --sunset: #ffb347;
+    --gold: #ffe66d;
+    --night: #12002b;
+    --purple: #3b0a6b;
+    --card: #1e0640cc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--night);
+    color: #fff;
+    font-family: 'Righteous', sans-serif;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at 50% 0%, #ff2fa633 0%, transparent 55%),
+      linear-gradient(to bottom, #12002b 0%, #2a0752 50%, #12002b 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* Grid floor stays at the bottom of the screen */
+  .floor {
+    position: fixed;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    height: 28vh;
+    background:
+      linear-gradient(to bottom, var(--night) 0%, transparent 30%),
+      repeating-linear-gradient(to right, var(--hot-pink) 0 2px, transparent 2px 80px),
+      repeating-linear-gradient(to bottom, var(--hot-pink) 0 2px, transparent 2px 50px);
+    transform: perspective(300px) rotateX(60deg);
+    transform-origin: top center;
+    opacity: 0.35;
+    animation: floorMove 1.2s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes floorMove {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to   { background-position: 0 0, 0 0, 0 50px; }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 16px 120px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .mini-ball {
+    width: 56px;
+    aspect-ratio: 1;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, #ffffffee 0%, #ffffff55 14%, transparent 32%),
+      repeating-linear-gradient(to right, #00000055 0 2px, transparent 2px 9px),
+      repeating-linear-gradient(to bottom, #00000055 0 2px, transparent 2px 9px),
+      conic-gradient(#c9c9d6, #fff, #8f8fa3, #ffd6f1, #a7f6ff, #c9c9d6);
+    box-shadow: inset -8px -10px 16px #00000088, 0 0 30px var(--bubblegum);
+    animation: spinTiles 2.5s linear infinite;
+  }
+
+  @keyframes spinTiles {
+    to { background-position: 0 0, 90px 0, 0 0, 0 0; }
+  }
+
+  .neon {
+    font-family: 'Monoton', cursive;
+    font-size: clamp(34px, 8vw, 72px);
+    margin: 0;
+    color: var(--bubblegum);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 6px var(--bubblegum), 0 0 20px var(--hot-pink), 0 0 42px var(--hot-pink);
+    font-weight: 400;
+  }
+
+  .sub {
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(14px, 2.8vw, 22px);
+    margin: 10px 0 0;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px #3ef2ff88;
+  }
+
+  .blurb {
+    margin: 14px auto 0;
+    max-width: 520px;
+    color: #e9d8ff;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(20px, 4vw, 30px);
+    margin: 0 0 16px;
+    font-style: italic;
+    background: linear-gradient(to bottom, #fff 0%, var(--bubblegum) 50%, var(--sunset) 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    filter: drop-shadow(3px 3px 0 var(--purple));
+  }
+
+  section { margin-bottom: 44px; }
+
+  /* ---------- The scale ---------- */
+  .scale-bar {
+    position: relative;
+    height: 22px;
+    border-radius: 999px;
+    border: 2px solid #ffffff55;
+    background: linear-gradient(to right, #6b5a8e 0%, #3ef2ff 30%, #ff8fd8 60%, #ff2fa6 80%, #ffe66d 100%);
+    box-shadow: 0 0 20px #ff2fa655;
+  }
+
+  .scale-nums {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    margin-top: 6px;
+    color: #cdb8f0;
+  }
+
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .tier {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid #ffffff22;
+    border-left: 5px solid var(--c);
+    border-radius: 12px;
+  }
+
+  .tier .range {
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    color: var(--c);
+    min-width: 64px;
+  }
+
+  .tier .name { font-size: 16px; }
+
+  /* ---------- Leaderboard ---------- */
+  .board {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid #ffffff22;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+  }
+
+  .row.top {
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 26px #ffe66d66;
+  }
+
+  .pos {
+    font-family: 'Bungee', sans-serif;
+    font-size: 22px;
+    color: #cdb8f0;
+    text-align: center;
+  }
+
+  .row.top .pos { color: var(--gold); }
+
+  .who .name {
+    font-size: 19px;
+    margin-bottom: 4px;
+  }
+
+  .who .tier-label {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    color: var(--night);
+    background: var(--c);
+    margin-bottom: 8px;
+  }
+
+  .meter {
+    height: 10px;
+    border-radius: 999px;
+    background: #ffffff1a;
+    overflow: hidden;
+  }
+
+  .meter span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--neon-cyan), var(--bubblegum), var(--c));
+    transition: width 1.2s cubic-bezier(.2,.9,.3,1);
+  }
+
+  .score {
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(30px, 7vw, 44px);
+    line-height: 1;
+    color: var(--c);
+    text-shadow: 0 0 14px var(--c);
+    min-width: 2.2em;
+    text-align: right;
+  }
+
+  .score small {
+    display: block;
+    font-family: 'Righteous', sans-serif;
+    font-size: 11px;
+    color: #cdb8f0;
+    text-shadow: none;
+    margin-top: 4px;
+  }
+
+  footer {
+    text-align: center;
+  }
+
+  .back {
+    display: inline-block;
+    padding: 12px 26px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 16px;
+    color: var(--night);
+    text-decoration: none;
+    background: linear-gradient(to bottom, #fff, var(--bubblegum) 40%, var(--hot-pink));
+    border: 3px solid #fff;
+    border-radius: 999px;
+    box-shadow: 0 0 18px var(--hot-pink), 0 5px 0 var(--purple);
+  }
+
+  .back:hover, .back:focus-visible { transform: translateY(-2px); outline: none; }
+
+  @media (max-width: 520px) {
+    .row { grid-template-columns: 36px 1fr auto; gap: 10px; padding: 12px; }
+    .pos { font-size: 18px; }
+    .who .name { font-size: 17px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="floor" aria-hidden="true"></div>
+
+<div class="page">
+  <header>
+    <div class="mini-ball" aria-hidden="true"></div>
+    <h1 class="neon">MAN RANK</h1>
+    <p class="sub">The official 0–100 scale</p>
+    <p class="blurb">Every man gets a number. From soggy noodle to disco king, here's where everyone lands.</p>
+  </header>
+
+  <section>
+    <h2>The Scale</h2>
+    <div class="scale-bar" aria-hidden="true"></div>
+    <div class="scale-nums" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+    <div class="tiers" id="tiers"></div>
+  </section>
+
+  <section>
+    <h2>The Leaderboard</h2>
+    <div class="board" id="board"></div>
+  </section>
+
+  <footer>
+    <a class="back" href="index.html">↺ RE-ENTER</a>
+  </footer>
+</div>
+
+<script>
+  // ====== EDIT THE RANKINGS HERE ======
+  // Each entry: a name and a score from 0 to 100. The list sorts itself.
+  const men = [
+    { name: "Contestant #1", score: 97 },
+    { name: "Contestant #2", score: 84 },
+    { name: "Contestant #3", score: 71 },
+    { name: "Contestant #4", score: 56 },
+    { name: "Contestant #5", score: 38 },
+    { name: "Contestant #6", score: 12 },
+  ];
+
+  // The tiers on the scale (lowest to highest)
+  const tiers = [
+    { min: 0,  max: 19,  name: "Soggy Noodle",        color: "#9c8cc0" },
+    { min: 20, max: 39,  name: "Cardigan Guy",        color: "#3ef2ff" },
+    { min: 40, max: 59,  name: "Gym Curious",         color: "#8ff0c4" },
+    { min: 60, max: 79,  name: "Grill Master",        color: "#ff8fd8" },
+    { min: 80, max: 94,  name: "Disco Stallion",      color: "#ff2fa6" },
+    { min: 95, max: 100, name: "King of the Manosphere", color: "#ffe66d" },
+  ];
+  // ====================================
+
+  const tierFor = s => tiers.find(t => s >= t.min && s <= t.max) || tiers[0];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  document.getElementById('tiers').innerHTML = tiers.map(t => `
+    <div class="tier" style="--c:${t.color}">
+      <span class="range">${t.min}–${t.max}</span>
+      <span class="name">${esc(t.name)}</span>
+    </div>`).join('');
+
+  const sorted = [...men].sort((a, b) => b.score - a.score);
+  document.getElementById('board').innerHTML = sorted.map((m, i) => {
+    const t = tierFor(m.score);
+    return `
+      <div class="row${i === 0 ? ' top' : ''}" style="--c:${t.color}">
+        <div class="pos">${i === 0 ? '👑' : '#' + (i + 1)}</div>
+        <div class="who">
+          <div class="name">${esc(m.name)}</div>
+          <span class="tier-label">${esc(t.name)}</span>
+          <div class="meter"><span data-w="${m.score}"></span></div>
+        </div>
+        <div class="score">${m.score}<small>/ 100</small></div>
+      </div>`;
+  }).join('');
+
+  // Fill the meters after the page appears
+  requestAnimationFrame(() => setTimeout(() => {
+    document.querySelectorAll('.meter span').forEach(el => el.style.width = el.dataset.w + '%');
+  }, 100));
+</script>
+
+</body>
+</html>
