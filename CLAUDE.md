@@ -20,7 +20,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on.
 - `plan.html` – "The Game Plan": pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
 - `data/plans.js` – all Game Plan strategies (`AREAS`) and crisis lines (`BACKUP`).
-- `images/` – profile photos (set `photo: "images/name.jpg"` in people.js).
+- `images/` – profile photos, 600×600 JPG around 50 KB. Set `photo`, `photoCredit` (author, licence, "via Wikimedia Commons") and `photoSource` (the Commons file page) in people.js; credits show on the profile and in the home footer. Never use mugshots or arrest photos of anyone not convicted.
 - `CNAME` – custom domain. Never delete or change it.
 
 ## Style

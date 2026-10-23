@@ -424,7 +424,8 @@
 
 <footer class="wrap">
   <p>Profiles are our opinion, based on the public record linked on every post. Charges are not convictions: each poster shows the man's current legal status.</p>
-  <p>"Everyday men" are composites, not real individuals. Photos are credited to their owners.</p>
+  <p>"Everyday men" are composites, not real individuals.</p>
+  <p id="credits"></p>
   <p><a href="index.html">↺ RE-ENTER THE MANOSPHERE</a></p>
 </footer>
 
@@ -484,6 +485,9 @@
     document.getElementById('badCount').textContent = bad.length + (bad.length === 1 ? ' man' : ' men');
   }
 
+  const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit && p.list !== 'review');
+  document.getElementById('credits').innerHTML = cr.length ? 'Photos: ' + cr.map(p =>
+    `${esc(p.name)} by <a href="${esc(p.photoSource || '#')}" target="_blank" rel="noopener" style="font-family:inherit;color:inherit;text-decoration:underline">${esc(p.photoCredit)}</a>`).join(' · ') : '';
   document.getElementById('search').addEventListener('input', render);
   render();
 })();

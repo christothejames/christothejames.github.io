@@ -174,6 +174,8 @@
 
   .status-line { margin-top: 8px; font-size: 14px; color: var(--text); }
 
+  .credit { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .credit a { color: var(--muted); }
   .actions { display: flex; gap: 8px; padding-bottom: 6px; flex-wrap: wrap; }
 
   .btn {
@@ -348,11 +350,11 @@
   .shadow-box .ov { font-size: 32px; margin-bottom: 8px; }
   .srow { display: grid; grid-template-columns: 1fr 0 40px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
   .strack { height: 6px; background: #0f02; }
-  .dims { display: grid; gap: 4px; margin-bottom: 4px; }
-  .dim { display: grid; grid-template-columns: 1fr 70px 58px; gap: 6px; align-items: center; font-size: 12px; }
-  .dt { height: 6px; background: #0f02; }
-  .dt span { display: block; height: 100%; background: #0f0; }
-  .dv { text-align: right; }
+  .sds { display: grid; gap: 4px; margin-bottom: 4px; }
+  .sd { display: grid; grid-template-columns: 1fr 70px 58px; gap: 6px; align-items: center; font-size: 12px; }
+  .sd-t { height: 6px; background: #0f02; }
+  .sd-t span { display: block; height: 100%; background: #0f0; }
+  .sd-v { text-align: right; }
   .strack span { display: block; height: 100%; background: #0f0; }
 
   .missing { text-align: center; padding: 80px 16px; }
@@ -399,7 +401,7 @@
   const overall = p => window.shadowScore(p);
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
   const app = document.getElementById('app');
-  const dimBars = p => `<div class="dims">${window.DIMS.map(d => { const v = p.dimScore[d.key]; return `<div class="dim"><span>${d.label}</span><span class="dt"><span style="width:${v ?? 0}%"></span></span><span class="dv">${v == null ? 'no record' : v}</span></div>`; }).join('')}</div>`;
+  const dimBars = p => `<div class="sds">${window.DIMS.map(d => { const v = p.dimScore[d.key]; return `<div class="sd"><span>${d.label}</span><span class="sd-t"><span style="width:${v ?? 0}%"></span></span><span class="sd-v">${v == null ? 'no record' : v}</span></div>`; }).join('')}</div>`;
 
   const p = PEOPLE.find(x => x.id === q.get('id') && (x.list !== 'review' || shadow));
   if (!p) {
@@ -442,6 +444,7 @@
           <div class="role">${esc(p.role)}</div>
           <span class="list-badge">${p.list === 'review' ? 'UNDER REVIEW (shadow only)' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
           <div class="status-line">${esc(p.status)}</div>
+          ${p.photoCredit ? `<div class="credit">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</div>` : ''}
         </div>
         <div class="actions">
           <button class="btn" id="respect" aria-pressed="false">${p.list === 'bad' ? '👎 Not for me' : '👍 Respect'}</button>
@@ -529,7 +532,7 @@
             <div class="box">
               <h2>Photos</h2>
               ${p.photo
-                ? `<div class="photo-grid"><img src="${esc(p.photo)}" alt="${esc(p.name)}"></div>${p.photoCredit ? `<p class="note">Photo: ${esc(p.photoCredit)}</p>` : ''}`
+                ? `<div class="photo-grid"><img src="${esc(p.photo)}" alt="${esc(p.name)}"></div>${p.photoCredit ? `<p class="note">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</p>` : ''}`
                 : '<p class="muted">No photos yet.</p>'}
             </div>
           </div>
