@@ -10,30 +10,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
 <style>
   :root {
-    --hot-pink: #ff2fa6;
-    --bubblegum: #ff8fd8;
+    --hot-pink: #1e90ff;
+    --bubblegum: #7cc4ff;
     --cyan: #3ef2ff;
     --gold: #ffe66d;
     --red: #ff3b3b;
-    --night: #12002b;
-    --purple: #3b0a6b;
-    --panel: #1d0640;
+    --night: #050b1a;
+    --purple: #0d2a5c;
+    --panel: #0c1a36;
     --line: #ffffff1f;
-    --text: #f6ecff;
-    --muted: #cbb6ec;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
     --paper: #fbf3e2;
-    --ink: #1a1028;
+    --ink: #0b1626;
   }
 
   * { box-sizing: border-box; }
 
-  html { background: #12002b; }
+  html { background: #050b1a; }
 
   body {
     margin: 0;
     background:
-      radial-gradient(ellipse at 50% -10%, #ff2fa63a 0%, transparent 50%),
-      linear-gradient(to bottom, #12002b, #1d0442 40%, #12002b);
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 40%, #050b1a);
     background-attachment: fixed;
     color: var(--text);
     font-family: 'Righteous', system-ui, sans-serif;
@@ -64,11 +64,11 @@
     font-size: clamp(32px, 7.5vw, 76px);
     line-height: 1;
     font-style: italic;
-    background: linear-gradient(to bottom, #fff 0%, #ffd6f1 35%, var(--bubblegum) 55%, var(--hot-pink) 75%, #ffb347 100%);
+    background: linear-gradient(to bottom, #fff 0%, #d6ecff 35%, var(--bubblegum) 55%, var(--hot-pink) 75%, #4fb3ff 100%);
     -webkit-background-clip: text;
             background-clip: text;
     color: transparent;
-    filter: drop-shadow(3px 3px 0 var(--purple)) drop-shadow(0 0 18px #ff2fa666);
+    filter: drop-shadow(3px 3px 0 var(--purple)) drop-shadow(0 0 18px #1e90ff66);
   }
 
   .motto {
@@ -91,7 +91,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #12002bf2;
+    background: #050b1af2;
     backdrop-filter: blur(6px);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -237,7 +237,7 @@
     position: relative;
     aspect-ratio: 1;
     border: 3px solid var(--ink);
-    background: linear-gradient(135deg, #3b0a6b, #ff2fa6);
+    background: linear-gradient(135deg, #0d2a5c, #1e90ff);
     display: grid;
     place-items: center;
     overflow: hidden;
@@ -279,7 +279,7 @@
     text-transform: uppercase;
   }
 
-  .poster .role { text-align: center; font-size: 13px; color: #5a4a6e; }
+  .poster .role { text-align: center; font-size: 13px; color: #3e4f68; }
 
   .poster .for {
     margin: 10px 0 8px;
@@ -297,7 +297,7 @@
   .poster .status {
     margin-top: auto;
     font-size: 12px;
-    background: #1a10280f;
+    background: #0b16260f;
     border-left: 3px solid var(--ink);
     padding: 6px 8px;
   }
@@ -316,9 +316,9 @@
     display: inline-block;
     font-size: 11px;
     padding: 1px 7px;
-    border: 1px dashed #5a4a6e;
+    border: 1px dashed #3e4f68;
     border-radius: 999px;
-    color: #5a4a6e;
+    color: #3e4f68;
     margin-left: 4px;
     vertical-align: 2px;
   }
@@ -358,7 +358,7 @@
   footer {
     margin-top: 40px;
     padding: 24px 0 60px;
-    border-top: 3px double #ff8fd877;
+    border-top: 3px double #7cc4ff77;
     color: var(--muted);
     font-size: 13px;
     text-align: center;

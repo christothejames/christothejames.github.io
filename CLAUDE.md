@@ -20,8 +20,8 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `CNAME` – custom domain. Never delete or change it.
 
 ## Style
-- Both pages share one 80s disco look; keep new pages in the same style.
-  - Colors: deep purple night sky, hot pink `#ff2fa6`, bubblegum `#ff8fd8`, neon cyan `#3ef2ff`, gold `#ffe66d`; Bungee (bold headings), Monoton (neon titles), Righteous (body).
+- All pages share one blue 80s disco look (bold, macho, welcoming); keep new pages in the same style.
+  - Colors: navy night sky `#050b1a`, electric blue `#1e90ff`, sky blue `#7cc4ff`, neon cyan `#3ef2ff`; gold `#ffe66d` for the good board, red `#ff3b3b` for the bad board. Fonts: Bungee (bold headings), Monoton (neon titles), Righteous (body).
 - Tone: fun, silly, energetic. Short punchy text.
 - Must work on phones (touch, small screens). Respect `prefers-reduced-motion` for heavy animation.
 
