@@ -18,6 +18,8 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `data/people.js` – public profiles: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources.
 - `data/shadow.js` – the shadow points system: `RULES` (weights), points for each man, and new men under review (`list: "review"`, hidden from public boards). Raw points are summed and scaled 0–100 across real men; composites aren't scaled. Each rule also belongs to a dimension (`DIMS`: body, service, community, family, trust, conduct) and every man gets a 0–100 score per dimension, or "no record" if he has no facts in it.
 - `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on.
+- `plan.html` – "The Game Plan": pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
+- `data/plans.js` – all Game Plan strategies (`AREAS`) and crisis lines (`BACKUP`).
 - `images/` – profile photos (set `photo: "images/name.jpg"` in people.js).
 - `CNAME` – custom domain. Never delete or change it.
 
@@ -26,6 +28,15 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
   - Colors: navy night sky `#050b1a`, electric blue `#1e90ff`, sky blue `#7cc4ff`, neon cyan `#3ef2ff`; gold `#ffe66d` for the good board, red `#ff3b3b` for the bad board. Fonts: Bungee (bold headings), Monoton (neon titles), Righteous (body).
 - Tone: fun, silly, energetic. Short punchy text.
 - Must work on phones (touch, small screens). Respect `prefers-reduced-motion` for heavy animation.
+
+## Game Plan wording (important)
+- Strategy, not sympathy: "your moves", "quick win", "call in backup". Never imply he's weak, broken or a victim.
+- Short sentences a 15-year-old understands first read.
+- Getting help is framed as a tactic (pros have coaches), never as failure.
+- Anything touching self-harm or suicide must point straight to BACKUP NOW. Urgent situations (`urgent: true`) open the backup panel automatically.
+- Alcohol: always keep the warning not to stop suddenly if he gets shakes, sweats or sickness without a drink, and to see a doctor.
+- Dating advice must be respectful: she's a person, not a target; a no is a no.
+- Check any crisis number against an official source before changing it. These are general strategies, not medical advice.
 
 ## Rules for Claude
 - Keep pages self-contained single HTML files unless asked otherwise. No build tools or frameworks without asking.
