@@ -21,43 +21,57 @@
 //  NOTE: this file is public. Anyone reading the site's code can see it.
 // =====================================================================
 
+// Each rule belongs to a dimension. Every man gets a 0–100 score in each
+// dimension (scaled across all real men), plus his overall score.
+window.DIMS = [
+  { key: "body",      label: "Body & survival" },
+  { key: "service",   label: "Courage & service" },
+  { key: "community", label: "Community" },
+  { key: "family",    label: "Family & faithfulness" },
+  { key: "trust",     label: "Trustworthiness" },
+  { key: "conduct",   label: "Conduct" },
+];
+
 window.RULES = {
   // ---- positives ----
-  gallantry:      { pts:  30, label: "Gallantry award (VC, Silver Star)" },
-  military:       { pts:  15, label: "Military service" },
-  selfless:       { pts:  15, label: "Gave up money or status to serve" },
-  charity_major:  { pts:  15, label: "Founded a charity or raised millions" },
-  honour:         { pts:  10, label: "National honour (knighthood, OBE, MBE, medal)" },
-  survival:       { pts:  10, label: "Survival, endurance or toughness feat" },
-  farming:        { pts:  10, label: "Farming" },
-  teaching:       { pts:  10, label: "Teaching or training others" },
-  feeding:        { pts:  10, label: "Cooking or feeding people" },
-  rescue:         { pts:  10, label: "Rescue or helping in an emergency" },
-  charity:        { pts:  10, label: "Supporting a charity" },
-  family:         { pts:  10, label: "Long, committed marriage / family man" },
+  gallantry:      { pts:  30, label: "Gallantry award (VC, Silver Star)", dim: "service" },
+  military:       { pts:  15, label: "Military service", dim: "service" },
+  selfless:       { pts:  15, label: "Gave up money or status to serve", dim: "service" },
+  charity_major:  { pts:  15, label: "Founded a charity or raised millions", dim: "community" },
+  honour:         { pts:  10, label: "National honour (knighthood, OBE, MBE, medal)", dim: "community" },
+  physique:       { pts:  20, label: "Elite physical discipline (world titles)", dim: "body" },
+  survival:       { pts:  10, label: "Survival, endurance or toughness feat", dim: "body" },
+  farming:        { pts:  10, label: "Farming", dim: "community" },
+  teaching:       { pts:  10, label: "Teaching or training others", dim: "community" },
+  feeding:        { pts:  10, label: "Cooking or feeding people", dim: "community" },
+  rescue:         { pts:  10, label: "Rescue or helping in an emergency", dim: "service" },
+  charity:        { pts:  10, label: "Supporting a charity", dim: "community" },
+  family:         { pts:  10, label: "Long, committed marriage / family man", dim: "family" },
   // ---- negatives ----
-  murder:              { pts: -100, label: "Convicted of murder (You shall not murder)" },
-  sexual_conviction:   { pts:  -60, label: "Convicted of a sexual offence" },
-  domestic_violence:   { pts:  -40, label: "Convicted of violence against a partner" },
-  fraud_conviction:    { pts:  -40, label: "Convicted of fraud (You shall not steal)" },
-  mass_harm:           { pts:  -40, label: "Harmed thousands of people" },
-  violence_conviction: { pts:  -30, label: "Convicted of violent assault" },
-  lying:               { pts:  -25, label: "Years of public lying (no false witness)" },
-  exploitation:        { pts:  -25, label: "Exploited people for money (coveting / greed)" },
-  infidelity:          { pts:  -20, label: "Admitted cheating on his partner (no adultery)" },
-  charges_pending:     { pts:  -20, label: "Facing serious criminal charges (not convicted)" },
-  sport_cheating:      { pts:  -20, label: "Admitted cheating in sport" },
-  many_allegations:    { pts:  -20, label: "Accused by many people" },
-  violence:            { pts:  -15, label: "Violence (admitted or settled, not convicted)" },
-  harassment:          { pts:  -15, label: "Harassment or threats" },
-  unpaid:              { pts:  -15, label: "Banned or penalised over unpaid money owed" },
-  misogyny:            { pts:  -10, label: "Public controversy over treatment of women" },
-  deception:           { pts:  -10, label: "Deceived the public, then apologised" },
-  endangered_child:    { pts:  -10, label: "Put a child at risk" },
-  drugs_driving:       { pts:  -10, label: "Drug or drink-driving offence or charge" },
-  staff:               { pts:  -10, label: "Mistreated staff" },
-  controversy:         { pts:  -10, label: "Other public controversy" },
-  allegation:          { pts:   -5, label: "Single unproven allegation (he denies it)" },
+  murder:              { pts: -100, label: "Convicted of murder (You shall not murder)", dim: "conduct" },
+  sexual_conviction:   { pts:  -60, label: "Convicted of a sexual offence", dim: "conduct" },
+  domestic_violence:   { pts:  -40, label: "Convicted of violence against a partner", dim: "family" },
+  fraud_conviction:    { pts:  -40, label: "Convicted of fraud (You shall not steal)", dim: "trust" },
+  mass_harm:           { pts:  -40, label: "Harmed thousands of people", dim: "conduct" },
+  violence_conviction: { pts:  -30, label: "Convicted of violent assault", dim: "conduct" },
+  lying:               { pts:  -25, label: "Years of public lying (no false witness)", dim: "trust" },
+  exploitation:        { pts:  -25, label: "Exploited people for money (coveting / greed)", dim: "trust" },
+  infidelity:          { pts:  -20, label: "Admitted cheating on his partner (no adultery)", dim: "family" },
+  charges_pending:     { pts:  -20, label: "Facing serious criminal charges (not convicted)", dim: "conduct" },
+  sport_cheating:      { pts:  -20, label: "Admitted cheating in sport", dim: "trust" },
+  many_allegations:    { pts:  -20, label: "Accused by many people", dim: "conduct" },
+  violence:            { pts:  -15, label: "Violence (admitted or settled, not convicted)", dim: "conduct" },
+  harassment:          { pts:  -15, label: "Harassment or threats", dim: "conduct" },
+  unpaid:              { pts:  -15, label: "Banned or penalised over unpaid money owed", dim: "trust" },
+  misogyny:            { pts:  -10, label: "Public controversy over treatment of women", dim: "conduct" },
+  hid_truth:           { pts:  -20, label: "Hid the truth for years from those closest to him", dim: "trust" },
+  steroids:            { pts:  -15, label: "Admitted steroid / performance-drug use", dim: "trust" },
+  deception:           { pts:  -10, label: "Deceived the public, then apologised", dim: "trust" },
+  endangered_child:    { pts:  -10, label: "Put a child at risk", dim: "family" },
+  drugs_driving:       { pts:  -10, label: "Drug or drink-driving offence or charge", dim: "conduct" },
+  staff:               { pts:  -10, label: "Mistreated staff", dim: "conduct" },
+  controversy:         { pts:  -10, label: "Other public controversy", dim: "conduct" },
+  allegation:          { pts:   -5, label: "Single unproven allegation (he denies it)", dim: "conduct" },
 };
 
 const W = name => "https://en.wikipedia.org/wiki/" + name;
@@ -101,6 +115,23 @@ window.SHADOW_POINTS = {
 // New men found on Wikipedia — hidden from the public boards until you
 // move them to "good" or "bad".
 window.SHADOW_PEOPLE = [
+  {
+    id: "arnold-schwarzenegger", name: "Arnold Schwarzenegger", list: "review", type: "public",
+    role: "Bodybuilder, actor, former Governor of California", reason: "A legend of discipline who wasn't as trustworthy as his image.",
+    status: "Active · Controversial: legend with flaws",
+    // Scored on his personal record only, not his political career.
+    points: [
+      { rule: "physique",      date: "1970–80",  text: "Won Mr. Olympia seven times.", source: W("Arnold_Schwarzenegger") },
+      { rule: "survival",      date: "1997–2024", text: "Came through heart valve surgeries in 1997, 2018 and after, and a pacemaker in 2024.", source: "https://ctvnews.ca/health/arnold-schwarzenegger-says-he-got-a-pacemaker-fitted-last-week-1.6822650" },
+      { rule: "military",      date: "1965",     text: "Did his year of Austrian army service.", source: W("Arnold_Schwarzenegger") },
+      { rule: "charity_major", date: "1991–",    text: "Founded what became After-School All-Stars, serving over 118,000 low-income kids.", source: W("After-School_All-Stars") },
+      { rule: "charity",       date: "",         text: "Long-time supporter of the Special Olympics.", source: W("Arnold_Schwarzenegger") },
+      { rule: "steroids",      date: "1977",     text: "Admitted using steroids during his bodybuilding career (legal at the time).", source: W("Arnold_Schwarzenegger") },
+      { rule: "infidelity",    date: "2011",     text: "Admitted an affair with a member of his household staff and fathering a son with her.", source: "https://www.nbcnews.com/id/wbna43073154" },
+      { rule: "hid_truth",     date: "1997–2011", text: "Kept the child secret from his wife for about 14 years.", source: "https://www.nbcnews.com/id/wbna43073154" },
+      { rule: "misogyny",      date: "2003",     text: "Six women made misconduct allegations; he admitted he had \"behaved badly\" and apologised, while saying many claims were untrue.", source: W("Arnold_Schwarzenegger") },
+    ],
+  },
   {
     id: "johnson-beharry", name: "Johnson Beharry", list: "review", type: "public",
     role: "British Army soldier, Victoria Cross", reason: "Drove wounded comrades out of two ambushes in Iraq.",
@@ -352,6 +383,19 @@ window.SHADOW_PEOPLE = [
   const lo = Math.min(...real.map(p => p.raw)), hi = Math.max(...real.map(p => p.raw));
   all.forEach(p => {
     p.shadow = hi === lo ? 50 : Math.max(0, Math.min(100, Math.round((p.raw - lo) / (hi - lo) * 100)));
+  });
+  // per-dimension scores, scaled across real men
+  window.DIMS.forEach(d => {
+    const sum = p => p.points.reduce((a, it) => { const r = window.RULES[it.rule]; return a + (r && r.dim === d.key ? r.pts : 0); }, 0);
+    all.forEach(p => { p.dims = p.dims || {}; p.dims[d.key] = sum(p); });
+    const vals = real.map(p => p.dims[d.key]);
+    const dlo = Math.min(...vals), dhi = Math.max(...vals);
+    all.forEach(p => {
+      p.dimScore = p.dimScore || {};
+      const has = p.points.some(it => (window.RULES[it.rule] || {}).dim === d.key);
+      // null = no public record in this dimension
+      p.dimScore[d.key] = !has ? null : dhi === dlo ? 100 : Math.round((p.dims[d.key] - dlo) / (dhi - dlo) * 100);
+    });
   });
   window.shadowScore = p => p.shadow;
 })();

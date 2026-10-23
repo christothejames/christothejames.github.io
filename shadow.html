@@ -98,6 +98,11 @@
   .item .d { color: var(--dim); }
   .item .t small { display: block; color: var(--dim); }
   .links { margin-top: 8px; }
+  .dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 6px 18px; margin: 4px 0 12px; }
+  .dim { display: grid; grid-template-columns: 130px 1fr 66px; gap: 8px; align-items: center; font-size: 12px; }
+  .dt { height: 6px; background: #00ff6614; border-radius: 3px; overflow: hidden; }
+  .dt span { display: block; height: 100%; background: var(--green); }
+  .dv { text-align: right; }
 
   table { width: 100%; border-collapse: collapse; }
   td { padding: 4px 8px; border-bottom: 1px dashed #00ff661a; }
@@ -144,6 +149,7 @@
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } };
   const sign = n => (n > 0 ? '+' : '') + n;
   const people = window.PEOPLE;
+  const dimBars = p => `<div class="dims">${window.DIMS.map(d => { const v = p.dimScore[d.key]; return `<div class="dim"><span>${d.label}</span><span class="dt"><span style="width:${v ?? 0}%"></span></span><span class="dv">${v == null ? 'no record' : v}</span></div>`; }).join('')}</div>`;
 
   app.innerHTML = `
     <div class="wrap">
@@ -187,6 +193,7 @@
           <span class="raw">${sign(p.raw)} pts<br>+${p.plus} / ${p.minus}</span>
         </summary>
         <div class="detail">
+          ${p.type === 'composite' ? '' : dimBars(p)}
           ${(p.points || []).slice().sort((a, b) => (RULES[b.rule]?.pts || 0) - (RULES[a.rule]?.pts || 0)).map(it => {
             const r = RULES[it.rule] || { pts: 0, label: it.rule };
             return `<div class="item">

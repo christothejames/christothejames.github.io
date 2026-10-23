@@ -348,6 +348,11 @@
   .shadow-box .ov { font-size: 32px; margin-bottom: 8px; }
   .srow { display: grid; grid-template-columns: 1fr 0 40px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
   .strack { height: 6px; background: #0f02; }
+  .dims { display: grid; gap: 4px; margin-bottom: 4px; }
+  .dim { display: grid; grid-template-columns: 1fr 70px 58px; gap: 6px; align-items: center; font-size: 12px; }
+  .dt { height: 6px; background: #0f02; }
+  .dt span { display: block; height: 100%; background: #0f0; }
+  .dv { text-align: right; }
   .strack span { display: block; height: 100%; background: #0f0; }
 
   .missing { text-align: center; padding: 80px 16px; }
@@ -394,6 +399,7 @@
   const overall = p => window.shadowScore(p);
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
   const app = document.getElementById('app');
+  const dimBars = p => `<div class="dims">${window.DIMS.map(d => { const v = p.dimScore[d.key]; return `<div class="dim"><span>${d.label}</span><span class="dt"><span style="width:${v ?? 0}%"></span></span><span class="dv">${v == null ? 'no record' : v}</span></div>`; }).join('')}</div>`;
 
   const p = PEOPLE.find(x => x.id === q.get('id') && (x.list !== 'review' || shadow));
   if (!p) {
@@ -453,7 +459,8 @@
           <div class="shadow-box">
             <h2>◼ SHADOW SCORE · only you can see this</h2>
             <div class="ov">${overall(p)}/100</div>
-            <div style="font-size:12px;margin-bottom:8px">Raw ${p.raw > 0 ? '+' : ''}${p.raw} pts (+${p.plus} / ${p.minus}) · <a href="shadow.html" style="color:#0f0">full ranking</a></div>
+            ${p.type === 'composite' ? '' : dimBars(p)}
+            <div style="font-size:12px;margin:8px 0">Raw ${p.raw > 0 ? '+' : ''}${p.raw} pts (+${p.plus} / ${p.minus}) · <a href="shadow.html" style="color:#0f0">full ranking</a></div>
             ${(p.points || []).map(it => {
               const r = window.RULES[it.rule] || { pts: 0, label: it.rule };
               return `<div class="srow"><span>${esc(r.label)}</span><span></span><span>${r.pts > 0 ? '+' : ''}${r.pts}</span></div>`;

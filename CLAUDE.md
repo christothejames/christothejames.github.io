@@ -16,7 +16,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `home.html` – two poster boards: "WANTED: MORE MEN LIKE HIM" (good) and "NOT WANTED" (bad), with search. Each poster links to a profile.
 - `profile.html?id=<id>` – Facebook-style profile: cover, avatar, status line, intro, dated timeline posts with source links, About and Photos tabs, reactions (saved only in the viewer's browser).
 - `data/people.js` – public profiles: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources.
-- `data/shadow.js` – the shadow points system: `RULES` (weights), points for each man, and new men under review (`list: "review"`, hidden from public boards). Raw points are summed and scaled 0–100 across real men; composites aren't scaled.
+- `data/shadow.js` – the shadow points system: `RULES` (weights), points for each man, and new men under review (`list: "review"`, hidden from public boards). Raw points are summed and scaled 0–100 across real men; composites aren't scaled. Each rule also belongs to a dimension (`DIMS`: body, service, community, family, trust, conduct) and every man gets a 0–100 score per dimension, or "no record" if he has no facts in it.
 - `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on.
 - `images/` – profile photos (set `photo: "images/name.jpg"` in people.js).
 - `CNAME` – custom domain. Never delete or change it.
@@ -36,6 +36,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Shadow scores are never shown to normal visitors. Adding `?shadow` to a page address turns on shadow mode for that browser tab (`?shadow=off` turns it off). The scores are still readable in the public code, so don't treat them as secret.
 - Scoring uses the Ten Commandments about how people are treated (murder, theft/fraud, adultery, lying, greed, parents), never religious belief or practice. Only count infidelity he admitted or a court established; unproven allegations are worth little and must say he denies them.
 - New men go in as `review` until the owner decides good or bad.
+- Score a politician only on his personal record, never his politics or policies.
 - Posters for people charged but not convicted must show their current legal status and that the board is opinion, not a finding of guilt.
 - Only use photos we have the right to use (e.g. Wikimedia Commons) and fill in `photoCredit`.
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.
