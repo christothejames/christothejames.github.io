@@ -13,6 +13,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 
 ## Pages
 - `index.html` – "ENTER THE MANOSPHERE!!" entry screen: the owner's chosen cartoon-king meme (`images/entry-meme.jpg`, full with caption) with a pulsing chrome-blue "ENTER THE MANOSPHERE!!" under the staff head, over the synthwave sky, sunset, light reflections and moving blue grid floor. The ENTER button goes to `home.html`. The meme is a TV still the owner chose to use despite copyright risk; don't swap it without asking.
+- `home.html` – random hero card (top right of the Wanted board): photo with a slanted red shout banner; each click shows a different hero. Heroes, shouts and photo credits live in `data/heroes.js`, photos in `images/heroes/` (480×480).
 - `home.html` – two poster boards: "WANTED: MORE MEN LIKE HIM" (good) and "NOT WANTED" (bad), with search. Each poster links to a profile.
 - `profile.html?id=<id>` – Facebook-style profile: cover, avatar, status line, intro, dated timeline posts with source links, About and Photos tabs, reactions (saved only in the viewer's browser).
 - `data/people.js` – public profiles: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources.
