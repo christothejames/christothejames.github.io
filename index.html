@@ -3,201 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Battle Cat</title>
+<title>ENTER THE MANOSPHERE!!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
 <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: radial-gradient(circle at center, #ff8c42 0%, #d1495b 35%, #2b1055 75%, #0d0221 100%);
-    position: relative;
+  :root {
+    --hot-pink: #ff2fa6;
+    --bubblegum: #ff8fd8;
+    --neon-cyan: #3ef2ff;
+    --sunset: #ffb347;
+    --night: #12002b;
+    --purple: #3b0a6b;
   }
 
-  .speedlines {
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--night);
+    color: #fff;
+    font-family: 'Righteous', sans-serif;
+  }
+
+  /* ---------- Sky + sunset ---------- */
+  .sky {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 120%, #ff2fa699 0%, transparent 55%),
+      linear-gradient(to bottom, #12002b 0%, #3b0a6b 45%, #8a1b7a 62%, #ff2fa6 70%, #12002b 70.2%);
+    z-index: 0;
+  }
+
+  .sun {
+    position: fixed;
+    left: 50%;
+    bottom: 30%;
+    width: min(60vw, 420px);
+    aspect-ratio: 1;
+    transform: translate(-50%, 50%);
+    clip-path: inset(0 -100px 50% -100px);
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ffe66d 0%, #ffb347 35%, #ff2fa6 75%);
+    box-shadow: 0 0 80px #ff2fa6;
+    opacity: 0.85;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .sun::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 28%;
+    bottom: 50%;
+    background: repeating-linear-gradient(to bottom, transparent 0 10px, #3b0a6b 10px 15px);
+  }
+
+  /* ---------- Synthwave grid floor ---------- */
+  .floor {
+    position: fixed;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    height: 30%;
+    background:
+      linear-gradient(to bottom, var(--night) 0%, transparent 25%),
+      repeating-linear-gradient(to right, var(--hot-pink) 0 2px, transparent 2px 80px),
+      repeating-linear-gradient(to bottom, var(--hot-pink) 0 2px, transparent 2px 50px);
+    transform: perspective(300px) rotateX(60deg);
+    transform-origin: top center;
+    animation: floorMove 1s linear infinite;
+    opacity: 0.8;
+    z-index: 2;
+  }
+
+  @keyframes floorMove {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to   { background-position: 0 0, 0 0, 0 50px; }
+  }
+
+  /* ---------- Disco ball ---------- */
+  .ball-wrap {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+    animation: swing 4s ease-in-out infinite alternate;
+    transform-origin: top center;
+  }
+
+  @keyframes swing {
+    from { transform: translateX(-50%) rotate(-4deg); }
+    to   { transform: translateX(-50%) rotate(4deg); }
+  }
+
+  .string {
+    width: 3px;
+    height: clamp(20px, 6vh, 60px);
+    background: linear-gradient(#999, #eee);
+  }
+
+  .ball {
+    position: relative;
+    width: clamp(90px, 18vmin, 170px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 35% 30%, #ffffffee 0%, #ffffff55 12%, transparent 30%),
+      repeating-linear-gradient(to right, #00000055 0 2px, transparent 2px 12px),
+      repeating-linear-gradient(to bottom, #00000055 0 2px, transparent 2px 12px),
+      conic-gradient(from 0deg, #c9c9d6, #ffffff, #8f8fa3, #ffd6f1, #a7f6ff, #c9c9d6, #ffffff, #8f8fa3, #c9c9d6);
+    background-size: auto, 12px 100%, 100% 12px, 100% 100%;
+    box-shadow:
+      inset -14px -18px 30px #00000088,
+      inset 8px 8px 20px #ffffff55,
+      0 0 40px #ff8fd8cc,
+      0 0 90px #ff2fa688;
+    animation: spinTiles 3s linear infinite;
+  }
+
+  @keyframes spinTiles {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to   { background-position: 0 0, 120px 0, 0 0, 0 0; }
+  }
+
+  .ball::after {
+    content: "";
     position: absolute;
     inset: 0;
-    z-index: 0;
-    overflow: hidden;
+    background: conic-gradient(from 0deg, transparent 0 20deg, #ffffff99 25deg, transparent 30deg 140deg, #a7f6ffaa 145deg, transparent 150deg 260deg, #ffd6f1aa 265deg, transparent 270deg);
+    animation: glint 2s linear infinite;
+    mix-blend-mode: screen;
   }
 
-  .line {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #ffe66d55, transparent);
-    transform-origin: left center;
-    animation: pulse 1s ease-in-out infinite alternate;
-  }
+  @keyframes glint { to { transform: rotate(360deg); } }
 
-  @keyframes pulse {
-    0% { opacity: 0.15; }
-    100% { opacity: 0.6; }
-  }
-
-  .stage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  /* ---------- Light reflections ---------- */
+  .lights {
+    position: fixed;
+    inset: -50%;
     z-index: 3;
-    width: 100%;
-    max-width: 480px;
-    padding: 0 20px;
-    box-sizing: border-box;
+    pointer-events: none;
+    animation: lightsSpin 14s linear infinite;
   }
 
-  .card-wrap {
-    position: relative;
-    display: inline-block;
-  }
+  @keyframes lightsSpin { to { transform: rotate(360deg); } }
 
-  .aura {
+  .spot {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 115%;
-    height: 115%;
-    transform: translate(-50%, -50%);
-    border-radius: 30px;
-    background: radial-gradient(circle, #ffe66daa 0%, #ff9f1c66 45%, transparent 75%);
-    animation: auraPulse 0.6s ease-in-out infinite alternate;
-    filter: blur(10px);
-    z-index: -1;
-  }
-
-  @keyframes auraPulse {
-    0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
-  }
-
-  .card {
-    width: 100%;
-    display: block;
-    border-radius: 24px;
-    border: 4px solid #ffe66d;
-    box-shadow:
-      0 0 30px 6px #ff9500cc,
-      0 15px 40px rgba(0,0,0,0.6);
-    animation: bounce 0.6s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-    50% { transform: translateY(-14px) rotate(1.5deg); }
-  }
-
-  .energy-particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: #ffe66d;
     border-radius: 50%;
-    box-shadow: 0 0 8px 2px #ffcc00;
-    animation: rise linear infinite;
-    z-index: 4;
+    filter: blur(1px);
+    animation: twinkle 1.4s ease-in-out infinite alternate;
   }
-  @keyframes rise {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-260px) scale(0); opacity: 0; }
+
+  @keyframes twinkle {
+    from { opacity: 0.25; }
+    to   { opacity: 1; }
+  }
+
+  /* ---------- Headline ---------- */
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 16px;
+    z-index: 5;
+  }
+
+  .tagline {
+    font-family: 'Monoton', cursive;
+    font-size: clamp(16px, 3.4vw, 34px);
+    color: var(--neon-cyan);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 8px var(--neon-cyan), 0 0 22px #3ef2ff88;
+    margin: clamp(80px, 22vh, 220px) 0 8px;
+    animation: flicker 3s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 92%, 100% { opacity: 1; }
+    93% { opacity: 0.3; }
+    95% { opacity: 1; }
+    97% { opacity: 0.5; }
   }
 
   h1 {
-    color: #fff;
-    font-size: 2.2rem;
-    margin: 24px 0 0;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-shadow:
-      0 0 10px #ff6b00,
-      0 0 20px #ff9500,
-      3px 3px 0 #1a0a2e;
-    animation: textPulse 0.6s ease-in-out infinite alternate;
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    line-height: 0.95;
+    font-size: clamp(30px, 9vw, 140px);
+    font-style: italic;
+    transform: skew(-8deg);
+    background: linear-gradient(to bottom, #fff 0%, #ffd6f1 30%, #ff8fd8 48%, #ff2fa6 52%, #ffb347 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 2px #fff3;
+    filter:
+      drop-shadow(4px 4px 0 #3b0a6b)
+      drop-shadow(8px 8px 0 #12002b)
+      drop-shadow(0 0 24px #ff2fa6aa);
+    animation: pump 0.6s ease-in-out infinite alternate;
   }
 
-  @keyframes textPulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
+  h1 span { display: block; }
+
+  @keyframes pump {
+    from { transform: skew(-8deg) scale(1); }
+    to   { transform: skew(-8deg) scale(1.04); }
   }
 
-  .site-link {
+  .enter {
     display: inline-block;
-    margin-top: 22px;
-    padding: 10px 20px;
-    border: 2px solid #ffe66d;
-    border-radius: 999px;
-    color: #fff;
+    margin-top: clamp(24px, 5vh, 48px);
+    padding: 14px 34px;
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(16px, 2.6vw, 24px);
+    color: var(--night);
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    background: rgba(0,0,0,0.25);
-    box-shadow: 0 0 15px rgba(255,204,0,0.4);
-    transition: transform 0.15s ease;
+    background: linear-gradient(to bottom, #fff, var(--bubblegum) 40%, var(--hot-pink));
+    border: 3px solid #fff;
+    border-radius: 999px;
+    box-shadow: 0 0 20px var(--hot-pink), 0 6px 0 var(--purple);
+    transition: transform 0.12s, box-shadow 0.12s;
   }
-  .site-link:hover { transform: scale(1.05); }
 
-  .kanji-flash {
-    position: absolute;
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(1.2rem, 4vw, 2rem);
-    font-weight: 900;
-    color: #ffe66d;
-    text-shadow: 0 0 15px #ff6b00, 0 0 30px #ff3300;
-    opacity: 0;
-    animation: kanjiFlash 2.2s ease-in-out infinite;
-    z-index: 5;
-    white-space: nowrap;
+  .enter:hover,
+  .enter:focus-visible {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 36px var(--hot-pink), 0 9px 0 var(--purple);
+    outline: none;
   }
-  @keyframes kanjiFlash {
-    0%, 80% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-    85% { opacity: 1; transform: translateX(-50%) scale(1.3); }
-    95% { opacity: 1; transform: translateX(-50%) scale(1); }
-    100% { opacity: 0; transform: translateX(-50%) scale(1); }
+
+  .enter:active { transform: translateY(3px); box-shadow: 0 0 20px var(--hot-pink), 0 2px 0 var(--purple); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
   }
 </style>
 </head>
 <body>
 
-<div class="speedlines" id="speedlines"></div>
-<div class="kanji-flash">⚡ POWER LEVEL: OVER 9000 ⚡</div>
+<div class="sky"></div>
+<div class="sun"></div>
+<div class="floor"></div>
+<div class="lights" id="lights"></div>
 
-<div class="stage">
-  <div class="card-wrap">
-    <div class="aura"></div>
-    <div id="particles"></div>
-    <img class="card" src="cat.jpg" alt="Battle Cat">
-  </div>
-  <h1>🌮 FIESTA MODE 🌮</h1>
-  <a class="site-link" href="cat-shooting-game.html">PLAY FISHIN GAME! →</a>
+<div class="ball-wrap" aria-hidden="true">
+  <div class="string"></div>
+  <div class="ball"></div>
 </div>
 
-<script>
-  const speedContainer = document.getElementById('speedlines');
-  for (let i = 0; i < 36; i++) {
-    const line = document.createElement('div');
-    line.className = 'line';
-    const angle = (360 / 36) * i;
-    const length = 45 + Math.random() * 45;
-    line.style.width = length + 'vw';
-    line.style.transform = `rotate(${angle}deg)`;
-    line.style.animationDelay = (Math.random() * 1) + 's';
-    speedContainer.appendChild(line);
-  }
+<main class="stage">
+  <p class="tagline">humbored.com presents</p>
+  <h1><span>ENTER THE</span><span>MANOSPHERE!!</span></h1>
+  <a class="enter" href="cat-shooting-game.html">ENTER →</a>
+</main>
 
-  const particleContainer = document.getElementById('particles');
-  for (let i = 0; i < 22; i++) {
-    const p = document.createElement('div');
-    p.className = 'energy-particle';
-    p.style.left = (40 + Math.random() * 220) + 'px';
-    p.style.bottom = (Math.random() * 60) + 'px';
-    p.style.animationDuration = (1.2 + Math.random() * 1.5) + 's';
-    p.style.animationDelay = (Math.random() * 2) + 's';
-    particleContainer.appendChild(p);
+<script>
+  // Scatter colored disco-ball reflections around the room
+  const lights = document.getElementById('lights');
+  const colors = ['#ffffff', '#ff8fd8', '#3ef2ff', '#ffe66d', '#ff2fa6'];
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement('div');
+    s.className = 'spot';
+    const size = 4 + Math.random() * 10;
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    s.style.width = s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.background = c;
+    s.style.boxShadow = `0 0 ${size * 2}px ${c}`;
+    s.style.animationDelay = (Math.random() * 1.4) + 's';
+    lights.appendChild(s);
   }
 </script>
 

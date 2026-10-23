@@ -1,6 +1,6 @@
 # humbored.com
 
-A playful personal site: a hype-y cat landing page, a browser cat game, and an AI prompting guide.
+A playful personal site: an 80s disco "ENTER THE MANOSPHERE!!" landing page, a browser cat game, and an AI prompting guide.
 Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CNAME` file points it at humbored.com.
 
 ## Tech
@@ -12,15 +12,15 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Open any `.html` file in a browser, or run `python3 -m http.server 8000` and visit http://localhost:8000
 
 ## Pages
-- `index.html` – "Battle Cat" landing page. Anime power-up look: `cat.jpg` with a glowing aura, speed lines, particles. Links to the game.
+- `index.html` – "ENTER THE MANOSPHERE!!" landing page. 80s synthwave look: swinging CSS disco ball, light reflections, striped sunset, moving pink grid floor. The ENTER button links to the game.
 - `cat-shooting-game.html` – "Whisker Watch", a canvas game (guard the fish bowl from mice). Saves the best score in `localStorage` under `whiskerwatch_best`.
 - `learn-ai.html` – "Talk to AI Like You Mean It", a guide to prompting (specific, context, format; before/after examples). Not linked from any other page yet.
-- `cat.jpg` – the hero image (~350 KB).
+- `cat.jpg` – old Battle Cat image (~350 KB). Not used by any page right now.
 - `CNAME` – custom domain. Never delete or change it.
 
 ## Style
 - Each page has its own look; keep a page's existing palette and fonts when editing it.
-  - Landing: orange/red/purple radial gradient, yellow `#ffe66d` accents, system font.
+  - Landing: deep purple night sky, hot pink `#ff2fa6`, bubblegum `#ff8fd8`, neon cyan `#3ef2ff`; Bungee (headline), Monoton (neon tagline), Righteous.
   - Game: dark purple with warm orange/pink, Fredoka + Quicksand.
   - Guide: dark teal-slate with orange accents, Space Grotesk + IBM Plex Sans/Mono.
 - Tone: fun, silly, energetic. Short punchy text.
