@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile · The Real Man Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hot-pink: #ff2fa6;
+    --bubblegum: #ff8fd8;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --red: #ff3b3b;
+    --night: #12002b;
+    --purple: #3b0a6b;
+    --panel: #1d0640;
+    --panel-2: #260a52;
+    --line: #ffffff1f;
+    --text: #f6ecff;
+    --muted: #cbb6ec;
+    --accent: var(--hot-pink);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #12002b; }
+
+  body {
+    margin: 0;
+    background: linear-gradient(to bottom, #12002b, #1a0440 50%, #12002b);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  body.bad { --accent: var(--red); }
+
+  a { color: var(--cyan); }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Top bar ---------- */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #12002bf2;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topnav .wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 54px;
+  }
+
+  .brand {
+    font-family: 'Bungee', sans-serif;
+    font-style: italic;
+    font-size: 18px;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #fff, var(--bubblegum) 55%, var(--hot-pink));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .back { margin-left: auto; color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+  .back:hover { color: var(--text); }
+
+  /* ---------- Cover + header ---------- */
+  .cover {
+    position: relative;
+    height: clamp(150px, 28vw, 300px);
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
+    background:
+      linear-gradient(to bottom, transparent 55%, #12002bcc),
+      repeating-linear-gradient(to bottom, transparent 0 14px, #3b0a6b55 14px 20px),
+      linear-gradient(to bottom, #2b0a5c 0%, #8a1b7a 45%, #ff2fa6 75%, #ffb347 100%);
+  }
+
+  .bad .cover {
+    background:
+      linear-gradient(to bottom, transparent 55%, #12002bcc),
+      repeating-linear-gradient(-45deg, #00000033 0 18px, transparent 18px 36px),
+      linear-gradient(to bottom, #1a0518 0%, #4a0b1e 50%, #8b1020 100%);
+  }
+
+  .cover-word {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(22px, 5vw, 48px);
+    color: #ffffff22;
+    letter-spacing: 0.06em;
+  }
+
+  .head {
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    padding: 12px 8px 16px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .avatar {
+    flex: none;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    border: 5px solid var(--night);
+    outline: 3px solid var(--accent);
+    background: linear-gradient(135deg, var(--purple), var(--hot-pink));
+    display: grid;
+    place-items: center;
+    font-family: 'Bungee', sans-serif;
+    font-size: 54px;
+    color: #fff;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    margin-top: -96px;
+  }
+
+  .bad .avatar { background: linear-gradient(135deg, #2a1236, #6b1020); }
+
+  .who { flex: 1; min-width: 220px; padding-bottom: 6px; }
+
+  .who h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(26px, 5vw, 40px);
+    line-height: 1.05;
+  }
+
+  .verified {
+    display: inline-grid;
+    place-items: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--cyan);
+    color: var(--night);
+    font-size: 13px;
+    vertical-align: 6px;
+    margin-left: 4px;
+  }
+
+  .who .role { color: var(--muted); }
+
+  .list-badge {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    color: var(--night);
+    background: var(--gold);
+  }
+
+  .bad .list-badge { background: var(--red); color: #fff; }
+
+  .status-line { margin-top: 8px; font-size: 14px; color: var(--text); }
+
+  .actions { display: flex; gap: 8px; padding-bottom: 6px; flex-wrap: wrap; }
+
+  .btn {
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #ffffff33;
+    background: var(--panel-2);
+    color: var(--text);
+  }
+
+  .btn:hover, .btn:focus-visible { border-color: var(--cyan); outline: none; }
+
+  .btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* ---------- Tabs ---------- */
+  .tabs { display: flex; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+
+  .tab {
+    font: inherit;
+    font-size: 15px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); border-radius: 8px 8px 0 0; }
+
+  /* ---------- Layout ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 18px;
+    padding: 18px 0 60px;
+    align-items: start;
+  }
+
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .box h2 {
+    margin: 0 0 10px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .reason { font-size: 16px; margin: 0 0 12px; }
+
+  .facts { margin: 0; display: grid; gap: 8px; }
+  .facts div { display: grid; grid-template-columns: 26px 1fr; gap: 6px; font-size: 14px; }
+  .facts dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .facts dd { margin: 0; }
+
+  .people { display: grid; gap: 10px; }
+
+  .person {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .person:hover { background: var(--panel-2); }
+
+  .mini {
+    flex: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--hot-pink));
+    display: grid;
+    place-items: center;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    object-fit: cover;
+  }
+
+  .mini.bad { background: linear-gradient(135deg, #2a1236, #6b1020); }
+
+  .person small { display: block; font-size: 12px; color: var(--muted); }
+
+  /* ---------- Posts ---------- */
+  .post {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+
+  .post-head { display: flex; gap: 10px; align-items: center; padding: 14px 16px 6px; }
+  .post-head .nm { font-size: 15px; }
+  .post-head .dt { font-size: 12px; color: var(--muted); }
+
+  .post-text { padding: 4px 16px 12px; font-size: 16px; }
+
+  .src {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 16px 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .src:hover { border-color: var(--cyan); }
+  .src .ic { font-size: 18px; }
+  .src small { display: block; color: var(--muted); font-size: 12px; }
+
+  .react {
+    display: flex;
+    border-top: 1px solid var(--line);
+  }
+
+  .react button {
+    flex: 1;
+    font: inherit;
+    font-size: 14px;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .react button:hover { background: #ffffff0a; color: var(--text); }
+  .react button[aria-pressed="true"] { color: var(--accent); }
+
+  .upcoming { font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--cyan); color: var(--night); margin-left: 6px; }
+
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; }
+
+  .muted { color: var(--muted); }
+
+  .note { font-size: 13px; color: var(--muted); }
+
+  /* ---------- Shadow panel ---------- */
+  .shadow-box {
+    display: none;
+    background: #000;
+    border: 1px dashed #0f0;
+    color: #0f0;
+    font-family: monospace;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .shadow .shadow-box { display: block; }
+  .shadow-box h2 { font-family: monospace; font-size: 14px; margin: 0 0 8px; color: #0f0; }
+  .shadow-box .ov { font-size: 32px; margin-bottom: 8px; }
+  .srow { display: grid; grid-template-columns: 1fr 70px 28px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
+  .strack { height: 6px; background: #0f02; }
+  .strack span { display: block; height: 100%; background: #0f0; }
+
+  .missing { text-align: center; padding: 80px 16px; }
+  .missing h1 { font-family: 'Bungee', sans-serif; font-weight: 400; }
+
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    .head { justify-content: center; text-align: center; }
+    .avatar { width: 140px; height: 140px; font-size: 44px; margin-top: -84px; }
+    .actions { justify-content: center; width: 100%; }
+    .who { text-align: center; }
+    .side { order: 2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="wrap">
+    <a class="brand" href="home.html">THE REAL MAN REPORT</a>
+    <a class="back" href="home.html">← All posters</a>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<script src="data/people.js"></script>
+<script>
+(() => {
+  // ---------- shadow mode (owner only; add ?shadow to the address) ----------
+  const q = new URLSearchParams(location.search);
+  try {
+    if (q.get('shadow') === 'off') sessionStorage.removeItem('rmr_shadow');
+    else if (q.has('shadow')) sessionStorage.setItem('rmr_shadow', '1');
+  } catch {}
+  let shadow = false;
+  try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
+  if (shadow) document.body.classList.add('shadow');
+
+  const CATS = window.CATEGORIES;
+  const PEOPLE = window.PEOPLE;
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const overall = p => Math.round(CATS.reduce((a, c) => a + (p.scores?.[c.key] ?? 75), 0) / CATS.length);
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
+  const app = document.getElementById('app');
+
+  const p = PEOPLE.find(x => x.id === q.get('id'));
+  if (!p) {
+    app.innerHTML = `<div class="wrap missing"><h1>No profile here</h1><p class="muted">That man isn't on our boards.</p><p><a href="home.html">← Back to the posters</a></p></div>`;
+    return;
+  }
+
+  const good = p.list === 'good';
+  document.body.classList.add(good ? 'good' : 'bad');
+  document.title = `${p.name} · The Real Man Report`;
+
+  const big = p.photo
+    ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}">`
+    : `<div class="avatar" aria-hidden="true">${esc(initials(p.name))}</div>`;
+  const small = (x, cls = '') => x.photo
+    ? `<img class="mini ${cls}" src="${esc(x.photo)}" alt="">`
+    : `<div class="mini ${cls}" aria-hidden="true">${esc(initials(x.name))}</div>`;
+
+  // ---------- reactions (saved only in this browser) ----------
+  const RKEY = 'rmr_reactions';
+  let reactions = {};
+  try { reactions = JSON.parse(localStorage.getItem(RKEY) || '{}'); } catch {}
+  const saveReactions = () => { try { localStorage.setItem(RKEY, JSON.stringify(reactions)); } catch {} };
+
+  const icons = { "Known for": "⭐", "Served": "🎖️", "Family": "❤️", "Causes": "🤝", "Campaign": "📣", "Honour": "🏅",
+                  "Raised": "💷", "Followers": "👥", "Before fame": "🥊", "Banned from": "🚫", "Legal status": "⚖️" };
+
+  const others = PEOPLE.filter(x => x.id !== p.id);
+  const today = new Date();
+  const isFuture = d => { const t = Date.parse(d); return !isNaN(t) && t > today.getTime(); };
+
+  app.innerHTML = `
+    <div class="wrap">
+      <div class="cover"><div class="cover-word">${good ? 'WANTED' : 'NOT WANTED'}</div></div>
+      <div class="head">
+        ${big}
+        <div class="who">
+          <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
+          <div class="role">${esc(p.role)}</div>
+          <span class="list-badge">${good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
+          <div class="status-line">${esc(p.status)}</div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="respect" aria-pressed="false">${good ? '👍 Respect' : '👎 Not for me'}</button>
+          <button class="btn" id="share">🔗 Share</button>
+        </div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="posts">Posts</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="about">About</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="photos">Photos</button>
+      </div>
+
+      <div class="layout">
+        <aside class="side">
+          <div class="shadow-box">
+            <h2>◼ SHADOW SCORE · only you can see this</h2>
+            <div class="ov">${overall(p)}/100</div>
+            ${CATS.map(c => {
+              const v = p.scores?.[c.key] ?? 75;
+              return `<div class="srow"><span>${esc(c.label)}</span><div class="strack"><span style="width:${v}%"></span></div><span>${v}</span></div>`;
+            }).join('')}
+          </div>
+          <div class="box">
+            <h2>Intro</h2>
+            <p class="reason"><b style="color:var(--accent)">${good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
+            <dl class="facts">
+              ${Object.entries(p.about || {}).map(([k, v]) => `
+                <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
+            </dl>
+            ${p.type === 'composite' ? '<p class="note" style="margin-top:12px">This is a composite, not a real person.</p>' : ''}
+          </div>
+          <div class="box">
+            <h2>Also on the boards</h2>
+            <div class="people">
+              ${others.map(x => `
+                <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}">
+                  ${small(x, x.list === 'bad' ? 'bad' : '')}
+                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : 'Not wanted'} · ${esc(x.role)}</small></span>
+                </a>`).join('')}
+            </div>
+          </div>
+        </aside>
+
+        <main>
+          <div data-panel="posts">
+            ${(p.posts || []).map((post, i) => {
+              const key = p.id + ':' + i;
+              const r = reactions[key];
+              return `
+              <article class="post">
+                <div class="post-head">
+                  ${small(p, good ? '' : 'bad')}
+                  <div><div class="nm">${esc(p.name)}</div><div class="dt">${esc(post.date)}${isFuture(post.date) ? '<span class="upcoming">Upcoming</span>' : ''}</div></div>
+                </div>
+                <div class="post-text">${esc(post.text)}</div>
+                ${post.source ? `
+                  <a class="src" href="${esc(post.source)}" target="_blank" rel="noopener">
+                    <span class="ic" aria-hidden="true">📰</span>
+                    <span>Read the source<small>${esc(host(post.source))}</small></span>
+                  </a>` : ''}
+                <div class="react">
+                  <button data-r="${esc(key)}" data-v="up" aria-pressed="${r === 'up'}">👍 Respect</button>
+                  <button data-r="${esc(key)}" data-v="down" aria-pressed="${r === 'down'}">😠 Not cool</button>
+                </div>
+              </article>`;
+            }).join('')}
+          </div>
+
+          <div data-panel="about" hidden>
+            <div class="box">
+              <h2>About ${esc(p.name)}</h2>
+              <dl class="facts">
+                <div><span aria-hidden="true">🧾</span><span><dt>Who</dt><dd>${esc(p.role)}</dd></span></div>
+                <div><span aria-hidden="true">📍</span><span><dt>Status</dt><dd>${esc(p.status)}</dd></span></div>
+                ${Object.entries(p.about || {}).map(([k, v]) => `
+                  <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
+              </dl>
+            </div>
+            <p class="note">Every post on this profile links to its source. Being on the ${good ? 'Wanted' : 'Not Wanted'} board is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
+          </div>
+
+          <div data-panel="photos" hidden>
+            <div class="box">
+              <h2>Photos</h2>
+              ${p.photo
+                ? `<div class="photo-grid"><img src="${esc(p.photo)}" alt="${esc(p.name)}"></div>${p.photoCredit ? `<p class="note">Photo: ${esc(p.photoCredit)}</p>` : ''}`
+                : '<p class="muted">No photos yet.</p>'}
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>`;
+
+  // tabs
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    document.querySelectorAll('[data-panel]').forEach(el => el.hidden = el.dataset.panel !== t.dataset.tab);
+  }));
+
+  // profile-level reaction
+  const respect = document.getElementById('respect');
+  respect.setAttribute('aria-pressed', String(!!reactions[p.id]));
+  respect.addEventListener('click', () => {
+    reactions[p.id] = !reactions[p.id];
+    respect.setAttribute('aria-pressed', String(reactions[p.id]));
+    saveReactions();
+  });
+
+  // post reactions
+  app.addEventListener('click', e => {
+    const b = e.target.closest('[data-r]');
+    if (!b) return;
+    const key = b.dataset.r;
+    reactions[key] = reactions[key] === b.dataset.v ? null : b.dataset.v;
+    app.querySelectorAll(`[data-r="${CSS.escape(key)}"]`).forEach(x => x.setAttribute('aria-pressed', String(reactions[key] === x.dataset.v)));
+    saveReactions();
+  });
+
+  // share
+  document.getElementById('share').addEventListener('click', async () => {
+    const url = location.origin + location.pathname + '?id=' + encodeURIComponent(p.id);
+    try {
+      if (navigator.share) await navigator.share({ title: p.name + ' · The Real Man Report', url });
+      else { await navigator.clipboard.writeText(url); document.getElementById('share').textContent = '✓ Link copied'; }
+    } catch {}
+  });
+})();
+</script>
+
+</body>
+</html>

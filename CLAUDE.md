@@ -1,6 +1,6 @@
 # humbored.com
 
-A playful personal site: an 80s disco "ENTER THE MANOSPHERE!!" entry screen leading to "The Real Man Report", a news-style site that scores public figures on how they treat people. The point: ordinary decent men are more masculine than "toxic alpha" influencers.
+A playful personal site: an 80s disco "ENTER THE MANOSPHERE!!" entry screen leading to "The Real Man Report": a most-wanted-style board of notable men, good and bad, with Facebook-style profiles. The point: ordinary decent men are more masculine than "toxic alpha" influencers.
 Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CNAME` file points it at humbored.com.
 
 ## Tech
@@ -13,8 +13,9 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 
 ## Pages
 - `index.html` – "ENTER THE MANOSPHERE!!" entry screen. 80s synthwave look: swinging CSS disco ball, light reflections, striped sunset, moving pink grid floor. The ENTER button goes to `home.html`.
-- `home.html` – "The Real Man Report": live ticker, lead story, rankings (sort by category, filter public figures vs everyday men), profile pop-ups with sourced facts, head-to-head compare with radar chart, methodology, and "Add a man" (sliders + photo upload, saved only in that visitor's browser).
-- `data/people.js` – all people, scores, categories, tiers and ticker lines. Edit this to add or change people.
+- `home.html` – two poster boards: "WANTED: MORE MEN LIKE HIM" (good) and "NOT WANTED" (bad), with search. Each poster links to a profile.
+- `profile.html?id=<id>` – Facebook-style profile: cover, avatar, status line, intro, dated timeline posts with source links, About and Photos tabs, reactions (saved only in the viewer's browser).
+- `data/people.js` – all people: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources, and hidden shadow `scores`.
 - `images/` – profile photos (set `photo: "images/name.jpg"` in people.js).
 - `CNAME` – custom domain. Never delete or change it.
 
@@ -30,6 +31,8 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Keep images compressed; keep the site fast.
 - Only public figures or clearly labelled composites on the site, never private individuals.
 - Every factual claim about a real person needs a source link. Charges are allegations: say "charged with" and note if he denies them. Check legal status is current before editing a profile.
-- Scores are editorial opinion and must be labelled that way. Categories with no public record get a neutral 75.
+- Shadow scores are never shown to normal visitors. Adding `?shadow` to a page address turns on shadow mode for that browser tab (`?shadow=off` turns it off). The scores are still readable in the public code, so don't treat them as secret.
+- Categories with no public record get a neutral 75.
+- Posters for people charged but not convicted must show their current legal status and that the board is opinion, not a finding of guilt.
 - Only use photos we have the right to use (e.g. Wikimedia Commons) and fill in `photoCredit`.
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.

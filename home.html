@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
-<meta name="description" content="Masculinity is how you treat people. We score public figures on respect for women, family, humility, generosity, service and integrity.">
+<meta name="description" content="Wanted: more men like these. Not wanted: men like these. Profiles of notable men, good and bad, with every fact sourced.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
@@ -14,18 +14,20 @@
     --bubblegum: #ff8fd8;
     --cyan: #3ef2ff;
     --gold: #ffe66d;
+    --red: #ff3b3b;
     --night: #12002b;
     --purple: #3b0a6b;
     --panel: #1d0640;
-    --panel-2: #260a52;
     --line: #ffffff1f;
     --text: #f6ecff;
     --muted: #cbb6ec;
+    --paper: #fbf3e2;
+    --ink: #1a1028;
   }
 
   * { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; background: #12002b; }
+  html { background: #12002b; }
 
   body {
     margin: 0;
@@ -39,67 +41,20 @@
     overflow-x: hidden;
   }
 
-  a { color: var(--cyan); }
-
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-
-  /* ---------- Top bar + ticker ---------- */
-  .topbar {
-    display: flex;
-    align-items: stretch;
-    background: var(--hot-pink);
-    color: var(--night);
-    font-size: 14px;
-    overflow: hidden;
-  }
-
-  .live {
-    flex: none;
-    padding: 6px 12px;
-    background: var(--night);
-    color: var(--hot-pink);
-    font-family: 'Bungee', sans-serif;
-    letter-spacing: 0.05em;
-  }
-
-  .live::before {
-    content: "";
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--hot-pink);
-    margin-right: 6px;
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink { 50% { opacity: 0.2; } }
-
-  .ticker { flex: 1; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
-  .ticker-track {
-    display: inline-block;
-    padding-left: 100%;
-    animation: tick 40s linear infinite;
-  }
-  .ticker-track span { margin-right: 48px; }
-  .ticker-track span::before { content: "◆ "; }
-  @keyframes tick { to { transform: translateX(-100%); } }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
 
   /* ---------- Masthead ---------- */
-  .masthead {
-    text-align: center;
-    padding: 26px 0 14px;
-    border-bottom: 3px double #ff8fd877;
-  }
+  .masthead { text-align: center; padding: 26px 0 18px; }
 
   .dateline {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     font-size: 13px;
     color: var(--muted);
     border-bottom: 1px solid var(--line);
     padding-bottom: 8px;
-    margin-bottom: 14px;
-    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .masthead h1 {
@@ -116,449 +71,288 @@
     filter: drop-shadow(3px 3px 0 var(--purple)) drop-shadow(0 0 18px #ff2fa666);
   }
 
-  .masthead .motto {
+  .motto {
     font-family: 'Monoton', cursive;
     font-size: clamp(14px, 2.6vw, 22px);
     color: var(--cyan);
     margin: 10px 0 0;
     text-shadow: 0 0 8px #3ef2ffaa;
-    letter-spacing: 0.04em;
   }
 
-  /* ---------- Nav ---------- */
-  nav {
+  .intro {
+    max-width: 640px;
+    margin: 14px auto 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  /* ---------- Search + jump ---------- */
+  .toolbar {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 10;
     background: #12002bf2;
     backdrop-filter: blur(6px);
+    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
 
-  nav .wrap {
+  .toolbar .wrap {
     display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    scrollbar-width: none;
-  }
-
-  nav a {
-    flex: none;
-    padding: 7px 14px;
-    border-radius: 999px;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 15px;
-    border: 1px solid var(--line);
-  }
-
-  nav a:hover, nav a:focus-visible { background: var(--hot-pink); color: var(--night); outline: none; }
-
-  section { padding: 34px 0 10px; scroll-margin-top: 60px; }
-
-  .kicker {
-    font-family: 'Bungee', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    color: var(--hot-pink);
-    margin: 0 0 6px;
-  }
-
-  h2 {
-    font-family: 'Bungee', sans-serif;
-    font-weight: 400;
-    font-size: clamp(24px, 4.5vw, 38px);
-    line-height: 1.1;
-    margin: 0 0 14px;
-  }
-
-  .lede { color: var(--muted); font-size: 17px; max-width: 720px; margin: 0 0 18px; }
-
-  /* ---------- Lead story ---------- */
-  .lead {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 22px;
-    align-items: stretch;
-  }
-
-  .lead-story {
-    background: linear-gradient(135deg, var(--panel-2), var(--panel));
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 24px;
-  }
-
-  .lead-story h2 { font-size: clamp(26px, 4.6vw, 42px); }
-
-  .lead-story p { color: var(--muted); font-size: 17px; margin: 0 0 12px; }
-
-  .vs-box {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .stat {
-    flex: 1;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-left: 6px solid var(--c);
-    border-radius: 14px;
-    padding: 16px 18px;
-  }
-
-  .stat .num {
-    font-family: 'Bungee', sans-serif;
-    font-size: clamp(38px, 7vw, 56px);
-    line-height: 1;
-    color: var(--c);
-    text-shadow: 0 0 16px var(--c);
-  }
-
-  .stat .lbl { color: var(--muted); font-size: 15px; margin-top: 6px; }
-
-  /* ---------- Controls ---------- */
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     align-items: center;
-    margin-bottom: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
   }
 
-  .controls label { color: var(--muted); font-size: 14px; }
-
-  select, input[type="text"], textarea {
+  .search {
+    flex: 1;
+    min-width: 200px;
     font: inherit;
     font-size: 15px;
     color: var(--text);
     background: var(--panel);
     border: 1px solid #ffffff33;
-    border-radius: 10px;
-    padding: 8px 12px;
-  }
-
-  select:focus, input:focus, textarea:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
-
-  .chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
-
-  .chip {
-    font: inherit;
-    font-size: 14px;
-    padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid #ffffff33;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
+    padding: 9px 16px;
   }
 
-  .chip[aria-pressed="true"] { background: var(--cyan); color: var(--night); border-color: var(--cyan); }
+  .search:focus { outline: 2px solid var(--cyan); }
 
-  /* ---------- Cards ---------- */
-  .grid {
+  .jump {
+    flex: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--night);
+    font-family: 'Bungee', sans-serif;
+  }
+
+  .jump.good { background: var(--gold); }
+  .jump.bad { background: var(--red); color: #fff; }
+
+  /* ---------- Boards ---------- */
+  .board { padding: 36px 0 10px; scroll-margin-top: 70px; }
+
+  .board-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .board-head h2 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(24px, 5vw, 44px);
+    line-height: 1.05;
+  }
+
+  .board.good h2 { color: var(--gold); text-shadow: 0 0 18px #ffe66d55; }
+  .board.bad h2 { color: var(--red); text-shadow: 0 0 18px #ff3b3b55; }
+
+  .board-sub { color: var(--muted); margin: 0 0 18px; }
+
+  .count {
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  .posters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
   }
 
-  .card {
+  /* ---------- Poster ---------- */
+  .poster {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 16px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 6px;
+    padding: 14px 14px 16px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px #0008;
+    transform: rotate(var(--tilt, 0deg));
     transition: transform 0.15s, box-shadow 0.15s;
   }
 
-  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px #ff2fa633; }
-
-  .card.first { border: 2px solid var(--gold); box-shadow: 0 0 24px #ffe66d44; }
-
-  .card-top { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
-
-  .rank {
+  .poster::before {
+    /* pin */
+    content: "";
     position: absolute;
-    top: 12px; right: 14px;
-    font-family: 'Bungee', sans-serif;
-    color: var(--muted);
-    font-size: 15px;
+    top: -7px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    margin-left: -7px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, var(--pin) 60%);
+    box-shadow: 0 2px 3px #0006;
   }
 
-  .avatar {
-    flex: none;
-    width: 72px; height: 72px;
-    border-radius: 16px;
-    object-fit: cover;
-    border: 2px solid var(--c, var(--bubblegum));
-    background: linear-gradient(135deg, var(--purple), var(--hot-pink));
-    display: grid;
-    place-items: center;
-    font-family: 'Bungee', sans-serif;
-    font-size: 24px;
-    color: #fff;
+  .poster:hover, .poster:focus-visible {
+    transform: rotate(0deg) translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 40px #000a, 0 0 30px var(--glow);
+    outline: none;
   }
 
-  .card h3 { margin: 0; font-size: 20px; font-weight: 400; line-height: 1.2; padding-right: 34px; }
+  .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
+  .bad .poster { --pin: var(--red); --glow: #ff3b3b66; }
 
-  .role { color: var(--muted); font-size: 13px; }
-
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    padding: 2px 9px;
-    border-radius: 999px;
-    color: var(--night);
-    background: var(--c);
-    margin-top: 5px;
-  }
-
-  .badge.composite { background: transparent; color: var(--muted); border: 1px dashed var(--muted); margin-left: 4px; }
-
-  .headline { font-size: 15px; margin: 0 0 12px; color: var(--text); }
-
-  .overall {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+  .poster-top {
+    text-align: center;
+    border-bottom: 3px double var(--ink);
+    padding-bottom: 6px;
     margin-bottom: 10px;
   }
 
-  .overall .big {
+  .poster-top .w {
     font-family: 'Bungee', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1;
-    color: var(--c);
-    text-shadow: 0 0 14px var(--c);
+    letter-spacing: 0.04em;
   }
 
-  .overall .of { color: var(--muted); font-size: 13px; }
+  .good .poster-top .w { color: var(--hot-pink); }
+  .bad .poster-top .w { color: #c4161c; }
 
-  .bars { display: grid; gap: 6px; margin-bottom: 14px; }
-
-  .bar-row {
-    display: grid;
-    grid-template-columns: 82px 1fr 30px;
-    gap: 8px;
-    align-items: center;
+  .poster-top .s {
     font-size: 12px;
-    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 3px;
   }
 
-  .bar-row.hl { color: var(--text); }
-  .bar-row.hl .track { outline: 1px solid var(--cyan); }
-
-  .track { height: 8px; background: #ffffff14; border-radius: 999px; overflow: hidden; }
-
-  .fill {
-    height: 100%;
-    width: 0;
-    border-radius: 999px;
-    background: linear-gradient(to right, var(--cyan), var(--bubblegum), var(--hot-pink));
-    transition: width 0.9s cubic-bezier(.2,.9,.3,1);
-  }
-
-  .bar-row .v { text-align: right; color: var(--text); }
-
-  .card-actions { display: flex; gap: 8px; margin-top: auto; }
-
-  .btn {
-    font: inherit;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: 1px solid #ffffff44;
-    background: transparent;
-    color: var(--text);
-  }
-
-  .btn:hover, .btn:focus-visible { border-color: var(--cyan); color: var(--cyan); outline: none; }
-
-  .btn.primary {
-    background: linear-gradient(to bottom, #fff, var(--bubblegum) 40%, var(--hot-pink));
-    color: var(--night);
-    border-color: #fff;
-    font-family: 'Bungee', sans-serif;
-  }
-
-  .btn.primary:hover { color: var(--night); box-shadow: 0 0 16px var(--hot-pink); }
-
-  /* ---------- Compare ---------- */
-  .compare-pick {
+  .mug {
+    position: relative;
+    aspect-ratio: 1;
+    border: 3px solid var(--ink);
+    background: linear-gradient(135deg, #3b0a6b, #ff2fa6);
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 18px;
+    place-items: center;
+    overflow: hidden;
   }
 
-  .compare-pick select { width: 100%; }
+  .bad .mug { background: linear-gradient(135deg, #2a1236, #6b1020); }
 
-  .vs {
+  .mug img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.15) contrast(1.05); }
+
+  .mug .ini {
+    font-family: 'Bungee', sans-serif;
+    font-size: 64px;
+    color: #fff;
+    opacity: 0.95;
+  }
+
+  .stamp {
+    position: absolute;
+    bottom: 10px;
+    right: -6px;
+    transform: rotate(-12deg);
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 3px 10px;
+    border: 3px solid currentColor;
+    border-radius: 4px;
+    background: #fbf3e2dd;
+  }
+
+  .good .stamp { color: #138a4a; }
+  .bad .stamp { color: #c4161c; }
+
+  .poster .name {
     font-family: 'Bungee', sans-serif;
     font-size: 22px;
+    line-height: 1.1;
+    text-align: center;
+    margin: 12px 0 2px;
+    text-transform: uppercase;
+  }
+
+  .poster .role { text-align: center; font-size: 13px; color: #5a4a6e; }
+
+  .poster .for {
+    margin: 10px 0 8px;
+    font-size: 14px;
+  }
+
+  .poster .for b {
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    display: block;
+  }
+
+  .poster .status {
+    margin-top: auto;
+    font-size: 12px;
+    background: #1a10280f;
+    border-left: 3px solid var(--ink);
+    padding: 6px 8px;
+  }
+
+  .poster .cta {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
     color: var(--hot-pink);
   }
 
-  .compare-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 20px;
+  .bad .poster .cta { color: #c4161c; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 1px 7px;
+    border: 1px dashed #5a4a6e;
+    border-radius: 999px;
+    color: #5a4a6e;
+    margin-left: 4px;
+    vertical-align: 2px;
   }
 
-  .radar { width: 100%; max-width: 420px; margin: 0 auto; display: block; }
+  .empty { color: var(--muted); font-style: italic; }
 
-  .cmp-heads {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-
-  .cmp-head { display: flex; gap: 10px; align-items: center; }
-  .cmp-head.b { flex-direction: row-reverse; text-align: right; }
-  .cmp-head .avatar { width: 52px; height: 52px; font-size: 18px; border-radius: 12px; }
-  .cmp-head .nm { font-size: 16px; line-height: 1.2; }
-  .cmp-head .sc { font-family: 'Bungee', sans-serif; font-size: 26px; color: var(--c); }
-
-  .cmp-rows { display: grid; gap: 10px; }
-
-  .cmp-row .cat { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 3px; }
-
-  .duel { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-items: center; }
-
-  .duel .side { display: flex; align-items: center; gap: 6px; font-size: 13px; }
-  .duel .side.a { flex-direction: row-reverse; }
-  .duel .t { flex: 1; height: 12px; background: #ffffff14; border-radius: 999px; overflow: hidden; display: flex; }
-  .duel .side.a .t { justify-content: flex-end; }
-  .duel .f { height: 100%; transition: width 0.6s; }
-  .duel .side.a .f { background: var(--cyan); }
-  .duel .side.b .f { background: var(--hot-pink); }
-  .duel .n { width: 26px; text-align: center; }
-  .duel .win { color: var(--gold); font-weight: bold; }
-
-  .cmp-verdict {
-    grid-column: 1 / -1;
+  /* ---------- Shadow mode ---------- */
+  .shadow-bar {
+    display: none;
+    background: repeating-linear-gradient(45deg, #000, #000 10px, #1a1a1a 10px, #1a1a1a 20px);
+    color: #0f0;
+    font-family: monospace;
+    font-size: 13px;
     text-align: center;
-    font-size: 18px;
-    padding-top: 6px;
-    border-top: 1px solid var(--line);
+    padding: 6px 12px;
   }
 
-  .legend { display: flex; justify-content: center; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 8px; }
-  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+  .shadow .shadow-bar { display: block; }
 
-  /* ---------- Method ---------- */
-  .method-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 12px;
-  }
-
-  .method-item {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 14px 16px;
-  }
-
-  .method-item b { display: block; color: var(--bubblegum); margin-bottom: 4px; font-weight: 400; font-size: 16px; }
-  .method-item p { margin: 0; color: var(--muted); font-size: 14px; }
-
-  .tier-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .tier-strip span { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--c); color: var(--night); }
-
-  /* ---------- Add a man ---------- */
-  .add-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 20px;
-  }
-
-  .field { display: grid; gap: 5px; margin-bottom: 12px; }
-  .field > span { font-size: 14px; color: var(--muted); }
-
-  .slider-row {
-    display: grid;
-    grid-template-columns: 130px 1fr 34px;
-    gap: 10px;
-    align-items: center;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  input[type="range"] { width: 100%; accent-color: var(--hot-pink); }
-
-  .photo-drop {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .photo-drop .avatar { width: 64px; height: 64px; }
-
-  .note { font-size: 13px; color: var(--muted); }
-
-  .mine-list { display: grid; gap: 8px; margin-top: 12px; }
-  .mine-item { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--panel-2); padding: 8px 12px; border-radius: 10px; font-size: 14px; }
-
-  /* ---------- Profile dialog ---------- */
-  dialog {
-    width: min(720px, calc(100% - 24px));
-    max-height: calc(100% - 24px);
-    padding: 0;
-    border: 1px solid #ff8fd877;
-    border-radius: 20px;
-    background: var(--panel);
-    color: var(--text);
-    box-shadow: 0 20px 80px #000a, 0 0 40px #ff2fa644;
-  }
-
-  dialog::backdrop { background: #0a0018cc; backdrop-filter: blur(3px); }
-
-  .dlg-head {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, var(--panel-2), var(--panel));
-    border-bottom: 1px solid var(--line);
-  }
-
-  .dlg-head .avatar { width: 96px; height: 96px; font-size: 32px; border-radius: 18px; }
-  .dlg-head h3 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(20px, 4vw, 28px); line-height: 1.1; }
-  .dlg-body { padding: 20px; }
-  .dlg-body h4 { font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; color: var(--hot-pink); margin: 18px 0 8px; letter-spacing: 0.04em; }
-  .record { margin: 0; padding-left: 18px; }
-  .record li { margin-bottom: 8px; }
-  .record a { font-size: 13px; margin-left: 4px; }
-  .verdict { font-size: 17px; background: var(--panel-2); border-left: 4px solid var(--c); padding: 12px 14px; border-radius: 0 12px 12px 0; margin: 0; }
-  .close {
+  .shadow-score {
+    display: none;
     position: absolute;
-    top: 12px; right: 12px;
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    border: 1px solid #ffffff44;
-    background: var(--night);
-    color: var(--text);
-    font-size: 18px;
-    cursor: pointer;
+    top: 8px;
+    left: 8px;
+    background: #000d;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 15px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    z-index: 2;
   }
-  .credit { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  .shadow .shadow-score { display: block; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -570,501 +364,125 @@
     text-align: center;
   }
 
-  footer a.back { font-family: 'Bungee', sans-serif; color: var(--hot-pink); text-decoration: none; }
+  footer a { font-family: 'Bungee', sans-serif; color: var(--hot-pink); text-decoration: none; }
 
-  /* ---------- Phones ---------- */
-  @media (max-width: 760px) {
-    .lead { grid-template-columns: 1fr; }
-    .vs-box { flex-direction: row; }
-    .compare-body, .add-box { grid-template-columns: 1fr; }
-    .compare-pick { grid-template-columns: 1fr; }
-    .vs { text-align: center; }
-    .slider-row { grid-template-columns: 100px 1fr 30px; }
-    .grid { grid-template-columns: 1fr; }
+  @media (max-width: 520px) {
+    .posters { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .poster { padding: 10px 10px 12px; }
+    .poster-top .w { font-size: 20px; }
+    .poster-top .s { font-size: 9px; }
+    .poster .name { font-size: 16px; }
+    .poster .for, .poster .role { font-size: 12px; }
+    .mug .ini { font-size: 40px; }
+    .stamp { font-size: 10px; }
+  }
+
+  @media (max-width: 360px) {
+    .posters { grid-template-columns: 1fr; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .ticker-track { padding-left: 16px; }
+    * { transition: none !important; }
   }
 </style>
 </head>
 <body>
 
-<div class="topbar" role="region" aria-label="Latest">
-  <div class="live">LIVE</div>
-  <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
-</div>
+<div class="shadow-bar">◼ SHADOW MODE · scores visible to you only on this device · <a href="home.html?shadow=off" style="color:#0f0">turn off</a></div>
 
 <header class="wrap masthead">
   <div class="dateline"><span id="today"></span><span>humbored.com</span><span>Est. 2026</span></div>
   <h1>THE REAL MAN REPORT</h1>
   <p class="motto">masculinity is how you treat people</p>
+  <p class="intro">Two boards. The men we want more of, and the men we don't. Click any poster for the full profile. Every fact is sourced.</p>
 </header>
 
-<nav aria-label="Sections">
+<div class="toolbar">
   <div class="wrap">
-    <a href="#lead">Top story</a>
-    <a href="#rankings">Rankings</a>
-    <a href="#compare">Compare</a>
-    <a href="#method">How we score</a>
-    <a href="#add">Add a man</a>
+    <input class="search" id="search" type="search" placeholder="Search for a man…" aria-label="Search">
+    <a class="jump good" href="#good">WANTED</a>
+    <a class="jump bad" href="#bad">NOT WANTED</a>
   </div>
-</nav>
+</div>
 
 <main class="wrap">
-
-  <!-- Lead story -->
-  <section id="lead">
-    <div class="lead">
-      <article class="lead-story">
-        <p class="kicker">THE BIG STORY</p>
-        <h2>Ordinary men are out-manning the "alpha" influencers</h2>
-        <p>The loudest voices online sell masculinity as money, control and dominance over women. We scored them on what actually makes a man worth looking up to: how he treats women, his family, his ego, his wallet, his community and the truth.</p>
-        <p>The result isn't close. The guy coaching your kid's football team beats the guy with the Bugatti.</p>
-        <a class="btn primary" href="#rankings">SEE THE RANKINGS</a>
-      </article>
-      <div class="vs-box" id="leadStats"></div>
-    </div>
+  <section class="board good" id="good">
+    <div class="board-head"><h2>WANTED: MORE MEN LIKE HIM</h2><span class="count" id="goodCount"></span></div>
+    <p class="board-sub">Real masculinity: courage, service, family, and treating women as equals.</p>
+    <div class="posters" id="goodGrid"></div>
   </section>
 
-  <!-- Rankings -->
-  <section id="rankings">
-    <p class="kicker">THE BOARD</p>
-    <h2>Rankings</h2>
-    <div class="controls">
-      <label for="sortBy">Rank by</label>
-      <select id="sortBy"></select>
-      <div class="chip-row" role="group" aria-label="Show">
-        <button class="chip" data-filter="all" aria-pressed="true">Everyone</button>
-        <button class="chip" data-filter="public" aria-pressed="false">Public figures</button>
-        <button class="chip" data-filter="composite" aria-pressed="false">Everyday men</button>
-      </div>
-    </div>
-    <div class="grid" id="grid"></div>
+  <section class="board bad" id="bad">
+    <div class="board-head"><h2>NOT WANTED</h2><span class="count" id="badCount"></span></div>
+    <p class="board-sub">Sells "masculinity" built on money, ego and control over women. Being on this board is our opinion, not a finding of guilt.</p>
+    <div class="posters" id="badGrid"></div>
   </section>
-
-  <!-- Compare -->
-  <section id="compare">
-    <p class="kicker">HEAD TO HEAD</p>
-    <h2>Compare two men</h2>
-    <p class="lede">Pick any two and see who wins each category.</p>
-    <div class="compare-pick">
-      <select id="cmpA" aria-label="First man"></select>
-      <div class="vs">VS</div>
-      <select id="cmpB" aria-label="Second man"></select>
-    </div>
-    <div class="compare-body" id="cmpBody"></div>
-  </section>
-
-  <!-- Method -->
-  <section id="method">
-    <p class="kicker">METHODOLOGY</p>
-    <h2>How we score</h2>
-    <p class="lede">Each man gets 0–100 in six categories. His overall score is the average. Scores are our editorial opinion, based on the public record linked on every profile.</p>
-    <div class="method-grid" id="methodGrid"></div>
-    <div class="tier-strip" id="tierStrip"></div>
-    <p class="note" style="margin-top:16px">Where there's no public record either way, a category gets a neutral 75. Charges are not convictions: we say when someone denies them. "Everyday men" are composites, not real individuals.</p>
-  </section>
-
-  <!-- Add a man -->
-  <section id="add">
-    <p class="kicker">YOUR TURN</p>
-    <h2>Add a man</h2>
-    <p class="lede">Score a public figure yourself, add a photo, and he'll join the rankings and the compare tool on this device.</p>
-    <form class="add-box" id="addForm">
-      <div>
-        <label class="field"><span>Name</span><input type="text" id="fName" required maxlength="60" placeholder="e.g. a famous athlete"></label>
-        <label class="field"><span>Who is he?</span><input type="text" id="fRole" maxlength="80" placeholder="e.g. Footballer"></label>
-        <div class="field">
-          <span>Photo</span>
-          <div class="photo-drop">
-            <div class="avatar" id="fPreview">?</div>
-            <input type="file" id="fPhoto" accept="image/*">
-          </div>
-        </div>
-        <label class="field"><span>One-line verdict</span><textarea id="fVerdict" rows="2" maxlength="200"></textarea></label>
-      </div>
-      <div>
-        <div id="sliders"></div>
-        <p class="note">Overall: <b id="fOverall">75</b> · Saved only in this browser. Nobody else sees it.</p>
-        <button class="btn primary" type="submit">ADD TO THE BOARD</button>
-        <div class="mine-list" id="mineList"></div>
-      </div>
-    </form>
-  </section>
-
 </main>
 
 <footer class="wrap">
-  <p>Scores are opinion, not fact. Every factual claim links to its source. Allegations are allegations: nobody here has been convicted unless we say so.</p>
-  <p>Photos are credited to their owners.</p>
-  <p><a class="back" href="index.html">↺ RE-ENTER THE MANOSPHERE</a></p>
+  <p>Profiles are our opinion, based on the public record linked on every post. Charges are not convictions: each poster shows the man's current legal status.</p>
+  <p>"Everyday men" are composites, not real individuals. Photos are credited to their owners.</p>
+  <p><a href="index.html">↺ RE-ENTER THE MANOSPHERE</a></p>
 </footer>
-
-<dialog id="profile" aria-labelledby="pName">
-  <button class="close" id="closeDlg" aria-label="Close">✕</button>
-  <div id="dlgContent"></div>
-</dialog>
 
 <script src="data/people.js"></script>
 <script>
 (() => {
+  // ---------- shadow mode (owner only; add ?shadow to the address) ----------
+  const q = new URLSearchParams(location.search);
+  try {
+    if (q.get('shadow') === 'off') sessionStorage.removeItem('rmr_shadow');
+    else if (q.has('shadow')) sessionStorage.setItem('rmr_shadow', '1');
+  } catch {}
+  let shadow = false;
+  try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
+  if (shadow) document.body.classList.add('shadow');
+
   const CATS = window.CATEGORIES;
-  const TIERS = window.TIERS;
-  const STORE = 'realmanreport_mine';
-
-  // ---------- helpers ----------
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const overall = p => Math.round(CATS.reduce((a, c) => a + (p.scores[c.key] ?? 75), 0) / CATS.length);
-  const tierFor = s => TIERS.find(t => s >= t.min && s <= t.max) || TIERS[0];
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const avatar = (p, extra = '') => p.photo
-    ? `<img class="avatar ${extra}" src="${esc(p.photo)}" alt="${esc(p.name)}">`
-    : `<div class="avatar ${extra}" aria-hidden="true">${esc(initials(p.name))}</div>`;
+  const overall = p => Math.round(CATS.reduce((a, c) => a + (p.scores?.[c.key] ?? 75), 0) / CATS.length);
 
-  function loadMine() {
-    try { return JSON.parse(localStorage.getItem(STORE) || '[]'); } catch { return []; }
-  }
-  function saveMine(list) {
-    try { localStorage.setItem(STORE, JSON.stringify(list)); return true; } catch { return false; }
-  }
-
-  let mine = loadMine();
-  const all = () => [...window.PEOPLE, ...mine];
-  const byId = id => all().find(p => p.id === id);
-
-  // ---------- date + ticker ----------
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('ticker').innerHTML = (window.TICKER || []).map(t => `<span>${esc(t)}</span>`).join('');
 
-  // ---------- lead stats ----------
-  function renderLead() {
-    const avg = list => list.length ? Math.round(list.reduce((a, p) => a + overall(p), 0) / list.length) : 0;
-    const everyday = window.PEOPLE.filter(p => p.type === 'composite');
-    const tate = window.PEOPLE.find(p => p.id === 'andrew-tate');
-    const stats = [
-      { num: avg(everyday), lbl: 'Average score: everyday men', c: 'var(--gold)' },
-      tate ? { num: overall(tate), lbl: `${tate.name}: self-styled "Top G"`, c: 'var(--hot-pink)' } : null,
-    ].filter(Boolean);
-    document.getElementById('leadStats').innerHTML = stats.map(s =>
-      `<div class="stat" style="--c:${s.c}"><div class="num">${s.num}</div><div class="lbl">${esc(s.lbl)}</div></div>`).join('');
-  }
-
-  // ---------- rankings ----------
-  const sortSel = document.getElementById('sortBy');
-  sortSel.innerHTML = `<option value="overall">Overall score</option>` +
-    CATS.map(c => `<option value="${c.key}">${esc(c.label)}</option>`).join('');
-  let filter = 'all';
-
-  function renderGrid() {
-    const key = sortSel.value;
-    const val = p => key === 'overall' ? overall(p) : (p.scores[key] ?? 75);
-    const list = all()
-      .filter(p => filter === 'all' || (filter === 'composite' ? p.type === 'composite' : p.type !== 'composite'))
-      .sort((a, b) => val(b) - val(a));
-
-    document.getElementById('grid').innerHTML = list.map((p, i) => {
-      const o = overall(p), t = tierFor(o);
-      return `
-      <article class="card${i === 0 ? ' first' : ''}" style="--c:${t.color}">
-        <div class="rank">${i === 0 ? '👑' : '#' + (i + 1)}</div>
-        <div class="card-top">
-          ${avatar(p)}
-          <div>
-            <h3>${esc(p.name)}</h3>
-            <div class="role">${esc(p.role || '')}</div>
-            <span class="badge">${esc(t.name)}</span>${p.type === 'composite' ? '<span class="badge composite">Composite</span>' : ''}${p.mine ? '<span class="badge composite">Added by you</span>' : ''}
-          </div>
+  function poster(p, i) {
+    const good = p.list === 'good';
+    const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
+    return `
+      <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}" style="--tilt:${tilt}deg">
+        <div class="poster-top">
+          <div class="w">${good ? 'WANTED' : 'NOT WANTED'}</div>
+          <div class="s">${good ? 'More men like him' : 'Less of this'}</div>
         </div>
-        ${p.headline ? `<p class="headline">${esc(p.headline)}</p>` : ''}
-        <div class="overall"><span class="big">${o}</span><span class="of">/ 100 overall</span></div>
-        <div class="bars">
-          ${CATS.map(c => `
-            <div class="bar-row${key === c.key ? ' hl' : ''}">
-              <span>${esc(c.short)}</span>
-              <div class="track"><div class="fill" data-w="${p.scores[c.key] ?? 75}"></div></div>
-              <span class="v">${p.scores[c.key] ?? 75}</span>
-            </div>`).join('')}
+        <div class="mug">
+          ${shadow ? `<span class="shadow-score">${overall(p)}</span>` : ''}
+          ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
+          <span class="stamp">${good ? 'ROLE MODEL' : 'RED FLAG'}</span>
         </div>
-        <div class="card-actions">
-          <button class="btn" data-open="${esc(p.id)}">Full profile</button>
-          <button class="btn" data-cmp="${esc(p.id)}">Compare</button>
-        </div>
-      </article>`;
-    }).join('');
-    animateFills(document.getElementById('grid'));
+        <div class="name">${esc(p.name)}</div>
+        <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
+        <p class="for"><b>${good ? 'WANTED FOR' : 'NOT WANTED FOR'}</b>${esc(p.reason)}</p>
+        <div class="status">${esc(p.status)}</div>
+        <div class="cta">VIEW PROFILE →</div>
+      </a>`;
   }
 
-  function animateFills(root) {
-    requestAnimationFrame(() => setTimeout(() => {
-      root.querySelectorAll('.fill').forEach(el => el.style.width = el.dataset.w + '%');
-    }, 60));
+  function render() {
+    const term = document.getElementById('search').value.trim().toLowerCase();
+    const match = p => !term || (p.name + ' ' + p.role).toLowerCase().includes(term);
+    // In shadow mode, order each board by the hidden score
+    const order = (a, b, good) => shadow ? (good ? overall(b) - overall(a) : overall(a) - overall(b)) : 0;
+    const good = window.PEOPLE.filter(p => p.list === 'good' && match(p)).sort((a, b) => order(a, b, true));
+    const bad = window.PEOPLE.filter(p => p.list === 'bad' && match(p)).sort((a, b) => order(a, b, false));
+    document.getElementById('goodGrid').innerHTML = good.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
+    document.getElementById('badGrid').innerHTML = bad.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
+    document.getElementById('goodCount').textContent = good.length + (good.length === 1 ? ' man' : ' men');
+    document.getElementById('badCount').textContent = bad.length + (bad.length === 1 ? ' man' : ' men');
   }
 
-  sortSel.addEventListener('change', renderGrid);
-  document.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', 'false'));
-    btn.setAttribute('aria-pressed', 'true');
-    filter = btn.dataset.filter;
-    renderGrid();
-  }));
-
-  document.getElementById('grid').addEventListener('click', e => {
-    const open = e.target.closest('[data-open]');
-    const cmp = e.target.closest('[data-cmp]');
-    if (open) openProfile(open.dataset.open);
-    if (cmp) startCompare(cmp.dataset.cmp);
-  });
-
-  // ---------- profile dialog ----------
-  const dlg = document.getElementById('profile');
-  function openProfile(id) {
-    const p = byId(id); if (!p) return;
-    const o = overall(p), t = tierFor(o);
-    const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
-    document.getElementById('dlgContent').innerHTML = `
-      <div class="dlg-head" style="--c:${t.color}">
-        ${avatar(p)}
-        <div>
-          <h3 id="pName">${esc(p.name)}</h3>
-          <div class="role">${esc(p.role || '')}</div>
-          <span class="badge" style="--c:${t.color}">${esc(t.name)} · ${o}/100</span>
-          ${p.photoCredit ? `<div class="credit">Photo: ${esc(p.photoCredit)}</div>` : ''}
-        </div>
-      </div>
-      <div class="dlg-body" style="--c:${t.color}">
-        ${p.headline ? `<p style="font-size:18px;margin:0">${esc(p.headline)}</p>` : ''}
-        <h4>THE SCORES</h4>
-        <div class="bars">
-          ${CATS.map(c => `
-            <div class="bar-row" style="grid-template-columns:150px 1fr 30px">
-              <span>${esc(c.label)}</span>
-              <div class="track"><div class="fill" data-w="${p.scores[c.key] ?? 75}"></div></div>
-              <span class="v">${p.scores[c.key] ?? 75}</span>
-            </div>`).join('')}
-        </div>
-        ${p.record && p.record.length ? `<h4>THE RECORD</h4><ul class="record">${p.record.map(r =>
-          `<li>${esc(r.text)}${r.source ? `<a href="${esc(r.source)}" target="_blank" rel="noopener">${esc(host(r.source))} ↗</a>` : ''}</li>`).join('')}</ul>` : ''}
-        ${p.verdict ? `<h4>OUR VERDICT</h4><p class="verdict">${esc(p.verdict)}</p>` : ''}
-        <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn primary" data-dlg-cmp="${esc(p.id)}">COMPARE HIM</button>
-        </div>
-      </div>`;
-    dlg.showModal();
-    animateFills(dlg);
-  }
-
-  document.getElementById('closeDlg').addEventListener('click', () => dlg.close());
-  dlg.addEventListener('click', e => {
-    if (e.target === dlg) dlg.close();
-    const c = e.target.closest('[data-dlg-cmp]');
-    if (c) { dlg.close(); startCompare(c.dataset.dlgCmp); }
-  });
-
-  // ---------- compare ----------
-  const cmpA = document.getElementById('cmpA');
-  const cmpB = document.getElementById('cmpB');
-
-  function fillSelects() {
-    const keepA = cmpA.value, keepB = cmpB.value;
-    const opts = all().map(p => `<option value="${esc(p.id)}">${esc(p.name)} (${overall(p)})</option>`).join('');
-    cmpA.innerHTML = opts; cmpB.innerHTML = opts;
-    cmpA.value = byId(keepA) ? keepA : 'andrew-tate';
-    cmpB.value = byId(keepB) ? keepB : 'everyday-dad';
-    if (!cmpA.value) cmpA.selectedIndex = 0;
-    if (!cmpB.value) cmpB.selectedIndex = Math.min(1, all().length - 1);
-  }
-
-  function radar(a, b) {
-    const size = 360, cx = size / 2, cy = size / 2 + 6, R = 120, n = CATS.length;
-    const pt = (i, v) => {
-      const ang = -Math.PI / 2 + (i * 2 * Math.PI) / n;
-      return [cx + Math.cos(ang) * R * v / 100, cy + Math.sin(ang) * R * v / 100];
-    };
-    const ring = v => CATS.map((_, i) => pt(i, v).join(',')).join(' ');
-    const poly = p => CATS.map((c, i) => pt(i, p.scores[c.key] ?? 75).join(',')).join(' ');
-    let svg = `<svg class="radar" viewBox="0 0 ${size} ${size + 10}" role="img" aria-label="Radar chart comparing ${esc(a.name)} and ${esc(b.name)}">`;
-    [25, 50, 75, 100].forEach(v => svg += `<polygon points="${ring(v)}" fill="none" stroke="#ffffff22"/>`);
-    CATS.forEach((c, i) => {
-      const [x, y] = pt(i, 100), [lx, ly] = pt(i, 122);
-      svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#ffffff22"/>`;
-      const anchor = Math.abs(lx - cx) < 5 ? 'middle' : lx > cx ? 'start' : 'end';
-      svg += `<text x="${lx}" y="${ly + 4}" text-anchor="${anchor}" fill="#cbb6ec" font-size="12" font-family="Righteous, sans-serif">${esc(c.short)}</text>`;
-    });
-    svg += `<polygon points="${poly(a)}" fill="#3ef2ff33" stroke="#3ef2ff" stroke-width="2"/>`;
-    svg += `<polygon points="${poly(b)}" fill="#ff2fa633" stroke="#ff2fa6" stroke-width="2"/>`;
-    svg += `</svg>`;
-    return svg;
-  }
-
-  function renderCompare() {
-    const a = byId(cmpA.value), b = byId(cmpB.value);
-    if (!a || !b) return;
-    const oa = overall(a), ob = overall(b);
-    const ta = tierFor(oa), tb = tierFor(ob);
-    let winsA = 0, winsB = 0;
-    const rows = CATS.map(c => {
-      const va = a.scores[c.key] ?? 75, vb = b.scores[c.key] ?? 75;
-      if (va > vb) winsA++; else if (vb > va) winsB++;
-      return `
-        <div class="cmp-row">
-          <div class="cat">${esc(c.label)}</div>
-          <div class="duel">
-            <div class="side a"><span class="n ${va > vb ? 'win' : ''}">${va}</span><div class="t"><div class="f" style="width:${va}%"></div></div></div>
-            <div class="side b"><div class="t"><div class="f" style="width:${vb}%"></div></div><span class="n ${vb > va ? 'win' : ''}">${vb}</span></div>
-          </div>
-        </div>`;
-    }).join('');
-
-    let verdict;
-    if (a.id === b.id) verdict = 'Pick two different men to compare.';
-    else if (oa === ob) verdict = `Dead heat at ${oa}.`;
-    else {
-      const w = oa > ob ? a : b, l = oa > ob ? b : a;
-      const gap = Math.abs(oa - ob);
-      verdict = `<b style="color:var(--gold)">${esc(w.name)}</b> wins by ${gap} point${gap === 1 ? '' : 's'}, taking ${Math.max(winsA, winsB)} of ${CATS.length} categories against ${esc(l.name)}.`;
-    }
-
-    document.getElementById('cmpBody').innerHTML = `
-      <div>
-        ${radar(a, b)}
-        <div class="legend"><span><i style="background:#3ef2ff"></i>${esc(a.name)}</span><span><i style="background:#ff2fa6"></i>${esc(b.name)}</span></div>
-      </div>
-      <div>
-        <div class="cmp-heads">
-          <div class="cmp-head" style="--c:${ta.color}">${avatar(a)}<div><div class="nm">${esc(a.name)}</div><div class="sc">${oa}</div></div></div>
-          <div class="cmp-head b" style="--c:${tb.color}">${avatar(b)}<div><div class="nm">${esc(b.name)}</div><div class="sc">${ob}</div></div></div>
-        </div>
-        <div class="cmp-rows">${rows}</div>
-      </div>
-      <div class="cmp-verdict">${verdict}</div>`;
-  }
-
-  function startCompare(id) {
-    if (cmpA.value === id) { /* keep */ }
-    else if (cmpB.value === id) { /* keep */ }
-    else cmpA.value = id;
-    if (cmpA.value === cmpB.value) {
-      cmpB.value = id === 'everyday-dad' ? 'andrew-tate' : 'everyday-dad';
-    }
-    renderCompare();
-    document.getElementById('compare').scrollIntoView();
-  }
-
-  cmpA.addEventListener('change', renderCompare);
-  cmpB.addEventListener('change', renderCompare);
-
-  // ---------- method ----------
-  const methodText = {
-    women: 'Does he treat women as equals? What he says about them, how he behaves, any allegations.',
-    family: 'Does he show up for his partner and kids, and stay committed?',
-    humility: 'Ego in check. Flexing, self-worship and needing to look like the alpha score low.',
-    generosity: 'Gives more than he takes. Selling get-rich schemes to teenagers scores low.',
-    service: 'Real courage and helping others: service, rescue, volunteering, standing up for people.',
-    integrity: 'Tells the truth, keeps his word, owns his mistakes.',
-  };
-  document.getElementById('methodGrid').innerHTML = CATS.map(c =>
-    `<div class="method-item"><b>${esc(c.label)}</b><p>${esc(methodText[c.key] || '')}</p></div>`).join('');
-  document.getElementById('tierStrip').innerHTML = TIERS.map(t =>
-    `<span style="--c:${t.color}">${t.min}–${t.max} ${esc(t.name)}</span>`).join('');
-
-  // ---------- add a man ----------
-  const sliders = document.getElementById('sliders');
-  sliders.innerHTML = CATS.map(c => `
-    <label class="slider-row">
-      <span>${esc(c.short)}</span>
-      <input type="range" min="0" max="100" value="75" data-key="${c.key}">
-      <span class="v" data-out="${c.key}">75</span>
-    </label>`).join('');
-
-  const fOverall = document.getElementById('fOverall');
-  function updateOverall() {
-    const vals = [...sliders.querySelectorAll('input')].map(i => +i.value);
-    sliders.querySelectorAll('input').forEach(i => sliders.querySelector(`[data-out="${i.dataset.key}"]`).textContent = i.value);
-    fOverall.textContent = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
-  }
-  sliders.addEventListener('input', updateOverall);
-
-  let photoData = '';
-  const preview = document.getElementById('fPreview');
-  document.getElementById('fPhoto').addEventListener('change', e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const img = new Image();
-    const reader = new FileReader();
-    reader.onload = () => {
-      img.onload = () => {
-        // shrink to 240px so it fits in browser storage
-        const s = 240, c = document.createElement('canvas');
-        c.width = c.height = s;
-        const min = Math.min(img.width, img.height);
-        c.getContext('2d').drawImage(img, (img.width - min) / 2, (img.height - min) / 2, min, min, 0, 0, s, s);
-        photoData = c.toDataURL('image/jpeg', 0.8);
-        preview.outerHTML = `<img class="avatar" id="fPreview" src="${photoData}" alt="">`;
-      };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
-
-  function renderMine() {
-    document.getElementById('mineList').innerHTML = mine.length
-      ? `<p class="note" style="margin:6px 0 0">Your additions:</p>` + mine.map(p =>
-        `<div class="mine-item"><span>${esc(p.name)} · ${overall(p)}</span><button class="btn" type="button" data-del="${esc(p.id)}">Remove</button></div>`).join('')
-      : '';
-  }
-
-  document.getElementById('mineList').addEventListener('click', e => {
-    const d = e.target.closest('[data-del]');
-    if (!d) return;
-    mine = mine.filter(p => p.id !== d.dataset.del);
-    saveMine(mine);
-    refresh();
-  });
-
-  document.getElementById('addForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('fName').value.trim();
-    if (!name) return;
-    const scores = {};
-    sliders.querySelectorAll('input').forEach(i => scores[i.dataset.key] = +i.value);
-    const p = {
-      id: 'mine-' + Date.now(),
-      name,
-      type: 'public',
-      mine: true,
-      role: document.getElementById('fRole').value.trim(),
-      photo: photoData,
-      headline: '',
-      scores,
-      record: [],
-      verdict: document.getElementById('fVerdict').value.trim(),
-    };
-    mine.push(p);
-    if (!saveMine(mine)) {
-      // photo too big for storage: keep him without the photo
-      p.photo = '';
-      saveMine(mine);
-    }
-    e.target.reset();
-    photoData = '';
-    document.getElementById('fPreview').outerHTML = '<div class="avatar" id="fPreview">?</div>';
-    updateOverall();
-    refresh();
-    document.getElementById('rankings').scrollIntoView();
-  });
-
-  // ---------- go ----------
-  function refresh() {
-    renderLead();
-    renderGrid();
-    fillSelects();
-    renderCompare();
-    renderMine();
-  }
-  refresh();
+  document.getElementById('search').addEventListener('input', render);
+  render();
 })();
 </script>
 
