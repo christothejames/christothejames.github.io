@@ -346,7 +346,7 @@
   .shadow .shadow-box { display: block; }
   .shadow-box h2 { font-family: monospace; font-size: 14px; margin: 0 0 8px; color: #0f0; }
   .shadow-box .ov { font-size: 32px; margin-bottom: 8px; }
-  .srow { display: grid; grid-template-columns: 1fr 70px 28px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
+  .srow { display: grid; grid-template-columns: 1fr 0 40px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
   .strack { height: 6px; background: #0f02; }
   .strack span { display: block; height: 100%; background: #0f0; }
 
@@ -375,6 +375,7 @@
 <div id="app"></div>
 
 <script src="data/people.js"></script>
+<script src="data/shadow.js"></script>
 <script>
 (() => {
   // ---------- shadow mode (owner only; add ?shadow to the address) ----------
@@ -387,22 +388,22 @@
   try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
   if (shadow) document.body.classList.add('shadow');
 
-  const CATS = window.CATEGORIES;
   const PEOPLE = window.PEOPLE;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const overall = p => Math.round(CATS.reduce((a, c) => a + (p.scores?.[c.key] ?? 75), 0) / CATS.length);
+  const overall = p => window.shadowScore(p);
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
   const app = document.getElementById('app');
 
-  const p = PEOPLE.find(x => x.id === q.get('id'));
+  const p = PEOPLE.find(x => x.id === q.get('id') && (x.list !== 'review' || shadow));
   if (!p) {
     app.innerHTML = `<div class="wrap missing"><h1>No profile here</h1><p class="muted">That man isn't on our boards.</p><p><a href="home.html">← Back to the posters</a></p></div>`;
     return;
   }
 
   const good = p.list === 'good';
-  document.body.classList.add(good ? 'good' : 'bad');
+  const review = p.list === 'review';
+  document.body.classList.add(p.list === 'bad' ? 'bad' : 'good');
   document.title = `${p.name} · The Real Man Report`;
 
   const big = p.photo
@@ -421,23 +422,23 @@
   const icons = { "Known for": "⭐", "Served": "🎖️", "Family": "❤️", "Causes": "🤝", "Campaign": "📣", "Honour": "🏅",
                   "Raised": "💷", "Followers": "👥", "Before fame": "🥊", "Banned from": "🚫", "Legal status": "⚖️" };
 
-  const others = PEOPLE.filter(x => x.id !== p.id);
+  const others = PEOPLE.filter(x => x.id !== p.id && (x.list !== 'review' || shadow));
   const today = new Date();
   const isFuture = d => { const t = Date.parse(d); return !isNaN(t) && t > today.getTime(); };
 
   app.innerHTML = `
     <div class="wrap">
-      <div class="cover"><div class="cover-word">${good ? 'WANTED' : 'NOT WANTED'}</div></div>
+      <div class="cover"><div class="cover-word">${review ? 'UNDER REVIEW' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
       <div class="head">
         ${big}
         <div class="who">
           <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
           <div class="role">${esc(p.role)}</div>
-          <span class="list-badge">${good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
+          <span class="list-badge">${p.list === 'review' ? 'UNDER REVIEW (shadow only)' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
           <div class="status-line">${esc(p.status)}</div>
         </div>
         <div class="actions">
-          <button class="btn" id="respect" aria-pressed="false">${good ? '👍 Respect' : '👎 Not for me'}</button>
+          <button class="btn" id="respect" aria-pressed="false">${p.list === 'bad' ? '👎 Not for me' : '👍 Respect'}</button>
           <button class="btn" id="share">🔗 Share</button>
         </div>
       </div>
@@ -452,14 +453,15 @@
           <div class="shadow-box">
             <h2>◼ SHADOW SCORE · only you can see this</h2>
             <div class="ov">${overall(p)}/100</div>
-            ${CATS.map(c => {
-              const v = p.scores?.[c.key] ?? 75;
-              return `<div class="srow"><span>${esc(c.label)}</span><div class="strack"><span style="width:${v}%"></span></div><span>${v}</span></div>`;
+            <div style="font-size:12px;margin-bottom:8px">Raw ${p.raw > 0 ? '+' : ''}${p.raw} pts (+${p.plus} / ${p.minus}) · <a href="shadow.html" style="color:#0f0">full ranking</a></div>
+            ${(p.points || []).map(it => {
+              const r = window.RULES[it.rule] || { pts: 0, label: it.rule };
+              return `<div class="srow"><span>${esc(r.label)}</span><span></span><span>${r.pts > 0 ? '+' : ''}${r.pts}</span></div>`;
             }).join('')}
           </div>
           <div class="box">
             <h2>Intro</h2>
-            <p class="reason"><b style="color:var(--accent)">${good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
+            <p class="reason"><b style="color:var(--accent)">${review ? 'In short:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
             <dl class="facts">
               ${Object.entries(p.about || {}).map(([k, v]) => `
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
@@ -472,7 +474,7 @@
               ${others.map(x => `
                 <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}">
                   ${small(x, x.list === 'bad' ? 'bad' : '')}
-                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : 'Not wanted'} · ${esc(x.role)}</small></span>
+                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : x.list === 'bad' ? 'Not wanted' : 'Under review'} · ${esc(x.role)}</small></span>
                 </a>`).join('')}
             </div>
           </div>
@@ -486,7 +488,7 @@
               return `
               <article class="post">
                 <div class="post-head">
-                  ${small(p, good ? '' : 'bad')}
+                  ${small(p, p.list === 'bad' ? 'bad' : '')}
                   <div><div class="nm">${esc(p.name)}</div><div class="dt">${esc(post.date)}${isFuture(post.date) ? '<span class="upcoming">Upcoming</span>' : ''}</div></div>
                 </div>
                 <div class="post-text">${esc(post.text)}</div>

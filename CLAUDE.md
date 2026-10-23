@@ -15,7 +15,9 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `index.html` – "ENTER THE MANOSPHERE!!" entry screen. 80s synthwave look: swinging CSS disco ball, light reflections, striped sunset, moving pink grid floor. The ENTER button goes to `home.html`.
 - `home.html` – two poster boards: "WANTED: MORE MEN LIKE HIM" (good) and "NOT WANTED" (bad), with search. Each poster links to a profile.
 - `profile.html?id=<id>` – Facebook-style profile: cover, avatar, status line, intro, dated timeline posts with source links, About and Photos tabs, reactions (saved only in the viewer's browser).
-- `data/people.js` – all people: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources, and hidden shadow `scores`.
+- `data/people.js` – public profiles: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources.
+- `data/shadow.js` – the shadow points system: `RULES` (weights), points for each man, and new men under review (`list: "review"`, hidden from public boards). Raw points are summed and scaled 0–100 across real men; composites aren't scaled.
+- `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on.
 - `images/` – profile photos (set `photo: "images/name.jpg"` in people.js).
 - `CNAME` – custom domain. Never delete or change it.
 
@@ -32,7 +34,8 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Only public figures or clearly labelled composites on the site, never private individuals.
 - Every factual claim about a real person needs a source link. Charges are allegations: say "charged with" and note if he denies them. Check legal status is current before editing a profile.
 - Shadow scores are never shown to normal visitors. Adding `?shadow` to a page address turns on shadow mode for that browser tab (`?shadow=off` turns it off). The scores are still readable in the public code, so don't treat them as secret.
-- Categories with no public record get a neutral 75.
+- Scoring uses the Ten Commandments about how people are treated (murder, theft/fraud, adultery, lying, greed, parents), never religious belief or practice. Only count infidelity he admitted or a court established; unproven allegations are worth little and must say he denies them.
+- New men go in as `review` until the owner decides good or bad.
 - Posters for people charged but not convicted must show their current legal status and that the board is opinion, not a finding of guilt.
 - Only use photos we have the right to use (e.g. Wikimedia Commons) and fill in `photoCredit`.
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.

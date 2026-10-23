@@ -11,23 +11,13 @@
 //  - Charges are allegations: say "charged with" / "accused of", and say
 //    he denies them if he does. Keep `status` up to date.
 //
-//  SHADOW SCORES: `scores` are never shown to normal visitors. Add ?shadow
-//  to a page address to see them. Note: this file is public, so anyone who
-//  reads the site's code can still find them.
+//  SHADOW SCORES live in data/shadow.js (points system). They are never
+//  shown to normal visitors. Add ?shadow to a page address to see them.
 //
 //  Photo: put an image in /images and set photo: "images/name.jpg".
 //  Only use photos you have the right to use (e.g. Wikimedia Commons) and
 //  put the credit in photoCredit. With no photo, the site shows initials.
 // =====================================================================
-
-window.CATEGORIES = [
-  { key: "women",      label: "Respect for women" },
-  { key: "family",     label: "Family & commitment" },
-  { key: "humility",   label: "Humility (no vanity)" },
-  { key: "generosity", label: "Generosity (no greed)" },
-  { key: "service",    label: "Courage & service" },
-  { key: "integrity",  label: "Integrity & honesty" },
-];
 
 window.PEOPLE = [
   {
@@ -55,7 +45,6 @@ window.PEOPLE = [
       { date: "May 1998", text: "Reached the summit of Mount Everest, aged 23, about 18 months after breaking his back.", source: "https://en.wikipedia.org/wiki/Bear_Grylls" },
       { date: "1996", text: "Broke three vertebrae when his parachute failed to open during SAS reserve training in Zambia.", source: "https://en.wikipedia.org/wiki/Bear_Grylls" },
     ],
-    scores: { women: 90, family: 88, humility: 82, generosity: 92, service: 98, integrity: 80 },
   },
   {
     id: "marcus-rashford",
@@ -79,7 +68,6 @@ window.PEOPLE = [
       { date: "Nov 2020", text: "His campaign forced a second government U-turn: support for hungry children through the school holidays.", source: "https://www.washingtontimes.com/news/2020/nov/8/uk-does-a-u-turn-backs-soccer-stars-child-hunger-c/" },
       { date: "Jun 2020", text: "The government reversed course and extended free school meal vouchers over the summer after his campaign.", source: "https://www.itv.com/news/2020-06-16/marcus-rashford-im-grateful-boris-johnson-changed-policy-on-free-school-meals" },
     ],
-    scores: { women: 75, family: 88, humility: 82, generosity: 98, service: 92, integrity: 78 },
   },
   {
     id: "everyday-dad",
@@ -98,7 +86,6 @@ window.PEOPLE = [
     posts: [
       { date: "Every day", text: "A composite, not a real person: the ordinary men who share the load at home and treat their partners as equals.", source: "" },
     ],
-    scores: { women: 95, family: 98, humility: 92, generosity: 90, service: 88, integrity: 94 },
   },
   {
     id: "volunteer-coach",
@@ -116,7 +103,6 @@ window.PEOPLE = [
     posts: [
       { date: "Every weekend", text: "A composite, not a real person: the men who coach, mentor and volunteer for nothing.", source: "" },
     ],
-    scores: { women: 90, family: 88, humility: 94, generosity: 96, service: 92, integrity: 90 },
   },
   {
     id: "andrew-tate",
@@ -142,6 +128,5 @@ window.PEOPLE = [
       { date: "Aug 2022", text: "Banned from Facebook, Instagram and TikTok for content about women that broke their rules. He said he is not anti-women.", source: "https://www.thenationalnews.com/lifestyle/2022/08/20/andrew-tate-says-im-not-anti-women-as-campaigners-cheer-tiktok-and-instagram-bans/" },
       { date: "Earlier", text: "Credit where due: a former world kickboxing champion.", source: "https://en.wikipedia.org/wiki/Andrew_Tate" },
     ],
-    scores: { women: 0, family: 5, humility: 0, generosity: 0, service: 10, integrity: 0 },
   },
 ];

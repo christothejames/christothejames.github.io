@@ -388,7 +388,7 @@
 </head>
 <body>
 
-<div class="shadow-bar">◼ SHADOW MODE · scores visible to you only on this device · <a href="home.html?shadow=off" style="color:#0f0">turn off</a></div>
+<div class="shadow-bar">◼ SHADOW MODE · scores visible to you only on this device · <a href="shadow.html" style="color:#0f0">full shadow ranking</a> · <a href="home.html?shadow=off" style="color:#0f0">turn off</a></div>
 
 <header class="wrap masthead">
   <div class="dateline"><span id="today"></span><span>humbored.com</span><span>Est. 2026</span></div>
@@ -426,6 +426,7 @@
 </footer>
 
 <script src="data/people.js"></script>
+<script src="data/shadow.js"></script>
 <script>
 (() => {
   // ---------- shadow mode (owner only; add ?shadow to the address) ----------
@@ -438,10 +439,9 @@
   try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
   if (shadow) document.body.classList.add('shadow');
 
-  const CATS = window.CATEGORIES;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const overall = p => Math.round(CATS.reduce((a, c) => a + (p.scores?.[c.key] ?? 75), 0) / CATS.length);
+  const overall = p => window.shadowScore(p);
 
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
