@@ -252,6 +252,64 @@
 
   .enter:active { transform: translateY(3px); box-shadow: 0 0 20px var(--hot-pink), 0 2px 0 var(--purple); }
 
+
+  /* ---------- Hero meme ---------- */
+  .hero {
+    position: fixed;
+    left: 50%;
+    top: clamp(16px, 6vh, 60px);
+    transform: translateX(-50%);
+    width: min(92vw, 780px);
+    z-index: 5;
+  }
+
+  .hero-frame {
+    position: relative;
+    border: 3px solid #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 30px #1e90ffcc, 0 0 80px #1e90ff66;
+  }
+
+  .hero-frame img { display: block; width: 100%; height: auto; }
+
+  .hero-title {
+    position: absolute;
+    left: 1.5%;
+    top: 47%;
+    width: 46%;
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 0.95;
+    font-size: min(4.9vw, 44px);
+    text-align: center;
+    transform: rotate(-7deg);
+    background: linear-gradient(to bottom, #fff 0%, #d6ecff 30%, #7cc4ff 48%, #1e90ff 52%, #4fb3ff 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px #fff6;
+    filter: drop-shadow(3px 3px 0 #0d2a5c) drop-shadow(5px 5px 0 #050b1a) drop-shadow(0 0 14px #1e90ffcc);
+    animation: heroPump 0.6s ease-in-out infinite alternate;
+  }
+
+  .hero-title span { display: block; }
+
+  @keyframes heroPump {
+    from { transform: rotate(-7deg) scale(1); }
+    to   { transform: rotate(-7deg) scale(1.05); }
+  }
+
+  .hero .enter { display: table; margin: clamp(16px, 3vh, 28px) auto 0; }
+
+  @media (max-width: 520px) {
+    .hero { top: 14vh; }
+    .hero-frame { border-width: 2px; border-radius: 10px; }
+    .hero-title { top: 46%; left: 0; width: 50%; font-size: 4.3vw; -webkit-text-stroke: 0; filter: drop-shadow(2px 2px 0 #0d2a5c) drop-shadow(0 0 8px #1e90ffcc); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
   }
@@ -264,14 +322,11 @@
 <div class="floor"></div>
 <div class="lights" id="lights"></div>
 
-<div class="ball-wrap" aria-hidden="true">
-  <div class="string"></div>
-  <div class="ball"></div>
-</div>
-
-<main class="stage">
-  <p class="tagline">humbored.com presents</p>
-  <h1><span>ENTER THE</span><span>MANOSPHERE!!</span></h1>
+<main class="hero">
+  <div class="hero-frame">
+    <img src="images/entry-meme.jpg" alt="A bearded cartoon king in a horned crown holds up his hand next to a golden staff">
+    <h1 class="hero-title"><span>ENTER THE</span><span>MANOSPHERE!!</span></h1>
+  </div>
   <a class="enter" href="home.html">ENTER →</a>
 </main>
 
