@@ -198,15 +198,62 @@ window.WIRES = {
   },
   "nick-fuentes": {
     "conduct": -1
+  },
+  "louis-theroux": {
+    "community": 1,
+    "family": 1
+  },
+  "stephen-fry": {
+    "community": 1,
+    "family": 1,
+    "conduct": 1
+  },
+  "frank-bruno": {
+    "body": 1,
+    "community": 1
+  },
+  "chris-herren": {
+    "community": 1,
+    "family": 1,
+    "conduct": 1
+  },
+  "mat-pritchard": {
+    "body": 1,
+    "community": 1,
+    "conduct": 1
+  },
+  "tony-adams": {
+    "community": 1,
+    "conduct": 1
+  },
+  "steve-o": {
+    "community": 1,
+    "conduct": 1
+  },
+  "danny-trejo": {
+    "service": 1,
+    "community": 1,
+    "conduct": 1
+  },
+  "professor-green": {
+    "community": 1
   }
 };
 
 // Board order (best first on Wanted, worst first on Not Wanted)
 window.ORDER = [
+  "louis-theroux",
+  "stephen-fry",
+  "frank-bruno",
+  "chris-herren",
+  "prince-harry",
+  "mat-pritchard",
   "rick-stanton",
+  "tony-adams",
   "denzel-washington",
   "john-volanthen",
   "jose-andres",
+  "steve-o",
   "steve-irwin",
   "chris-hadfield",
   "alex-honnold",
@@ -214,7 +261,7 @@ window.ORDER = [
   "bear-grylls",
   "ross-edgley",
   "gareth-southgate",
-  "prince-harry",
+  "danny-trejo",
   "tim-peake",
   "levison-wood",
   "kevin-sinfield",
@@ -229,6 +276,7 @@ window.ORDER = [
   "jeff-bezos",
   "michael-sheen",
   "tom-hardy",
+  "professor-green",
   "marcus-rashford",
   "everyday-dad",
   "volunteer-coach",
