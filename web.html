@@ -185,22 +185,9 @@
     color: #8fb3e8;
     line-height: 1.5;
   }
-
-  .shadow-bar {
-    display: none;
-    background: #000;
-    color: #0f0;
-    font: 12px ui-monospace, Consolas, monospace;
-    padding: 6px 12px;
-    text-align: center;
-  }
-
-  .shadow .shadow-bar { display: block; }
 </style>
 </head>
 <body>
-
-<div class="shadow-bar">◼ SHADOW MODE · men under review shown in grey · <a href="web.html?shadow=off" style="color:#0f0">turn off</a></div>
 
 <header>
   <a class="back" href="home.html">← All posters</a>
@@ -230,25 +217,17 @@
 </footer>
 
 <script src="data/people.js"></script>
-<script src="data/shadow.js"></script>
+<script src="data/wires.js"></script>
 <script>
 (() => {
-  // ---------- shadow mode (owner only; add ?shadow to the address) ----------
-  const q = new URLSearchParams(location.search);
-  try {
-    if (q.get('shadow') === 'off') sessionStorage.removeItem('rmr_shadow');
-    else if (q.has('shadow')) sessionStorage.setItem('rmr_shadow', '1');
-  } catch {}
-  let shadow = false;
-  try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
-  if (shadow) document.body.classList.add('shadow');
-
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const COL = { good: '#ffe66d', bad: '#ff3b3b', review: '#8a94a6', hub: '#3ef2ff' };
 
   // ---------- build the graph ----------
-  const men = window.PEOPLE.filter(p => p.list === 'good' || p.list === 'bad' || (shadow && p.list === 'review'));
+  const men = window.PEOPLE.filter(p => p.list === 'good' || p.list === 'bad');
+  // which areas each man has a good record (1) or black marks (-1) in
+  const wire = (p, d) => (window.WIRES[p.id] || {})[d.key];
   const nodes = [], links = [];
   const hubs = {};
   window.DIMS.forEach(d => {
@@ -261,8 +240,8 @@
     if (p.photo) { n.img = new Image(); n.img.src = p.photo; n.img.onload = () => { n.ready = true; kick(); }; }
     nodes.push(n);
     window.DIMS.forEach(d => {
-      if (p.dimScore[d.key] == null) return;
-      links.push({ a: n, b: hubs[d.key], sign: p.dims[d.key] >= 0 ? 1 : -1 });
+      if (!wire(p, d)) return;
+      links.push({ a: n, b: hubs[d.key], sign: wire(p, d) });
     });
   });
   // hubs nobody is wired to just float; keep them but faint
@@ -452,8 +431,8 @@
   function showCard(n) {
     if (!n) { card.className = 'card'; return; }
     const p = n.p;
-    const plus = window.DIMS.filter(d => p.dimScore[d.key] != null && p.dims[d.key] >= 0).map(d => d.label);
-    const minus = window.DIMS.filter(d => p.dimScore[d.key] != null && p.dims[d.key] < 0).map(d => d.label);
+    const plus = window.DIMS.filter(d => wire(p, d) === 1).map(d => d.label);
+    const minus = window.DIMS.filter(d => wire(p, d) === -1).map(d => d.label);
     card.className = 'card on ' + (p.list === 'bad' ? 'bad' : 'good');
     card.innerHTML = `
       <button class="x" aria-label="Close">×</button>

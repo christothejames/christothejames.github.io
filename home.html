@@ -404,35 +404,6 @@
 
   .empty { color: var(--muted); font-style: italic; }
 
-  /* ---------- Shadow mode ---------- */
-  .shadow-bar {
-    display: none;
-    background: repeating-linear-gradient(45deg, #000, #000 10px, #1a1a1a 10px, #1a1a1a 20px);
-    color: #0f0;
-    font-family: monospace;
-    font-size: 13px;
-    text-align: center;
-    padding: 6px 12px;
-  }
-
-  .shadow .shadow-bar { display: block; }
-
-  .shadow-score {
-    display: none;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: #000d;
-    color: #0f0;
-    font-family: monospace;
-    font-size: 15px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    z-index: 2;
-  }
-
-  .shadow .shadow-score { display: block; }
-
   /* ---------- Footer ---------- */
   footer {
     margin-top: 40px;
@@ -466,8 +437,6 @@
 </style>
 </head>
 <body>
-
-<div class="shadow-bar">◼ SHADOW MODE · scores visible to you only on this device · <a href="shadow.html" style="color:#0f0">full shadow ranking</a> · <a href="home.html?shadow=off" style="color:#0f0">turn off</a></div>
 
 <header class="wrap masthead">
   <div class="dateline"><span id="today"></span><span>humbored.com</span><span>Est. 2026</span></div>
@@ -525,23 +494,12 @@
 </footer>
 
 <script src="data/people.js"></script>
-<script src="data/shadow.js"></script>
+<script src="data/wires.js"></script>
 <script src="data/heroes.js"></script>
 <script>
 (() => {
-  // ---------- shadow mode (owner only; add ?shadow to the address) ----------
-  const q = new URLSearchParams(location.search);
-  try {
-    if (q.get('shadow') === 'off') sessionStorage.removeItem('rmr_shadow');
-    else if (q.has('shadow')) sessionStorage.setItem('rmr_shadow', '1');
-  } catch {}
-  let shadow = false;
-  try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
-  if (shadow) document.body.classList.add('shadow');
-
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const overall = p => window.shadowScore(p);
 
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
@@ -560,7 +518,6 @@
           <div class="s">${good ? 'More men like him' : 'Less of this'}</div>
         </div>
         <div class="mug">
-          ${shadow ? `<span class="shadow-score">${overall(p)}</span>` : ''}
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
           <span class="stamp">${good ? 'ROLE MODEL' : 'RED FLAG'}</span>
         </div>
@@ -575,17 +532,18 @@
   function render() {
     const term = document.getElementById('search').value.trim().toLowerCase();
     const match = p => !term || (p.name + ' ' + p.role).toLowerCase().includes(term);
-    // In shadow mode, order each board by the hidden score
-    const order = (a, b, good) => shadow ? (good ? overall(b) - overall(a) : overall(a) - overall(b)) : 0;
-    const good = window.PEOPLE.filter(p => p.list === 'good' && match(p)).sort((a, b) => order(a, b, true));
-    const bad = window.PEOPLE.filter(p => p.list === 'bad' && match(p)).sort((a, b) => order(a, b, false));
+    // Board order comes from the private ranking (data/wires.js)
+    const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
+    const order = (a, b) => rank(a) - rank(b);
+    const good = window.PEOPLE.filter(p => p.list === 'good' && match(p)).sort(order);
+    const bad = window.PEOPLE.filter(p => p.list === 'bad' && match(p)).sort(order);
     document.getElementById('goodGrid').innerHTML = good.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
     document.getElementById('badGrid').innerHTML = bad.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
     document.getElementById('goodCount').textContent = good.length + (good.length === 1 ? ' man' : ' men');
     document.getElementById('badCount').textContent = bad.length + (bad.length === 1 ? ' man' : ' men');
   }
 
-  const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit && p.list !== 'review');
+  const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit);
   document.getElementById('credits').innerHTML = cr.length ? 'Photos: ' + cr.map(p =>
     `${esc(p.name)} by <a href="${esc(p.photoSource || '#')}" target="_blank" rel="noopener" style="font-family:inherit;color:inherit;text-decoration:underline">${esc(p.photoCredit)}</a>`).join(' · ') : '';
 

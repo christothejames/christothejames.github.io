@@ -1,5 +1,5 @@
 // =====================================================================
-//  THE REAL MAN REPORT — people, profiles and shadow scores
+//  THE REAL MAN REPORT — people and profiles
 //  Edit this file to add or change people. The site updates itself.
 //
 //  list:  "good" → poster on the WANTED: MORE MEN LIKE HIM board
@@ -11,8 +11,9 @@
 //  - Charges are allegations: say "charged with" / "accused of", and say
 //    he denies them if he does. Keep `status` up to date.
 //
-//  SHADOW SCORES live in data/shadow.js (points system). They are never
-//  shown to normal visitors. Add ?shadow to a page address to see them.
+//  SHADOW SCORES are private: they live in the separate admin site
+//  (humbored-admin repo), never in this public repo. data/wires.js is
+//  generated from them by the admin's publish.mjs.
 //
 //  Photo: put an image in /images and set photo: "images/name.jpg".
 //  Only use photos you have the right to use (e.g. Wikimedia Commons) and

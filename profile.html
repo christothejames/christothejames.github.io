@@ -362,30 +362,6 @@
 
   .note { font-size: 13px; color: var(--muted); }
 
-  /* ---------- Shadow panel ---------- */
-  .shadow-box {
-    display: none;
-    background: #000;
-    border: 1px dashed #0f0;
-    color: #0f0;
-    font-family: monospace;
-    border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 16px;
-  }
-
-  .shadow .shadow-box { display: block; }
-  .shadow-box h2 { font-family: monospace; font-size: 14px; margin: 0 0 8px; color: #0f0; }
-  .shadow-box .ov { font-size: 32px; margin-bottom: 8px; }
-  .srow { display: grid; grid-template-columns: 1fr 0 40px; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 4px; }
-  .strack { height: 6px; background: #0f02; }
-  .sds { display: grid; gap: 4px; margin-bottom: 4px; }
-  .sd { display: grid; grid-template-columns: 1fr 70px 58px; gap: 6px; align-items: center; font-size: 12px; }
-  .sd-t { height: 6px; background: #0f02; }
-  .sd-t span { display: block; height: 100%; background: #0f0; }
-  .sd-v { text-align: right; }
-  .strack span { display: block; height: 100%; background: #0f0; }
-
   .missing { text-align: center; padding: 80px 16px; }
   .missing h1 { font-family: 'Bungee', sans-serif; font-weight: 400; }
 
@@ -412,35 +388,22 @@
 <div id="app"></div>
 
 <script src="data/people.js"></script>
-<script src="data/shadow.js"></script>
 <script>
 (() => {
-  // ---------- shadow mode (owner only; add ?shadow to the address) ----------
   const q = new URLSearchParams(location.search);
-  try {
-    if (q.get('shadow') === 'off') sessionStorage.removeItem('rmr_shadow');
-    else if (q.has('shadow')) sessionStorage.setItem('rmr_shadow', '1');
-  } catch {}
-  let shadow = false;
-  try { shadow = sessionStorage.getItem('rmr_shadow') === '1'; } catch { shadow = q.has('shadow') && q.get('shadow') !== 'off'; }
-  if (shadow) document.body.classList.add('shadow');
-
   const PEOPLE = window.PEOPLE;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const overall = p => window.shadowScore(p);
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
   const app = document.getElementById('app');
-  const dimBars = p => `<div class="sds">${window.DIMS.map(d => { const v = p.dimScore[d.key]; return `<div class="sd"><span>${d.label}</span><span class="sd-t"><span style="width:${v ?? 0}%"></span></span><span class="sd-v">${v == null ? 'no record' : v}</span></div>`; }).join('')}</div>`;
 
-  const p = PEOPLE.find(x => x.id === q.get('id') && (x.list !== 'review' || shadow));
+  const p = PEOPLE.find(x => x.id === q.get('id') && (x.list === 'good' || x.list === 'bad'));
   if (!p) {
     app.innerHTML = `<div class="wrap missing"><h1>No profile here</h1><p class="muted">That man isn't on our boards.</p><p><a href="home.html">← Back to the posters</a></p></div>`;
     return;
   }
 
   const good = p.list === 'good';
-  const review = p.list === 'review';
   // A good man who has died gets RESPECTED instead of WANTED (death is read from his status or role).
   const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
   document.body.classList.add(p.list === 'bad' ? 'bad' : 'good');
@@ -462,19 +425,19 @@
   const icons = { "Known for": "⭐", "Served": "🎖️", "Family": "❤️", "Causes": "🤝", "Campaign": "📣", "Honour": "🏅",
                   "Raised": "💷", "Followers": "👥", "Before fame": "🥊", "Banned from": "🚫", "Legal status": "⚖️" };
 
-  const others = PEOPLE.filter(x => x.id !== p.id && (x.list !== 'review' || shadow));
+  const others = PEOPLE.filter(x => x.id !== p.id && (x.list === 'good' || x.list === 'bad'));
   const today = new Date();
   const isFuture = d => { const t = Date.parse(d); return !isNaN(t) && t > today.getTime(); };
 
   app.innerHTML = `
     <div class="wrap">
-      <div class="cover"><div class="cover-word${respected ? ' respected' : ''}">${review ? 'UNDER REVIEW' : respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
+      <div class="cover"><div class="cover-word${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
       <div class="head">
         ${big}
         <div class="who">
           <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
           <div class="role">${esc(p.role)}</div>
-          <span class="list-badge${respected ? ' respected' : ''}">${p.list === 'review' ? 'UNDER REVIEW (shadow only)' : respected ? 'RESPECTED' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
+          <span class="list-badge${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
           <div class="status-line">${esc(p.status)}</div>
           ${p.photoCredit ? `<div class="credit">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</div>` : ''}
         </div>
@@ -491,19 +454,9 @@
 
       <div class="layout">
         <aside class="side">
-          <div class="shadow-box">
-            <h2>◼ SHADOW SCORE · only you can see this</h2>
-            <div class="ov">${overall(p)}/100</div>
-            ${p.type === 'composite' ? '' : dimBars(p)}
-            <div style="font-size:12px;margin:8px 0">Raw ${p.raw > 0 ? '+' : ''}${p.raw} pts (+${p.plus} / ${p.minus}) · <a href="shadow.html" style="color:#0f0">full ranking</a></div>
-            ${(p.points || []).map(it => {
-              const r = window.RULES[it.rule] || { pts: 0, label: it.rule };
-              return `<div class="srow"><span>${esc(r.label)}</span><span></span><span>${r.pts > 0 ? '+' : ''}${r.pts}</span></div>`;
-            }).join('')}
-          </div>
           <div class="box">
             <h2>Intro</h2>
-            <p class="reason"><b style="color:var(--accent)">${review ? 'In short:' : respected ? 'Respected for:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
+            <p class="reason"><b style="color:var(--accent)">${respected ? 'Respected for:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
             <dl class="facts">
               ${Object.entries(p.about || {}).map(([k, v]) => `
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
@@ -516,7 +469,7 @@
               ${others.map(x => `
                 <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}">
                   ${small(x, x.list === 'bad' ? 'bad' : '')}
-                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : x.list === 'bad' ? 'Not wanted' : 'Under review'} · ${esc(x.role)}</small></span>
+                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : 'Not wanted'} ·${esc(x.role)}</small></span>
                 </a>`).join('')}
             </div>
           </div>
