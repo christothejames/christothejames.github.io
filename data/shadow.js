@@ -369,7 +369,12 @@ window.SHADOW_PEOPLE = [
 // ---- scoring (no need to edit below) ----
 (function () {
   const all = window.PEOPLE;
-  window.SHADOW_PEOPLE.forEach(p => { if (!all.find(x => x.id === p.id)) all.push(p); });
+  window.SHADOW_PEOPLE.forEach(p => {
+    const pub = all.find(x => x.id === p.id);
+    if (!pub) all.push(p);
+    // moved to a public board: keep his points from here
+    else if (!pub.points && !window.SHADOW_POINTS[p.id]) pub.points = p.points;
+  });
   all.forEach(p => {
     if (!p.points) p.points = window.SHADOW_POINTS[p.id] || [];
     p.raw = p.points.reduce((a, it) => a + ((window.RULES[it.rule] || {}).pts || 0), 0);
