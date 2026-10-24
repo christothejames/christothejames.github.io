@@ -54,7 +54,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.
 
 ## Where we left off (owner's to-do)
-- 21 men in `data/shadow.js` are still `review` (20 from Wikipedia + Arnold Schwarzenegger). The owner will pick good/bad for each; then give them photos and public profiles.
+- 20 men in `data/shadow.js` are still `review` (19 from Wikipedia + Arnold Schwarzenegger; Steve Irwin moved to good). The owner will pick good/bad for each; then give them photos and public profiles.
 - The two composites ("Everyday Dad", "Volunteer Coach") only have placeholder points; the owner may give them fuller points or swap them for real, documented ordinary men.
 - Andrew Tate's final US extradition hearing is 19 Nov 2026. Update his status, posts and points after it.
 - Owner may send the original file of his cartoon face to replace the slightly soft one on the entry screen.

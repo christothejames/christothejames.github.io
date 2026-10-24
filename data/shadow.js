@@ -155,7 +155,7 @@ window.SHADOW_PEOPLE = [
     ],
   },
   {
-    id: "steve-irwin", name: "Steve Irwin", list: "review", type: "public",
+    id: "steve-irwin", name: "Steve Irwin", list: "good", type: "public",
     role: "Wildlife conservationist (died 2006)", reason: "Spent his life protecting animals and teaching the world to love them.",
     status: "Died 2006",
     points: [
