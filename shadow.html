@@ -98,6 +98,20 @@
   .item .d { color: var(--dim); }
   .item .t small { display: block; color: var(--dim); }
   .links { margin-top: 8px; }
+  .pill.suggest { border: 1px solid var(--dim); color: var(--dim); }
+  .pill.approved { background: var(--blue); color: #000; }
+  .approve { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  .approve button, .pending button {
+    font: inherit; font-size: 13px; cursor: pointer; border-radius: 4px; padding: 6px 12px;
+    background: var(--panel); color: var(--green); border: 1px solid var(--line);
+  }
+  .approve button.good { border-color: var(--gold); color: var(--gold); }
+  .approve button.bad { border-color: var(--red); color: var(--red); }
+  .approve button[aria-pressed="true"].good { background: var(--gold); color: #000; }
+  .approve button[aria-pressed="true"].bad { background: var(--red); color: #000; }
+  .pending { display: none; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; padding: 10px 12px; border: 1px solid var(--blue); border-radius: 6px; color: #eaffef; }
+  .pending.on { display: flex; }
+  .pending span { flex: 1; min-width: 200px; }
   .dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 6px 18px; margin: 4px 0 12px; }
   .dim { display: grid; grid-template-columns: 130px 1fr 66px; gap: 8px; align-items: center; font-size: 12px; }
   .dt { height: 6px; background: #00ff6614; border-radius: 3px; overflow: hidden; }
@@ -163,6 +177,7 @@
         <button data-f="bad" aria-pressed="false">not wanted</button>
         <button data-f="composite" aria-pressed="false">composites</button>
       </div>
+      <div class="pending" id="pending"></div>
       <div id="list"></div>
       <h2>RULES (edit weights in data/shadow.js)</h2>
       <div class="rules" id="rules"></div>
@@ -173,8 +188,38 @@
   const table = rows => `<table>${rows.map(([k, r]) => `<tr><td class="n ${r.pts < 0 ? 'neg' : ''}">${sign(r.pts)}</td><td>${esc(r.label)}</td></tr>`).join('')}</table>`;
   document.getElementById('rules').innerHTML = table(ruleRows.slice(0, half)) + table(ruleRows.slice(half));
 
+  // Approvals: picks are saved in this browser until they're published
+  // (set list: in data/shadow.js and push). Suggested board = sign of raw points.
+  const KEY = 'rmr_approvals';
+  let picks = {};
+  try { picks = JSON.parse(localStorage.getItem(KEY)) || {}; } catch {}
+  const review = () => people.filter(p => p.list === 'review' && p.type !== 'composite');
+  // drop picks for men already published
+  Object.keys(picks).forEach(id => { if (!review().some(p => p.id === id)) delete picks[id]; });
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(picks)); } catch {} };
+  const suggest = p => p.raw >= 0 ? 'good' : 'bad';
+  const board = l => l === 'good' ? 'Wanted' : 'Not Wanted';
+
+  function renderPending() {
+    const el = document.getElementById('pending');
+    const ids = Object.keys(picks);
+    const left = review().filter(p => !picks[p.id]);
+    el.classList.toggle('on', ids.length > 0 || left.length > 0);
+    el.innerHTML = `
+      <span>${ids.length ? `<b>${ids.length} approved, not live yet.</b> Copy and send to Claude to publish.` : `${left.length} men under review.`}</span>
+      ${left.length ? `<button id="all">approve all as suggested (${left.length})</button>` : ''}
+      ${ids.length ? '<button id="copy">copy for Claude</button>' : ''}`;
+    el.querySelector('#all')?.addEventListener('click', () => { left.forEach(p => { picks[p.id] = suggest(p); }); save(); render(); });
+    el.querySelector('#copy')?.addEventListener('click', e => {
+      const txt = 'Publish these shadow approvals:\n' + ids.map(id => `${id} → ${board(picks[id])}`).join('\n');
+      const done = () => { e.target.textContent = 'copied ✓'; };
+      navigator.clipboard?.writeText(txt).then(done, () => prompt('Copy this:', txt)) ?? prompt('Copy this:', txt);
+    });
+  }
+
   let filter = 'all';
   function render() {
+    renderPending();
     const term = document.getElementById('find').value.trim().toLowerCase();
     const list = people
       .filter(p => filter === 'all' ? true : filter === 'composite' ? p.type === 'composite' : (p.list === filter && p.type !== 'composite'))
@@ -182,7 +227,15 @@
       .sort((a, b) => b.raw - a.raw);
     document.getElementById('list').innerHTML = list.map((p, i) => {
       const tag = p.type === 'composite' ? '<span class="pill composite">composite · not scaled</span>'
-        : `<span class="pill ${p.list}">${p.list === 'good' ? 'wanted' : p.list === 'bad' ? 'not wanted' : 'review'}</span>`;
+        : `<span class="pill ${p.list}">${p.list === 'good' ? 'wanted' : p.list === 'bad' ? 'not wanted' : 'review'}</span>`
+          + (p.list !== 'review' || p.type === 'composite' ? ''
+            : picks[p.id] ? `<span class="pill approved">→ ${board(picks[p.id]).toLowerCase()}</span>`
+            : `<span class="pill suggest">suggests ${board(suggest(p)).toLowerCase()}</span>`);
+      const approve = p.list !== 'review' || p.type === 'composite' ? '' : `
+          <div class="approve" data-id="${esc(p.id)}">
+            <button class="good" data-pick="good" aria-pressed="${picks[p.id] === 'good'}">approve: Wanted</button>
+            <button class="bad" data-pick="bad" aria-pressed="${picks[p.id] === 'bad'}">approve: Not Wanted</button>
+          </div>`;
       return `
       <details class="row">
         <summary>
@@ -202,11 +255,22 @@
               <span class="t">${esc(it.text)}<small>${esc(r.label)}${it.source ? ` · <a href="${esc(it.source)}" target="_blank" rel="noopener">${esc(host(it.source))}</a>` : ''}</small></span>
             </div>`;
           }).join('') || '<div class="item"><span></span><span></span><span class="t">No points yet.</span></div>'}
-          <div class="links"><a href="profile.html?id=${encodeURIComponent(p.id)}">open profile →</a></div>
+          <div class="links"><a href="profile.html?id=${encodeURIComponent(p.id)}">open profile →</a></div>${approve}
         </div>
       </details>`;
     }).join('') || '<p class="sub">Nobody matches.</p>';
   }
+
+  // Click a pick to approve, click it again to undo. Keeps the row open.
+  document.getElementById('list').addEventListener('click', e => {
+    const b = e.target.closest('[data-pick]');
+    if (!b) return;
+    const id = b.parentElement.dataset.id;
+    if (picks[id] === b.dataset.pick) delete picks[id]; else picks[id] = b.dataset.pick;
+    save();
+    render();
+    document.querySelector(`.approve[data-id="${CSS.escape(id)}"]`)?.closest('details')?.setAttribute('open', '');
+  });
 
   document.getElementById('find').addEventListener('input', render);
   document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {

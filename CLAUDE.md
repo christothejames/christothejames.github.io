@@ -18,7 +18,13 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `profile.html?id=<id>` – Facebook-style profile: cover, avatar, status line, intro, dated timeline posts with source links, About and Photos tabs, reactions (saved only in the viewer's browser).
 - `data/people.js` – public profiles: `list` (good/bad), role, reason, legal/status line, about facts, dated posts with sources.
 - `data/shadow.js` – the shadow points system: `RULES` (weights), points for each man, and new men under review (`list: "review"`, hidden from public boards). Raw points are summed and scaled 0–100 across real men; composites aren't scaled. Each rule also belongs to a dimension (`DIMS`: body, service, community, family, trust, conduct) and every man gets a 0–100 score per dimension, or "no record" if he has no facts in it.
-- `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on.
+- `shadow.html` – full shadow ranking with point breakdowns and the rules table. Shows nothing unless shadow mode is on. Each review man shows the board the algorithm suggests (raw points ≥ 0 → Wanted, < 0 → Not Wanted) and two approve buttons (Wanted / Not Wanted), plus "approve all as suggested". Picks are saved only in the owner's browser; "copy for Claude" gives a list to paste back.
+
+## Adding people in bulk (e.g. "pull 50 notable men from Wikipedia")
+1. Add each to `SHADOW_PEOPLE` in `data/shadow.js` as `list: "review"`, with points that are documented facts only, each with a source link. No opinions, no adjectives about character.
+2. The algorithm scores and suggests a board automatically; the owner approves on `shadow.html?shadow`.
+3. When the owner pastes "Publish these shadow approvals: …", set each man's `list` to `good`/`bad`, and push. His profile builds itself from his points (posts = his sourced facts). Add a Commons photo and credit where one exists.
+4. Recheck anything legal (charges, verdicts, appeals) is current before publishing.
 - `plan.html` – "The Game Plan": pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
 - `web.html` – "The Web": interactive force graph of every man on the boards, wired to the six `DIMS` hubs (gold wire = good record there, red = black marks). No numbers shown; review men appear (grey) only in shadow mode. Linked from the home toolbar.
 - `data/plans.js` – all Game Plan strategies (`AREAS`) and crisis lines (`BACKUP`).
