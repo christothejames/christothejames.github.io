@@ -140,6 +140,32 @@ window.WIRES = {
     "service": 1,
     "community": 1,
     "family": 1
+  },
+  "justin-verlander": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "steve-gleason": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "karl-bushby": {
+    "body": 1,
+    "service": 1
+  },
+  "jeff-bezos": {
+    "community": 1
+  },
+  "michael-sheen": {
+    "service": 1,
+    "community": 1
+  },
+  "tom-hardy": {
+    "body": 1,
+    "community": 1,
+    "family": 1
   }
 };
 
@@ -162,9 +188,15 @@ window.ORDER = [
   "kevin-sinfield",
   "joe-wicks",
   "eddie-hall",
+  "justin-verlander",
+  "steve-gleason",
+  "karl-bushby",
   "andrew-pollard",
   "tom-hanks",
   "hugh-jackman",
+  "jeff-bezos",
+  "michael-sheen",
+  "tom-hardy",
   "marcus-rashford",
   "everyday-dad",
   "volunteer-coach",
