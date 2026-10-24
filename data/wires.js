@@ -59,13 +59,112 @@ window.WIRES = {
     "body": 1,
     "family": 1,
     "conduct": -1
+  },
+  "chris-hadfield": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "tim-peake": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "alex-honnold": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "rick-stanton": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "john-volanthen": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "levison-wood": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "ross-edgley": {
+    "body": 1,
+    "community": 1
+  },
+  "ben-parkinson": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "kevin-sinfield": {
+    "body": 1,
+    "community": 1
+  },
+  "jose-andres": {
+    "service": 1,
+    "community": 1
+  },
+  "andrew-pollard": {
+    "community": 1
+  },
+  "gareth-southgate": {
+    "community": 1,
+    "family": 1
+  },
+  "joe-wicks": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "denzel-washington": {
+    "community": 1,
+    "family": 1
+  },
+  "tom-hanks": {
+    "community": 1
+  },
+  "eddie-hall": {
+    "body": 1,
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "hugh-jackman": {
+    "community": 1,
+    "family": 1
+  },
+  "prince-harry": {
+    "service": 1,
+    "community": 1,
+    "family": 1
   }
 };
 
 // Board order (best first on Wanted, worst first on Not Wanted)
 window.ORDER = [
+  "rick-stanton",
+  "denzel-washington",
+  "john-volanthen",
+  "jose-andres",
   "steve-irwin",
+  "chris-hadfield",
+  "alex-honnold",
+  "ben-parkinson",
   "bear-grylls",
+  "ross-edgley",
+  "gareth-southgate",
+  "prince-harry",
+  "tim-peake",
+  "levison-wood",
+  "kevin-sinfield",
+  "joe-wicks",
+  "eddie-hall",
+  "andrew-pollard",
+  "tom-hanks",
+  "hugh-jackman",
   "marcus-rashford",
   "everyday-dad",
   "volunteer-coach",
