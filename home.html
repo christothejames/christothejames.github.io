@@ -167,6 +167,21 @@
     color: var(--muted);
   }
 
+  /* How many posters each board shows (top 10 by default) */
+  .show {
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--night);
+    color: #fff;
+    border: 2px solid currentColor;
+    cursor: pointer;
+  }
+  .board.good .show { color: var(--gold); }
+  .board.bad .show { color: var(--red); }
+  .show option { color: #fff; background: var(--night); }
+
   .posters {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -460,7 +475,7 @@
   <section class="board good" id="good">
     <div class="board-top">
       <div class="board-top-text">
-        <div class="board-head"><h2>WANTED: MORE MEN LIKE HIM</h2><span class="count" id="goodCount"></span></div>
+        <div class="board-head"><h2>WANTED: MORE MEN LIKE HIM</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Wanted men to show"></select></div>
         <p class="board-sub">Real masculinity: courage, service, family, and treating women as equals.</p>
       </div>
       <figure class="hero-card">
@@ -480,7 +495,7 @@
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2>NOT WANTED</h2><span class="count" id="badCount"></span></div>
+    <div class="board-head"><h2>NOT WANTED</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Not Wanted men to show"></select></div>
     <p class="board-sub">Sells "masculinity" built on money, ego and control over women. Being on this board is our opinion, not a finding of guilt.</p>
     <div class="posters" id="badGrid"></div>
   </section>
@@ -535,13 +550,27 @@
     // Board order comes from the private ranking (data/wires.js)
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
     const order = (a, b) => rank(a) - rank(b);
-    const good = window.PEOPLE.filter(p => p.list === 'good' && match(p)).sort(order);
-    const bad = window.PEOPLE.filter(p => p.list === 'bad' && match(p)).sort(order);
-    document.getElementById('goodGrid').innerHTML = good.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
-    document.getElementById('badGrid').innerHTML = bad.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
-    document.getElementById('goodCount').textContent = good.length + (good.length === 1 ? ' man' : ' men');
-    document.getElementById('badCount').textContent = bad.length + (bad.length === 1 ? ' man' : ' men');
+    ['good', 'bad'].forEach(list => {
+      const all = window.PEOPLE.filter(p => p.list === list && match(p)).sort(order);
+      // Each board shows its top 10; the dropdown shows more. A search shows every match.
+      const pick = document.getElementById(list + 'Show');
+      const n = term ? all.length : (pick.value === 'all' ? all.length : +pick.value);
+      const shown = all.slice(0, n);
+      pick.hidden = !!term || all.length <= 10;
+      document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
+      document.getElementById(list + 'Count').textContent = shown.length < all.length
+        ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
+    });
   }
+
+  // Dropdown options: top 10, top 20, ... and all
+  ['good', 'bad'].forEach(list => {
+    const total = window.PEOPLE.filter(p => p.list === list).length;
+    const pick = document.getElementById(list + 'Show');
+    const steps = [10, 20, 30, 50].filter(s => s < total);
+    pick.innerHTML = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
+    pick.addEventListener('change', render);
+  });
 
   const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit);
   document.getElementById('credits').innerHTML = cr.length ? 'Photos: ' + cr.map(p =>

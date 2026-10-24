@@ -166,6 +166,38 @@ window.WIRES = {
     "body": 1,
     "community": 1,
     "family": 1
+  },
+  "tristan-tate": {
+    "conduct": -1
+  },
+  "hstikkytokky": {
+    "conduct": -1
+  },
+  "myron-gaines": {
+    "conduct": -1
+  },
+  "sneako": {
+    "conduct": -1
+  },
+  "donald-trump": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "alex-jones": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "r-kelly": {
+    "conduct": -1
+  },
+  "danny-masterson": {
+    "conduct": -1
+  },
+  "gerard-depardieu": {
+    "conduct": -1
+  },
+  "nick-fuentes": {
+    "conduct": -1
   }
 };
 
@@ -200,6 +232,16 @@ window.ORDER = [
   "marcus-rashford",
   "everyday-dad",
   "volunteer-coach",
+  "donald-trump",
+  "r-kelly",
   "conor-mcgregor",
-  "andrew-tate"
+  "danny-masterson",
+  "gerard-depardieu",
+  "hstikkytokky",
+  "andrew-tate",
+  "tristan-tate",
+  "alex-jones",
+  "myron-gaines",
+  "sneako",
+  "nick-fuentes"
 ];
