@@ -55,10 +55,37 @@
   }
 
   .topnav .wrap {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 12px;
     height: 54px;
+  }
+
+  .wanted-btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #050b1a;
+    background: var(--gold);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 0 14px #ffe66d66;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .wanted-btn:hover { transform: scale(1.06); box-shadow: 0 0 22px #ffe66daa; }
+
+  @media (max-width: 560px) {
+    .topnav .wrap { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+    .brand { font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+    .wanted-btn { font-size: 11px; padding: 6px 10px; letter-spacing: .5px; }
+    .back { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wanted-btn { transition: none; }
+    .wanted-btn:hover { transform: none; }
   }
 
   .brand {
@@ -375,6 +402,7 @@
 <div class="topnav">
   <div class="wrap">
     <a class="brand" href="home.html">THE REAL MAN REPORT</a>
+    <a class="wanted-btn" href="home.html#good">★ MOST WANTED</a>
     <a class="back" href="home.html">← All posters</a>
   </div>
 </div>
