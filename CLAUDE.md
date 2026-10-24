@@ -65,7 +65,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.
 
 ## Where we left off (owner's to-do)
-- 24 Oct 2026 scout-real-men run: 50 living men researched and scored (tagged `scouted: "2026-10"` in `admin/shadow.js`). 18 cleared the bar and went straight onto the Wanted board (their public profiles are in `data/people.js`, built from their sourced points; no photos yet); 32 wait in `review` for the owner (Ranulph Fiennes scores highest but has a 1966 fine, so he's held for the owner's call).
+- 24 Oct 2026 scout-real-men run: 50 living men researched and scored (tagged `scouted: "2026-10"` in `admin/shadow.js`). 18 cleared the bar and went straight onto the Wanted board (their public profiles are in `data/people.js`, built from their sourced points; 14 have Commons photos, while Rick Stanton, Ben Parkinson, Andrew Pollard and Prince Harry still need one); 32 wait in `review` for the owner (Ranulph Fiennes scores highest but has a 1966 fine, so he's held for the owner's call).
 - 20 older men in `admin/shadow.js` are still `review` (19 from the first Wikipedia batch + Arnold Schwarzenegger). The owner will pick good/bad for each.
 - Russell Brand's trial began Oct 2026; update his entry when there's a verdict.
 - The two composites ("Everyday Dad", "Volunteer Coach") only have placeholder points; the owner may give them fuller points or swap them for real, documented ordinary men.
