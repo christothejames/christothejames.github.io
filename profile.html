@@ -198,6 +198,8 @@
   }
 
   .bad .list-badge { background: var(--red); color: #fff; }
+  .list-badge.respected { background: var(--red); color: #fff; }
+  .cover-word.respected { color: #ff3b3bcc; }
 
   .status-line { margin-top: 8px; font-size: 14px; color: var(--text); }
 
@@ -439,6 +441,8 @@
 
   const good = p.list === 'good';
   const review = p.list === 'review';
+  // A good man who has died gets RESPECTED instead of WANTED (death is read from his status or role).
+  const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
   document.body.classList.add(p.list === 'bad' ? 'bad' : 'good');
   document.title = `${p.name} · The Real Man Report`;
 
@@ -464,13 +468,13 @@
 
   app.innerHTML = `
     <div class="wrap">
-      <div class="cover"><div class="cover-word">${review ? 'UNDER REVIEW' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
+      <div class="cover"><div class="cover-word${respected ? ' respected' : ''}">${review ? 'UNDER REVIEW' : respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
       <div class="head">
         ${big}
         <div class="who">
           <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
           <div class="role">${esc(p.role)}</div>
-          <span class="list-badge">${p.list === 'review' ? 'UNDER REVIEW (shadow only)' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
+          <span class="list-badge${respected ? ' respected' : ''}">${p.list === 'review' ? 'UNDER REVIEW (shadow only)' : respected ? 'RESPECTED' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
           <div class="status-line">${esc(p.status)}</div>
           ${p.photoCredit ? `<div class="credit">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</div>` : ''}
         </div>
@@ -499,7 +503,7 @@
           </div>
           <div class="box">
             <h2>Intro</h2>
-            <p class="reason"><b style="color:var(--accent)">${review ? 'In short:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
+            <p class="reason"><b style="color:var(--accent)">${review ? 'In short:' : respected ? 'Respected for:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
             <dl class="facts">
               ${Object.entries(p.about || {}).map(([k, v]) => `
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}

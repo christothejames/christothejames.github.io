@@ -303,6 +303,7 @@
 
   .good .poster-top .w { color: var(--hot-pink); }
   .bad .poster-top .w { color: #c4161c; }
+  .good .poster-top .w.respected { color: #c4161c; }
 
   .poster-top .s {
     font-size: 12px;
@@ -545,13 +546,17 @@
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
+  // A good man who has died gets RESPECTED instead of WANTED (death is read from his status or role).
+  const passed = p => /^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || '');
+
   function poster(p, i) {
     const good = p.list === 'good';
+    const respected = good && passed(p);
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
     return `
       <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}" style="--tilt:${tilt}deg">
         <div class="poster-top">
-          <div class="w">${good ? 'WANTED' : 'NOT WANTED'}</div>
+          <div class="w${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div>
           <div class="s">${good ? 'More men like him' : 'Less of this'}</div>
         </div>
         <div class="mug">
@@ -561,7 +566,7 @@
         </div>
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
-        <p class="for"><b>${good ? 'WANTED FOR' : 'NOT WANTED FOR'}</b>${esc(p.reason)}</p>
+        <p class="for"><b>${respected ? 'RESPECTED FOR' : good ? 'WANTED FOR' : 'NOT WANTED FOR'}</b>${esc(p.reason)}</p>
         <div class="status">${esc(p.status)}</div>
         <div class="cta">VIEW PROFILE →</div>
       </a>`;
