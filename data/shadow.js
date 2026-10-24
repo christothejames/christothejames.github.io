@@ -53,6 +53,7 @@ window.RULES = {
   domestic_violence:   { pts:  -40, label: "Convicted of violence against a partner", dim: "family" },
   fraud_conviction:    { pts:  -40, label: "Convicted of fraud (You shall not steal)", dim: "trust" },
   mass_harm:           { pts:  -40, label: "Harmed thousands of people", dim: "conduct" },
+  civil_sexual:        { pts:  -40, label: "Found liable for sexual assault in a civil court", dim: "conduct" },
   violence_conviction: { pts:  -30, label: "Convicted of violent assault", dim: "conduct" },
   lying:               { pts:  -25, label: "Years of public lying (no false witness)", dim: "trust" },
   exploitation:        { pts:  -25, label: "Exploited people for money (coveting / greed)", dim: "trust" },
@@ -98,6 +99,17 @@ window.SHADOW_POINTS = {
     { rule: "misogyny",        date: "2022",     text: "Banned from Facebook, Instagram and TikTok over content about women.", source: "https://www.thenationalnews.com/lifestyle/2022/08/20/andrew-tate-says-im-not-anti-women-as-campaigners-cheer-tiktok-and-instagram-bans/" },
     { rule: "charges_pending", date: "2025–26",  text: "Charged in the UK with rape and human trafficking. Denies wrongdoing.", source: "https://www.cps.gov.uk/national-news/news/cps-decides-prosecute-tate-brothers-additional-sexual-offences" },
     { rule: "charges_pending", date: "2026",     text: "Indicted in Romania for trafficking minors and money laundering. Denies wrongdoing.", source: "https://www.aljazeera.com/news/2026/9/4/andrew-tate-indicted-in-romania-for-trafficking-minors-money-laundering" },
+  ],
+  "conor-mcgregor": [
+    { rule: "physique",            date: "2015–16", text: "UFC featherweight and lightweight champion; first to hold both at once.", source: W("Conor_McGregor") },
+    { rule: "family",              date: "2008–",   text: "With Dee Devlin since 2008, married 2025; four children.", source: W("Conor_McGregor") },
+    { rule: "civil_sexual",        date: "2024–25", text: "Civil jury found he raped Nikita Hand; upheld on appeal. He denies it; never criminally charged.", source: "https://www.irishtimes.com/crime-law/courts/2025/07/31/conor-mcgregor-has-lost-appeal-over-civil-rape-case/" },
+    { rule: "violence_conviction", date: "2019",    text: "Pleaded guilty to assaulting a man in a Dublin pub.", source: "https://www.itv.com/news/utv/2019-11-01/conor-mcgregor-fined-after-dublin-assault" },
+    { rule: "violence",            date: "2018",    text: "Pleaded guilty to disorderly conduct after attacking a bus of fighters in New York.", source: "https://www.cbsnews.com/colorado/news/mma-conor-mcgregor-guilty-disorderly-conduct/" },
+    { rule: "controversy",         date: "2024",    text: "Two-year driving ban and suspended sentence for dangerous driving.", source: "https://www.expressandstar.com/uk-news/conor-mcgregor-receives-suspended-sentence-for-dangerous-driving-5779321" },
+    { rule: "controversy",         date: "2025",    text: "18-month ban for three missed drug-test whereabouts in 2024.", source: "https://africa.espn.com/mma/ufc/story/_/id/46522617/conor-mcgregor-suspended-18-months-ufc-missed-tests" },
+    { rule: "controversy",         date: "2023",    text: "Posted \"Ireland is at war\" on the day of the Dublin riots; examined by police, not charged.", source: W("Conor_McGregor") },
+    { rule: "allegation",          date: "2023",    text: "Accused of sexual assault in Miami. He denies it; no charges, civil suit dropped.", source: W("Conor_McGregor") },
   ],
   // Composites: illustrative only, not included in scaling
   "everyday-dad": [
