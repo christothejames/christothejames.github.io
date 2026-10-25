@@ -886,7 +886,7 @@ window.PEOPLE = [
     posts: [
       { date: "1995", text: "Won the WBC world heavyweight title.", source: "https://en.wikipedia.org/wiki/Frank_Bruno" },
       { date: "1990", text: "Appointed MBE.", source: "https://en.wikipedia.org/wiki/Frank_Bruno" },
-      { date: "", text: "Backs the Frank Bruno Foundation, which works to improve men's mental health.", source: "https://en.wikipedia.org/wiki/Frank_Bruno" },
+      { date: "2017–", text: "Founded the Frank Bruno Foundation in 2017; it runs wellbeing and non-contact boxing programmes for people with mental health problems.", source: "https://www.lbbd.gov.uk/news/2022/frank-bruno-foundation-announces-new-mental-health-and-wellbeing-headquarters-barking" },
       { date: "2009–13", text: "Spoke publicly about his bipolar disorder and time in the mental health system, at conferences and in a national newspaper campaign.", source: "https://en.wikipedia.org/wiki/Frank_Bruno" },
     ],
   },
@@ -903,7 +903,7 @@ window.PEOPLE = [
     status: "Active · Herren Project founder",
     about: {},
     posts: [
-      { date: "", text: "Recovered from drug and alcohol addiction that ended his basketball career.", source: "https://en.wikipedia.org/wiki/Chris_Herren" },
+      { date: "2008–", text: "Recovered from drug and alcohol addiction that ended his basketball career; sober since 2008.", source: "https://en.wikipedia.org/wiki/Chris_Herren" },
       { date: "", text: "Gives about 200 Herren Talks a year; has spoken to over a million students and pushes for mental health and PTSD awareness in schools.", source: "https://en.wikipedia.org/wiki/Chris_Herren" },
       { date: "2011", text: "Founded the nonprofit Herren Project.", source: "https://en.wikipedia.org/wiki/Chris_Herren" },
       { date: "", text: "Married to Heather; three children.", source: "https://en.wikipedia.org/wiki/Chris_Herren" },
@@ -1071,6 +1071,7 @@ window.PEOPLE = [
     status: "Active · married since 1978",
     about: {},
     posts: [
+      { date: "2021", text: "Read Darth Vader and Son to patients at Children's Hospital Los Angeles and did Yoda, Vader and Joker voices for them.", source: "https://nerdist.com/article/mark-hamill-visits-children-hospital/" },
       { date: "2015", text: "Skipped a Star Wars TV appearance to visit sick children at Great Ormond Street Hospital, one of many hospital visits over the years.", source: "https://www.fox29.com/entertainment/hospitalized-kids-get-a-visit-from-luke-skywalker" },
       { date: "2022–", text: "Ambassador for Ukraine's United24 fundraising platform; his signed posters raised over $300,000.", source: "https://en.wikipedia.org/wiki/Mark_Hamill" },
       { date: "1978–", text: "Married to Marilou York since 1978; three children.", source: "https://en.wikipedia.org/wiki/Mark_Hamill" },
