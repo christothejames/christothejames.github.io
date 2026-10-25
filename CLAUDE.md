@@ -35,6 +35,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - `plan.html` – "The Game Plan": pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
 - `web.html` – "The Web": interactive force graph of every man on the boards, wired to the six `DIMS` hubs (gold wire = good record there, red = black marks). No numbers shown; wires come from `data/wires.js`. Linked from the home toolbar.
 - `data/plans.js` – all Game Plan strategies (`AREAS`) and crisis lines (`BACKUP`).
+- `skills.html` – "The Skills": a "Wherever you started" paragraph, then everyday life skills with lazy-loaded YouTube tutorials, category filters and a learned tracker (saved only in the viewer's browser). Linked from the home toolbar by the arcade-style "▶ LEARN A SKILL +XP" button. Skills live in `data/skills.js` (optional `start`/`end` seconds clip a video).
 - `images/` – profile photos, 600×600 JPG around 50 KB. Set `photo`, `photoCredit` (author, licence, "via Wikimedia Commons") and `photoSource` (the Commons file page) in people.js; credits show on the profile and in the home footer. Never use mugshots or arrest photos of anyone not convicted.
 - `CNAME` – custom domain. Never delete or change it.
 

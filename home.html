@@ -132,8 +132,30 @@
 
   .jump.good { background: var(--gold); }
   .jump.bad { background: var(--red); color: #fff; }
-  .jump.plan { background: var(--blue); color: #fff; }
+  .jump.plan { background: var(--hot-pink); color: #fff; }
   .jump.web { background: var(--cyan); }
+
+  /* Arcade-style "press start" button for the Skills page */
+  .jump.skills {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, var(--gold), var(--cyan));
+    box-shadow: 0 0 0 2px var(--night), 0 0 0 4px var(--gold);
+    animation: skillPulse 1.6s ease-in-out infinite;
+  }
+  .jump.skills .xp {
+    background: var(--night);
+    color: var(--gold);
+    border-radius: 999px;
+    padding: 2px 7px;
+    font-size: 11px;
+  }
+  .jump.skills:hover { filter: brightness(1.1); }
+  @keyframes skillPulse {
+    0%, 100% { box-shadow: 0 0 0 2px var(--night), 0 0 0 4px var(--gold), 0 0 10px #ffe66d55; }
+    50% { box-shadow: 0 0 0 2px var(--night), 0 0 0 4px var(--cyan), 0 0 22px #3ef2ffaa; }
+  }
 
   /* ---------- Boards ---------- */
   .board { padding: 36px 0 10px; scroll-margin-top: 70px; }
@@ -448,6 +470,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
+    .jump.skills { animation: none; }
   }
 </style>
 </head>
@@ -458,6 +481,7 @@
   <h1>THE REAL MAN REPORT</h1>
   <p class="motto">masculinity is how you treat people</p>
   <p class="intro"><a href="plan.html" style="color:var(--cyan)">Dealing with something? Get a game plan →</a></p>
+  <p class="intro"><a href="skills.html" style="color:var(--gold)">Never got shown how? Press start: learn a skill →</a></p>
   <p class="intro">Two boards. The men we want more of, and the men we don't. Click any poster for the full profile. Every fact is sourced.</p>
 </header>
 
@@ -466,6 +490,7 @@
     <input class="search" id="search" type="search" placeholder="Search for a man…" aria-label="Search">
     <a class="jump good" href="#good">WANTED</a>
     <a class="jump bad" href="#bad">NOT WANTED</a>
+    <a class="jump skills" href="skills.html" title="Learn a life skill">▶ LEARN A SKILL <span class="xp">+XP</span></a>
     <a class="jump plan" href="plan.html">GAME PLAN</a>
     <a class="jump web" href="web.html">THE WEB</a>
   </div>
