@@ -276,6 +276,13 @@
   .mark.want[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--night); }
   .mark.know[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--night); }
   .mark:hover { border-color: #fff; }
+
+  .sure { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+  .sure p { margin: 0; width: 100%; font-size: 15px; color: var(--gold); }
+  .mark.yes { background: var(--gold); border-color: var(--gold); color: var(--night); }
+
+  .skill { transition: opacity 0.35s, transform 0.35s; }
+  .skill.vanish { opacity: 0; transform: scale(0.92); }
   .mark:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
   /* ---------- Want / know tabs ---------- */
@@ -377,7 +384,7 @@
 
     <p class="empty" id="empty" hidden></p>
 
-    <p class="coach">Tap <b>★ Learn</b> to save a skill for later. Watch it, then go and do it once: doing it once is how you learn it. Then tap <b>✓ Already know</b> to unlock it.</p>
+    <p class="coach">Tap <b>★ Learn</b> to save a skill for later. Watch it, then go and do it once: doing it once is how you learn it. Then tap <b>✓ Already know</b> to unlock it and clear it off your list. Changed your mind? Find it in the Already know tab and tap <b>↺ Put back</b>.</p>
   </section>
 </div>
 
@@ -455,14 +462,15 @@
     // ---------- Want / know tabs ----------
     const views = document.getElementById("views");
     const VIEWS = [
-      { id: "all", label: "All" },
+      { id: "all", label: "To learn" },
       { id: "want", label: "★ Learn" },
       { id: "know", label: "✓ Already know" },
       { id: "new", label: "Not sorted yet" }
     ];
     const EMPTY = {
+      all: "You already know every skill here. Legend. Check the ✓ Already know tab to revisit one.",
       want: "Nothing saved yet. Tap ★ Learn on any skill to add it here.",
-      know: "Nothing unlocked yet. Tap ✓ Already know on a skill you've got down.",
+      know: "Nothing here yet. Skills you already know land here, so you can come back to them any time.",
       new: "You've sorted every skill. Nice work."
     };
 
@@ -478,9 +486,11 @@
       applyFilters();
     });
 
+    // "To learn" (all) is every skill you don't already know; known ones only show in their own tab.
     function inView(id) {
       const st = status[id];
-      return view === "all" || (view === "new" ? !st : st === view);
+      if (view === "all") return st !== "know";
+      return view === "new" ? !st : st === view;
     }
 
     function applyFilters(keepId) {
@@ -520,7 +530,12 @@
           '<div class="skill-foot">' +
             '<div class="marks">' +
               '<button class="mark want" data-mark="want" aria-pressed="' + (st === "want") + '">' + (st === "want" ? "★ SAVED" : "★ LEARN") + "</button>" +
-              '<button class="mark know" data-mark="know" aria-pressed="' + (st === "know") + '">✓ ALREADY KNOW</button>' +
+              '<button class="mark know" data-mark="know" aria-pressed="' + (st === "know") + '">' + (st === "know" ? "↺ PUT BACK" : "✓ ALREADY KNOW") + "</button>" +
+            "</div>" +
+            '<div class="sure" hidden>' +
+              "<p>Sure you already know this one?</p>" +
+              '<button class="mark yes">YES, I KNOW IT</button>' +
+              '<button class="mark no">NOT YET</button>' +
             "</div>" +
             (id ? '<span class="by">Video: <a href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">' + esc(s.by || "YouTube") + "</a></span>" : "") +
           "</div>" +
@@ -550,37 +565,67 @@
         return;
       }
 
-      // Tapping a mark sets it; tapping the pressed one again clears it.
       const mark = e.target.closest(".mark");
-      if (mark) {
-        const card = mark.closest(".skill");
-        const id = card.dataset.id;
-        const st = status[id] === mark.dataset.mark ? "" : mark.dataset.mark;
-        st ? (status[id] = st) : delete status[id];
-        card.classList.toggle("want", st === "want");
-        card.classList.toggle("know", st === "know");
-        card.querySelectorAll(".mark").forEach(b => b.setAttribute("aria-pressed", b.dataset.mark === st));
-        card.querySelector(".mark.want").textContent = st === "want" ? "★ SAVED" : "★ LEARN";
-        save();
-        updateProgress();
-        // Pressing LEARN starts the video too; keep that card on screen even if the tab would hide it.
-        if (st === "want") {
-          playVideo(card);
-          const video = card.querySelector(".video");
-          if (video) video.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-          applyFilters(id);
-        } else {
-          applyFilters();
-        }
+      if (!mark) return;
+      const card = mark.closest(".skill");
+      const id = card.dataset.id;
+      const marks = card.querySelector(".marks");
+      const sure = card.querySelector(".sure");
+
+      // ALREADY KNOW takes two taps: first ask, then YES hides the skill from the list.
+      if (mark.dataset.mark === "know" && status[id] !== "know") {
+        marks.hidden = true;
+        sure.hidden = false;
+        sure.querySelector(".yes").focus();
+        return;
+      }
+      if (mark.classList.contains("no")) {
+        sure.hidden = true;
+        marks.hidden = false;
+        marks.querySelector(".know").focus();
+        return;
+      }
+      if (mark.classList.contains("yes")) {
+        sure.hidden = true;
+        marks.hidden = false;
+        setStatus(card, "know");
+        card.classList.add("vanish");
+        setTimeout(() => { card.classList.remove("vanish"); applyFilters(); }, 350);
+        return;
+      }
+
+      // LEARN and PUT BACK: tapping the pressed one again clears it.
+      const st = status[id] === mark.dataset.mark ? "" : mark.dataset.mark;
+      setStatus(card, st);
+      // Pressing LEARN starts the video too; keep that card on screen even if the tab would hide it.
+      if (st === "want") {
+        playVideo(card);
+        const video = card.querySelector(".video");
+        if (video) video.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+        applyFilters(id);
+      } else {
+        applyFilters();
       }
     });
+
+    function setStatus(card, st) {
+      const id = card.dataset.id;
+      st ? (status[id] = st) : delete status[id];
+      card.classList.toggle("want", st === "want");
+      card.classList.toggle("know", st === "know");
+      card.querySelectorAll(".marks .mark").forEach(b => b.setAttribute("aria-pressed", b.dataset.mark === st));
+      card.querySelector(".mark.want").textContent = st === "want" ? "★ SAVED" : "★ LEARN";
+      card.querySelector(".mark.know").textContent = st === "know" ? "↺ PUT BACK" : "✓ ALREADY KNOW";
+      save();
+      updateProgress();
+    }
 
     function updateProgress() {
       const n = { want: 0, know: 0, new: 0 };
       skills.forEach(s => { n[status[s.id] || "new"]++; });
       document.getElementById("progressText").textContent = n.know + " of " + skills.length + " skills unlocked";
       document.getElementById("progressBar").style.width = (skills.length ? (n.know / skills.length) * 100 : 0) + "%";
-      n.all = skills.length;
+      n.all = skills.length - n.know;
       views.querySelectorAll("button").forEach(b => { b.querySelector(".n").textContent = n[b.dataset.view]; });
     }
 
