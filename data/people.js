@@ -66,6 +66,7 @@ window.PEOPLE = [
       "Raised": "About £20m for his campaigning",
     },
     posts: [
+      { date: "2021", text: "Sent a PlayStation 5 and a personal letter to a 9-year-old who had been raising money for charity: \"we are kind because it's the right thing to do\".", source: "https://videogameschronicle.com/news/footballer-marcus-rashford-sent-a-9-year-old-boy-a-ps5-for-charity-work" },
       { date: "Nov 2021", text: "Received his MBE at Windsor Castle, with his mother there.", source: "https://www.skysports.com/football/news/11095/12464652/marcus-rashford-man-utd-forward-awarded-mbe-for-campaign-to-end-child-food-poverty" },
       { date: "2021", text: "Became the youngest person to top the Sunday Times Giving List, after raising about £20m.", source: "https://www.skysports.com/football/news/11095/12464652/marcus-rashford-man-utd-forward-awarded-mbe-for-campaign-to-end-child-food-poverty" },
       { date: "Nov 2020", text: "His campaign forced a second government U-turn: support for hungry children through the school holidays.", source: "https://www.washingtontimes.com/news/2020/nov/8/uk-does-a-u-turn-backs-soccer-stars-child-hunger-c/" },
@@ -152,6 +153,7 @@ window.PEOPLE = [
       "Legal status": "Charged, not convicted. Denies wrongdoing. Extradition hearing 19 Nov 2026",
     },
     posts: [
+      { date: "2017", text: "Told his followers depression isn't real and people who have it are \"lazy\"; refused to back down after the backlash.", source: "https://www.phillyvoice.com/andrew-tate-tweets-depression-provoke-heavy-backlash-debate/" },
       { date: "19 Nov 2026", text: "Scheduled: his final US extradition hearing, in Miami.", source: "https://www.forbes.com/sites/conormurray/2026/10/09/court-sets-november-extradition-hearings-for-andrew-and-tristan-tate/" },
       { date: "Sep 2026", text: "Romanian prosecutors indicted him for trafficking minors, sex with a minor and money laundering. He denies all wrongdoing. A US judge also denied him bail.", source: "https://www.aljazeera.com/news/2026/9/4/andrew-tate-indicted-in-romania-for-trafficking-minors-money-laundering" },
       { date: "Jul 2026", text: "Arrested in the US. UK prosecutors added further charges, including seven counts of rape. He is fighting extradition.", source: "https://www.cps.gov.uk/national-news/news/cps-decides-prosecute-tate-brothers-additional-sexual-offences" },
@@ -178,6 +180,7 @@ window.PEOPLE = [
       "Legal status": "Lost civil rape case and both appeals. Denies it. Never criminally charged over it",
     },
     posts: [
+      { date: "2025", text: "Spat in the face of a fan who shouted support for his old rival Khabib Nurmagomedov.", source: "https://www.si.com/fannation/boxing/chris-eubank-slams-conor-mcgregor-for-spitting-on-khabib-nurmagomedov-fan" },
       { date: "Sep 2026", text: "Two witnesses whose sworn statements he tried to use in his appeal were charged with perjury. They have not been tried.", source: "https://www.irishtimes.com/crime-law/courts/2026/09/29/dublin-couple-accused-of-perjury-over-affidavits-in-conor-mcgregor-appeal-to-stand-trial/" },
       { date: "Jul 2026", text: "Back in the UFC after his ban. Lost to Max Holloway in the first round at UFC 329.", source: "https://en.wikipedia.org/wiki/UFC_329" },
       { date: "Dec 2025", text: "Ireland's Supreme Court refused to hear a further appeal, saying he'd had a fair hearing.", source: "https://www.the42.ie/nikita-hand-mcgregor-2-6893918-Dec2025/" },
@@ -459,6 +462,7 @@ window.PEOPLE = [
     status: "Active · Presidential Medal of Freedom (2025)",
     about: {},
     posts: [
+      { date: "2020", text: "Stopped his car to get a distressed homeless man out of traffic in West Hollywood, stayed with him until police came and got him food.", source: "https://thegrio.com/2020/05/22/denzel-washington-helps-homeless" },
       { date: "2004–05", text: "Visited wounded soldiers at Brooke Army Medical Center, then gave one of the largest gifts in the Fisher House Foundation's history to house their families.", source: "https://www.snopes.com/politics/military/denzel.asp" },
       { date: "1983–", text: "Married to Pauletta since 1983.", source: "https://en.wikipedia.org/wiki/Denzel_Washington" },
       { date: "1995", text: "Gave $2.5m to build a church facility in Los Angeles.", source: "https://en.wikipedia.org/wiki/Denzel_Washington" },
@@ -481,6 +485,7 @@ window.PEOPLE = [
     status: "Active · Presidential Medal of Freedom (2016)",
     about: {},
     posts: [
+      { date: "2015", text: "Found a student's lost ID in a New York park, tracked her down on Twitter and had it returned with a handwritten note.", source: "https://abc7chicago.com/post/tom-hanks-finds-students-id-in-nyc-park-tries-to-find-owner-named-lauren/1019702/" },
       { date: "2020", text: "Wrote back to an 8-year-old boy named Corona who was bullied over his name, and sent him his own typewriter.", source: "https://www.cbsnews.com/news/tom-hanks-sends-letter-to-boy-bullied-over-his-name/" },
       { date: "2016", text: "Received the Presidential Medal of Freedom.", source: "https://en.wikipedia.org/wiki/Tom_Hanks" },
       { date: "2006", text: "Honorary member of the US Army Rangers Hall of Fame.", source: "https://en.wikipedia.org/wiki/Tom_Hanks" },
@@ -521,6 +526,7 @@ window.PEOPLE = [
     status: "Active · Companion of the Order of Australia (2019)",
     about: {},
     posts: [
+      { date: "2018–19", text: "Gave a homeless man in Glasgow £100 and invited him to a restaurant opening.", source: "https://www.eveningtimes.co.uk/news/17633431.greatest-showman-star-jackman-gives-100-to-homeless-man" },
       { date: "2015", text: "Burst into a Sydney radio studio as Wolverine to surprise a 9-year-old with cystic fibrosis, for Make-A-Wish.", source: "https://www.goodnewsnetwork.org/wolverine-star-surprises-9-yo-boy-watch/" },
       { date: "2011–", text: "Founded Laughing Man Coffee after meeting an Ethiopian coffee farmer; his profits go to a foundation for farming communities.", source: "https://www.globalcitizen.org/en/content/laughing-man-coffee-helps-farmers/" },
       { date: "1987", text: "Worked as a PE teacher in England.", source: "https://en.wikipedia.org/wiki/Hugh_Jackman" },
@@ -616,6 +622,7 @@ window.PEOPLE = [
     status: "Active · Amazon founder and executive chair",
     about: {},
     posts: [
+      { date: "2007–11", text: "Paid no federal income tax in 2007 and 2011 while a billionaire, according to leaked IRS data.", source: "https://www.fox7austin.com/news/bezos-musk-among-the-rich-who-paid-little-to-no-income-taxes-propublica-reports" },
       { date: "2019", text: "Amazon's own records showed about 14,000 serious injuries in its warehouses in 2019, nearly double the industry rate; Amazon disputes the comparison. In 2021 he wrote that Amazon needed to \"do a better job for our employees\".", source: "https://www.cnbc.com/2020/09/29/amazon-reportedly-downplayed-rising-injury-rates-at-its-warehouses.html" },
       { date: "2021", text: "The US labour board threw out a union vote at Amazon's Alabama warehouse, held while he was CEO, ruling that Amazon's conduct made a fair election impossible.", source: "https://www.hrdive.com/news/alabama-amazon-workers-to-re-do-union-vote/610742/" },
       { date: "2021", text: "After his spaceflight, thanked Amazon workers and customers because \"you guys paid for all this\", drawing wide criticism.", source: "https://www.npr.org/2021/07/20/1018414444/bezos-landed-thanked-amazon-workers-and-shoppers-for-paying-gave-away-200-millio" },
@@ -637,6 +644,7 @@ window.PEOPLE = [
     status: "Active · Soccer Aid captain (2010)",
     about: {},
     posts: [
+      { date: "2025", text: "Used £100,000 of his own money to buy and write off about £1 million of debt owed by 900 people in south Wales.", source: "https://guernseypress.com/news/uk-news/2025/03/10/people-are-hurting-says-michael-sheen-in-documentary-where-he-writes-off-debt" },
       { date: "2017", text: "Founded the End High Cost Credit Alliance to fight high-cost lending.", source: "https://en.wikipedia.org/wiki/Michael_Sheen" },
       { date: "", text: "Describes himself as a \"not-for-profit actor\" because of what he puts into social causes.", source: "https://en.wikipedia.org/wiki/Michael_Sheen" },
       { date: "2010", text: "Captained the winning Soccer Aid team at Wembley; patron of the NSPCC's Child's Voice Appeal and other charities.", source: "https://en.wikipedia.org/wiki/Michael_Sheen" },
@@ -743,6 +751,7 @@ window.PEOPLE = [
     status: "Convicted (2024), appeal pending · Found liable in civil courts",
     about: {},
     posts: [
+      { date: "2015", text: "Imitated the disability of New York Times reporter Serge Kovaleski at a rally; he denied mocking him.", source: "https://itv.com/news/2015-11-26/donald-trump-appears-to-mock-a-reporters-disability" },
       { date: "2024", text: "Convicted on 34 felony counts of falsifying business records over a hush-money payment; sentenced to an unconditional discharge. His appeal is pending.", source: "https://en.wikipedia.org/wiki/Donald_Trump" },
       { date: "2023", text: "A civil jury found him liable for sexually abusing the writer E. Jean Carroll, and for defaming her. He denies it.", source: "https://en.wikipedia.org/wiki/Donald_Trump" },
       { date: "2024–25", text: "Found liable for exaggerating his wealth for years to get better loan terms; an appeals court kept the fraud finding but threw out the roughly $500 million penalty.", source: "https://www.npr.org/2025/08/21/g-s1-84246/civil-fraud-penalty-president-trump-appeal" },
@@ -764,6 +773,7 @@ window.PEOPLE = [
     status: "Found liable for defamation (2022) · filed for bankruptcy",
     about: {},
     posts: [
+      { date: "2012–", text: "Called Robbie Parker a \"crisis actor\" hours after Parker spoke about his daughter's murder at Sandy Hook; Parker testified to years of harassment from Jones's audience.", source: "https://kvia.com/news/business-technology/cnn-technology/2022/09/29/sandy-hook-parent-recounts-years-of-harassment-after-alex-jones-called-him-a-crisis-actor/" },
       { date: "2022", text: "Juries ordered him to pay $1.487 billion to Sandy Hook families and a first responder for his defamatory falsehoods about the shooting.", source: "https://en.wikipedia.org/wiki/Alex_Jones" },
       { date: "2018", text: "Facebook, Apple, YouTube and Spotify removed all his and InfoWars' content for policy violations.", source: "https://en.wikipedia.org/wiki/Alex_Jones" },
     ],
@@ -981,6 +991,7 @@ window.PEOPLE = [
     status: "Active · sober since 1969",
     about: {},
     posts: [
+      { date: "2020–22", text: "Hands out tacos from his restaurants in person to homeless veterans in Los Angeles every year.", source: "https://abc7.com/post/danny-trejo-homeless-veterans-van-nuys/12551249/" },
       { date: "1969", text: "Got sober through a 12-step programme in prison and has stayed sober since his release in 1969.", source: "https://en.wikipedia.org/wiki/Danny_Trejo" },
       { date: "2017–26", text: "Speaks at schools, colleges and prisons about addiction, urging young people away from drugs.", source: "https://gvwire.com/2026/01/28/danny-trejo-shares-message-of-redemption-with-fresno-city-college-students/" },
       { date: "2019", text: "Helped pull a trapped child from an overturned car after a crash.", source: "https://en.wikipedia.org/wiki/Danny_Trejo" },
@@ -1016,6 +1027,7 @@ window.PEOPLE = [
     status: "Active",
     about: {},
     posts: [
+      { date: "2019", text: "When his flight made an emergency landing in Bakersfield, helped stranded passengers sort out travel and rode a van to Los Angeles with them.", source: "https://www.cbsnews.com/amp/losangeles/news/keanu-reeves-stranded-bakersfield/" },
       { date: "2003", text: "Bought motorbikes for his stunt team and helped a crew member in financial trouble.", source: "https://en.wikipedia.org/wiki/Keanu_Reeves" },
       { date: "2001–03", text: "Handed his share of the Matrix sequels' profits to the special-effects and costume crews.", source: "https://abcnews.go.com/Entertainment/story?id=102572" },
       { date: "2000s", text: "Founded a private cancer foundation supporting children's hospitals.", source: "https://en.wikipedia.org/wiki/Keanu_Reeves" },
@@ -1034,6 +1046,7 @@ window.PEOPLE = [
     status: "Retired player · TV analyst",
     about: {},
     posts: [
+      { date: "2021", text: "Overheard a young man in a jewellery store asking what he still owed on an engagement ring, and paid it off.", source: "https://wtop.com/celebrities/2021/04/shaq-paid-for-a-strangers-engagement-ring/" },
       { date: "1992–", text: "Runs Shaq-A-Claus every Christmas, giving toys, coats and bikes to children at schools and Boys & Girls Clubs.", source: "https://www.11alive.com/article/life/holidays/shaq-a-claus-henry-county/85-06122e73-cd12-4aab-8fc6-2c880dc5ecd7" },
       { date: "2009–19", text: "Paid for the funerals of strangers, including two murdered young girls, after seeing their stories in the news.", source: "https://www.fox6now.com/news/shaquille-oneal-houston-officer-team-up-to-cover-cost-of-7-year-olds-funeral" },
       { date: "2000–06", text: "Won four NBA championships and three Finals MVPs.", source: "https://en.wikipedia.org/wiki/Shaquille_O%27Neal" },
@@ -1093,6 +1106,7 @@ window.PEOPLE = [
     status: "Retired from wrestling (2025) · Active actor",
     about: {},
     posts: [
+      { date: "2022", text: "Travelled to Amsterdam to spend an afternoon with a nonverbal teenage fan with Down syndrome whose family had fled Ukraine.", source: "https://www.si.com/wrestling/2022/06/13/video-of-john-cena-surprising-young-fan-who-fled-ukraine-goes-viral" },
       { date: "2002–", text: "Has granted more than 650 Make-A-Wish wishes, a Guinness world record; no one else has granted 200.", source: "https://www.cbssports.com/wwe/news/john-cena-sets-guinness-world-record-with-650-make-a-wish-wishes-granted" },
       { date: "2012", text: "Led a WWE breast cancer campaign that raised $1m for Susan G. Komen.", source: "https://www.licenseglobal.com/wwe-raises-1m-susan-g-komen" },
     ],
@@ -1110,6 +1124,7 @@ window.PEOPLE = [
     status: "Active · UN ocean advocate",
     about: {},
     posts: [
+      { date: "2020", text: "Saw a viral video of a 7-year-old fan with brain cancer, video-called him and sent him gifts signed \"Love, Uncle Aquaman\".", source: "https://www.cbsnews.com/amp/boston/news/jason-momoa-aquaman-viral-video-marshfield-danny-sheehan" },
       { date: "2020", text: "Paused filming to visit patients at UPMC Children's Hospital of Pittsburgh, and arm-wrestled a young patient (who won).", source: "https://whdh.com/entertainment/tough-guy-jason-momoa-shows-his-softer-side-visiting-young-patients-at-a-pittsburgh-hospital/" },
       { date: "2022–", text: "Named the UN Environment Programme's Advocate for Life Below Water.", source: "https://www.unep.org/news-and-stories/press-release/unep-names-jason-momoa-official-advocate-life-below-water" },
       { date: "2023", text: "Co-hosted a fundraiser for Maui wildfire survivors.", source: "https://us.hola.com/us/celebrities/20230825349615/jason-momoa-eva-longoria-fundraiser-maui-wildfires/" },
@@ -1129,6 +1144,7 @@ window.PEOPLE = [
     status: "Active",
     about: {},
     posts: [
+      { date: "2021", text: "Gave his own custom pickup truck to a Navy veteran he had never met, after hearing how he cared for his mother and helped abuse victims.", source: "https://abc7news.com/dwayne-the-rock-johnson-truck-gift-to-fan-oscar-rodriguez-instagram/11270300/" },
       { date: "2024", text: "Sang \"You're Welcome\" from Moana by video to a 4-year-old girl in hospice care, for Make-A-Wish.", source: "https://abc3340.com/news/entertainment/dwayne-johnson-sings-youre-welcome-from-moana-to-4-year-old-girl-cancer-make-a-rush-wish-foundation-cincinnati-home-hospice-care-honor-feel-good-human-interest-energy-lily-guerrero-2016-animated-classic-hawaii" },
       { date: "2023", text: "Apologised after backlash for asking the public to donate to his Maui wildfire fund.", source: "https://www.fox7austin.com/news/dwayne-johnson-apologizes-over-maui-wildfire-fund-donation-request" },
       { date: "1995", text: "Spoke at schools urging students to stay in school and off drugs.", source: "https://en.wikipedia.org/wiki/Dwayne_Johnson" },

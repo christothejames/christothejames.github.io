@@ -24,6 +24,10 @@ window.DIMS = [
   {
     "key": "conduct",
     "label": "Conduct"
+  },
+  {
+    "key": "people",
+    "label": "How he treats people"
   }
 ];
 
@@ -36,7 +40,8 @@ window.WIRES = {
     "trust": -1
   },
   "marcus-rashford": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "steve-irwin": {
     "service": 1,
@@ -53,12 +58,14 @@ window.WIRES = {
   },
   "andrew-tate": {
     "body": 1,
-    "conduct": -1
+    "conduct": -1,
+    "people": -1
   },
   "conor-mcgregor": {
     "body": 1,
     "family": 1,
-    "conduct": -1
+    "conduct": -1,
+    "people": -1
   },
   "chris-hadfield": {
     "body": 1,
@@ -121,10 +128,12 @@ window.WIRES = {
   },
   "denzel-washington": {
     "community": 1,
-    "family": 1
+    "family": 1,
+    "people": 1
   },
   "tom-hanks": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "eddie-hall": {
     "body": 1,
@@ -134,7 +143,8 @@ window.WIRES = {
   },
   "hugh-jackman": {
     "community": 1,
-    "family": 1
+    "family": 1,
+    "people": 1
   },
   "prince-harry": {
     "service": 1,
@@ -157,11 +167,13 @@ window.WIRES = {
   },
   "jeff-bezos": {
     "community": 1,
-    "conduct": -1
+    "conduct": -1,
+    "people": -1
   },
   "michael-sheen": {
     "service": 1,
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "tom-hardy": {
     "body": 1,
@@ -182,11 +194,13 @@ window.WIRES = {
   },
   "donald-trump": {
     "trust": -1,
-    "conduct": -1
+    "conduct": -1,
+    "people": -1
   },
   "alex-jones": {
     "trust": -1,
-    "conduct": -1
+    "conduct": -1,
+    "people": -1
   },
   "r-kelly": {
     "conduct": -1
@@ -234,19 +248,22 @@ window.WIRES = {
   "danny-trejo": {
     "service": 1,
     "community": 1,
-    "conduct": 1
+    "conduct": 1,
+    "people": 1
   },
   "professor-green": {
     "community": 1
   },
   "keanu-reeves": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "shaquille-oneal": {
     "body": 1,
     "community": 1,
     "family": -1,
-    "conduct": -1
+    "conduct": -1,
+    "people": 1
   },
   "terry-crews": {
     "community": 1,
@@ -258,46 +275,50 @@ window.WIRES = {
     "family": 1
   },
   "john-cena": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "jason-momoa": {
     "community": 1,
-    "conduct": -1
+    "conduct": -1,
+    "people": 1
   },
   "dwayne-johnson": {
     "community": 1,
-    "conduct": -1
+    "conduct": -1,
+    "people": 1
   }
 };
 
 // Board order (best first on Wanted, worst first on Not Wanted)
 window.ORDER = [
   "shaquille-oneal",
-  "terry-crews",
   "tom-hanks",
-  "jason-momoa",
+  "terry-crews",
   "keanu-reeves",
-  "mark-hamill",
+  "jason-momoa",
   "john-cena",
   "dwayne-johnson",
-  "denzel-washington",
+  "mark-hamill",
   "hugh-jackman",
+  "denzel-washington",
   "louis-theroux",
   "stephen-fry",
   "prince-harry",
   "chris-herren",
-  "frank-bruno",
-  "mat-pritchard",
-  "alex-honnold",
   "danny-trejo",
-  "rick-stanton",
-  "john-volanthen",
+  "marcus-rashford",
+  "michael-sheen",
+  "frank-bruno",
+  "alex-honnold",
+  "mat-pritchard",
   "gareth-southgate",
   "steve-o",
+  "rick-stanton",
+  "john-volanthen",
   "ross-edgley",
   "eddie-hall",
   "bear-grylls",
-  "marcus-rashford",
   "everyday-dad",
   "volunteer-coach",
   "kevin-sinfield",
@@ -305,26 +326,25 @@ window.ORDER = [
   "joe-wicks",
   "justin-verlander",
   "steve-gleason",
-  "michael-sheen",
   "tom-hardy",
   "professor-green",
+  "steve-irwin",
   "chris-hadfield",
   "tim-peake",
   "karl-bushby",
   "tony-adams",
-  "steve-irwin",
   "levison-wood",
   "ben-parkinson",
   "andrew-pollard",
   "donald-trump",
-  "r-kelly",
   "conor-mcgregor",
+  "r-kelly",
+  "andrew-tate",
+  "alex-jones",
   "danny-masterson",
   "gerard-depardieu",
-  "andrew-tate",
-  "hstikkytokky",
   "tristan-tate",
-  "alex-jones",
+  "hstikkytokky",
   "myron-gaines",
   "nick-fuentes",
   "sneako",

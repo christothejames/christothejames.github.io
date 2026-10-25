@@ -403,7 +403,16 @@
         ctx.font = `${W < 520 ? 7 : 10}px Bungee, sans-serif`;
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         const parts = n.label.toUpperCase().split(' & ');
-        const lines = parts.length > 1 ? [parts[0] + ' &', parts[1]] : parts;
+        let lines = parts.length > 1 ? [parts[0] + ' &', parts[1]] : parts;
+        // long labels without "&" wrap word by word to fit the circle
+        if (lines.length === 1 && ctx.measureText(lines[0]).width > n.r * 1.8) {
+          lines = lines[0].split(' ').reduce((acc, w) => {
+            const last = acc[acc.length - 1];
+            if (last && ctx.measureText(last + ' ' + w).width <= n.r * 1.8) acc[acc.length - 1] = last + ' ' + w;
+            else acc.push(w);
+            return acc;
+          }, []);
+        }
         const lh = W < 520 ? 9 : 12;
         lines.forEach((s, i) => ctx.fillText(s, n.x, y + (i - (lines.length - 1) / 2) * lh, n.r * 1.8));
       } else {
