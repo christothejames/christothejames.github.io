@@ -156,7 +156,8 @@ window.WIRES = {
     "service": 1
   },
   "jeff-bezos": {
-    "community": 1
+    "community": 1,
+    "conduct": -1
   },
   "michael-sheen": {
     "service": 1,
@@ -292,7 +293,6 @@ window.ORDER = [
   "rick-stanton",
   "john-volanthen",
   "gareth-southgate",
-  "jeff-bezos",
   "steve-o",
   "ross-edgley",
   "eddie-hall",
@@ -327,5 +327,6 @@ window.ORDER = [
   "alex-jones",
   "myron-gaines",
   "nick-fuentes",
-  "sneako"
+  "sneako",
+  "jeff-bezos"
 ];
