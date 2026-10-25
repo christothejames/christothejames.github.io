@@ -237,11 +237,50 @@ window.WIRES = {
   },
   "professor-green": {
     "community": 1
+  },
+  "keanu-reeves": {
+    "community": 1
+  },
+  "shaquille-oneal": {
+    "body": 1,
+    "community": 1,
+    "family": -1,
+    "conduct": -1
+  },
+  "terry-crews": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "mark-hamill": {
+    "community": 1,
+    "family": 1
+  },
+  "john-cena": {
+    "community": 1
+  },
+  "jason-momoa": {
+    "community": 1,
+    "conduct": -1
+  },
+  "dwayne-johnson": {
+    "community": 1,
+    "conduct": -1
   }
 };
 
 // Board order (best first on Wanted, worst first on Not Wanted)
 window.ORDER = [
+  "keanu-reeves",
+  "shaquille-oneal",
+  "denzel-washington",
+  "hugh-jackman",
+  "terry-crews",
+  "tom-hanks",
+  "mark-hamill",
+  "john-cena",
+  "jason-momoa",
+  "dwayne-johnson",
   "louis-theroux",
   "stephen-fry",
   "frank-bruno",
@@ -250,7 +289,6 @@ window.ORDER = [
   "mat-pritchard",
   "rick-stanton",
   "tony-adams",
-  "denzel-washington",
   "john-volanthen",
   "jose-andres",
   "steve-o",
@@ -271,8 +309,6 @@ window.ORDER = [
   "steve-gleason",
   "karl-bushby",
   "andrew-pollard",
-  "tom-hanks",
-  "hugh-jackman",
   "jeff-bezos",
   "michael-sheen",
   "tom-hardy",
