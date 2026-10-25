@@ -1,5 +1,5 @@
 // =====================================================================
-//  THE GAME PLAN — strategies for what men are dealing with
+//  MENTAL HEALTH — strategies for what men are dealing with
 //
 //  Wording rules (keep these when editing):
 //  - Strategy, not sympathy. "Your moves", not "things you should do".

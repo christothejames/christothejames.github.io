@@ -32,9 +32,9 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 2. The algorithm scores and suggests a board automatically; the owner approves on the admin site.
 3. When the owner pastes "Publish these shadow approvals: …": recheck anything legal (charges, verdicts, appeals) is current; set each man's `list` in `admin/shadow.js`; add his public profile to `data/people.js` (posts = his sourced facts, plain wording, no scores or rule names; a Commons photo and credit where one exists); append each man and his `reason:` line to `admin/decisions.md` (format at the top of that file); run `node publish.mjs`; push both repos.
    - Lines marked "(move from Wanted/Not Wanted)" are published men: "→ Wanted"/"→ Not Wanted" switches his `list` in both `admin/shadow.js` and `data/people.js` (reword his profile for the other board if needed); "→ back to review" sets `list: "review"` in shadow.js and removes his profile (and photo) from the public repo.
-- `plan.html` – "The Game Plan": pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
+- `plan.html` – "Mental Health" (formerly The Game Plan): pick an area (pressure, low mood, anger, alcohol, dating, relationship, friendships, purpose, sleep), then a situation, and get a strategy: moves, a quick win today, when to call in backup and who. Red BACKUP NOW button opens crisis lines by country. Deep links: `plan.html#alcohol/cut-back`.
 - `web.html` – "The Web": interactive force graph of every man on the boards, wired to the six `DIMS` hubs (gold wire = good record there, red = black marks). No numbers shown; wires come from `data/wires.js`. Linked from the home toolbar.
-- `data/plans.js` – all Game Plan strategies (`AREAS`) and crisis lines (`BACKUP`).
+- `data/plans.js` – all Mental Health strategies (`AREAS`) and crisis lines (`BACKUP`).
 - `skills.html` – "The Skills": a "Wherever you started" paragraph, then everyday life skills with lazy-loaded YouTube tutorials, category filters, and "★ LEARN" (saves the skill and starts its video) / "✓ ALREADY KNOW" buttons on each card. Already know asks "Sure you already know this one?" first; YES hides the skill from the main "To learn" tab, and it waits in the "Already know" tab with "↺ PUT BACK". Tabs: To learn / Learn / Already know / Not sorted yet (saved only in the viewer's browser). Linked from the home toolbar by the arcade-style "▶ LEARN A SKILL +XP" button. Skills live in `data/skills.js` (optional `start`/`end` seconds clip a video).
 - `images/` – profile photos, 600×600 JPG around 50 KB. Set `photo`, `photoCredit` (author, licence, "via Wikimedia Commons") and `photoSource` (the Commons file page) in people.js; credits show on the profile and in the home footer. Never use mugshots or arrest photos of anyone not convicted.
 - `CNAME` – custom domain. Never delete or change it.
@@ -45,7 +45,7 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Tone: fun, silly, energetic. Short punchy text.
 - Must work on phones (touch, small screens). Respect `prefers-reduced-motion` for heavy animation.
 
-## Game Plan wording (important)
+## Mental Health wording (important)
 - Strategy, not sympathy: "your moves", "quick win", "call in backup". Never imply he's weak, broken or a victim.
 - Short sentences a 15-year-old understands first read.
 - Getting help is framed as a tactic (pros have coaches), never as failure.
