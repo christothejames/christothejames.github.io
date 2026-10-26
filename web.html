@@ -221,7 +221,7 @@
 <script>
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const initials = n => n.replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const COL = { good: '#ffe66d', bad: '#ff3b3b', review: '#8a94a6', hub: '#3ef2ff' };
 
   // ---------- build the graph ----------
