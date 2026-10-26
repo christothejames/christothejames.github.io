@@ -364,7 +364,7 @@ window.AREAS = [
   },
   {
     id: "modern", icon: "📱", name: "Modern day problems",
-    tag: "Doom scrolling, fake people online",
+    tag: "Doom scrolling, fake people online, no time",
     situations: [
       {
         id: "doom-scrolling", name: "Doom scrolling",
@@ -407,6 +407,21 @@ window.AREAS = [
         quickWin: "Put your phone in another room and go outside for 20 minutes.",
         backup: ["Nothing offline feels worth doing for weeks (see Low mood)", "You've pulled away from everyone in real life"],
         who: "Your doctor/GP if it's linked to low mood. Check out The Skills page for hobby ideas.",
+      },
+      {
+        id: "no-time", name: "Both of us work, no time left",
+        read: "It used to be one wage and one person running the home. Now most couples both work, and the house, the bills and the kids still need running. There's less time to go round. The answer isn't moaning about it. It's a system, and owning your part.",
+        moves: [
+          "Build a routine: same days for the shop, the washing, the bins, the bills. A routine means fewer decisions and fewer arguments.",
+          "Sit down once a week, 15 minutes, and plan the week together: who's working late, who's on dinner, what has to get done.",
+          "Split the jobs fairly and take turns. If one of you has a mad week, the other picks up more. Next time it swaps.",
+          "Got kids? It's a different world. Plan around them first, and tag-team so you both get a break.",
+          "Own it. See a job, do it. No speeches, no waiting to be asked, no keeping score. Just get it done.",
+          "Be the role model. Kids copy what you do, not what you say. Get your hands dirty, don't sit on the sofa waiting for it to happen.",
+        ],
+        quickWin: "Pick one job at home nobody's done yet and do it now, without mentioning it.",
+        backup: ["You're running on empty for weeks (see Low mood)", "Every chat about jobs turns into a fight (see Relationship)", "You can't remember the last time you had a day off"],
+        who: "Your doctor/GP if you're burnt out. A couples counsellor if you keep fighting over it.",
       },
     ],
   },
