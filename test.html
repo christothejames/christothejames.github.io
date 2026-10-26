@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manly Test · humbored.com</title>
+<meta name="description" content="15 quick questions. Not a judgement, just a starting point, with a game plan to level up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1e90ff;
+    --sky: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --red: #ff3b3b;
+    --night: #050b1a;
+    --purple: #0d2a5c;
+    --panel: #0c1a36;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #050b1a; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 40%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 48px; }
+
+  .back {
+    display: inline-block;
+    margin: 16px 0 0;
+    color: var(--sky);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  /* ---------- Masthead ---------- */
+  header { text-align: center; padding: 18px 0 8px; }
+
+  h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(34px, 9vw, 68px);
+    line-height: 1;
+    font-style: italic;
+    background: linear-gradient(to bottom, #fff 0%, #d6ecff 35%, var(--sky) 55%, var(--blue) 75%, #4fb3ff 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    filter: drop-shadow(3px 3px 0 var(--purple)) drop-shadow(0 0 18px #1e90ff66);
+  }
+
+  .motto {
+    font-family: 'Monoton', cursive;
+    font-size: clamp(14px, 3vw, 20px);
+    color: var(--cyan);
+    margin: 10px 0 0;
+    text-shadow: 0 0 8px #3ef2ffaa;
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 30px #1e90ff22;
+  }
+
+  .card h2 {
+    margin: 0 0 8px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.15;
+    color: var(--gold);
+  }
+
+  .card p { margin: 8px 0; }
+  .muted { color: var(--muted); }
+
+  .hidden { display: none !important; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-block;
+    font-family: 'Bungee', sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--night);
+    background: linear-gradient(90deg, var(--gold), var(--cyan));
+    box-shadow: 0 0 0 2px var(--night), 0 0 0 4px var(--gold), 0 0 16px #ffe66d55;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.ghost {
+    background: transparent;
+    color: var(--sky);
+    box-shadow: inset 0 0 0 2px var(--sky);
+  }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+  /* ---------- Questions ---------- */
+  .progress {
+    height: 10px;
+    border-radius: 999px;
+    background: #ffffff14;
+    overflow: hidden;
+  }
+  .progress > div {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transition: width .25s ease;
+  }
+  .q-count { font-size: 13px; color: var(--muted); margin-top: 8px; display: flex; justify-content: space-between; }
+  .q-area { color: var(--cyan); }
+
+  .q-text {
+    font-size: clamp(19px, 4.6vw, 24px);
+    line-height: 1.35;
+    margin: 18px 0 18px;
+  }
+
+  .answers { display: grid; gap: 10px; }
+  .answer {
+    font: inherit;
+    font-size: 17px;
+    text-align: left;
+    color: var(--text);
+    background: #0a1630;
+    border: 2px solid #ffffff2e;
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .answer:hover, .answer:focus-visible { border-color: var(--cyan); outline: none; }
+  .answer.picked { border-color: var(--gold); background: #1a2a4a; }
+
+  .q-back {
+    margin-top: 14px;
+    background: none;
+    border: none;
+    color: var(--sky);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+
+  /* ---------- Results ---------- */
+  .level {
+    text-align: center;
+    border-color: #ffe66d55;
+  }
+  .level .tag { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
+  .level .name {
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(42px, 13vw, 84px);
+    line-height: 1;
+    margin: 8px 0;
+    color: var(--gold);
+    text-shadow: 0 0 22px #ffe66d77, 3px 3px 0 var(--purple);
+  }
+  .level .score { color: var(--cyan); font-size: 15px; }
+  .meter {
+    position: relative;
+    height: 14px;
+    border-radius: 999px;
+    margin: 14px auto 6px;
+    max-width: 420px;
+    background: #ffffff14;
+    overflow: hidden;
+  }
+  .meter > div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--gold));
+  }
+  .meter-labels { display: flex; justify-content: space-between; max-width: 420px; margin: 0 auto; font-size: 12px; color: var(--muted); }
+
+  .strength h2 { color: var(--cyan); }
+
+  .areas { display: grid; gap: 8px; margin-top: 10px; }
+  .area-row { display: grid; grid-template-columns: 1fr 90px; gap: 10px; align-items: center; font-size: 15px; }
+  .area-bar { height: 8px; border-radius: 999px; background: #ffffff14; overflow: hidden; }
+  .area-bar > div { height: 100%; background: var(--cyan); }
+
+  .plan h3 {
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--gold);
+    margin: 18px 0 6px;
+  }
+  .plan h3:first-of-type { margin-top: 6px; }
+  .plan ul { margin: 6px 0; padding-left: 20px; }
+  .plan li { margin: 4px 0; }
+  .quick {
+    background: #ffe66d14;
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 10px 0;
+  }
+  .quick b { color: var(--gold); }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .links a {
+    font-size: 14px;
+    color: var(--night);
+    background: var(--sky);
+    border-radius: 999px;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+
+  .nudge { border-color: #3ef2ff66; }
+  .nudge h2 { color: var(--cyan); }
+
+  .saved-note { color: var(--gold); min-height: 1.5em; margin-top: 10px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="home.html">← Back to The Real Man Report</a>
+
+  <header>
+    <h1>THE MANLY TEST</h1>
+    <p class="motto">where you at, mate?</p>
+  </header>
+
+  <!-- Intro -->
+  <section id="intro">
+    <div class="card">
+      <h2>No one's marking you down here, mate.</h2>
+      <p>This isn't a judgement on you. It's a quick check-in to see where you're at, and where you can crack on from.</p>
+      <p>15 questions, be honest, and nobody sees your answers but you.</p>
+      <div class="btn-row"><button class="btn" id="start">▶ LET'S GO</button></div>
+    </div>
+    <div class="card hidden" id="lastTime">
+      <h2 style="color:var(--cyan)">Welcome back.</h2>
+      <p id="lastText"></p>
+      <div class="btn-row"><button class="btn ghost" id="showSaved">SEE MY PLAN</button></div>
+    </div>
+  </section>
+
+  <!-- Questions -->
+  <section id="quiz" class="hidden">
+    <div class="card">
+      <div class="progress"><div id="bar"></div></div>
+      <div class="q-count"><span id="qNum"></span><span class="q-area" id="qArea"></span></div>
+      <p class="q-text" id="qText"></p>
+      <div class="answers" id="answers"></div>
+      <button class="q-back" id="qBack">← Back a question</button>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="hidden">
+    <div class="card level">
+      <div class="tag">Your level</div>
+      <div class="name" id="levelName"></div>
+      <div class="score" id="levelScore"></div>
+      <div class="meter"><div id="meter"></div></div>
+      <div class="meter-labels"><span>Noob</span><span>Buff</span><span>Chizzled</span></div>
+      <p id="levelMsg"></p>
+    </div>
+
+    <div class="card strength">
+      <h2 id="strengthTitle"></h2>
+      <p id="strengthMsg"></p>
+      <div class="areas" id="areas"></div>
+    </div>
+
+    <div class="card nudge hidden" id="nudge">
+      <h2>Spotted a few "someone else will"s there, mate.</h2>
+      <p>Thing is, if everyone thinks that, nobody does it. Be the one who does.</p>
+    </div>
+
+    <div class="card plan">
+      <h2>Your game plan</h2>
+      <div id="plan"></div>
+    </div>
+
+    <div class="card">
+      <p>You're only up against yourself. No sharing, no leaderboard.</p>
+      <div class="btn-row">
+        <button class="btn" id="save">SAVE MY PLAN</button>
+        <button class="btn ghost" id="again">HAVE ANOTHER GO IN A MONTH</button>
+      </div>
+      <p class="saved-note" id="savedNote"></p>
+      <button class="q-back" id="restart">↺ Start the test again now</button>
+    </div>
+  </section>
+</div>
+
+<script>
+  // Answers: Yes = 3, Sometimes = 1.5 (half a Yes), No = 1, "Why should I" and "Don't care" = 0. Max 45.
+  const ANSWERS = [
+    { label: "Yes", points: 3 },
+    { label: "Sometimes", points: 1.5, sometimes: true },
+    { label: "No", points: 1 },
+    { label: "Why should I? Someone else will", points: 0, dodge: true },
+    { label: "Don't care", points: 0 }
+  ];
+
+  const AREAS = {
+    helping: {
+      name: "Helping others",
+      moves: [
+        "Keep an eye out for someone who could use a hand.",
+        "Don't wait to be asked.",
+        "Little things count."
+      ],
+      quick: "Hold a door or help someone with their shopping today. Easy.",
+      links: []
+    },
+    respect: {
+      name: "Respect and manners",
+      moves: [
+        "Phone down when someone's talking.",
+        "Seat up for those who need it.",
+        "Say cheers and mean it."
+      ],
+      quick: "Next time you're chatting, phone face-down on the table.",
+      links: []
+    },
+    home: {
+      name: "Pulling your weight at home",
+      moves: [
+        "Pick a job that's always yours, like bins or dishes.",
+        "Fix one little thing a week."
+      ],
+      quick: "Get the bins out tonight. Job done.",
+      links: [{ text: "▶ Learn a skill", href: "skills.html" }]
+    },
+    owning: {
+      name: "Owning it",
+      moves: [
+        "If you said you'd do it, do it.",
+        "If you can't, say so early.",
+        "Put your hand up when you mess up, because that's what earns respect."
+      ],
+      quick: "Sort that one thing you said you'd do and haven't.",
+      links: [{ text: "Mental Health: can't get started", href: "plan.html#purpose/cant-start" }]
+    },
+    self: {
+      name: "Looking after yourself and your people",
+      moves: [
+        "Drop a mate a message, just \"alright mate, how you doing?\".",
+        "Talk it out, don't bottle it up.",
+        "Get moving, eat proper, get your kip."
+      ],
+      quick: "Send that message now. Go on.",
+      links: [
+        { text: "Mental Health: drifted apart", href: "plan.html#friends/drifted" },
+        { text: "Mental Health: sleep", href: "plan.html#sleep/cant-sleep" }
+      ]
+    }
+  };
+
+  const QUESTIONS = [
+    { area: "helping", text: "If someone is struggling with something, like a broken-down car, do you offer to give them a push?" },
+    { area: "helping", text: "If you see someone carrying something heavy, like shopping or a pram up the stairs, do you offer a hand?" },
+    { area: "helping", text: "If someone drops something in the street without noticing, do you go after them to give it back?" },
+    { area: "respect", text: "If an older person or a pregnant woman gets on the bus, do you give up your seat?" },
+    { area: "respect", text: "Do you hold the door for the person behind you?" },
+    { area: "respect", text: "When someone is talking to you, do you put your phone down and give them your attention?", noDodge: true },
+    { area: "home", text: "In the past week, have you taken care of something around the house without being asked, like taking the bins out?", noSometimes: true },
+    { area: "home", text: "After you eat, do you wash up or clear your own plate?" },
+    { area: "home", text: "When something breaks at home, do you try to fix it or sort it out yourself?" },
+    { area: "owning", text: "When you make a mistake, do you own up to it rather than blame someone else?", noDodge: true },
+    { area: "owning", text: "If you say you'll do something, do you follow through?", noDodge: true },
+    { area: "owning", text: "Do you turn up on time for work, plans or anyone relying on you?", noDodge: true },
+    { area: "self", text: "In the past week, have you checked in on a mate or family member just to see how they're doing?", noSometimes: true },
+    { area: "self", text: "When you're struggling, do you talk to someone about it instead of bottling it up?", noDodge: true },
+    { area: "self", text: "Do you look after your body, like getting some exercise, eating properly or sleeping enough?", noDodge: true }
+  ];
+
+  const LEVELS = [
+    { min: 0, name: "Noob", msg: "Everyone's got to start somewhere, pal. You've been honest, and that's the hard bit done. Let's crack on." },
+    { min: 16, name: "Buff", msg: "Solid foundations, mate. A few tweaks and you'll be flying." },
+    { min: 31, name: "Chizzled", msg: "Proper top bloke stuff. Keep it up, and bring your mates along with you." }
+  ];
+
+  const STORE = "manlyTest";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  let picks = [];
+  let current = 0;
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(STORE)); } catch (e) { return null; }
+  }
+  function store(data) {
+    try { localStorage.setItem(STORE, JSON.stringify(data)); return true; } catch (e) { return false; }
+  }
+
+  function show(id) {
+    ["intro", "quiz", "results"].forEach(s => $(s).classList.toggle("hidden", s !== id));
+    window.scrollTo(0, 0);
+  }
+
+  function fmtDate(ms) {
+    return new Date(ms).toLocaleDateString(undefined, { day: "numeric", month: "long" });
+  }
+
+  function renderQuestion() {
+    const q = QUESTIONS[current];
+    $("bar").style.width = (current / QUESTIONS.length * 100) + "%";
+    $("qNum").textContent = "Question " + (current + 1) + " of " + QUESTIONS.length;
+    $("qArea").textContent = AREAS[q.area].name;
+    $("qText").textContent = q.text;
+    // Questions about yourself don't get "someone else will"; "in the past week" questions don't get "Sometimes".
+    $("answers").innerHTML = ANSWERS.map((a, i) =>
+      (a.dodge && q.noDodge) || (a.sometimes && q.noSometimes) ? "" :
+      `<button class="answer${picks[current] === i ? " picked" : ""}" data-i="${i}">${esc(a.label)}</button>`
+    ).join("");
+    $("qBack").classList.toggle("hidden", current === 0);
+  }
+
+  $("answers").addEventListener("click", e => {
+    const b = e.target.closest(".answer");
+    if (!b) return;
+    picks[current] = Number(b.dataset.i);
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      renderResults(picks);
+      show("results");
+    }
+  });
+
+  $("qBack").addEventListener("click", () => {
+    if (current > 0) { current--; renderQuestion(); }
+  });
+
+  function score(picksList) {
+    const areas = {};
+    Object.keys(AREAS).forEach(k => areas[k] = 0);
+    let total = 0, dodges = 0;
+    picksList.forEach((p, i) => {
+      const a = ANSWERS[p];
+      areas[QUESTIONS[i].area] += a.points;
+      total += a.points;
+      if (a.dodge) dodges++;
+    });
+    return { areas, total, dodges };
+  }
+
+  function renderResults(picksList) {
+    const { areas, total, dodges } = score(picksList);
+    const max = QUESTIONS.length * 3;
+    const level = LEVELS.filter(l => total >= l.min).pop();
+
+    $("levelName").textContent = level.name;
+    $("levelScore").textContent = total + " out of " + max;
+    $("meter").style.width = (total / max * 100) + "%";
+    $("levelMsg").textContent = level.msg;
+
+    // Strongest area first, so everyone leaves knowing what they're good at.
+    const keys = Object.keys(AREAS);
+    const ranked = keys.slice().sort((a, b) => areas[b] - areas[a]);
+    const best = ranked[0];
+    if (areas[best] >= 6) {
+      $("strengthTitle").textContent = "💪 You're smashing it at: " + AREAS[best].name + ".";
+      $("strengthMsg").textContent = "Fair play. People notice that.";
+    } else {
+      $("strengthTitle").textContent = "💪 Your best area so far: " + AREAS[best].name + ".";
+      $("strengthMsg").textContent = "That's your foundation. Build on it.";
+    }
+    $("areas").innerHTML = keys.map(k =>
+      `<div class="area-row"><span>${esc(AREAS[k].name)}</span><div class="area-bar"><div style="width:${areas[k] / 9 * 100}%"></div></div></div>`
+    ).join("");
+
+    $("nudge").classList.toggle("hidden", dodges < 2);
+
+    // Game plan: the two areas with the most room to grow (skip any that are maxed out).
+    const focus = ranked.slice().reverse().filter(k => areas[k] < 9).slice(0, 2);
+    if (!focus.length) {
+      $("plan").innerHTML = "<p>Nothing to fix here, mate. Your move now: get a mate to take the test and help him level up.</p>";
+    } else {
+      $("plan").innerHTML = focus.map(k => {
+        const a = AREAS[k];
+        return `<h3>${esc(a.name)}</h3>
+          <ul>${a.moves.map(m => `<li>${esc(m)}</li>`).join("")}</ul>
+          <div class="quick"><b>Quick win:</b> ${esc(a.quick)}</div>
+          ${a.links.length ? `<div class="links">${a.links.map(l => `<a href="${l.href}">${esc(l.text)}</a>`).join("")}</div>` : ""}`;
+      }).join("");
+    }
+
+    $("savedNote").textContent = "";
+  }
+
+  function saveCurrent(extra) {
+    const prev = load() || {};
+    const data = Object.assign({}, prev, { picks: picks.slice(), date: Date.now() }, extra || {});
+    return store(data);
+  }
+
+  $("save").addEventListener("click", () => {
+    $("savedNote").textContent = saveCurrent()
+      ? "Saved on this device. Come back any time to see your plan."
+      : "Couldn't save on this browser, mate. Screenshot it instead.";
+  });
+
+  $("again").addEventListener("click", () => {
+    const due = Date.now() + 30 * 24 * 60 * 60 * 1000;
+    $("savedNote").textContent = saveCurrent({ due })
+      ? "Locked in. Plan saved. Come back from " + fmtDate(due) + " and see how far you've come."
+      : "Couldn't save on this browser, mate. Set yourself a reminder for a month's time.";
+  });
+
+  function startQuiz() {
+    picks = [];
+    current = 0;
+    renderQuestion();
+    show("quiz");
+  }
+
+  $("start").addEventListener("click", startQuiz);
+  $("restart").addEventListener("click", startQuiz);
+
+  $("showSaved").addEventListener("click", () => {
+    const saved = load();
+    if (!saved || !saved.picks) return;
+    picks = saved.picks;
+    renderResults(picks);
+    show("results");
+  });
+
+  // Returning visitor: offer their saved plan.
+  (function () {
+    const saved = load();
+    if (!saved || !saved.picks || saved.picks.length !== QUESTIONS.length) return;
+    const { total } = score(saved.picks);
+    const level = LEVELS.filter(l => total >= l.min).pop();
+    let text = "Last time (" + fmtDate(saved.date) + ") you were " + level.name + ".";
+    if (saved.due) {
+      text += saved.due <= Date.now()
+        ? " It's been a month: time for another go!"
+        : " Next go from " + fmtDate(saved.due) + ".";
+    }
+    $("lastText").textContent = text;
+    $("lastTime").classList.remove("hidden");
+  })();
+</script>
+</body>
+</html>
