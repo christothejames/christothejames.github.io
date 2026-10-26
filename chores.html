@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Home Game Plan · The Real Man Report</title>
+<meta name="description" content="Set up your home game plan: bins, washing, dishes and more. Pick when each job repeats and add the reminders to your phone's calendar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1e90ff;
+    --sky: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --red: #ff3b3b;
+    --night: #050b1a;
+    --navy: #0d2a5c;
+    --panel: #0c1a36;
+    --panel-2: #12244a;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--night); }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 45%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--cyan); }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Top bar ---------- */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #050b1af2;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topnav .wrap { display: flex; align-items: center; gap: 10px; height: 56px; }
+
+  .brand {
+    font-family: 'Bungee', sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #fff, var(--sky) 55%, var(--blue));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .nav-btn {
+    margin-left: auto;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid #fff;
+  }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; padding: 30px 0 10px; }
+
+  header h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(32px, 8vw, 60px);
+    line-height: 1;
+    background: linear-gradient(to bottom, #fff 0%, #d6ecff 35%, var(--sky) 55%, var(--blue) 80%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    filter: drop-shadow(3px 3px 0 var(--navy)) drop-shadow(0 0 18px #1e90ff66);
+  }
+
+  .motto {
+    font-family: 'Monoton', cursive;
+    font-size: clamp(13px, 2.6vw, 20px);
+    color: var(--cyan);
+    margin: 10px 0 0;
+    text-shadow: 0 0 8px #3ef2ffaa;
+  }
+
+  .intro { color: var(--muted); max-width: 560px; margin: 14px auto 0; font-size: 17px; }
+
+  /* ---------- Sections ---------- */
+  section {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 22px 0;
+  }
+
+  h2 {
+    margin: 0 0 4px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--sky);
+  }
+
+  h2 .num {
+    display: inline-grid;
+    place-items: center;
+    width: 30px; height: 30px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-size: 15px;
+    vertical-align: 2px;
+  }
+
+  .hint { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+
+  /* ---------- Quick add ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+
+  .presets { display: grid; gap: 8px; }
+
+  .preset {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+
+  .preset .emoji { font-size: 24px; text-align: center; }
+  .preset .pname { font-size: 16px; }
+  .preset .pwhen { color: var(--muted); font-size: 13px; }
+  .preset .cat { color: var(--sky); font-size: 12px; opacity: .8; }
+  .preset.added { opacity: .55; }
+  .preset-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+  .mini {
+    font-family: 'Bungee', sans-serif;
+    font-size: 12px;
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 1px solid #7cc4ff55;
+    background: var(--night);
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .mini.add { background: var(--blue); border-color: #fff; }
+  .mini.got { color: var(--gold); border-color: #ffe66d66; }
+  .mini.skip { color: var(--muted); }
+  .mini:disabled { cursor: default; background: transparent; border-color: var(--line); color: var(--cyan); }
+
+  .hidden-toggle {
+    margin-top: 14px;
+    font: inherit;
+    font-size: 14px;
+    background: none;
+    border: 0;
+    color: var(--cyan);
+    cursor: pointer;
+    padding: 4px 0;
+  }
+
+  .hidden-list { display: grid; gap: 8px; margin-top: 8px; }
+  .hidden-list .preset { opacity: .8; }
+  .tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--night); }
+  .tag.got { color: var(--gold); }
+  .tag.skip { color: var(--muted); }
+
+  .chip {
+    font: inherit;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid #7cc4ff55;
+    background: var(--panel-2);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .chip:hover { border-color: var(--cyan); }
+  .chip[aria-pressed="true"] { background: var(--blue); border-color: #fff; color: #fff; }
+  .chip:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Form ---------- */
+  .form { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  .form .full { grid-column: 1 / -1; }
+
+  label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 5px; }
+
+  input, select {
+    width: 100%;
+    font: inherit;
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #7cc4ff44;
+    background: var(--night);
+    color: var(--text);
+  }
+
+  .name-row { display: flex; gap: 8px; }
+  .name-row select { width: 76px; flex: none; font-size: 20px; padding: 6px; }
+
+  .days { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .day {
+    font: inherit;
+    font-size: 14px;
+    width: 48px;
+    padding: 8px 0;
+    border-radius: 10px;
+    border: 1px solid #7cc4ff44;
+    background: var(--night);
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .day[aria-pressed="true"] { background: var(--blue); border-color: #fff; color: #fff; }
+
+  .btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 15px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 16px #1e90ff66;
+  }
+
+  .btn.gold { background: var(--gold); color: var(--night); border-color: var(--night); box-shadow: 0 0 18px #ffe66d66; }
+  .btn.ghost { background: transparent; box-shadow: none; border-color: #7cc4ff77; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  .form-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .error { color: var(--red); font-size: 14px; margin: 0; }
+
+  .load { margin: -6px 0 14px; font-size: 14px; color: var(--cyan); }
+  .load.heavy {
+    color: var(--gold);
+    background: #ffe66d14;
+    border: 1px solid #ffe66d44;
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+
+  /* ---------- Task list ---------- */
+  .tasks { display: grid; gap: 10px; }
+
+  .task {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .task .emoji { font-size: 30px; text-align: center; }
+  .task h3 { margin: 0; font-size: 17px; font-weight: 400; }
+  .task .when { color: var(--muted); font-size: 14px; }
+  .task .next { color: var(--cyan); font-size: 14px; }
+
+  .task-actions { display: flex; gap: 6px; }
+
+  .icon-btn {
+    font: inherit;
+    font-size: 17px;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    border: 1px solid #7cc4ff44;
+    background: var(--night);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .icon-btn:hover { border-color: var(--cyan); }
+  .icon-btn.del:hover { border-color: var(--red); }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 22px 10px;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+  }
+
+  /* ---------- This week ---------- */
+  .week { display: grid; gap: 8px; }
+
+  .week-day {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .week-day:last-child { border-bottom: 0; }
+  .week-day .d { font-family: 'Bungee', sans-serif; font-size: 13px; color: var(--sky); padding-top: 4px; }
+  .week-day.today .d { color: var(--gold); }
+  .week-day .items { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .pill {
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--night);
+    border: 1px solid #7cc4ff33;
+  }
+
+  .pill.none { color: var(--muted); border-style: dashed; }
+
+  /* ---------- Calendar export ---------- */
+  .export { text-align: center; }
+  .export .btn { font-size: 17px; padding: 14px 24px; }
+
+  .how {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    text-align: left;
+  }
+
+  .how div { background: var(--panel-2); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--muted); }
+  .how b { color: var(--text); font-weight: 400; display: block; margin-bottom: 2px; }
+
+  .coming {
+    border-style: dashed;
+    border-color: #ffe66d55;
+    background: transparent;
+  }
+
+  .coming h2 { color: var(--gold); }
+  .coming ul { margin: 6px 0 0; padding-left: 20px; color: var(--muted); }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 10px 0 40px; }
+
+  /* ---------- Phone preview ---------- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    place-items: center;
+    background: #000000b0;
+    padding: 16px;
+  }
+
+  .overlay.open { display: grid; }
+
+  .phone {
+    width: min(320px, 100%);
+    aspect-ratio: 9 / 18;
+    max-height: 90vh;
+    border-radius: 40px;
+    border: 8px solid #1a1a1a;
+    background:
+      radial-gradient(circle at 30% 20%, #1e90ff88, transparent 55%),
+      radial-gradient(circle at 80% 80%, #ff3bd077, transparent 50%),
+      linear-gradient(160deg, #0d2a5c, #050b1a);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px #000;
+    font-family: system-ui, -apple-system, sans-serif;
+    animation: rise .35s ease-out;
+  }
+
+  .phone .clock { text-align: center; color: #fff; margin-top: 48px; }
+  .phone .clock .t { font-size: 64px; font-weight: 600; line-height: 1; }
+  .phone .clock .dt { font-size: 15px; opacity: .85; }
+
+  .notif {
+    position: absolute;
+    left: 12px; right: 12px; top: 190px;
+    background: #ffffffe6;
+    color: #111;
+    border-radius: 18px;
+    padding: 12px 14px;
+    animation: drop .45s .25s ease-out both;
+  }
+
+  .notif .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #555; }
+  .notif .app-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
+  .notif .top .ago { margin-left: auto; }
+  .notif .title { font-weight: 700; font-size: 15px; margin-top: 6px; }
+  .notif .body { font-size: 14px; color: #333; }
+
+  .notif .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .notif .acts span {
+    text-align: center;
+    font-size: 13px;
+    padding: 7px;
+    border-radius: 10px;
+    background: #0000000f;
+    color: #0a5ad1;
+    font-weight: 600;
+  }
+
+  .phone .note {
+    position: absolute;
+    left: 16px; right: 16px; bottom: 54px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    opacity: .85;
+  }
+
+  .phone .close {
+    position: absolute;
+    left: 50%; bottom: 14px;
+    transform: translateX(-50%);
+    font: inherit;
+    font-size: 13px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    border: 0;
+    background: #ffffff33;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  @keyframes rise { from { transform: translateY(30px); opacity: 0; } }
+  @keyframes drop { from { transform: translateY(-40px); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phone, .notif { animation: none; }
+  }
+
+  @media (max-width: 600px) {
+    .form { grid-template-columns: 1fr; }
+    .how { grid-template-columns: 1fr; }
+    .task, .preset { grid-template-columns: 34px 1fr; }
+    .preset-actions { grid-column: 1 / -1; }
+    .task .emoji { font-size: 24px; }
+    .task-actions { grid-column: 1 / -1; justify-content: flex-end; }
+    .week-day { grid-template-columns: 70px 1fr; }
+    .nav-btn { font-size: 12px; padding: 7px 11px; }
+    .brand { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="home.html">THE REAL MAN REPORT</a>
+    <a class="nav-btn" href="skills.html">▶ SKILLS</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header>
+    <h1>THE HOME GAME PLAN</h1>
+    <p class="motto">pull your weight</p>
+    <p class="intro">The everyday stuff we all have to do, and all let slip sometimes. Showered, teeth brushed, bins out, house hoovered. Pick yours, get a reminder, stay on top of it.</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>What slips?</h2>
+    <p class="hint">These are just suggestions, not a to-do list. Only add the few that actually slip, so your phone isn't buzzing all day. <b>+ Add</b> the ones that slip. <b>✓ Got it</b> for the ones you already nail. <b>Skip</b> anything that's not for you. You can change your mind any time.</p>
+    <div class="filters" id="filters"></div>
+    <div class="presets" id="presets"></div>
+    <button class="hidden-toggle" id="hiddenToggle" type="button" aria-expanded="false"></button>
+    <div class="hidden-list" id="hiddenList" hidden></div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span><span id="formTitle">Add your own</span></h2>
+    <p class="hint">Any job, any schedule.</p>
+    <form class="form" id="form" autocomplete="off">
+      <div class="full">
+        <label for="name">Job</label>
+        <div class="name-row">
+          <select id="emoji" aria-label="Icon"></select>
+          <input id="name" maxlength="40" placeholder="e.g. Bins out" required>
+        </div>
+      </div>
+
+      <div>
+        <label for="freq">How often</label>
+        <select id="freq">
+          <option value="daily">Every day</option>
+          <option value="weekly">Every week</option>
+          <option value="fortnightly">Every 2 weeks</option>
+          <option value="monthly">Every month</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="time">What time</label>
+        <input id="time" type="time" value="19:00" required>
+      </div>
+
+      <div class="full" id="daysField">
+        <label>Which days</label>
+        <div class="days" id="days"></div>
+      </div>
+
+      <div class="full" id="monthField" hidden>
+        <label for="monthDay">Day of the month</label>
+        <select id="monthDay"></select>
+      </div>
+
+      <div class="full">
+        <label for="remind">Remind me</label>
+        <select id="remind">
+          <option value="0">At the time</option>
+          <option value="15">15 minutes before</option>
+          <option value="60">1 hour before</option>
+          <option value="1440">The day before</option>
+        </select>
+      </div>
+
+      <div class="full form-actions">
+        <button class="btn" type="submit" id="saveBtn">+ ADD TO MY PLAN</button>
+        <button class="btn ghost" type="button" id="cancelBtn" hidden>CANCEL</button>
+        <p class="error" id="error" role="alert"></p>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>Your plan</h2>
+    <p class="hint">Tap 🔔 to see what the reminder looks like on your phone.</p>
+    <p class="load" id="load" hidden></p>
+    <div class="tasks" id="tasks"></div>
+  </section>
+
+  <section>
+    <h2>This week</h2>
+    <p class="hint">What's coming up over the next 7 days.</p>
+    <div class="week" id="week"></div>
+  </section>
+
+  <section class="export">
+    <h2><span class="num">4</span>Put it on your phone</h2>
+    <p class="hint">One tap adds every job to your phone's calendar, with the reminders built in.</p>
+    <button class="btn gold" id="exportAll">📅 ADD ALL TO MY CALENDAR</button>
+    <div class="how">
+      <div><b>iPhone</b>Tap the button in Safari, then tap <em>Add All</em>. Reminders come through the Calendar app.</div>
+      <div><b>Android</b>Open the downloaded file and pick Google Calendar. Check notifications are on for Calendar.</div>
+    </div>
+  </section>
+
+  <section class="coming">
+    <h2>Coming in the app</h2>
+    <ul>
+      <li>Reminders straight from the app, no calendar needed</li>
+      <li>Tick a job off right from the notification</li>
+      <li>Snooze for an hour when you're busy</li>
+      <li>Streaks for jobs done on time</li>
+      <li>Share a plan with the people you live with</li>
+    </ul>
+  </section>
+
+  <footer>Your plan is saved only in this browser.</footer>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Reminder preview">
+  <div class="phone">
+    <div class="clock">
+      <div class="t" id="pvTime">19:00</div>
+      <div class="dt" id="pvDate">Tuesday 27 October</div>
+    </div>
+    <div class="notif">
+      <div class="top"><span class="app-icon">RM</span>THE REAL MAN REPORT<span class="ago">now</span></div>
+      <div class="title" id="pvTitle">🗑️ Bins out</div>
+      <div class="body" id="pvBody">Time to do it. Quick job, big win.</div>
+      <div class="acts"><span>✓ Done</span><span>Snooze 1 hr</span></div>
+    </div>
+    <p class="note">In the app, you'd tick it off or snooze it right here.</p>
+    <button class="close" id="pvClose">Close</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const STORE = 'hb-home-plan';
+  const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const DAY_FULL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const ICAL_DAYS = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+  const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0]; // Monday first
+  const MAX_PER_DAY = 5;
+  const EMOJIS = ['🗑️', '♻️', '🧺', '🍽️', '🛏️', '🧹', '🚿', '🪥', '🦷', '🪒', '✂️', '💇', '🧴', '💧', '💊', '😴', '🚶', '🌱', '🛒', '💸', '🏦', '🧽', '🧼', '🧊', '📋', '👕', '🐕', '🚗', '📞', '💬', '💪', '✅'];
+
+  const CATEGORIES = [
+    { id: 'self', label: '🚿 Self care' },
+    { id: 'home', label: '🧹 Home' },
+    { id: 'clothes', label: '🧺 Clothes' },
+    { id: 'food', label: '🛒 Food & money' },
+    { id: 'people', label: '📞 People' }
+  ];
+
+  const PRESETS = [
+    // Self care
+    { cat: 'self', emoji: '🚿', name: 'Shower', freq: 'daily', days: [], time: '07:30', remind: 0 },
+    { cat: 'self', emoji: '🪥', name: 'Brush teeth (morning)', freq: 'daily', days: [], time: '07:45', remind: 0 },
+    { cat: 'self', emoji: '🪥', name: 'Brush teeth & floss (night)', freq: 'daily', days: [], time: '22:30', remind: 0 },
+    { cat: 'self', emoji: '👕', name: 'Clean clothes & deodorant', freq: 'daily', days: [], time: '08:00', remind: 0 },
+    { cat: 'self', emoji: '💧', name: 'Drink some water', freq: 'daily', days: [], time: '12:00', remind: 0 },
+    { cat: 'self', emoji: '💊', name: 'Take meds or vitamins', freq: 'daily', days: [], time: '08:00', remind: 0 },
+    { cat: 'self', emoji: '🚶', name: 'Get outside for a walk', freq: 'daily', days: [], time: '13:00', remind: 0 },
+    { cat: 'self', emoji: '😴', name: 'Phone down, wind down for bed', freq: 'daily', days: [], time: '22:30', remind: 0 },
+    { cat: 'self', emoji: '🪒', name: 'Shave or trim', freq: 'weekly', days: [1, 4], time: '07:30', remind: 0 },
+    { cat: 'self', emoji: '✂️', name: 'Cut your nails', freq: 'fortnightly', days: [0], time: '19:00', remind: 0 },
+    { cat: 'self', emoji: '💇', name: 'Book a haircut', freq: 'monthly', days: [], monthDay: 1, time: '10:00', remind: 0 },
+    // Home
+    { cat: 'home', emoji: '🗑️', name: 'Bins out', freq: 'weekly', days: [2], time: '19:00', remind: 0 },
+    { cat: 'home', emoji: '♻️', name: 'Recycling out', freq: 'fortnightly', days: [2], time: '19:00', remind: 0 },
+    { cat: 'home', emoji: '🍽️', name: 'Dishes & wipe the sides', freq: 'daily', days: [], time: '20:00', remind: 0 },
+    { cat: 'home', emoji: '✅', name: '10-minute tidy up', freq: 'daily', days: [], time: '19:30', remind: 0 },
+    { cat: 'home', emoji: '🧹', name: 'Hoover the house', freq: 'weekly', days: [6], time: '11:00', remind: 15 },
+    { cat: 'home', emoji: '🧼', name: 'Clean the bathroom', freq: 'weekly', days: [0], time: '10:00', remind: 15 },
+    { cat: 'home', emoji: '🧹', name: 'Mop the floors', freq: 'fortnightly', days: [0], time: '11:00', remind: 15 },
+    { cat: 'home', emoji: '🧽', name: 'Dust', freq: 'fortnightly', days: [6], time: '11:30', remind: 15 },
+    { cat: 'home', emoji: '🛏️', name: 'Change the bed sheets', freq: 'fortnightly', days: [0], time: '11:00', remind: 15 },
+    { cat: 'home', emoji: '🌱', name: 'Water the plants', freq: 'weekly', days: [1, 4], time: '18:00', remind: 0 },
+    // Clothes
+    { cat: 'clothes', emoji: '🧺', name: 'Washing', freq: 'weekly', days: [3, 6], time: '10:00', remind: 15 },
+    { cat: 'clothes', emoji: '👕', name: 'Put the washing away', freq: 'weekly', days: [4, 0], time: '19:00', remind: 0 },
+    { cat: 'clothes', emoji: '🧺', name: 'Wash the towels', freq: 'weekly', days: [0], time: '10:00', remind: 15 },
+    // Food & money
+    { cat: 'food', emoji: '📋', name: 'Plan the week\'s meals', freq: 'weekly', days: [5], time: '19:00', remind: 0 },
+    { cat: 'food', emoji: '🛒', name: 'Food shop', freq: 'weekly', days: [6], time: '09:00', remind: 60 },
+    { cat: 'food', emoji: '🧊', name: 'Clear out the fridge', freq: 'weekly', days: [5], time: '19:30', remind: 0 },
+    { cat: 'food', emoji: '🏦', name: 'Check your bank account', freq: 'weekly', days: [1], time: '19:00', remind: 0 },
+    { cat: 'food', emoji: '💸', name: 'Pay the bills', freq: 'monthly', days: [], monthDay: 1, time: '09:00', remind: 1440 },
+    // People
+    { cat: 'people', emoji: '📞', name: 'Call your family', freq: 'weekly', days: [0], time: '18:00', remind: 0 },
+    { cat: 'people', emoji: '💬', name: 'Message a friend', freq: 'weekly', days: [3], time: '19:00', remind: 0 }
+  ];
+
+  let tasks = load();
+  let hiddenPresets = loadHidden(); // { name: 'got' | 'skip' }
+  let filter = 'all';
+  let editingId = null;
+  let formDays = [2];
+
+  const $ = id => document.getElementById(id);
+
+  // ---------- Storage ----------
+  function load() {
+    try { return JSON.parse(localStorage.getItem(STORE)) || []; } catch (e) { return []; }
+  }
+
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(tasks)); } catch (e) {}
+  }
+
+  function loadHidden() {
+    try { return JSON.parse(localStorage.getItem(STORE + '-hidden')) || {}; } catch (e) { return {}; }
+  }
+
+  function saveHidden() {
+    try { localStorage.setItem(STORE + '-hidden', JSON.stringify(hiddenPresets)); } catch (e) {}
+  }
+
+  // ---------- Dates ----------
+  const pad = n => String(n).padStart(2, '0');
+  const isoDate = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+
+  function parseDate(s) {
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function mondayOf(d) {
+    const m = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    m.setDate(m.getDate() - ((m.getDay() + 6) % 7));
+    return m;
+  }
+
+  function runsOn(task, d) {
+    if (task.freq === 'daily') return true;
+    if (task.freq === 'monthly') return d.getDate() === task.monthDay;
+    if (!task.days.includes(d.getDay())) return false;
+    if (task.freq === 'weekly') return true;
+    const weeks = Math.round((mondayOf(d) - mondayOf(parseDate(task.start))) / (7 * 864e5));
+    return weeks % 2 === 0;
+  }
+
+  function atTime(d, time) {
+    const [h, m] = time.split(':').map(Number);
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
+  }
+
+  // First run on or after `from` (a moment in time).
+  function nextRun(task, from) {
+    const d = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+    for (let i = 0; i < 70; i++) {
+      if (runsOn(task, d) && atTime(d, task.time) >= from) return atTime(d, task.time);
+      d.setDate(d.getDate() + 1);
+    }
+    return null;
+  }
+
+  function fmtTime(time) {
+    const [h, m] = time.split(':').map(Number);
+    const h12 = h % 12 || 12;
+    return h12 + (m ? ':' + pad(m) : '') + (h < 12 ? 'am' : 'pm');
+  }
+
+  function ordinal(n) {
+    const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  function listDays(days) {
+    const names = DAY_ORDER.filter(d => days.includes(d)).map(d => DAY_FULL[d] + 's');
+    return names.length > 1 ? names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1] : names[0];
+  }
+
+  function describe(task) {
+    const t = fmtTime(task.time);
+    if (task.freq === 'daily') return 'Every day at ' + t;
+    if (task.freq === 'monthly') return 'The ' + ordinal(task.monthDay) + ' of every month at ' + t;
+    const prefix = task.freq === 'fortnightly' ? 'Every other week: ' : '';
+    return prefix + listDays(task.days) + ' at ' + t;
+  }
+
+  function relDay(when) {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const day = new Date(when); day.setHours(0, 0, 0, 0);
+    const diff = Math.round((day - today) / 864e5);
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Tomorrow';
+    if (diff < 7) return DAY_FULL[when.getDay()];
+    return DAY_NAMES[when.getDay()] + ' ' + when.getDate() + ' ' + MONTHS[when.getMonth()].slice(0, 3);
+  }
+
+  // ---------- Rendering ----------
+  function renderFilters() {
+    const box = $('filters');
+    box.innerHTML = '';
+    [{ id: 'all', label: 'All' }].concat(CATEGORIES).forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.textContent = c.label;
+      b.setAttribute('aria-pressed', filter === c.id);
+      b.addEventListener('click', () => { filter = c.id; renderFilters(); renderPresets(); });
+      box.appendChild(b);
+    });
+  }
+
+  function mini(cls, label, onClick) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'mini ' + cls;
+    b.textContent = label;
+    if (onClick) b.addEventListener('click', onClick); else b.disabled = true;
+    return b;
+  }
+
+  function presetRow(p) {
+    const el = document.createElement('div');
+    el.className = 'preset';
+    el.innerHTML = '<div class="emoji"></div><div><div class="pname"></div><div class="pwhen"></div></div><div class="preset-actions"></div>';
+    el.querySelector('.emoji').textContent = p.emoji;
+    el.querySelector('.pname').textContent = p.name;
+    el.querySelector('.pwhen').textContent = describe(Object.assign({ monthDay: 1 }, p));
+    return el;
+  }
+
+  function renderPresets() {
+    const box = $('presets');
+    box.innerHTML = '';
+    const shown = PRESETS.filter(p => !hiddenPresets[p.name] && (filter === 'all' || p.cat === filter));
+    if (!shown.length) {
+      box.innerHTML = '<div class="empty">All sorted in this section.</div>';
+    }
+    shown.forEach(p => {
+      const el = presetRow(p);
+      const acts = el.querySelector('.preset-actions');
+      if (tasks.some(t => t.name === p.name)) {
+        el.classList.add('added');
+        acts.append(mini('', '✓ IN YOUR PLAN'));
+      } else {
+        acts.append(
+          mini('add', '+ ADD', () => addTask(Object.assign({ monthDay: 1 }, p, { days: p.days.slice() }))),
+          mini('got', '✓ GOT IT', () => hidePreset(p, 'got')),
+          mini('skip', 'SKIP', () => hidePreset(p, 'skip'))
+        );
+      }
+      box.appendChild(el);
+    });
+    renderHidden();
+  }
+
+  function hidePreset(p, why) {
+    hiddenPresets[p.name] = why;
+    saveHidden();
+    renderPresets();
+  }
+
+  function renderHidden() {
+    const names = PRESETS.filter(p => hiddenPresets[p.name]);
+    const toggle = $('hiddenToggle');
+    const list = $('hiddenList');
+    toggle.hidden = !names.length;
+    if (!names.length) { list.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.textContent = (open ? '▾ ' : '▸ ') + 'Got it or skipped (' + names.length + ')';
+    list.innerHTML = '';
+    names.forEach(p => {
+      const el = presetRow(p);
+      const why = hiddenPresets[p.name];
+      const tag = document.createElement('span');
+      tag.className = 'tag ' + why;
+      tag.textContent = why === 'got' ? '✓ Got it' : 'Skipped';
+      el.querySelector('.pwhen').replaceWith(tag);
+      el.querySelector('.preset-actions').append(mini('', '↺ PUT BACK', () => {
+        delete hiddenPresets[p.name];
+        saveHidden();
+        renderPresets();
+      }));
+      list.appendChild(el);
+    });
+  }
+
+  $('hiddenToggle').addEventListener('click', () => {
+    const open = $('hiddenToggle').getAttribute('aria-expanded') !== 'true';
+    $('hiddenToggle').setAttribute('aria-expanded', open);
+    $('hiddenList').hidden = !open;
+    renderHidden();
+  });
+
+  function renderTasks() {
+    const box = $('tasks');
+    box.innerHTML = '';
+    if (!tasks.length) {
+      box.innerHTML = '<div class="empty">No jobs yet. Tap one above to start.</div>';
+      return;
+    }
+    const now = new Date();
+    tasks
+      .map(t => ({ t, next: nextRun(t, now) }))
+      .sort((a, b) => (a.next || Infinity) - (b.next || Infinity))
+      .forEach(({ t, next }) => {
+        const el = document.createElement('div');
+        el.className = 'task';
+        el.innerHTML =
+          '<div class="emoji"></div>' +
+          '<div><h3></h3><div class="when"></div><div class="next"></div></div>' +
+          '<div class="task-actions">' +
+            '<button class="icon-btn" data-act="preview" aria-label="Preview reminder" title="Preview reminder">🔔</button>' +
+            '<button class="icon-btn" data-act="cal" aria-label="Add to calendar" title="Add just this one to my calendar">📅</button>' +
+            '<button class="icon-btn" data-act="edit" aria-label="Edit" title="Edit">✏️</button>' +
+            '<button class="icon-btn del" data-act="del" aria-label="Remove" title="Remove">✕</button>' +
+          '</div>';
+        el.querySelector('.emoji').textContent = t.emoji;
+        el.querySelector('h3').textContent = t.name;
+        el.querySelector('.when').textContent = describe(t);
+        el.querySelector('.next').textContent = next ? 'Next: ' + relDay(next) + ', ' + fmtTime(t.time) : '';
+        el.querySelector('[data-act=preview]').addEventListener('click', () => preview(t, next));
+        el.querySelector('[data-act=cal]').addEventListener('click', () => download([t], slug(t.name)));
+        el.querySelector('[data-act=edit]').addEventListener('click', () => startEdit(t));
+        el.querySelector('[data-act=del]').addEventListener('click', () => {
+          tasks = tasks.filter(x => x.id !== t.id);
+          if (editingId === t.id) resetForm();
+          save(); render();
+        });
+        box.appendChild(el);
+      });
+  }
+
+  function renderWeek() {
+    const box = $('week');
+    box.innerHTML = '';
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today); d.setDate(d.getDate() + i);
+      const row = document.createElement('div');
+      row.className = 'week-day' + (i === 0 ? ' today' : '');
+      const label = document.createElement('div');
+      label.className = 'd';
+      label.textContent = i === 0 ? 'TODAY' : DAY_NAMES[d.getDay()].toUpperCase() + ' ' + d.getDate();
+      const items = document.createElement('div');
+      items.className = 'items';
+      const due = tasks.filter(t => runsOn(t, d)).sort((a, b) => a.time.localeCompare(b.time));
+      if (!due.length) {
+        items.innerHTML = '<span class="pill none">Day off</span>';
+      }
+      due.forEach(t => {
+        const p = document.createElement('span');
+        p.className = 'pill';
+        p.textContent = t.emoji + ' ' + t.name + ' · ' + fmtTime(t.time);
+        items.appendChild(p);
+      });
+      row.append(label, items);
+      box.appendChild(row);
+    }
+  }
+
+  // Busiest day over the next week, so the plan doesn't turn into spam.
+  function renderLoad() {
+    const el = $('load');
+    el.hidden = !tasks.length;
+    if (!tasks.length) return;
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    let most = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today); d.setDate(d.getDate() + i);
+      most = Math.max(most, tasks.filter(t => runsOn(t, d)).length);
+    }
+    const heavy = most > MAX_PER_DAY;
+    el.className = 'load' + (heavy ? ' heavy' : '');
+    el.textContent = 'Up to ' + most + ' reminder' + (most === 1 ? '' : 's') + ' on your busiest day.' +
+      (heavy ? ' That\'s a lot of buzzing. Reminders work best for the few things that slip. Try removing the ones you\'d do anyway.' : '');
+  }
+
+  function render() {
+    renderPresets();
+    renderTasks();
+    renderLoad();
+    renderWeek();
+    $('exportAll').disabled = !tasks.length;
+  }
+
+  // ---------- Form ----------
+  function setupForm() {
+    $('emoji').innerHTML = EMOJIS.map(e => '<option>' + e + '</option>').join('');
+    $('monthDay').innerHTML = Array.from({ length: 28 }, (_, i) =>
+      '<option value="' + (i + 1) + '">' + ordinal(i + 1) + '</option>').join('');
+
+    DAY_ORDER.forEach(d => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'day';
+      b.dataset.day = d;
+      b.textContent = DAY_NAMES[d];
+      b.addEventListener('click', () => {
+        formDays = formDays.includes(d) ? formDays.filter(x => x !== d) : formDays.concat(d);
+        syncDays();
+      });
+      $('days').appendChild(b);
+    });
+
+    $('freq').addEventListener('change', syncFreq);
+    $('form').addEventListener('submit', onSubmit);
+    $('cancelBtn').addEventListener('click', resetForm);
+    syncDays();
+    syncFreq();
+  }
+
+  function syncDays() {
+    document.querySelectorAll('.day').forEach(b => {
+      b.setAttribute('aria-pressed', formDays.includes(Number(b.dataset.day)));
+    });
+  }
+
+  function syncFreq() {
+    const f = $('freq').value;
+    $('daysField').hidden = f === 'daily' || f === 'monthly';
+    $('monthField').hidden = f !== 'monthly';
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    const name = $('name').value.trim();
+    const freq = $('freq').value;
+    if (!name) { $('error').textContent = 'Give the job a name.'; return; }
+    if ((freq === 'weekly' || freq === 'fortnightly') && !formDays.length) {
+      $('error').textContent = 'Pick at least one day.'; return;
+    }
+    $('error').textContent = '';
+    const data = {
+      emoji: $('emoji').value,
+      name,
+      freq,
+      days: formDays.slice(),
+      monthDay: Number($('monthDay').value),
+      time: $('time').value || '19:00',
+      remind: Number($('remind').value)
+    };
+    if (editingId) {
+      const t = tasks.find(x => x.id === editingId);
+      Object.assign(t, data);
+      save(); render();
+    } else {
+      addTask(data);
+    }
+    resetForm();
+  }
+
+  function addTask(data) {
+    tasks.push(Object.assign({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), start: isoDate(new Date()) }, data));
+    save(); render();
+  }
+
+  function startEdit(t) {
+    editingId = t.id;
+    $('emoji').value = t.emoji;
+    $('name').value = t.name;
+    $('freq').value = t.freq;
+    $('time').value = t.time;
+    $('monthDay').value = t.monthDay || 1;
+    $('remind').value = t.remind;
+    formDays = t.days.slice();
+    syncDays(); syncFreq();
+    $('formTitle').textContent = 'Edit ' + t.name;
+    $('saveBtn').textContent = '✓ SAVE CHANGES';
+    $('cancelBtn').hidden = false;
+    $('form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('name').focus({ preventScroll: true });
+  }
+
+  function resetForm() {
+    editingId = null;
+    $('form').reset();
+    $('time').value = '19:00';
+    formDays = [2];
+    syncDays(); syncFreq();
+    $('formTitle').textContent = 'Add your own';
+    $('saveBtn').textContent = '+ ADD TO MY PLAN';
+    $('cancelBtn').hidden = true;
+    $('error').textContent = '';
+  }
+
+  // ---------- Phone preview ----------
+  function preview(t, next) {
+    const run = next || new Date();
+    const alertAt = new Date(run - t.remind * 6e4);
+    $('pvTime').textContent = pad(alertAt.getHours()) + ':' + pad(alertAt.getMinutes());
+    $('pvDate').textContent = DAY_FULL[alertAt.getDay()] + ' ' + alertAt.getDate() + ' ' + MONTHS[alertAt.getMonth()];
+    $('pvTitle').textContent = t.emoji + ' ' + t.name;
+    const lead = {
+      0: 'Time to do it. Quick job, big win.',
+      15: 'In 15 minutes. Get ready.',
+      60: 'In 1 hour, at ' + fmtTime(t.time) + '.',
+      1440: 'Tomorrow at ' + fmtTime(t.time) + '. Plan for it.'
+    };
+    $('pvBody').textContent = lead[t.remind] || lead[0];
+    $('overlay').classList.add('open');
+    $('pvClose').focus();
+  }
+
+  function closePreview() { $('overlay').classList.remove('open'); }
+
+  $('pvClose').addEventListener('click', closePreview);
+  $('overlay').addEventListener('click', e => { if (e.target === $('overlay')) closePreview(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+  // ---------- Calendar export (.ics) ----------
+  const icsText = s => s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  const icsLocal = d => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
+  const icsUtc = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'job';
+
+  function rrule(t) {
+    const byDay = DAY_ORDER.filter(d => t.days.includes(d)).map(d => ICAL_DAYS[d]).join(',');
+    if (t.freq === 'daily') return 'FREQ=DAILY';
+    if (t.freq === 'monthly') return 'FREQ=MONTHLY;BYMONTHDAY=' + t.monthDay;
+    if (t.freq === 'fortnightly') return 'FREQ=WEEKLY;INTERVAL=2;WKST=MO;BYDAY=' + byDay;
+    return 'FREQ=WEEKLY;WKST=MO;BYDAY=' + byDay;
+  }
+
+  function buildIcs(list) {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//The Real Man Report//Home Game Plan//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'X-WR-CALNAME:Home Game Plan'
+    ];
+    list.forEach(t => {
+      const first = nextRun(t, today);
+      if (!first) return;
+      lines.push(
+        'BEGIN:VEVENT',
+        'UID:' + t.id + '@humbored.com',
+        'DTSTAMP:' + icsUtc(new Date()),
+        'DTSTART:' + icsLocal(first),
+        'DURATION:PT15M',
+        'RRULE:' + rrule(t),
+        'SUMMARY:' + icsText(t.emoji + ' ' + t.name),
+        'DESCRIPTION:' + icsText('From your Home Game Plan on humbored.com'),
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:' + icsText(t.name),
+        'TRIGGER:' + (t.remind ? '-PT' + t.remind + 'M' : 'PT0M'),
+        'END:VALARM',
+        'END:VEVENT'
+      );
+    });
+    lines.push('END:VCALENDAR');
+    return lines.join('\r\n') + '\r\n';
+  }
+
+  function download(list, name) {
+    const blob = new Blob([buildIcs(list)], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name + '.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  $('exportAll').addEventListener('click', () => download(tasks, 'home-game-plan'));
+
+  setupForm();
+  renderFilters();
+  render();
+})();
+</script>
+</body>
+</html>
