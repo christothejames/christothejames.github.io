@@ -455,6 +455,20 @@
 
   footer a { font-family: 'Bungee', sans-serif; color: var(--hot-pink); text-decoration: none; }
 
+  /* the licences need the credits on the page, but folded away */
+  .credits summary {
+    display: inline-block;
+    font-family: 'Bungee', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    list-style: none;
+  }
+  .credits summary::-webkit-details-marker { display: none; }
+  .credits summary::before { content: '▸ '; }
+  .credits[open] summary::before { content: '▾ '; }
+  .credits p { font-size: 12px; line-height: 1.6; }
+
   @media (max-width: 520px) {
     .posters { grid-template-columns: 1fr 1fr; gap: 14px; }
     .poster { padding: 10px 10px 12px; }
@@ -533,7 +547,10 @@
 <footer class="wrap">
   <p>Profiles are our opinion, based on the public record linked on every post. Charges are not convictions: each poster shows the man's current legal status.</p>
   <p>"Everyday men" are composites, not real individuals.</p>
-  <p id="credits"></p>
+  <details class="credits" hidden>
+    <summary>PHOTO CREDITS</summary>
+    <p id="credits"></p>
+  </details>
   <p><a href="index.html">↺ RE-ENTER THE MANOSPHERE</a></p>
 </footer>
 
@@ -602,8 +619,9 @@
   });
 
   const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit);
-  document.getElementById('credits').innerHTML = cr.length ? 'Photos: ' + cr.map(p =>
-    `${esc(p.name)} by <a href="${esc(p.photoSource || '#')}" target="_blank" rel="noopener" style="font-family:inherit;color:inherit;text-decoration:underline">${esc(p.photoCredit)}</a>`).join(' · ') : '';
+  document.getElementById('credits').innerHTML = cr.map(p =>
+    `${esc(p.name)} by <a href="${esc(p.photoSource || '#')}" target="_blank" rel="noopener" style="font-family:inherit;color:inherit;text-decoration:underline">${esc(p.photoCredit)}</a>`).join(' · ');
+  document.querySelector('.credits').hidden = !cr.length;
 
   // ---------- random hero ----------
   (() => {
