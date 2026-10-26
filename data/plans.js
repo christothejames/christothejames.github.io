@@ -362,6 +362,54 @@ window.AREAS = [
       },
     ],
   },
+  {
+    id: "modern", icon: "📱", name: "Modern day problems",
+    tag: "Doom scrolling, fake people online",
+    situations: [
+      {
+        id: "doom-scrolling", name: "Doom scrolling",
+        read: "The feed is built to never end. Every swipe is a slot machine pull. Hours vanish and you feel worse, not better. That's the design working, not you failing.",
+        moves: [
+          "Check your screen time. Look at the real number. That's your starting score.",
+          "Kill the triggers: turn off every notification that isn't a real person messaging you.",
+          "Move the worst apps off your home screen, or log out after each use. Make it a bit of effort to open them.",
+          "Set a hard stop: no feeds in bed, and none for the first 30 minutes after you wake up.",
+          "Before you open an app, ask: what am I here for? No answer = don't open it.",
+        ],
+        quickWin: "Turn off notifications for your most-used app. Right now. Takes 30 seconds.",
+        backup: ["You can't cut down even when you really try", "Scrolling is how you avoid feeling bad, every time", "It's costing you sleep, work, school or people"],
+        who: "Your doctor/GP or a counsellor. Getting stuck on screens is common and they've seen it plenty.",
+      },
+      {
+        id: "fake-online", name: "Is anyone online even real?",
+        read: "A lot of what you see online isn't people. Bot farms run thousands of fake accounts that post, like and argue to make you angry, scared or sure that \"everyone\" thinks something. And AI is making the fakes harder to spot every year. The internet isn't a safe town square anymore. Play it smart.",
+        moves: [
+          "Assume a stranger's account could be fake. Real name and face prove nothing now. Fakes copy both.",
+          "If a post makes you furious fast, that's the trap. Rage is what bot farms are built to farm. Pause before you reply or share.",
+          "Red flags: brand new account, no real friends, posts all day, only talks about one topic, same lines as other accounts.",
+          "Don't let comment sections tell you what \"everyone\" thinks. Ask the real people in your life instead.",
+          "Never send money, photos or personal details to someone you've only met online. Scammers use fake profiles too.",
+        ],
+        quickWin: "Next time a post gets you heated, close the app and walk away for 10 minutes before doing anything.",
+        backup: ["Someone online is threatening you or asking for money or photos", "You've been scammed or blackmailed (tell the police; it's a crime against you)", "Online arguments are eating your mood every day"],
+        who: "The police for threats, scams or blackmail. A trusted mate, family member or your doctor/GP for the rest.",
+      },
+      {
+        id: "touch-grass", name: "Too online, need something real",
+        read: "Your brain was built for real air, real hands and real people. Sometimes the best move is simple: log off and go touch grass.",
+        moves: [
+          "Go outside today. Walk, run, sit in a park. No phone in your hand. Daylight resets your head.",
+          "Start a hobby you do with your hands: gym, cooking, fixing things, an instrument, a sport. Something you can get better at.",
+          "Swap one hour of scrolling a week for something that helps others: volunteer, coach a kids' team, help a neighbour, give blood.",
+          "Build something that lasts: a skill, a project, a garden. Likes vanish in a day. This stays.",
+          "See people in person. One real coffee with a mate beats a thousand comments.",
+        ],
+        quickWin: "Put your phone in another room and go outside for 20 minutes.",
+        backup: ["Nothing offline feels worth doing for weeks (see Low mood)", "You've pulled away from everyone in real life"],
+        who: "Your doctor/GP if it's linked to low mood. Check out The Skills page for hobby ideas.",
+      },
+    ],
+  },
 ];
 
 // Backup: crisis lines by region. Check these numbers before changing them.
