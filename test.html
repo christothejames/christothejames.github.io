@@ -251,14 +251,14 @@
 
   <header>
     <h1>THE MANLY TEST</h1>
-    <p class="motto">where you at, mate?</p>
+    <p class="motto">where do you stand?</p>
   </header>
 
   <!-- Intro -->
   <section id="intro">
     <div class="card">
-      <h2>No one's marking you down here, mate.</h2>
-      <p>This isn't a judgement on you. It's a quick check-in to see where you're at, and where you can crack on from.</p>
+      <h2>This isn't a judgement on you.</h2>
+      <p>It's a quick check-in to see where you're strong, and where you can start improving.</p>
       <p>15 questions, be honest, and nobody sees your answers but you.</p>
       <div class="btn-row"><button class="btn" id="start">▶ LET'S GO</button></div>
     </div>
@@ -298,8 +298,8 @@
     </div>
 
     <div class="card nudge hidden" id="nudge">
-      <h2>Spotted a few "someone else will"s there, mate.</h2>
-      <p>Thing is, if everyone thinks that, nobody does it. Be the one who does.</p>
+      <h2>You picked "someone else will" a few times.</h2>
+      <p>If everyone thinks that, nobody does it. Be the one who does.</p>
     </div>
 
     <div class="card plan">
@@ -337,7 +337,7 @@
         "Don't wait to be asked.",
         "Little things count."
       ],
-      quick: "Hold a door or help someone with their shopping today. Easy.",
+      quick: "Hold a door or help someone with their shopping today.",
       links: []
     },
     respect: {
@@ -345,7 +345,7 @@
       moves: [
         "Phone down when someone's talking.",
         "Seat up for those who need it.",
-        "Say cheers and mean it."
+        "Say thank you and mean it."
       ],
       quick: "Next time you're chatting, phone face-down on the table.",
       links: []
@@ -356,7 +356,7 @@
         "Pick a job that's always yours, like bins or dishes.",
         "Fix one little thing a week."
       ],
-      quick: "Get the bins out tonight. Job done.",
+      quick: "Take the bins out tonight.",
       links: [{ text: "▶ Learn a skill", href: "skills.html" }]
     },
     owning: {
@@ -372,11 +372,11 @@
     self: {
       name: "Looking after yourself and your people",
       moves: [
-        "Drop a mate a message, just \"alright mate, how you doing?\".",
+        "Message a friend, just to ask how they are.",
         "Talk it out, don't bottle it up.",
-        "Get moving, eat proper, get your kip."
+        "Move your body, eat well and get enough sleep."
       ],
-      quick: "Send that message now. Go on.",
+      quick: "Send that message today.",
       links: [
         { text: "Mental Health: drifted apart", href: "plan.html#friends/drifted" },
         { text: "Mental Health: sleep", href: "plan.html#sleep/cant-sleep" }
@@ -397,15 +397,15 @@
     { area: "owning", text: "When you make a mistake, do you own up to it rather than blame someone else?", noDodge: true },
     { area: "owning", text: "If you say you'll do something, do you follow through?", noDodge: true },
     { area: "owning", text: "Do you turn up on time for work, plans or anyone relying on you?", noDodge: true },
-    { area: "self", text: "In the past week, have you checked in on a mate or family member just to see how they're doing?", noSometimes: true },
+    { area: "self", text: "In the past week, have you checked in on a friend or family member just to see how they're doing?", noSometimes: true },
     { area: "self", text: "When you're struggling, do you talk to someone about it instead of bottling it up?", noDodge: true },
     { area: "self", text: "Do you look after your body, like getting some exercise, eating properly or sleeping enough?", noDodge: true }
   ];
 
   const LEVELS = [
-    { min: 0, name: "Noob", msg: "Everyone's got to start somewhere, pal. You've been honest, and that's the hard bit done. Let's crack on." },
-    { min: 16, name: "Buff", msg: "Solid foundations, mate. A few tweaks and you'll be flying." },
-    { min: 31, name: "Chizzled", msg: "Proper top bloke stuff. Keep it up, and bring your mates along with you." }
+    { min: 0, name: "Noob", msg: "Everyone starts somewhere. You've been honest, and that's the hardest part done. Now you know where to begin." },
+    { min: 16, name: "Buff", msg: "Solid foundations. A few changes and you'll see a real difference." },
+    { min: 31, name: "Chizzled", msg: "You're already showing up for people. Keep it up, and help the people around you do the same." }
   ];
 
   const STORE = "manlyTest";
@@ -490,8 +490,8 @@
     const ranked = keys.slice().sort((a, b) => areas[b] - areas[a]);
     const best = ranked[0];
     if (areas[best] >= 6) {
-      $("strengthTitle").textContent = "💪 You're smashing it at: " + AREAS[best].name + ".";
-      $("strengthMsg").textContent = "Fair play. People notice that.";
+      $("strengthTitle").textContent = "💪 Your strength: " + AREAS[best].name + ".";
+      $("strengthMsg").textContent = "Keep it up. People notice.";
     } else {
       $("strengthTitle").textContent = "💪 Your best area so far: " + AREAS[best].name + ".";
       $("strengthMsg").textContent = "That's your foundation. Build on it.";
@@ -505,7 +505,7 @@
     // Game plan: the two areas with the most room to grow (skip any that are maxed out).
     const focus = ranked.slice().reverse().filter(k => areas[k] < 9).slice(0, 2);
     if (!focus.length) {
-      $("plan").innerHTML = "<p>Nothing to fix here, mate. Your move now: get a mate to take the test and help him level up.</p>";
+      $("plan").innerHTML = "<p>Nothing to fix here. Your next move: get a friend to take the test and help them improve.</p>";
     } else {
       $("plan").innerHTML = focus.map(k => {
         const a = AREAS[k];
@@ -528,14 +528,14 @@
   $("save").addEventListener("click", () => {
     $("savedNote").textContent = saveCurrent()
       ? "Saved on this device. Come back any time to see your plan."
-      : "Couldn't save on this browser, mate. Screenshot it instead.";
+      : "Couldn't save on this browser. Take a screenshot instead.";
   });
 
   $("again").addEventListener("click", () => {
     const due = Date.now() + 30 * 24 * 60 * 60 * 1000;
     $("savedNote").textContent = saveCurrent({ due })
-      ? "Locked in. Plan saved. Come back from " + fmtDate(due) + " and see how far you've come."
-      : "Couldn't save on this browser, mate. Set yourself a reminder for a month's time.";
+      ? "Plan saved. Come back from " + fmtDate(due) + " and see how far you've come."
+      : "Couldn't save on this browser. Set yourself a reminder for a month's time.";
   });
 
   function startQuiz() {
