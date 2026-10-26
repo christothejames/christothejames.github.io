@@ -1578,7 +1578,7 @@ window.PEOPLE = [
     photo: "images/mike-tyson.jpg",
     photoCredit: "Super Festivals, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Mike_Tyson_Photo_Op_GalaxyCon_Austin_2023.jpg",
-    reason: "Came back from prison and set up a charity for kids from broken homes.",
+    reason: "A nightmare when he was young, he turned his life around and now talks openly about his mistakes so others can learn from them.",
     status: "Registered sex offender · Maintains his innocence of the 1992 conviction",
     about: {},
     posts: [
@@ -1590,6 +1590,8 @@ window.PEOPLE = [
       { date: "2007", text: "Pleaded guilty to cocaine possession and DUI.", source: "https://en.wikipedia.org/wiki/Mike_Tyson" },
       { date: "2013", text: "Admitted using others' urine to pass drug tests.", source: "https://en.wikipedia.org/wiki/Mike_Tyson" },
       { date: "2013", text: "Admitted lying about being sober.", source: "https://en.wikipedia.org/wiki/Mike_Tyson" },
+      { date: "2007–13", text: "Went into rehab for addiction in 2007; in 2013 owned up to relapsing, said drink had nearly killed him, and went back to getting sober.", source: "https://en.wikipedia.org/wiki/Mike_Tyson" },
+      { date: "2013–", text: "Tells his whole story, crimes, addiction and regrets included, in his one-man show and bestselling memoir Undisputed Truth, so others can learn from his mistakes.", source: "https://en.wikipedia.org/wiki/Mike_Tyson:_Undisputed_Truth" },
     ],
   },
   {
