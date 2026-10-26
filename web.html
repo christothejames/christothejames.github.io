@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Web · The Real Man Report</title>
+<title>Rankings · The Real Man Report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Righteous&display=swap" rel="stylesheet">
@@ -74,6 +74,26 @@
     color: #c7dcff;
   }
 
+  .how {
+    max-width: 560px;
+    margin: 14px auto 0;
+    padding: 10px 14px;
+    border: 2px solid #3ef2ff66;
+    border-radius: 12px;
+    background: #0b1630cc;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #c7dcff;
+  }
+
+  .how b {
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--cyan);
+  }
+
   .legend {
     display: flex;
     flex-wrap: wrap;
@@ -126,6 +146,11 @@
   }
 
   .card.on { display: block; }
+
+  /* phones: the canvas is taller than the screen, so keep the card in view */
+  @media (max-width: 551px) {
+    .card { position: fixed; left: 16px; right: 16px; bottom: 16px; width: auto; z-index: 10; }
+  }
   .card.good { border-color: var(--gold); }
   .card.bad { border-color: var(--red); }
 
@@ -191,9 +216,10 @@
 
 <header>
   <a class="back" href="home.html">← All posters</a>
-  <h1>THE WEB</h1>
+  <h1>RANKINGS</h1>
   <p class="tag">SEE WHO STANDS WHERE</p>
-  <p class="intro">Every man on the boards, wired to what he's known for. The good ones float to the top. The bad ones sink. Gold wires: he shows up there. Red wires: black marks. Tap a man, or drag him down and watch him bob back up.</p>
+  <p class="how"><b>HOW THE RANKING WORKS</b><br>Every man is ranked by a system built to pick out qualifying factors from his conduct: what he has actually done, on the public record. Facts, not opinions.</p>
+  <p class="intro">The best records float to the top. The worst sink to the bottom. Gold wires: he shows up there. Red wires: black marks. Tap a man to see why.</p>
 </header>
 
 <div class="legend" aria-hidden="true">
@@ -229,7 +255,7 @@
   // which areas each man has a good record (1) or black marks (-1) in
   const wire = (p, d) => (window.WIRES[p.id] || {})[d.key];
   const nodes = [], links = [];
-  const hubs = {};
+  const hubs = {}, byId = {};
   window.DIMS.forEach(d => {
     const n = { kind: 'hub', id: d.key, label: d.label, r: 30 };
     hubs[d.key] = n;
@@ -237,6 +263,7 @@
   });
   men.forEach(p => {
     const n = { kind: 'man', p, id: p.id, label: p.name, r: 24 };
+    byId[p.id] = n;
     if (p.photo) { n.img = new Image(); n.img.src = p.photo; n.img.onload = () => { n.ready = true; kick(); }; }
     nodes.push(n);
     window.DIMS.forEach(d => {
@@ -254,7 +281,7 @@
   const goods = byRank('good'), bads = byRank('bad');
   // the waterline sits lower when there are more good men, so both sides have room
   const SURF = 0.05, BED = 0.95, GAP = 0.08;
-  const WATER = Math.max(0.5, Math.min(0.68, goods.length / (goods.length + bads.length || 1)));
+  let WATER = Math.max(0.5, Math.min(0.68, goods.length / (goods.length + bads.length || 1)));
   const frac = (i, n) => n > 1 ? i / (n - 1) : 0.5;
   nodes.forEach(n => {
     if (n.kind === 'hub') { n.depth = WATER; return; }
@@ -269,14 +296,38 @@
   // ---------- canvas + simple force layout ----------
   const cv = document.getElementById('web');
   const ctx = cv.getContext('2d');
-  let W = 0, H = 0, dpr = 1;
+  let W = 0, H = 0, dpr = 1, small = false, colW = 0;
+  // phones are too narrow for 100+ men to float freely (they jostle forever and
+  // the names pile up), so there they sit still in ranked rows: best at the top
+  // left, worst at the bottom right, hubs on the waterline between
+  function layoutGrid() {
+    const cols = Math.max(2, Math.floor(W / 112)), rh = 64, pad = 34;
+    colW = W / cols;
+    const rows = n => Math.ceil(n / cols);
+    const place = (list, top) => list.forEach((p, i) => {
+      const n = byId[p.id];
+      n.tx = colW * (i % cols + 0.5);
+      n.ty = top + 20 + rh * Math.floor(i / cols);
+    });
+    place(goods, pad);
+    const wy = pad + rows(goods.length) * rh + 24;
+    place(bads.slice().reverse(), wy + 40);
+    H = wy + 40 + rows(bads.length) * rh + pad;
+    WATER = wy / H;
+    hubList.forEach(n => { n.tx = n.slot * W; n.ty = wy; });
+    cv.style.height = H + 'px';
+  }
   function size() {
     dpr = window.devicePixelRatio || 1;
-    W = cv.clientWidth; H = cv.clientHeight;
+    W = cv.clientWidth;
+    small = W < 520;
+    nodes.forEach(n => { n.r = n.kind === 'hub' ? (small ? 19 : 30) : (small ? 16 : 24); });
+    if (small) layoutGrid(); else cv.style.height = '';
+    H = cv.clientHeight;
     cv.width = W * dpr; cv.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const small = W < 520;
-    nodes.forEach(n => { n.r = n.kind === 'hub' ? (small ? 19 : 30) : (small ? 16 : 24); });
+    // let the page scroll past the tall phone canvas
+    cv.style.touchAction = small ? 'pan-y' : 'none';
   }
   size();
   // everyone starts at the waterline, then floats or sinks
@@ -293,6 +344,14 @@
   let heat = 1, raf = 0, drag = null, sel = null, hubSel = null, t = 0;
 
   function step() {
+    if (small) {
+      // glide into place, no forces
+      nodes.forEach(n => {
+        if (n === drag) return;
+        n.x += (n.tx - n.x) * 0.2; n.y += (n.ty - n.y) * 0.2;
+      });
+      return;
+    }
     const k = Math.min(W, H) / 6;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -446,7 +505,7 @@
         ctx.font = `${W < 520 ? 10 : 12}px Righteous, sans-serif`;
         ctx.textAlign = 'center'; ctx.textBaseline = 'top';
         ctx.shadowColor = '#000'; ctx.shadowBlur = 4;
-        ctx.fillText(n.p.name.replace(/\s*\(.*\)$/, ''), n.x, y + n.r + 5);
+        ctx.fillText(n.p.name.replace(/\s*\(.*\)$/, ''), n.x, y + n.r + 5, small ? colW - 6 : undefined);
         ctx.shadowBlur = 0;
       }
     });
@@ -503,9 +562,12 @@
     drag = null; down = null; cv.classList.remove('dragging');
   };
   cv.addEventListener('pointerup', up);
-  cv.addEventListener('pointercancel', up);
+  // the browser took the touch over (a scroll): not a tap
+  cv.addEventListener('pointercancel', () => { drag = null; down = null; cv.classList.remove('dragging'); });
 
   window.addEventListener('resize', () => {
+    // phones fire resize when the address bar slides; only re-lay out on a real width change
+    if (small && cv.clientWidth === W) return;
     const ow = W, oh = H;
     size();
     nodes.forEach(n => { n.x *= W / ow || 1; n.y *= H / oh || 1; });
