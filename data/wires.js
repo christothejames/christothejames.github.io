@@ -538,6 +538,60 @@ window.WIRES = {
     "community": 1,
     "family": 1,
     "conduct": -1
+  },
+  "mark-rober": {
+    "community": 1,
+    "people": 1
+  },
+  "patrick-mahomes": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "shohei-ohtani": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "stephen-curry": {
+    "body": 1,
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "tyson-fury": {
+    "body": 1,
+    "family": 1,
+    "conduct": 1
+  },
+  "andrew-flintoff": {
+    "community": 1,
+    "conduct": -1
+  },
+  "stephen-colbert": {
+    "community": 1,
+    "family": 1
+  },
+  "guy-fieri": {
+    "community": 1,
+    "family": 1
+  },
+  "prince-william": {
+    "service": 1,
+    "community": 1,
+    "family": 1
+  },
+  "jelly-roll": {
+    "community": 1,
+    "conduct": 1
+  },
+  "bruce-springsteen": {
+    "community": 1,
+    "family": 1
+  },
+  "paddy-pimblett": {
+    "community": 1,
+    "family": 1
   }
 };
 
@@ -552,18 +606,25 @@ window.ORDER = [
   "mark-hamill",
   "trey-parker",
   "matt-stone",
+  "guy-fieri",
   "hugh-jackman",
   "keanu-reeves",
+  "stephen-colbert",
   "denzel-washington",
   "louis-theroux",
   "stephen-fry",
+  "prince-william",
   "michael-sheen",
+  "mark-rober",
   "danny-trejo",
+  "bruce-springsteen",
   "marcus-rashford",
   "prince-harry",
   "chris-herren",
   "gordon-ramsay",
   "lewis-hamilton",
+  "stephen-curry",
+  "jelly-roll",
   "justin-verlander",
   "frank-bruno",
   "steve-o",
@@ -573,6 +634,9 @@ window.ORDER = [
   "mat-pritchard",
   "ranulph-fiennes",
   "ed-sheeran",
+  "patrick-mahomes",
+  "tyson-fury",
+  "paddy-pimblett",
   "rick-stanton",
   "john-volanthen",
   "ross-edgley",
@@ -581,6 +645,8 @@ window.ORDER = [
   "steve-gleason",
   "karl-bushby",
   "ryan-reynolds",
+  "shohei-ohtani",
+  "andrew-flintoff",
   "bear-grylls",
   "chris-hadfield",
   "joe-wicks",
