@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
-<meta name="description" content="Wanted: more men like these. Not wanted: men like these. Profiles of notable men, good and bad, with every fact sourced.">
+<meta name="description" content="High Rated, Controversial and Cautionary: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -13,6 +13,7 @@
     --cyan: #3ef2ff;
     --gold: #ffe66d;
     --red: #ff3b3b;
+    --amber: #ff9f1c;
     --night: #050b1a;
     --purple: #0d2a5c;
     --panel: #0c1a36;
@@ -159,6 +160,7 @@
   }
 
   .jump.good { background: var(--gold); }
+  .jump.mid { background: var(--amber); }
   .jump.bad { background: var(--red); color: #fff; }
   .jump.plan { background: var(--hot-pink); color: #fff; }
   .jump.web { background: var(--cyan); }
@@ -208,6 +210,7 @@
 
   .board.good h2 { color: var(--gold); text-shadow: 0 0 18px #ffe66d55; }
   .board.bad h2 { color: var(--red); text-shadow: 0 0 18px #ff3b3b55; }
+  .board.mid h2 { color: var(--amber); text-shadow: 0 0 18px #ff9f1c55; }
 
   .board-sub { color: var(--muted); margin: 0 0 18px; }
 
@@ -232,6 +235,7 @@
   }
   .board.good .show { color: var(--gold); }
   .board.bad .show { color: var(--red); }
+  .board.mid .show { color: var(--amber); }
   .show option { color: #fff; background: var(--night); }
 
   .posters {
@@ -353,6 +357,7 @@
 
   .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
   .bad .poster { --pin: var(--red); --glow: #ff3b3b66; }
+  .mid .poster { --pin: var(--amber); --glow: #ff9f1c66; }
 
   .poster-top {
     text-align: center;
@@ -369,7 +374,8 @@
   }
 
   .good .poster-top .w { color: var(--hot-pink); }
-  .bad .poster-top .w { color: #c4161c; }
+  .bad .poster-top .w { color: #c4161c; font-size: 26px; }
+  .mid .poster-top .w { color: #c25e00; font-size: 20px; }
   .good .poster-top .w.respected { color: #c4161c; }
 
   .poster-top .s {
@@ -390,6 +396,7 @@
   }
 
   .bad .mug { background: linear-gradient(135deg, #2a1236, #6b1020); }
+  .mid .mug { background: linear-gradient(135deg, #3a2208, #a05a00); }
 
   .mug img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.15) contrast(1.05); }
 
@@ -415,6 +422,7 @@
 
   .good .stamp { color: #138a4a; }
   .bad .stamp { color: #c4161c; }
+  .mid .stamp { color: #c25e00; }
 
   .poster .name {
     font-family: 'Bungee', sans-serif;
@@ -457,6 +465,7 @@
   }
 
   .bad .poster .cta { color: #c4161c; }
+  .mid .poster .cta { color: #c25e00; }
 
   .tag {
     display: inline-block;
@@ -545,7 +554,7 @@
   <p class="intro"><a href="plan.html" style="color:var(--cyan)">Dealing with something? Mental health moves →</a></p>
   <p class="intro"><a href="skills.html" style="color:var(--gold)">Never got shown how? Press start: learn a skill →</a></p>
   <p class="intro"><a href="chores.html" style="color:var(--cyan)">Bins, washing, showers: the stuff that slips. Set your home game plan →</a></p>
-  <p class="intro">Two boards. The men we want more of, and the men we don't. Click any poster for the full profile. Every fact is sourced.</p>
+  <p class="intro">Three tiers, ranked from the public record: High Rated, Controversial and Cautionary. Click any poster for the full profile. Every fact is sourced.</p>
 </header>
 
 <div class="toolbar">
@@ -557,8 +566,9 @@
         SEARCH
       </button>
     </form>
-    <a class="jump good" href="#good">WANTED</a>
-    <a class="jump bad" href="#bad">NOT WANTED</a>
+    <a class="jump good" href="#good">HIGH RATED</a>
+    <a class="jump mid" href="#mid">CONTROVERSIAL</a>
+    <a class="jump bad" href="#bad">CAUTIONARY</a>
     <a class="jump skills" href="skills.html" title="Learn a life skill">▶ LEARN A SKILL <span class="xp">+XP</span></a>
     <a class="jump plan" href="plan.html">MENTAL HEALTH</a>
     <a class="jump chores" href="chores.html" title="Reminders for the everyday jobs that slip">HOME GAME PLAN</a>
@@ -577,8 +587,8 @@
   <section class="board good" id="good">
     <div class="board-top">
       <div class="board-top-text">
-        <div class="board-head"><h2>WANTED: MORE MEN LIKE HIM</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Wanted men to show"></select></div>
-        <p class="board-sub">Real masculinity: courage, service, family, and treating women as equals.</p>
+        <div class="board-head"><h2>HIGH RATED</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many High Rated men to show"></select></div>
+        <p class="board-sub">Inspiring records: courage, service, family, and treating women as equals.</p>
       </div>
       <figure class="hero-card">
         <button class="hero-btn" id="heroBtn" aria-label="Show another hero">
@@ -596,9 +606,15 @@
     <div class="posters" id="goodGrid"></div>
   </section>
 
+  <section class="board mid" id="mid">
+    <div class="board-head"><h2>CONTROVERSIAL</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Controversial men to show"></select></div>
+    <p class="board-sub">A split record: the good and the black marks come out close to even. Read the facts and make your own call.</p>
+    <div class="posters" id="midGrid"></div>
+  </section>
+
   <section class="board bad" id="bad">
-    <div class="board-head"><h2>NOT WANTED</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Not Wanted men to show"></select></div>
-    <p class="board-sub">Sells "masculinity" built on money, ego and control over women. Being on this board is our opinion, not a finding of guilt.</p>
+    <div class="board-head"><h2>CAUTIONARY</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Cautionary men to show"></select></div>
+    <p class="board-sub">Lowest ranked: "masculinity" built on money, ego and control over women. A ranking is our opinion, not a finding of guilt.</p>
     <div class="posters" id="badGrid"></div>
   </section>
 </main>
@@ -627,26 +643,33 @@
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-  // A good man who has died gets RESPECTED instead of WANTED (death is read from his status or role).
+  // A good man who has died gets RESPECTED instead of HIGH RATED (death is read from his status or role).
   const passed = p => /^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || '');
+  // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
+  const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
+  const WORDS = {
+    good: { w: 'HIGH RATED', s: 'Inspiring record', stamp: 'TOP RANKED', for: 'RATED FOR' },
+    mid: { w: 'CONTROVERSIAL', s: 'Split record', stamp: 'SPLIT VERDICT', for: 'DEBATED FOR' },
+    bad: { w: 'CAUTIONARY', s: 'Learn from this', stamp: 'LOW RANKED', for: 'CAUTION FOR' },
+  };
 
   function poster(p, i) {
-    const good = p.list === 'good';
-    const respected = good && passed(p);
+    const t = WORDS[tier(p)];
+    const respected = tier(p) === 'good' && passed(p);
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
     return `
       <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}" style="--tilt:${tilt}deg">
         <div class="poster-top">
-          <div class="w${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div>
-          <div class="s">${good ? 'More men like him' : 'Less of this'}</div>
+          <div class="w${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : t.w}</div>
+          <div class="s">${t.s}</div>
         </div>
         <div class="mug">
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
-          <span class="stamp">${good ? 'ROLE MODEL' : 'RED FLAG'}</span>
+          <span class="stamp">${t.stamp}</span>
         </div>
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
-        <p class="for"><b>${respected ? 'RESPECTED FOR' : good ? 'WANTED FOR' : 'NOT WANTED FOR'}</b>${esc(p.reason)}</p>
+        <p class="for"><b>${respected ? 'RESPECTED FOR' : t.for}</b>${esc(p.reason)}</p>
         <div class="status">${esc(p.status)}</div>
         <div class="cta">VIEW PROFILE →</div>
       </a>`;
@@ -657,9 +680,10 @@
     const match = p => !term || (p.name + ' ' + p.role).toLowerCase().includes(term);
     // Board order comes from the private ranking (data/wires.js)
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
-    const order = (a, b) => rank(a) - rank(b);
-    ['good', 'bad'].forEach(list => {
-      const all = window.PEOPLE.filter(p => p.list === list && match(p)).sort(order);
+    const mids = window.CONTROVERSIAL || [];
+    const order = (a, b) => tier(a) === 'mid' ? mids.indexOf(a.id) - mids.indexOf(b.id) : rank(a) - rank(b);
+    ['good', 'mid', 'bad'].forEach(list => {
+      const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)).sort(order);
       // Each board shows its top 10; the dropdown shows more. A search shows every match.
       const pick = document.getElementById(list + 'Show');
       const n = term ? all.length : (pick.value === 'all' ? all.length : +pick.value);
@@ -672,8 +696,8 @@
   }
 
   // Dropdown options: top 10, top 20, ... and all
-  ['good', 'bad'].forEach(list => {
-    const total = window.PEOPLE.filter(p => p.list === list).length;
+  ['good', 'mid', 'bad'].forEach(list => {
+    const total = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list).length;
     const pick = document.getElementById(list + 'Show');
     const steps = [10, 20, 30, 50].filter(s => s < total);
     pick.innerHTML = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;

@@ -37,6 +37,7 @@
   }
 
   body.bad { --accent: var(--red); }
+  body.mid { --accent: #ff9f1c; }
 
   a { color: var(--cyan); }
 
@@ -196,6 +197,7 @@
   }
 
   .bad .list-badge { background: var(--red); color: #fff; }
+  .mid .list-badge { background: #ff9f1c; }
   .list-badge.respected { background: var(--red); color: #fff; }
   .cover-word.respected { color: #ff3b3bcc; }
 
@@ -407,6 +409,7 @@
 <div id="app"></div>
 
 <script src="data/people.js"></script>
+<script src="data/wires.js"></script>
 <script>
 (() => {
   const q = new URLSearchParams(location.search);
@@ -422,10 +425,14 @@
     return;
   }
 
-  const good = p.list === 'good';
-  // A good man who has died gets RESPECTED instead of WANTED (death is read from his status or role).
+  // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
+  const tierOf = x => (window.CONTROVERSIAL || []).includes(x.id) ? 'mid' : x.list;
+  const tier = tierOf(p);
+  const good = tier === 'good', mid = tier === 'mid';
+  const NAME = { good: 'High Rated', mid: 'Controversial', bad: 'Cautionary' };
+  // A good man who has died gets RESPECTED instead of HIGH RATED (death is read from his status or role).
   const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
-  document.body.classList.add(p.list === 'bad' ? 'bad' : 'good');
+  document.body.classList.add(tier === 'bad' || tier === 'mid' ? tier : 'good');
   document.title = `${p.name} · The Real Man Report`;
 
   const big = p.photo
@@ -445,8 +452,9 @@
                   "Raised": "💷", "Followers": "👥", "Before fame": "🥊", "Banned from": "🚫", "Legal status": "⚖️" };
 
   // Instagram: follow good men to train your feed; unfollow bad ones (Instagram can't let us do it for you).
+  // Controversial men get no button: the call is the viewer's.
   const igBanned = !p.instagram && /instagram/i.test((p.about || {})['Banned from'] + ' ' + p.status);
-  const igBlock = p.instagram && !respected
+  const igBlock = mid ? '' : p.instagram && !respected
     ? `<div class="ig">
         <a class="ig-btn" href="https://www.instagram.com/${encodeURIComponent(p.instagram)}/" target="_blank" rel="noopener">${good ? '📸 Follow on Instagram' : '🚫 Unfollow on Instagram'}</a>
         <small>${good ? `Train your feed: follow good men. @${esc(p.instagram)}` : `Following him? Tap “Following”, then “Unfollow”. @${esc(p.instagram)}`}</small>
@@ -461,13 +469,13 @@
 
   app.innerHTML = `
     <div class="wrap">
-      <div class="cover"><div class="cover-word${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED' : 'NOT WANTED'}</div></div>
+      <div class="cover"><div class="cover-word${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : NAME[tier].toUpperCase()}</div></div>
       <div class="head">
         ${big}
         <div class="who">
           <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
           <div class="role">${esc(p.role)}</div>
-          <span class="list-badge${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : good ? 'WANTED: MORE MEN LIKE HIM' : 'NOT WANTED'}</span>
+          <span class="list-badge${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : NAME[tier].toUpperCase()}</span>
           <div class="status-line">${esc(p.status)}</div>
           ${p.photoCredit ? `<div class="credit">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</div>` : ''}
         </div>
@@ -487,7 +495,7 @@
         <aside class="side">
           <div class="box">
             <h2>Intro</h2>
-            <p class="reason"><b style="color:var(--accent)">${respected ? 'Respected for:' : good ? 'Wanted for:' : 'Not wanted for:'}</b> ${esc(p.reason)}</p>
+            <p class="reason"><b style="color:var(--accent)">${respected ? 'Respected for:' : good ? 'Rated for:' : mid ? 'Debated for:' : 'Caution for:'}</b> ${esc(p.reason)}</p>
             <dl class="facts">
               ${Object.entries(p.about || {}).map(([k, v]) => `
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
@@ -500,7 +508,7 @@
               ${others.map(x => `
                 <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}">
                   ${small(x, x.list === 'bad' ? 'bad' : '')}
-                  <span>${esc(x.name)}<small>${x.list === 'good' ? 'Wanted' : 'Not wanted'} ·${esc(x.role)}</small></span>
+                  <span>${esc(x.name)}<small>${NAME[tierOf(x)]} ·${esc(x.role)}</small></span>
                 </a>`).join('')}
             </div>
           </div>
@@ -541,7 +549,7 @@
                   <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
               </dl>
             </div>
-            <p class="note">Every post on this profile links to its source. Being on the ${good ? 'Wanted' : 'Not Wanted'} board is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
+            <p class="note">Every post on this profile links to its source. Being ranked ${NAME[tier]} is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
           </div>
 
           <div data-panel="photos" hidden>

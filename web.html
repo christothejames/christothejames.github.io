@@ -235,8 +235,9 @@
 </header>
 
 <div class="legend" aria-hidden="true">
-  <span><i class="dot" style="background:var(--gold)"></i>Wanted</span>
-  <span><i class="dot" style="background:var(--red)"></i>Not wanted</span>
+  <span><i class="dot" style="background:var(--gold)"></i>High rated</span>
+  <span><i class="dot" style="background:#ff9f1c"></i>Controversial</span>
+  <span><i class="dot" style="background:var(--red)"></i>Cautionary</span>
   <span><i class="dot" style="background:var(--cyan)"></i>What counts</span>
   <span><i class="line" style="background:var(--gold)"></i>Good record</span>
   <span><i class="line" style="background:var(--red)"></i>Black marks</span>
@@ -263,7 +264,9 @@
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const COL = { good: '#ffe66d', bad: '#ff3b3b', review: '#8a94a6', hub: '#3ef2ff' };
+  const COL = { good: '#ffe66d', mid: '#ff9f1c', bad: '#ff3b3b', review: '#8a94a6', hub: '#3ef2ff' };
+  // Controversial men (split record, data/wires.js) keep their place but show amber
+  const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
 
   // ---------- build the graph ----------
   const men = window.PEOPLE.filter(p => p.list === 'good' || p.list === 'bad');
@@ -290,7 +293,7 @@
   nodes.forEach(n => { n.deg = links.filter(l => l.a === n || l.b === n).length; });
 
   // ---------- buoyancy: good men float, bad men sink ----------
-  // depth 0 = surface, 1 = sea bed. ORDER is best first on Wanted, worst first on Not Wanted.
+  // depth 0 = surface, 1 = sea bed. ORDER is best first on High Rated, worst first on Cautionary.
   const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
   const byRank = list => men.filter(p => p.list === list).sort((a, b) => rank(a) - rank(b));
   const goods = byRank('good'), bads = byRank('bad');
@@ -490,7 +493,7 @@
         const lh = W < 520 ? 9 : 12;
         lines.forEach((s, i) => ctx.fillText(s, n.x, y + (i - (lines.length - 1) / 2) * lh, n.r * 1.8));
       } else {
-        const c = COL[n.p.list] || COL.review;
+        const c = COL[tier(n.p)] || COL.review;
         ctx.save();
         ctx.beginPath(); ctx.arc(n.x, y, n.r, 0, Math.PI * 2); ctx.closePath();
         ctx.fillStyle = '#132447'; ctx.fill();
