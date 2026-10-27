@@ -529,6 +529,15 @@ window.WIRES = {
   "ryan-reynolds": {
     "community": 1,
     "conduct": -1
+  },
+  "trey-parker": {
+    "community": 1,
+    "conduct": -1
+  },
+  "matt-stone": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
   }
 };
 
@@ -543,6 +552,8 @@ window.ORDER = [
   "mark-hamill",
   "hugh-jackman",
   "keanu-reeves",
+  "matt-stone",
+  "trey-parker",
   "denzel-washington",
   "louis-theroux",
   "stephen-fry",
@@ -653,4 +664,15 @@ window.CONTROVERSIAL = [
   "mike-tyson",
   "tiger-woods",
   "ben-stokes"
+];
+
+// Men shown in the home page's INCEL mode (the manosphere crowd), biggest live impact first
+window.MANOSPHERE = [
+  "andrew-tate",
+  "clavicular",
+  "tristan-tate",
+  "myron-gaines",
+  "hstikkytokky",
+  "sneako",
+  "ed-matthews"
 ];
