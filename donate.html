@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate · The Real Man Report</title>
+<meta name="description" content="humbored.com isn't a company, just a passion project. No ads, no tracking, no sponsors. If you like the idea, support it.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --blue: #1e90ff;
+    --sky: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --red: #ff3b3b;
+    --night: #050b1a;
+    --panel: #0c1a36;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--night); }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 45%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--cyan); overflow-wrap: anywhere; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 40px 0 10px; text-align: center; }
+
+  .kicker { margin: 0 0 6px; font-family: 'Bungee', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--gold); }
+
+  h1 {
+    margin: 0;
+    font-family: 'Monoton', 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(34px, 9vw, 64px);
+    line-height: 1.1;
+    color: #fff;
+    text-shadow: 0 0 6px var(--blue), 0 0 18px var(--blue), 0 0 36px #1e90ff88;
+  }
+
+  .lead { max-width: 560px; margin: 16px auto 0; font-size: 18px; }
+
+  h2 {
+    margin: 36px 0 10px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cyan);
+  }
+
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+
+  /* ---------- Chip in ---------- */
+  .chip {
+    margin-top: 28px;
+    padding: 20px 18px;
+    border: 2px solid var(--gold);
+    border-radius: 14px;
+    background: #ffe66d10;
+    box-shadow: 0 0 24px #ffe66d22;
+    text-align: center;
+  }
+  .chip h2 { margin-top: 0; color: var(--gold); }
+
+  .currencies { display: inline-flex; gap: 4px; margin: 0 0 14px; padding: 4px; border-radius: 999px; background: var(--panel); }
+  .cur { font-family: 'Bungee', sans-serif; font-size: 12px; padding: 6px 12px; border: 0; border-radius: 999px; color: var(--muted); background: none; cursor: pointer; }
+  .cur[aria-pressed="true"] { color: var(--night); background: var(--gold); }
+
+  .amounts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 6px 0 18px; }
+  .amount {
+    min-width: 72px;
+    padding: 10px 14px;
+    font: inherit;
+    color: var(--text);
+    background: var(--panel);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .amount b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 22px; color: var(--gold); }
+  .amount small { color: var(--muted); font-size: 12px; }
+  .amount[aria-pressed="true"] { border-color: var(--gold); background: #ffe66d22; }
+
+  .way {
+    display: block;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 14px 12px;
+    border-radius: 12px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--night);
+    background: var(--gold);
+    box-shadow: 0 4px 0 #b39a1f;
+  }
+  .way small { display: block; font-family: 'Righteous', sans-serif; font-size: 12px; opacity: .8; }
+  .way:active { transform: translateY(3px); box-shadow: none; }
+  .way.off { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 2px var(--line); pointer-events: none; }
+  .note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+
+  /* ---------- How it works ---------- */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: step; }
+  .steps li {
+    position: relative;
+    padding: 12px 14px 12px 58px;
+    border-radius: 12px;
+    background: var(--panel);
+    counter-increment: step;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px; top: 12px;
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    font-family: 'Bungee', sans-serif;
+    color: var(--night);
+    background: var(--cyan);
+  }
+  .steps b { font-family: 'Bungee', sans-serif; font-weight: 400; color: var(--cyan); }
+
+  .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; font-family: 'Bungee', sans-serif; font-size: 13px; }
+  .flow span { padding: 8px 12px; border: 2px solid var(--sky); border-radius: 999px; }
+  .flow i { font-style: normal; color: var(--gold); }
+
+  .pays { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0; list-style: none; }
+  .pays li { padding: 12px 14px; border-left: 4px solid var(--gold); border-radius: 8px; background: var(--panel); }
+  .pays b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; color: var(--gold); }
+
+  .straight { padding: 16px 18px; border: 2px dashed var(--red); border-radius: 12px; background: #ff3b3b0d; }
+  .straight h2 { margin-top: 0; color: var(--red); }
+  .straight ul { margin: 0; padding-left: 20px; }
+
+  footer { margin-top: 40px; padding: 24px 0 60px; border-top: 3px double #7cc4ff77; text-align: center; }
+  footer a { font-family: 'Bungee', sans-serif; text-decoration: none; }
+
+  @media (max-width: 520px) {
+    .pays { grid-template-columns: 1fr; }
+    .amount { min-width: 0; flex: 1 1 28%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <p class="kicker">NO ADS · NO TRACKING · NO SPONSORS</p>
+  <h1>DONATE</h1>
+  <p class="lead">This site isn't a company. It's a passion project, built piece by piece. Every contribution goes into the build: keeping it online, researching the facts and adding new features. Totally optional. The site stays free either way.</p>
+</header>
+
+<main class="wrap">
+  <section class="chip" id="chip">
+    <h2>ADD TO THE BUILD</h2>
+    <div class="currencies" role="group" aria-label="Currency">
+      <button class="cur" type="button" data-cur="GBP" aria-pressed="false">£ GBP</button>
+      <button class="cur" type="button" data-cur="EUR" aria-pressed="false">€ EUR</button>
+      <button class="cur" type="button" data-cur="USD" aria-pressed="false">$ USD</button>
+    </div>
+    <div class="amounts" role="group" aria-label="Pick an amount">
+      <button class="amount" type="button" data-amount="3" aria-pressed="false"><b>3</b></button>
+      <button class="amount" type="button" data-amount="5" aria-pressed="true"><b>5</b></button>
+      <button class="amount" type="button" data-amount="10" aria-pressed="false"><b>10</b></button>
+      <button class="amount" type="button" data-amount="20" aria-pressed="false"><b>20</b></button>
+      <button class="amount" type="button" data-amount="" aria-pressed="false"><b>?</b><small>you choose</small></button>
+    </div>
+    <a class="way" id="paypal" target="_blank" rel="noopener">CONTRIBUTE WITH PAYPAL<small>PayPal account or card</small></a>
+    <p class="note" id="chipNote">You can change the amount on PayPal's page before you pay.</p>
+  </section>
+
+  <h2>HOW IT WORKS</h2>
+  <ol class="steps">
+    <li><b>PICK AN AMOUNT.</b> Tap one above, or choose your own.</li>
+    <li><b>YOU PAY ON PAYPAL.</b> The button opens PayPal in a new tab. Log in, or pay by card if you don't have an account. You pay there, not here, so we never see your card or bank details.</li>
+    <li><b>IT LANDS IN THE SITE'S ACCOUNT.</b> The money goes straight to humbored.com's own PayPal account. No middleman, no company in between.</li>
+    <li><b>IT GOES INTO THE BUILD.</b> Every contribution goes on running and growing the site (see below), not on anyone personally.</li>
+  </ol>
+  <div class="flow" aria-hidden="true">
+    <span>YOU</span><i>→</i><span>PAYPAL</span><i>→</i><span>HUMBORED.COM</span>
+  </div>
+  <p class="muted">PayPal may take a small fee from each payment.</p>
+
+  <h2>WHERE IT GOES</h2>
+  <ul class="pays">
+    <li><b>THE LIGHTS</b>The domain name and the servers behind the request queue.</li>
+    <li><b>THE RESEARCH</b>Hours digging through the public record, so every fact has a source.</li>
+    <li><b>NEW STUFF</b>More skills, more mental health moves, more men ranked.</li>
+    <li><b>THE APP</b>A phone app for the Home Game Plan, with real reminders.</li>
+  </ul>
+
+  <section class="straight">
+    <h2>STRAIGHT UP</h2>
+    <ul>
+      <li><b>Money never buys a ranking.</b> Contributing doesn't move anyone up or down, and we'll turn down money that asks for that.</li>
+      <li>This is a passion project, not a charity. Contributions aren't tax-deductible and there's no Gift Aid.</li>
+      <li>Only give spare money. Never money you need for bills, food or rent.</li>
+      <li>Under 18? Ask a parent first. PayPal needs you to be an adult anyway.</li>
+      <li>Paid the wrong amount? Email <a href="mailto:humbored.contact@gmail.com">humbored.contact@gmail.com</a> and we'll sort it.</li>
+      <li>What PayPal tells us about you (usually your name and email) is in our <a href="privacy.html#donating">privacy notice</a>.</li>
+    </ul>
+  </section>
+
+  <h2>NO SPARE CASH? HELP FOR FREE</h2>
+  <p>Share the site with a friend who'd like it. Request a man to be ranked. Spot a mistake or got an idea? Email <a href="mailto:humbored.contact@gmail.com">humbored.contact@gmail.com</a>. That counts just as much.</p>
+</main>
+
+<footer class="wrap">
+  <a href="home.html">← BACK TO THE REAL MAN REPORT</a>
+</footer>
+
+<script>
+  // The site's own PayPal.me name. Leave it empty and the button shows "coming soon".
+  const DONATE = {
+    paypal: '' // e.g. 'humbored' for paypal.me/humbored
+  };
+
+  const SYMBOL = { GBP: '£', EUR: '€', USD: '$' };
+
+  // Guess the visitor's currency from their time zone and language: UK → £, rest of Europe → €, everyone else → $
+  function guessCurrency() {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const lang = (navigator.language || '').toUpperCase();
+    // time zone first: plenty of people in mainland Europe set their browser to UK English
+    if (/^Europe\/(London|Belfast|Guernsey|Jersey|Isle_of_Man)$/.test(zone)) return 'GBP';
+    if (zone.startsWith('Europe/')) return 'EUR';
+    if (!zone && lang.endsWith('-GB')) return 'GBP';
+    return 'USD';
+  }
+
+  const paypal = document.getElementById('paypal');
+  let amount = '5';
+  let currency = guessCurrency();
+
+  function render() {
+    document.querySelectorAll('.cur').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cur === currency)));
+    document.querySelectorAll('.amount').forEach(b => {
+      if (b.dataset.amount) b.querySelector('b').textContent = SYMBOL[currency] + b.dataset.amount;
+    });
+    // PayPal.me fills in the picked amount and currency for you
+    if (DONATE.paypal) paypal.href = 'https://paypal.me/' + encodeURIComponent(DONATE.paypal) + (amount ? '/' + amount + currency : '');
+  }
+
+  if (!DONATE.paypal) {
+    paypal.classList.add('off');
+    paypal.removeAttribute('target');
+    paypal.setAttribute('aria-disabled', 'true');
+    paypal.innerHTML = 'CONTRIBUTE WITH PAYPAL<small>coming soon</small>';
+    document.getElementById('chipNote').textContent = 'Contributions open soon. Until then, the free ways below help just as much.';
+  }
+
+  document.querySelectorAll('.cur').forEach(btn => {
+    btn.addEventListener('click', () => { currency = btn.dataset.cur; render(); });
+  });
+
+  document.querySelectorAll('.amount').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.amount').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      amount = btn.dataset.amount;
+      render();
+    });
+  });
+
+  render();
+</script>
+
+</body>
+</html>
