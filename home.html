@@ -718,7 +718,8 @@
     if (!GOOGLE_CLIENT_ID) return;
     gisLoading ??= new Promise((ok, fail) => {
       const s = document.createElement('script');
-      s.src = 'https://accounts.google.com/gsi/client';
+      // English for now (owner, 27 Oct 2026), whatever the visitor's browser language
+      s.src = 'https://accounts.google.com/gsi/client?hl=en';
       s.async = true;
       s.onload = ok;
       s.onerror = fail;
@@ -737,7 +738,7 @@
       signinBox.querySelector('#signout').addEventListener('click', () => { credential = null; google.accounts.id.disableAutoSelect(); renderSignin(); rerenderRows(); });
     } else {
       signinBox.innerHTML = '<span id="gbtn"></span><span>Signed-in requests count most. Without an account they still count, just less. We keep a scrambled ID only, never your name or email. <a href="privacy.html" style="color:inherit">Privacy</a></span>';
-      google.accounts.id.renderButton(signinBox.querySelector('#gbtn'), { theme: 'filled_black', size: 'medium', shape: 'pill', text: 'signin_with' });
+      google.accounts.id.renderButton(signinBox.querySelector('#gbtn'), { theme: 'filled_black', size: 'medium', shape: 'pill', text: 'signin_with', locale: 'en' });
     }
   }
 
