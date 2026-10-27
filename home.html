@@ -457,6 +457,9 @@
   .ask-btn { flex: none; font-family: 'Bungee', sans-serif; font-size: 13px; padding: 8px 14px; border: 0; border-radius: 999px; background: var(--cyan); color: var(--night); cursor: pointer; }
   .ask-btn:disabled { background: transparent; color: var(--cyan); box-shadow: inset 0 0 0 2px var(--cyan); cursor: default; }
   .ask-note { flex-basis: 100%; margin: 0; font-size: 13px; color: var(--muted); }
+  .ask-signin { display: flex; gap: 10px 14px; align-items: center; flex-wrap: wrap; margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+  .ask-signin b { color: var(--gold); font-weight: 400; }
+  .ask-signin button { font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -533,6 +536,7 @@
   <section class="ask" id="ask" hidden aria-live="polite">
     <h2>NOT RANKED YET</h2>
     <p>Not on the boards? Ask for him. We research his public record and rank him if he qualifies.</p>
+    <div class="ask-signin" id="askSignin" hidden></div>
     <div class="ask-list" id="askList"></div>
   </section>
 
@@ -675,9 +679,15 @@
   const REQUEST_URL = 'https://humbored-admin.pages.dev/public/request';
   const WP = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&';
   const WD = 'https://www.wikidata.org/w/api.php?format=json&origin=*&action=wbgetclaims&';
+  // Google sign-in: a signed-in request counts once per account and ranks above anonymous ones.
+  // Client ID is public, not a secret; it must match GOOGLE_CLIENT_ID in the admin repo. Empty = sign-in hidden.
+  const GOOGLE_CLIENT_ID = '';
   const RKEY = 'rmr_requested';
+  // per man: 'a' = requested signed in, 'i' = requested anonymously (can still upgrade by signing in)
   let requested = {};
   try { requested = JSON.parse(localStorage.getItem(RKEY)) || {}; } catch {}
+  let credential = null; // Google sign-in token, kept only in memory (expires after an hour)
+  let lastMen = [];
   const plain = n => n.replace(/\s*\(.*\)/, '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
   const onSite = new Set(window.PEOPLE.map(p => plain(p.name)));
   const ask = document.getElementById('ask'), askList = document.getElementById('askList');
@@ -702,14 +712,46 @@
     }));
   }
 
+  // Google's sign-in script loads only once the request card shows up, not on every visit.
+  const signinBox = document.getElementById('askSignin');
+  let gisLoading;
+  function loadGoogle() {
+    if (!GOOGLE_CLIENT_ID) return;
+    gisLoading ??= new Promise((ok, fail) => {
+      const s = document.createElement('script');
+      s.src = 'https://accounts.google.com/gsi/client';
+      s.async = true;
+      s.onload = ok;
+      s.onerror = fail;
+      document.head.appendChild(s);
+    }).then(() => {
+      google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: r => { credential = r.credential; renderSignin(); rerenderRows(); } });
+      renderSignin();
+    }).catch(() => {});
+  }
+
+  function renderSignin() {
+    signinBox.hidden = !GOOGLE_CLIENT_ID || !window.google?.accounts?.id;
+    if (signinBox.hidden) return;
+    if (credential) {
+      signinBox.innerHTML = '<span><b>✓ Signed in with Google.</b> Your requests count fully.</span><button type="button" id="signout">sign out</button>';
+      signinBox.querySelector('#signout').addEventListener('click', () => { credential = null; google.accounts.id.disableAutoSelect(); renderSignin(); rerenderRows(); });
+    } else {
+      signinBox.innerHTML = '<span id="gbtn"></span><span>Signed-in requests count most. Without an account they still count, just less. We keep a scrambled ID only, never your name or email.</span>';
+      google.accounts.id.renderButton(signinBox.querySelector('#gbtn'), { theme: 'filled_black', size: 'medium', shape: 'pill', text: 'signin_with' });
+    }
+  }
+
   function askRow(m) {
-    const done = requested[m.qid];
+    const done = requested[m.qid] === 'a' || (requested[m.qid] && !credential);
     return `<div class="ask-man" data-qid="${esc(m.qid)}" data-title="${esc(m.title)}">
       <span class="ini" aria-hidden="true">${esc(initials(m.title))}</span>
       <span class="who"><b>${esc(m.title)}</b><small>${esc(m.description)} · <a href="${esc(m.wiki)}" target="_blank" rel="noopener">Wikipedia</a></small></span>
       <button class="ask-btn" ${done ? 'disabled' : ''}>${done ? '✓ REQUESTED' : 'REQUEST A RANKING'}</button>
     </div>`;
   }
+
+  const rerenderRows = () => { askList.innerHTML = lastMen.map(askRow).join(''); };
 
   function searchUnranked() {
     clearTimeout(askTimer);
@@ -719,8 +761,10 @@
     askTimer = setTimeout(async () => {
       const men = await findUnranked(term).catch(() => []);
       if (seq !== askSeq) return; // a newer search came in
-      askList.innerHTML = men.map(askRow).join('');
+      lastMen = men;
+      rerenderRows();
       ask.hidden = !men.length;
+      if (men.length) loadGoogle();
     }, 450);
   }
 
@@ -733,13 +777,17 @@
     row.querySelector('.ask-note')?.remove();
     let msg = '';
     try {
-      const r = await fetch(REQUEST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: row.dataset.title }) });
+      const r = await fetch(REQUEST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: row.dataset.title, ...(credential && { credential }) }) });
       const d = await r.json().catch(() => ({}));
+      if (d.signin) { credential = null; renderSignin(); }
       if (!r.ok) throw new Error(d.error || 'Something went wrong. Try again later.');
-      requested[qid] = 1;
+      requested[qid] = d.account ? 'a' : 'i';
       try { localStorage.setItem(RKEY, JSON.stringify(requested)); } catch {}
       btn.textContent = '✓ REQUESTED';
-      msg = "Got it. We'll dig into his public record. If he qualifies, he lands on a board.";
+      msg = !d.counted ? "You've already asked for him. It's counted, thanks."
+        : d.account ? "Got it, counted for your account. We'll dig into his public record. If he qualifies, he lands on a board."
+        : "Got it. We'll dig into his public record. If he qualifies, he lands on a board." + (GOOGLE_CLIENT_ID ? ' Sign in with Google to make it count more.' : '');
     } catch (err) {
       btn.disabled = false;
       btn.textContent = 'REQUEST A RANKING';
