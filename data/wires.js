@@ -199,6 +199,12 @@ window.WIRES = {
   "ed-matthews": {
     "conduct": -1
   },
+  "joe-rogan": {
+    "conduct": -1
+  },
+  "steven-bartlett": {
+    "conduct": -1
+  },
   "donald-trump": {
     "trust": -1,
     "conduct": -1,
@@ -612,6 +618,8 @@ window.ORDER = [
   "kevin-spacey",
   "martin-shkreli",
   "will-smith",
+  "joe-rogan",
+  "steven-bartlett",
   "charlie-sheen",
   "floyd-mayweather",
   "tiger-woods",
