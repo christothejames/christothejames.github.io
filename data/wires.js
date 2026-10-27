@@ -599,6 +599,7 @@ window.WIRES = {
 window.ORDER = [
   "shaquille-oneal",
   "tom-hanks",
+  "keanu-reeves",
   "john-cena",
   "dwayne-johnson",
   "terry-crews",
@@ -608,7 +609,6 @@ window.ORDER = [
   "matt-stone",
   "guy-fieri",
   "hugh-jackman",
-  "keanu-reeves",
   "stephen-colbert",
   "denzel-washington",
   "louis-theroux",
