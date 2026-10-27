@@ -443,6 +443,21 @@
 
   .empty { color: var(--muted); font-style: italic; }
 
+  /* ---------- Not ranked yet: request a man ---------- */
+  .ask { margin-top: 24px; padding: 16px; border: 2px dashed var(--cyan); border-radius: 12px; background: #0b1a3a99; }
+  .ask h2 { margin: 0 0 4px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 20px; color: var(--cyan); }
+  .ask > p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+  .ask-list { display: grid; gap: 10px; }
+  .ask-man { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 10px 12px; border-radius: 8px; background: var(--panel); }
+  .ask-man .ini { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-family: 'Bungee', sans-serif; background: linear-gradient(135deg, #0d2a5c, #1e90ff); }
+  .ask-man .who { flex: 1; min-width: 150px; }
+  .ask-man .who b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; }
+  .ask-man .who small { color: var(--muted); }
+  .ask-man .who a { color: var(--muted); }
+  .ask-btn { flex: none; font-family: 'Bungee', sans-serif; font-size: 13px; padding: 8px 14px; border: 0; border-radius: 999px; background: var(--cyan); color: var(--night); cursor: pointer; }
+  .ask-btn:disabled { background: transparent; color: var(--cyan); box-shadow: inset 0 0 0 2px var(--cyan); cursor: default; }
+  .ask-note { flex-basis: 100%; margin: 0; font-size: 13px; color: var(--muted); }
+
   /* ---------- Footer ---------- */
   footer {
     margin-top: 40px;
@@ -515,6 +530,12 @@
 </div>
 
 <main class="wrap">
+  <section class="ask" id="ask" hidden aria-live="polite">
+    <h2>NOT RANKED YET</h2>
+    <p>Not on the boards? Ask for him. We research his public record and rank him if he qualifies.</p>
+    <div class="ask-list" id="askList"></div>
+  </section>
+
   <section class="board good" id="good">
     <div class="board-top">
       <div class="board-top-text">
@@ -648,7 +669,86 @@
     H.forEach(h => { const im = new Image(); im.src = h.photo; });
     show();
   })();
-  document.getElementById('search').addEventListener('input', render);
+  // ---------- not ranked yet: request a man ----------
+  // Looks the search up on Wikipedia (public figures only) and offers men who aren't on the boards.
+  // Requests go to the private admin site's review queue; nothing is ranked automatically.
+  const REQUEST_URL = 'https://humbored-admin.pages.dev/public/request';
+  const WP = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&';
+  const WD = 'https://www.wikidata.org/w/api.php?format=json&origin=*&action=wbgetclaims&';
+  const RKEY = 'rmr_requested';
+  let requested = {};
+  try { requested = JSON.parse(localStorage.getItem(RKEY)) || {}; } catch {}
+  const plain = n => n.replace(/\s*\(.*\)/, '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+  const onSite = new Set(window.PEOPLE.map(p => plain(p.name)));
+  const ask = document.getElementById('ask'), askList = document.getElementById('askList');
+  let askTimer, askSeq = 0;
+
+  async function isMan(qid) {
+    const ids = async p => (await fetch(WD + `entity=${qid}&property=${p}`).then(r => r.json())).claims?.[p]?.map(c => c.mainsnak?.datavalue?.value?.id) || [];
+    const [kind, gender] = await Promise.all([ids('P31'), ids('P21')]);
+    return kind.includes('Q5') && gender.some(g => g === 'Q6581097' || g === 'Q2449503');
+  }
+
+  async function findUnranked(term) {
+    const s = await fetch(WP + 'action=query&generator=search&gsrlimit=5&prop=pageprops|description&ppprop=wikibase_item|disambiguation&gsrsearch='
+      + encodeURIComponent(term)).then(r => r.json());
+    const pages = Object.values(s.query?.pages || {}).sort((a, b) => a.index - b.index)
+      .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)))
+      .slice(0, 3);
+    const men = await Promise.all(pages.map(p => isMan(p.pageprops.wikibase_item).catch(() => false)));
+    return pages.filter((p, i) => men[i]).map(p => ({
+      qid: p.pageprops.wikibase_item, title: p.title, description: p.description || '',
+      wiki: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(p.title.replace(/ /g, '_')),
+    }));
+  }
+
+  function askRow(m) {
+    const done = requested[m.qid];
+    return `<div class="ask-man" data-qid="${esc(m.qid)}" data-title="${esc(m.title)}">
+      <span class="ini" aria-hidden="true">${esc(initials(m.title))}</span>
+      <span class="who"><b>${esc(m.title)}</b><small>${esc(m.description)} · <a href="${esc(m.wiki)}" target="_blank" rel="noopener">Wikipedia</a></small></span>
+      <button class="ask-btn" ${done ? 'disabled' : ''}>${done ? '✓ REQUESTED' : 'REQUEST A RANKING'}</button>
+    </div>`;
+  }
+
+  function searchUnranked() {
+    clearTimeout(askTimer);
+    const term = document.getElementById('search').value.trim();
+    const seq = ++askSeq;
+    if (term.length < 3) { ask.hidden = true; return; }
+    askTimer = setTimeout(async () => {
+      const men = await findUnranked(term).catch(() => []);
+      if (seq !== askSeq) return; // a newer search came in
+      askList.innerHTML = men.map(askRow).join('');
+      ask.hidden = !men.length;
+    }, 450);
+  }
+
+  askList.addEventListener('click', async e => {
+    const btn = e.target.closest('.ask-btn');
+    if (!btn) return;
+    const row = btn.closest('.ask-man'), qid = row.dataset.qid;
+    btn.disabled = true;
+    btn.textContent = 'SENDING…';
+    row.querySelector('.ask-note')?.remove();
+    let msg = '';
+    try {
+      const r = await fetch(REQUEST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: row.dataset.title }) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(d.error || 'Something went wrong. Try again later.');
+      requested[qid] = 1;
+      try { localStorage.setItem(RKEY, JSON.stringify(requested)); } catch {}
+      btn.textContent = '✓ REQUESTED';
+      msg = "Got it. We'll dig into his public record. If he qualifies, he lands on a board.";
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'REQUEST A RANKING';
+      msg = err.message === 'Failed to fetch' ? "Couldn't send. Check your connection and try again." : err.message;
+    }
+    row.insertAdjacentHTML('beforeend', `<p class="ask-note">${esc(msg)}</p>`);
+  });
+
+  document.getElementById('search').addEventListener('input', () => { render(); searchUnranked(); });
   render();
 })();
 </script>
