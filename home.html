@@ -104,19 +104,49 @@
     flex-wrap: wrap;
   }
 
-  .search {
+  .search-box {
     flex: 1;
     min-width: 200px;
+    position: relative;
+    margin: 0;
+  }
+
+  .search {
+    width: 100%;
     font: inherit;
-    font-size: 15px;
+    font-size: 16px; /* 16px stops iPhones zooming in on focus */
     color: var(--text);
     background: var(--panel);
     border: 1px solid #ffffff33;
     border-radius: 999px;
-    padding: 9px 16px;
+    padding: 9px 96px 9px 16px;
   }
 
   .search:focus { outline: 2px solid var(--cyan); }
+
+  /* Hide the browser's own clear (x) so it doesn't sit under the button */
+  .search::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+  /* Tapping SEARCH closes the phone keyboard so the results can be seen */
+  .search-go {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--cyan);
+    color: var(--night);
+    font-family: 'Bungee', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .search-go svg { width: 14px; height: 14px; }
 
   .jump {
     flex: none;
@@ -520,7 +550,13 @@
 
 <div class="toolbar">
   <div class="wrap">
-    <input class="search" id="search" type="search" placeholder="Search for a man…" aria-label="Search">
+    <form class="search-box" id="search-form" role="search">
+      <input class="search" id="search" type="search" enterkeyhint="search" placeholder="Search for a man…" aria-label="Search">
+      <button class="search-go" type="submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+        SEARCH
+      </button>
+    </form>
     <a class="jump good" href="#good">WANTED</a>
     <a class="jump bad" href="#bad">NOT WANTED</a>
     <a class="jump skills" href="skills.html" title="Learn a life skill">▶ LEARN A SKILL <span class="xp">+XP</span></a>
@@ -797,6 +833,14 @@
   });
 
   document.getElementById('search').addEventListener('input', () => { render(); searchUnranked(); });
+  // SEARCH button (or the keyboard's Go key): close the keyboard and show the results
+  document.getElementById('search-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('search').blur();
+    const top = document.querySelector('main').getBoundingClientRect().top + scrollY
+      - document.querySelector('.toolbar').offsetHeight;
+    scrollTo({ top, behavior: 'smooth' });
+  });
   render();
 })();
 </script>
