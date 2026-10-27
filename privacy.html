@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy · The Real Man Report</title>
+<meta name="description" content="What humbored.com keeps about you, why, for how long, and how to get it deleted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1e90ff;
+    --sky: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --night: #050b1a;
+    --panel: #0c1a36;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--night); }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 45%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--cyan); overflow-wrap: anywhere; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 40px 0 10px; }
+
+  h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, 7vw, 52px);
+    line-height: 1.05;
+    background: linear-gradient(to bottom, #fff, var(--sky) 55%, var(--blue));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+
+  .updated { color: var(--muted); margin: 8px 0 0; font-size: 14px; }
+
+  .short {
+    margin: 24px 0 8px;
+    padding: 16px 18px;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    background: #ffe66d12;
+  }
+  .short h2 { margin-top: 0; color: var(--gold); }
+  .short ul { margin: 0; padding-left: 20px; }
+
+  h2 {
+    margin: 32px 0 8px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cyan);
+  }
+
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 400; font-size: 13px; }
+
+
+  footer { margin-top: 40px; padding: 24px 0 60px; border-top: 3px double #7cc4ff77; text-align: center; }
+  footer a { font-family: 'Bungee', sans-serif; text-decoration: none; }
+
+  @media (max-width: 560px) {
+    table, tbody, tr, td { display: block; }
+    thead { display: none; }
+    tr { padding: 8px 0; border-bottom: 1px solid var(--line); }
+    td { border: 0; padding: 2px 0; }
+    td:first-child { font-family: 'Bungee', sans-serif; color: var(--cyan); }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>PRIVACY</h1>
+  <p class="updated">What we keep about you, why, and for how long. Last updated 27 October 2026.</p>
+</header>
+
+<main class="wrap">
+  <section class="short">
+    <h2>THE SHORT VERSION</h2>
+    <ul>
+      <li>No ads. No tracking. No analytics. We set no cookies.</li>
+      <li>We never ask for or keep your name or email.</li>
+      <li>If you request a man to be ranked, we keep a scrambled code, not who you are, so each person counts once.</li>
+      <li>Things you save on this site (reactions, skills, your home plan, test results) stay in your own browser. We never see them.</li>
+    </ul>
+  </section>
+
+  <h2>WHO RUNS THIS SITE</h2>
+  <p>humbored.com is run by Simon James.
+    Contact: <a href="mailto:humbored.contact@gmail.com">humbored.contact@gmail.com</a>.
+    Write to this address for any privacy question or request.</p>
+
+  <h2>JUST VISITING</h2>
+  <p>The site is hosted on <b>GitHub Pages</b>. Like any web host, GitHub's servers see your IP address and what your browser asks for, and may keep this in short-term logs for security. We don't get those logs.
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's privacy statement</a>.</p>
+  <p>The fonts come from <b>Google Fonts</b>, so your browser contacts Google's servers and Google sees your IP address.
+    <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts privacy</a>.</p>
+  <p class="muted">Why: to deliver and show the website (legitimate interest, GDPR Art. 6(1)(f)).</p>
+
+  <h2>SEARCHING FOR A MAN</h2>
+  <p>When you type 3 or more letters into the search, your browser also looks the words up on <b>Wikipedia and Wikidata</b> to find men who aren't on the boards yet. Wikimedia sees what you typed and your IP address. We don't keep your searches.
+    <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikimedia's privacy policy</a>.</p>
+
+  <h2>REQUESTING A RANKING</h2>
+  <p>When you press <b>REQUEST A RANKING</b>, we keep:</p>
+  <table>
+    <thead><tr><th>What</th><th>Why</th><th>How long</th></tr></thead>
+    <tbody>
+      <tr><td>The man's name, Wikipedia link and request counts</td><td>To see who people want ranked, and how much</td><td>Until we've dealt with the request</td></tr>
+      <tr><td>Your IP address</td><td>To stop spam (5 requests a minute)</td><td>60 seconds</td></tr>
+      <tr><td>A scrambled code made from your IP address (no account)</td><td>So one connection counts once per man</td><td>30 days</td></tr>
+      <tr><td>A scrambled code made from your Google account ID (signed in)</td><td>So one account counts once per man</td><td>12 months</td></tr>
+    </tbody>
+  </table>
+  <p>The codes are one-way: we can't turn them back into your IP address or your account, and we never see your name, email or photo.
+    This is stored with <b>Cloudflare</b>, which hosts our request service for us.
+    <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's privacy policy</a>.</p>
+  <p class="muted">Why: to run the request queue fairly and stop spam (legitimate interest, GDPR Art. 6(1)(f)). Signing in is your choice (consent, GDPR Art. 6(1)(a)); you can request without an account.</p>
+
+  <h2>SIGNING IN WITH GOOGLE</h2>
+  <p>Signing in is optional. Google's sign-in script only loads once the request box appears, not on every visit. When you sign in, Google tells us a permanent ID for your account, and we turn it straight into the scrambled code above. Google will know you signed in to humbored.com.
+    Your sign-in only lasts while the page is open; we don't save it.
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
+
+  <h2>SAVED ONLY IN YOUR BROWSER</h2>
+  <p>Some pages remember things in your browser's own storage on your device. It never leaves your device, and we can't see it:
+    profile reactions, which men you've requested, your skills list, your home game plan, your Manly Test results and your Mental Health picks.
+    Clear your browser's site data to delete it.</p>
+
+  <h2>VIDEOS AND LINKS</h2>
+  <p>Skill videos play from <b>YouTube</b> in its privacy-enhanced mode, and only after you press play. Then YouTube (Google) sees your IP address and may set its own cookies.
+    Links to news sites, Wikipedia, Instagram and crisis lines take you to other sites with their own privacy rules.</p>
+
+  <h2>DATA OUTSIDE THE EU</h2>
+  <p>GitHub, Google, Cloudflare and Wikimedia may handle data in the USA. GitHub, Google and Cloudflare take part in the EU–US Data Privacy Framework.</p>
+
+  <h2>YOUR RIGHTS</h2>
+  <p>You can ask to see, correct or delete your data, to limit how it's used, or object to it being used. Write to <a href="mailto:humbored.contact@gmail.com">humbored.contact@gmail.com</a>.
+    Because we only keep scrambled codes, we usually can't tell which entry is yours, so we'll explain what we can and can't find.
+    You can also complain to a data protection authority, such as the one where you live.</p>
+
+  <h2>CHANGES</h2>
+  <p>If we change what we keep, we'll update this page and the date at the top.</p>
+</main>
+
+<footer class="wrap">
+  <a href="home.html">← BACK TO THE REAL MAN REPORT</a>
+</footer>
+
+</body>
+</html>

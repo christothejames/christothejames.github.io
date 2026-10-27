@@ -577,6 +577,7 @@
     <p id="credits"></p>
   </details>
   <p><a href="index.html">↺ RE-ENTER THE MANOSPHERE</a></p>
+  <p><a href="privacy.html" style="color:var(--muted);font-size:12px">PRIVACY</a></p>
 </footer>
 
 <script src="data/people.js"></script>
@@ -737,7 +738,7 @@
       signinBox.innerHTML = '<span><b>✓ Signed in with Google.</b> Your requests count fully.</span><button type="button" id="signout">sign out</button>';
       signinBox.querySelector('#signout').addEventListener('click', () => { credential = null; google.accounts.id.disableAutoSelect(); renderSignin(); rerenderRows(); });
     } else {
-      signinBox.innerHTML = '<span id="gbtn"></span><span>Signed-in requests count most. Without an account they still count, just less. We keep a scrambled ID only, never your name or email.</span>';
+      signinBox.innerHTML = '<span id="gbtn"></span><span>Signed-in requests count most. Without an account they still count, just less. We keep a scrambled ID only, never your name or email. <a href="privacy.html" style="color:inherit">Privacy</a></span>';
       google.accounts.id.renderButton(signinBox.querySelector('#gbtn'), { theme: 'filled_black', size: 'medium', shape: 'pill', text: 'signin_with' });
     }
   }
