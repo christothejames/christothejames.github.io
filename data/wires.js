@@ -58,6 +58,7 @@ window.WIRES = {
   },
   "andrew-tate": {
     "body": 1,
+    "trust": -1,
     "conduct": -1,
     "people": -1
   },
@@ -350,6 +351,7 @@ window.WIRES = {
   },
   "mrbeast": {
     "community": 1,
+    "trust": -1,
     "conduct": -1
   },
   "jeremy-clarkson": {
@@ -470,8 +472,7 @@ window.WIRES = {
   "logan-paul": {
     "community": 1,
     "family": 1,
-    "trust": -1,
-    "conduct": -1
+    "trust": -1
   },
   "mark-wahlberg": {
     "community": 1,
@@ -592,6 +593,20 @@ window.WIRES = {
   "paddy-pimblett": {
     "community": 1,
     "family": 1
+  },
+  "matthew-mcconaughey": {
+    "community": 1,
+    "family": 1
+  },
+  "idris-elba": {
+    "body": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "michael-douglas": {
+    "body": 1,
+    "community": 1,
+    "family": 1
   }
 };
 
@@ -614,7 +629,6 @@ window.ORDER = [
   "marcus-rashford",
   "gordon-ramsay",
   "stephen-fry",
-  "mike-tyson",
   "dwayne-johnson",
   "joe-wicks",
   "michael-sheen",
@@ -652,6 +666,7 @@ window.ORDER = [
   "patrick-stewart",
   "harry-kane",
   "ryan-reynolds",
+  "matthew-mcconaughey",
   "everyday-dad",
   "volunteer-coach",
   "chris-hadfield",
@@ -663,6 +678,7 @@ window.ORDER = [
   "jamie-oliver",
   "patrick-mahomes",
   "stephen-curry",
+  "idris-elba",
   "levison-wood",
   "ben-parkinson",
   "andrew-pollard",
@@ -674,6 +690,7 @@ window.ORDER = [
   "juan-mata",
   "jonathan-van-tam",
   "tom-daley",
+  "michael-douglas",
   "steve-irwin",
   "roger-federer",
   "hugh-fearnley-whittingstall",
@@ -681,6 +698,8 @@ window.ORDER = [
   "marco-pierre-white",
   "ben-stokes",
   "johnny-depp",
+  "kevin-spacey",
+  "mrbeast",
   "elon-musk",
   "donald-trump",
   "cristiano-ronaldo",
@@ -689,10 +708,10 @@ window.ORDER = [
   "jeff-bezos",
   "andrew-tate",
   "chris-brown",
+  "mike-tyson",
   "russell-brand",
   "clavicular",
-  "mrbeast",
-  "kevin-spacey",
+  "logan-paul",
   "martin-shkreli",
   "will-smith",
   "joe-rogan",
@@ -708,7 +727,6 @@ window.ORDER = [
   "alex-jones",
   "oscar-pistorius",
   "kanye-west",
-  "logan-paul",
   "harvey-weinstein",
   "gerard-depardieu",
   "myron-gaines",
