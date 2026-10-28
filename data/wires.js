@@ -702,6 +702,30 @@ window.WIRES = {
   },
   "mark-ruffalo": {
     "community": 1
+  },
+  "sunny-balwani": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "nidal-hasan": {
+    "service": 1,
+    "conduct": -1
+  },
+  "jordan-belfort": {
+    "trust": -1
+  },
+  "jon-jones": {
+    "body": 1,
+    "conduct": -1
+  },
+  "jay-z": {
+    "community": 1,
+    "family": -1,
+    "conduct": -1
+  },
+  "gino-dacampo": {
+    "trust": -1,
+    "conduct": -1
   }
 };
 
@@ -837,11 +861,15 @@ window.ORDER = [
   "mike-tyson",
   "russell-brand",
   "clavicular",
+  "nidal-hasan",
   "logan-paul",
+  "sunny-balwani",
   "martin-shkreli",
   "will-smith",
+  "jay-z",
   "joe-rogan",
   "steven-bartlett",
+  "jon-jones",
   "charlie-sheen",
   "floyd-mayweather",
   "tiger-woods",
@@ -852,7 +880,9 @@ window.ORDER = [
   "tristan-tate",
   "alex-jones",
   "oscar-pistorius",
+  "jordan-belfort",
   "kanye-west",
+  "gino-dacampo",
   "harvey-weinstein",
   "gerard-depardieu",
   "myron-gaines",
