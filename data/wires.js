@@ -607,6 +607,101 @@ window.WIRES = {
     "body": 1,
     "community": 1,
     "family": 1
+  },
+  "jonathan-groff": {
+    "community": 1
+  },
+  "ian-mckellen": {
+    "community": 1
+  },
+  "valentino-rossi": {
+    "body": 1,
+    "community": 1
+  },
+  "lewis-pugh": {
+    "body": 1,
+    "community": 1
+  },
+  "boyan-slat": {
+    "community": 1
+  },
+  "munya-chawawa": {
+    "community": 1
+  },
+  "gabor-mate": {
+    "community": 1
+  },
+  "george-clooney": {
+    "community": 1
+  },
+  "avi-schiffmann": {
+    "community": 1
+  },
+  "jordan-stephens": {
+    "community": 1
+  },
+  "bukayo-saka": {
+    "community": 1
+  },
+  "loyle-carner": {
+    "community": 1
+  },
+  "barack-obama": {
+    "community": 1
+  },
+  "daniel-day-lewis": {
+    "community": 1
+  },
+  "daniel-craig": {
+    "community": 1
+  },
+  "ncuti-gatwa": {
+    "community": 1
+  },
+  "lewis-capaldi": {
+    "community": 1
+  },
+  "taron-egerton": {
+    "community": 1
+  },
+  "christian-bale": {
+    "community": 1
+  },
+  "rupaul": {
+    "community": 1
+  },
+  "stephen-graham": {
+    "community": 1
+  },
+  "markiplier": {
+    "community": 1
+  },
+  "steve-carell": {
+    "community": 1
+  },
+  "tom-holland": {
+    "community": 1
+  },
+  "doctor-mike": {
+    "community": 1
+  },
+  "viggo-mortensen": {
+    "community": 1
+  },
+  "bill-murray": {
+    "community": 1
+  },
+  "jesse-eisenberg": {
+    "community": 1
+  },
+  "khaby-lame": {
+    "community": 1
+  },
+  "nicolas-cage": {
+    "community": 1
+  },
+  "mark-ruffalo": {
+    "community": 1
   }
 };
 
@@ -686,16 +781,47 @@ window.ORDER = [
   "ray-mears",
   "ranulph-fiennes",
   "mo-farah",
+  "jordan-stephens",
   "bear-grylls",
   "juan-mata",
   "jonathan-van-tam",
   "tom-daley",
   "michael-douglas",
+  "george-clooney",
   "steve-irwin",
   "roger-federer",
   "hugh-fearnley-whittingstall",
   "tim-berners-lee",
+  "jonathan-groff",
+  "ian-mckellen",
+  "valentino-rossi",
+  "lewis-pugh",
+  "boyan-slat",
+  "munya-chawawa",
+  "gabor-mate",
+  "avi-schiffmann",
+  "bukayo-saka",
+  "loyle-carner",
+  "daniel-day-lewis",
+  "daniel-craig",
+  "ncuti-gatwa",
+  "lewis-capaldi",
+  "taron-egerton",
+  "rupaul",
+  "stephen-graham",
+  "markiplier",
+  "tom-holland",
+  "doctor-mike",
+  "viggo-mortensen",
+  "bill-murray",
+  "jesse-eisenberg",
+  "khaby-lame",
+  "mark-ruffalo",
   "marco-pierre-white",
+  "barack-obama",
+  "christian-bale",
+  "steve-carell",
+  "nicolas-cage",
   "ben-stokes",
   "johnny-depp",
   "kevin-spacey",
