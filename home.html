@@ -677,7 +677,10 @@
 
   function render() {
     const term = document.getElementById('search').value.trim().toLowerCase();
-    const match = p => !term || (p.name + ' ' + p.role).toLowerCase().includes(term);
+    // Every typed word must start a word in his name or role ("kea ree" finds Keanu Reeves)
+    const words = s => s.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+    const typed = words(term);
+    const match = p => { const his = words((p.name + ' ' + p.role).toLowerCase()); return typed.every(t => his.some(w => w.startsWith(t))); };
     // Board order comes from the private ranking (data/wires.js)
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
     const mids = window.CONTROVERSIAL || [];
