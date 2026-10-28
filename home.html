@@ -245,81 +245,6 @@
   }
 
 
-  /* ---------- Random hero card ---------- */
-  .board-top { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
-  .board-top-text { flex: 1; min-width: 0; }
-
-  .hero-card {
-    flex: none;
-    width: 230px;
-    margin: 4px 0 18px;
-    text-align: center;
-  }
-
-  .hero-btn {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 1;
-    padding: 0;
-    border: 3px solid #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--panel);
-    box-shadow: 0 0 24px #1e90ffaa, 0 10px 30px #0008;
-    transition: transform 0.15s;
-  }
-
-  .hero-btn:hover { transform: scale(1.03) rotate(-1deg); }
-  .hero-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-
-  .hero-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  .hero-shout {
-    position: absolute;
-    left: -8%;
-    right: -8%;
-    bottom: -2%;
-    padding: 5px 0 3px;
-    background: var(--red);
-    border-top: 3px solid #fff;
-    border-bottom: 3px solid #fff;
-    color: #fff;
-    font-family: 'Bungee', sans-serif;
-    font-size: 22px;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    transform: rotate(-5deg);
-    text-shadow: 3px 3px 0 #000a;
-    box-shadow: 0 6px 18px #0009;
-  }
-
-  .hero-dice {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 22px;
-    filter: drop-shadow(0 2px 3px #000a);
-  }
-
-  .hero-card figcaption { margin-top: 8px; display: grid; gap: 2px; }
-  .hero-name { font-family: 'Bungee', sans-serif; font-size: 16px; }
-  .hero-hint { font-size: 12px; color: var(--muted); }
-  .hero-credit { font-size: 10px; color: var(--muted); text-decoration: underline; }
-
-  .hero-btn.pop img { animation: heroIn 0.35s ease-out; }
-  .hero-btn.pop .hero-shout { animation: slam 0.4s cubic-bezier(.2,1.6,.4,1); }
-  @keyframes heroIn { from { transform: scale(1.15); filter: brightness(2); } to { transform: none; filter: none; } }
-  @keyframes slam { from { transform: rotate(-5deg) scale(2.2); opacity: 0; } to { transform: rotate(-5deg) scale(1); opacity: 1; } }
-
-  @media (max-width: 760px) {
-    .board-top { flex-direction: column; align-items: center; }
-    .board-top-text { width: 100%; }
-    .hero-card { width: 200px; margin: 0 auto 20px; }
-    .hero-shout { font-size: 18px; }
-  }
-
   /* ---------- Poster ---------- */
   .poster {
     position: relative;
@@ -585,24 +510,8 @@
   </section>
 
   <section class="board good" id="good">
-    <div class="board-top">
-      <div class="board-top-text">
-        <div class="board-head"><h2>HIGH RATED</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many High Rated men to show"></select></div>
-        <p class="board-sub">Inspiring records: courage, service, family, and treating women as equals.</p>
-      </div>
-      <figure class="hero-card">
-        <button class="hero-btn" id="heroBtn" aria-label="Show another hero">
-          <img id="heroImg" src="" alt="">
-          <span class="hero-shout" id="heroShout"></span>
-          <span class="hero-dice" aria-hidden="true">🎲</span>
-        </button>
-        <figcaption>
-          <span class="hero-name" id="heroName"></span>
-          <span class="hero-hint">Tap for another hero</span>
-          <a class="hero-credit" id="heroCredit" target="_blank" rel="noopener"></a>
-        </figcaption>
-      </figure>
-    </div>
+    <div class="board-head"><h2>HIGH RATED</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many High Rated men to show"></select></div>
+    <p class="board-sub">Inspiring records: courage, service, family, and treating women as equals.</p>
     <div class="posters" id="goodGrid"></div>
   </section>
 
@@ -634,7 +543,6 @@
 
 <script src="data/people.js"></script>
 <script src="data/wires.js"></script>
-<script src="data/heroes.js"></script>
 <script>
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -713,31 +621,6 @@
     `${esc(p.name)} by <a href="${esc(p.photoSource || '#')}" target="_blank" rel="noopener" style="font-family:inherit;color:inherit;text-decoration:underline">${esc(p.photoCredit)}</a>`).join(' · ');
   document.querySelector('.credits').hidden = !cr.length;
 
-  // ---------- random hero ----------
-  (() => {
-    const H = window.HEROES || [];
-    if (!H.length) return;
-    const btn = document.getElementById('heroBtn');
-    let i = 0;
-    function show() {
-      const h = H[i];
-      document.getElementById('heroImg').src = h.photo;
-      document.getElementById('heroImg').alt = h.name;
-      document.getElementById('heroShout').textContent = h.shout;
-      document.getElementById('heroName').textContent = h.name;
-      const c = document.getElementById('heroCredit');
-      c.textContent = 'Photo: ' + h.credit;
-      c.href = h.source;
-      btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
-    }
-    btn.addEventListener('click', () => {
-      if (H.length > 1) { let n; do { n = Math.floor(Math.random() * H.length); } while (n === i); i = n; }
-      show();
-    });
-    // preload the others so clicks feel instant
-    H.forEach(h => { const im = new Image(); im.src = h.photo; });
-    show();
-  })();
   // ---------- not ranked yet: request a man ----------
   // Looks the search up on Wikipedia (public figures only) and offers men who aren't on the boards.
   // Requests go to the private admin site's review queue; nothing is ranked automatically.
