@@ -639,6 +639,9 @@
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  // Search words: every typed word must start a word in the text, any order ("kea ree" finds Keanu Reeves)
+  const words = s => s.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+  const startsWords = (typed, text) => { const his = words(text); return typed.every(t => his.some(w => w.startsWith(t))); };
 
   document.getElementById('today').textContent =
     new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
@@ -677,10 +680,8 @@
 
   function render() {
     const term = document.getElementById('search').value.trim().toLowerCase();
-    // Every typed word must start a word in his name or role ("kea ree" finds Keanu Reeves)
-    const words = s => s.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
     const typed = words(term);
-    const match = p => { const his = words((p.name + ' ' + p.role).toLowerCase()); return typed.every(t => his.some(w => w.startsWith(t))); };
+    const match = p => startsWords(typed, p.name + ' ' + p.role);
     // Board order comes from the private ranking (data/wires.js)
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
     const mids = window.CONTROVERSIAL || [];
@@ -765,11 +766,15 @@
     return new Set(r.results.bindings.map(b => b.i.value.split('/').pop()));
   }
 
-  // Up to 3 men (not on the boards) among the first 20 pages a Wikipedia generator finds
-  async function menFrom(generator) {
-    const s = await fetch(WP + 'action=query&prop=pageprops|description&ppprop=wikibase_item|disambiguation&' + generator).then(r => r.json());
+  // Up to 3 men (not on the boards) among the first 20 pages a Wikipedia generator finds.
+  // With typed words, a page stays only if its title, or one of its redirects
+  // ("Ian McKaye" → Ian MacKaye), has every word starting a word.
+  async function menFrom(generator, typed) {
+    const s = await fetch(WP + 'action=query&prop=pageprops|description|redirects&rdlimit=max&rdnamespace=0&ppprop=wikibase_item|disambiguation&' + generator).then(r => r.json());
+    const named = p => [p.title, ...(p.redirects || []).map(r => r.title)].some(n => startsWords(typed, n));
     const pages = Object.values(s.query?.pages || {}).sort((a, b) => a.index - b.index)
-      .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)));
+      .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)))
+      .filter(p => !typed || named(p));
     if (!pages.length) return [];
     const men = await menAmong(pages.map(p => p.pageprops.wikibase_item));
     return pages.filter(p => men.has(p.pageprops.wikibase_item)).slice(0, 3).map(p => ({
@@ -780,11 +785,11 @@
 
   async function findUnranked(term) {
     // Prefix search on titles, so a half-typed name ("ian mck") finds Ian McKellen
-    const men = await menFrom('generator=prefixsearch&gpslimit=20&gpssearch=' + encodeURIComponent(term));
+    const men = await menFrom('generator=prefixsearch&gpslimit=20&gpssearch=' + encodeURIComponent(term), words(term));
     if (men.length) return men;
     // Nothing starts with it: look for every word anywhere in the title ("mckellen")
-    const words = term.split(/\s+/).map(w => 'intitle:' + w.replace(/"/g, '')).join(' ');
-    return menFrom('generator=search&gsrlimit=20&gsrsearch=' + encodeURIComponent(words));
+    const intitle = term.split(/\s+/).map(w => 'intitle:' + w.replace(/"/g, '')).join(' ');
+    return menFrom('generator=search&gsrlimit=20&gsrsearch=' + encodeURIComponent(intitle));
   }
 
   // Google's sign-in script loads only once the request card shows up, not on every visit.
