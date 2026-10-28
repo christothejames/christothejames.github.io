@@ -739,7 +739,7 @@
   // Requests go to the private admin site's review queue; nothing is ranked automatically.
   const REQUEST_URL = 'https://humbored-admin.pages.dev/public/request';
   const WP = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&';
-  const WD = 'https://www.wikidata.org/w/api.php?format=json&origin=*&action=wbgetclaims&';
+  const WDQ = 'https://query.wikidata.org/sparql?format=json&query=';
   // Google sign-in: a signed-in request counts once per account and ranks above anonymous ones.
   // Client ID is public, not a secret; it must match GOOGLE_CLIENT_ID in the admin repo. Empty = sign-in hidden.
   const GOOGLE_CLIENT_ID = '958568316588-du1d98s3ghbpiudet67kvr5s0140stna.apps.googleusercontent.com';
@@ -754,20 +754,23 @@
   const ask = document.getElementById('ask'), askList = document.getElementById('askList');
   let askTimer, askSeq = 0;
 
-  async function isMan(qid) {
-    const ids = async p => (await fetch(WD + `entity=${qid}&property=${p}`).then(r => r.json())).claims?.[p]?.map(c => c.mainsnak?.datavalue?.value?.id) || [];
-    const [kind, gender] = await Promise.all([ids('P31'), ids('P21')]);
-    return kind.includes('Q5') && gender.some(g => g === 'Q6581097' || g === 'Q2449503');
+  // One Wikidata query for all candidates: which are human (Q5) and male or trans male
+  async function menAmong(qids) {
+    const q = `SELECT ?i WHERE { VALUES ?i { ${qids.map(id => 'wd:' + id).join(' ')} }
+      ?i wdt:P31 wd:Q5; wdt:P21 ?g. VALUES ?g { wd:Q6581097 wd:Q2449503 } }`;
+    const r = await fetch(WDQ + encodeURIComponent(q)).then(r => r.json());
+    return new Set(r.results.bindings.map(b => b.i.value.split('/').pop()));
   }
 
   async function findUnranked(term) {
-    const s = await fetch(WP + 'action=query&generator=search&gsrlimit=5&prop=pageprops|description&ppprop=wikibase_item|disambiguation&gsrsearch='
+    // Prefix search on titles, so a half-typed name ("ian mck") finds Ian McKellen
+    const s = await fetch(WP + 'action=query&generator=prefixsearch&gpslimit=20&prop=pageprops|description&ppprop=wikibase_item|disambiguation&gpssearch='
       + encodeURIComponent(term)).then(r => r.json());
     const pages = Object.values(s.query?.pages || {}).sort((a, b) => a.index - b.index)
-      .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)))
-      .slice(0, 3);
-    const men = await Promise.all(pages.map(p => isMan(p.pageprops.wikibase_item).catch(() => false)));
-    return pages.filter((p, i) => men[i]).map(p => ({
+      .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)));
+    if (!pages.length) return [];
+    const men = await menAmong(pages.map(p => p.pageprops.wikibase_item));
+    return pages.filter(p => men.has(p.pageprops.wikibase_item)).slice(0, 3).map(p => ({
       qid: p.pageprops.wikibase_item, title: p.title, description: p.description || '',
       wiki: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(p.title.replace(/ /g, '_')),
     }));
