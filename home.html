@@ -762,10 +762,9 @@
     return new Set(r.results.bindings.map(b => b.i.value.split('/').pop()));
   }
 
-  async function findUnranked(term) {
-    // Prefix search on titles, so a half-typed name ("ian mck") finds Ian McKellen
-    const s = await fetch(WP + 'action=query&generator=prefixsearch&gpslimit=20&prop=pageprops|description&ppprop=wikibase_item|disambiguation&gpssearch='
-      + encodeURIComponent(term)).then(r => r.json());
+  // Up to 3 men (not on the boards) among the first 20 pages a Wikipedia generator finds
+  async function menFrom(generator) {
+    const s = await fetch(WP + 'action=query&prop=pageprops|description&ppprop=wikibase_item|disambiguation&' + generator).then(r => r.json());
     const pages = Object.values(s.query?.pages || {}).sort((a, b) => a.index - b.index)
       .filter(p => p.pageprops?.wikibase_item && p.pageprops.disambiguation === undefined && !onSite.has(plain(p.title)));
     if (!pages.length) return [];
@@ -774,6 +773,15 @@
       qid: p.pageprops.wikibase_item, title: p.title, description: p.description || '',
       wiki: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(p.title.replace(/ /g, '_')),
     }));
+  }
+
+  async function findUnranked(term) {
+    // Prefix search on titles, so a half-typed name ("ian mck") finds Ian McKellen
+    const men = await menFrom('generator=prefixsearch&gpslimit=20&gpssearch=' + encodeURIComponent(term));
+    if (men.length) return men;
+    // Nothing starts with it: look for every word anywhere in the title ("mckellen")
+    const words = term.split(/\s+/).map(w => 'intitle:' + w.replace(/"/g, '')).join(' ');
+    return menFrom('generator=search&gsrlimit=20&gsrsearch=' + encodeURIComponent(words));
   }
 
   // Google's sign-in script loads only once the request card shows up, not on every visit.
