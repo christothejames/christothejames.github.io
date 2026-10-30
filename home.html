@@ -179,7 +179,7 @@
 
   .count { font-size: 14px; color: var(--muted); }
 
-  /* How many posters each board shows (top 10 by default) */
+  /* How many posters each board shows (top 12 by default) */
   .show {
     font-family: 'Bungee', sans-serif;
     font-size: 13px;
@@ -485,22 +485,22 @@
     const order = (a, b) => tier(a) === 'mid' ? mids.indexOf(a.id) - mids.indexOf(b.id) : rank(a) - rank(b);
     ['good', 'mid', 'bad'].forEach(list => {
       const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)).sort(order);
-      // Each board shows its top 10; the dropdown shows more. A search shows every match.
+      // Each board shows its top 12 (fills full rows); the dropdown shows more. A search shows every match.
       const pick = document.getElementById(list + 'Show');
       const n = term ? all.length : (pick.value === 'all' ? all.length : +pick.value);
       const shown = all.slice(0, n);
-      pick.hidden = !!term || all.length <= 10;
+      pick.hidden = !!term || all.length <= 12;
       document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
       document.getElementById(list + 'Count').textContent = shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
     });
   }
 
-  // Dropdown options: top 10, top 20, ... and all
+  // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns)
   ['good', 'mid', 'bad'].forEach(list => {
     const total = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list).length;
     const pick = document.getElementById(list + 'Show');
-    const steps = [10, 20, 30, 50].filter(s => s < total);
+    const steps = [12, 24, 36, 48].filter(s => s < total);
     pick.innerHTML = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
     pick.addEventListener('change', render);
   });
