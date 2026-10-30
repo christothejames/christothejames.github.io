@@ -12,8 +12,10 @@
     --sky: #7cc4ff;
     --cyan: #3ef2ff;
     --gold: #ffe66d;
+    --amber: #ff9f1c;
     --red: #ff3b3b;
     --panel: #0b1630;
+    --muted: #a9bfdc;
   }
 
   * { box-sizing: border-box; }
@@ -34,140 +36,102 @@
 
   a { color: var(--cyan); }
 
-  header {
-    padding: 18px 16px 10px;
-    text-align: center;
-  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
 
-  .back {
-    display: inline-block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    text-decoration: none;
-  }
-
+  /* ---------- compact header ---------- */
+  header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 14px; }
+  .back { font-size: 14px; text-decoration: none; }
   h1 {
     margin: 0;
     font-family: 'Monoton', cursive;
     font-weight: 400;
-    font-size: clamp(34px, 9vw, 64px);
+    font-size: clamp(28px, 6vw, 44px);
     color: var(--sky);
     text-shadow: 0 0 10px var(--blue), 0 0 28px #1e90ff88;
     letter-spacing: 0.04em;
+    line-height: 1.1;
+  }
+  .sub { margin: 0; font-size: 14px; color: var(--muted); flex: 1 1 260px; }
+
+  /* ---------- one control bar ---------- */
+  .bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-top: 12px;
+  }
+  .tiers { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #0b1630; border: 1px solid #1e90ff44; }
+  .tiers button {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 0; border-radius: 999px;
+    padding: 7px 13px;
+    background: none;
+    color: var(--muted);
+    font: 14px 'Righteous', sans-serif;
+    cursor: pointer;
+  }
+  .tiers button i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .tiers button[aria-pressed="true"] { background: #1a3366; color: #fff; }
+  .tiers button:focus-visible, .bar select:focus-visible, .how summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+  .bar label { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+  .bar select {
+    padding: 7px 28px 7px 12px;
+    border-radius: 999px;
+    border: 1px solid #1e90ff55;
+    background: #0b1630 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237cc4ff' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 11px center;
+    color: #e8f3ff;
+    font: 14px 'Righteous', sans-serif;
+    appearance: none;
+    cursor: pointer;
   }
 
-  .tag {
-    margin: 6px 0 0;
-    font-family: 'Bungee', sans-serif;
-    color: var(--cyan);
-    font-size: clamp(13px, 3.4vw, 17px);
-    text-shadow: 0 0 8px #3ef2ffaa;
-  }
-
-  .intro {
-    max-width: 560px;
-    margin: 10px auto 0;
-    font-size: 15px;
-    line-height: 1.45;
-    color: #c7dcff;
-  }
-
-  .how {
-    max-width: 560px;
-    margin: 14px auto 0;
-    padding: 10px 14px;
-    border: 2px solid #3ef2ff66;
-    border-radius: 12px;
-    background: #0b1630cc;
-    font-size: 14px;
-    line-height: 1.45;
-    color: #c7dcff;
-  }
-
-  .how b {
-    font-family: 'Bungee', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--cyan);
-  }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 16px;
-    padding: 10px 16px 0;
-    font-size: 13px;
-    color: #c7dcff;
-  }
-
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-  .line { width: 22px; height: 3px; border-radius: 2px; display: inline-block; }
-
-  .stage {
-    position: relative;
-    max-width: 1100px;
-    margin: 12px auto 0;
-    padding: 0 16px;
-  }
-
+  /* ---------- the bubble field ---------- */
+  .stage { position: relative; margin-top: 12px; }
   canvas {
     display: block;
     width: 100%;
-    height: min(88vh, 860px);
-    border-radius: 16px;
-    border: 2px solid #1e90ff55;
-    background:
-      linear-gradient(transparent 0 calc(100% - 1px), #1e90ff1a 0) 0 0 / 100% 40px,
-      linear-gradient(90deg, transparent 0 calc(100% - 1px), #1e90ff1a 0) 0 0 / 40px 100%,
-      linear-gradient(#1b4f8f 0%, #0d2752 30%, #07112a 52%, #04081a 78%, #020409 100%);
-    box-shadow: 0 0 30px #1e90ff33 inset;
+    height: max(480px, calc(100vh - 190px));
+    border-radius: 18px;
+    border: 1px solid #1e90ff44;
+    background: radial-gradient(ellipse at 50% 45%, #0d2348 0%, #071230 55%, #040a1c 100%);
     touch-action: none;
-    cursor: grab;
   }
-
-  canvas.dragging { cursor: grabbing; }
+  @media (pointer: coarse) { canvas { touch-action: pan-y; } }
+  .empty {
+    position: absolute; inset: 0;
+    display: none; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 15px; pointer-events: none;
+  }
+  .empty.on { display: flex; }
 
   .card {
     position: absolute;
-    left: 28px;
-    bottom: 12px;
-    width: min(340px, calc(100% - 56px));
+    left: 14px;
+    bottom: 14px;
+    width: min(340px, calc(100% - 28px));
     padding: 14px 16px;
     border-radius: 14px;
-    background: #0b1630ee;
+    background: #0b1630f2;
     border: 2px solid var(--blue);
-    box-shadow: 0 10px 30px #000a, 0 0 20px #1e90ff55;
+    box-shadow: 0 10px 30px #000a;
     display: none;
   }
-
   .card.on { display: block; }
-
-  /* phones: the canvas is taller than the screen, so keep the card in view */
+  .card.good { border-color: var(--gold); }
+  .card.mid { border-color: var(--amber); }
+  .card.bad { border-color: var(--red); }
   @media (max-width: 551px) {
     .card { position: fixed; left: 16px; right: 16px; bottom: 16px; width: auto; z-index: 10; }
   }
-  .card.good { border-color: var(--gold); }
-  .card.bad { border-color: var(--red); }
-
-  .card h2 {
-    margin: 0 28px 2px 0;
-    font-family: 'Bungee', sans-serif;
-    font-size: 18px;
-  }
-
+  .card h2 { margin: 0 28px 2px 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; }
   .card.good h2 { color: var(--gold); }
+  .card.mid h2 { color: var(--amber); }
   .card.bad h2 { color: var(--red); }
-
   .card .role { margin: 0 0 8px; font-size: 13px; color: var(--sky); }
   .card .reason { margin: 0 0 10px; font-size: 15px; line-height: 1.35; }
-  .card .row { margin: 4px 0; font-size: 13px; line-height: 1.4; }
-  .card .row b { font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.04em; }
+  .card .row { margin: 4px 0; font-size: 13px; line-height: 1.4; color: #c7dcff; }
+  .card .row b { font-weight: 400; }
   .card .row.plus b { color: var(--gold); }
   .card .row.minus b { color: var(--red); }
-
   .card .go {
     display: inline-block;
     margin-top: 10px;
@@ -179,37 +143,27 @@
     font-family: 'Bungee', sans-serif;
     font-size: 13px;
   }
-
   .card .x {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    border: 0;
-    background: none;
-    color: #c7dcff;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
+    position: absolute; top: 8px; right: 10px;
+    border: 0; background: none; color: #c7dcff;
+    font-size: 22px; line-height: 1; cursor: pointer;
   }
 
-  .hint {
-    text-align: center;
-    font-size: 13px;
-    color: #8fb3e8;
-    margin: 10px 16px 0;
-  }
+  /* ---------- below the field ---------- */
+  .how { max-width: 640px; margin: 18px auto 0; font-size: 14px; line-height: 1.5; color: #c7dcff; text-align: center; }
+  .how summary { display: inline-block; cursor: pointer; color: var(--cyan); list-style: none; }
+  .how summary::-webkit-details-marker { display: none; }
+  .how p { margin: 8px 0 0; }
 
   footer {
     max-width: 640px;
-    margin: 22px auto 40px;
+    margin: 18px auto 40px;
     padding: 0 16px;
     text-align: center;
     font-size: 12px;
     color: #8fb3e8;
     line-height: 1.5;
   }
-
-  /* the text list stays on the page for screen readers, but folded away */
   .names summary {
     display: inline-block;
     font-family: 'Bungee', sans-serif;
@@ -222,33 +176,57 @@
   .names summary::-webkit-details-marker { display: none; }
   .names summary::before { content: '▸ '; }
   .names[open] summary::before { content: '▾ '; }
+
+  @media (max-width: 551px) {
+    .tiers { width: 100%; justify-content: space-between; }
+    .tiers button { padding: 7px 8px; font-size: 12.5px; gap: 5px; white-space: nowrap; }
+    .tiers button i { width: 8px; height: 8px; }
+    .bar label { flex: 1 1 0; min-width: 0; }
+    .bar select { flex: 1; min-width: 0; text-overflow: ellipsis; }
+    canvas { height: max(440px, calc(100vh - 260px)); }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <a class="back" href="home.html">← All posters</a>
-  <h1>RANKINGS</h1>
-  <p class="tag">SEE WHO STANDS WHERE</p>
-  <p class="how"><b>HOW THE RANKING WORKS</b><br>Every man is ranked by a system built to pick out qualifying factors from his conduct: what he has actually done, on the public record. Facts, not opinions.</p>
-  <p class="intro">The best records float to the top. The worst sink to the bottom. Gold wires: he shows up there. Red wires: black marks. Tap a man to see why.</p>
-</header>
+<div class="wrap">
+  <header>
+    <a class="back" href="home.html">← Home</a>
+    <h1>RANKINGS</h1>
+    <p class="sub">Good records float up, bad ones sink. The bigger the bubble, the stronger his record. Tap one to see why.</p>
+  </header>
 
-<div class="legend" aria-hidden="true">
-  <span><i class="dot" style="background:var(--gold)"></i>High rated</span>
-  <span><i class="dot" style="background:#ff9f1c"></i>Controversial</span>
-  <span><i class="dot" style="background:var(--red)"></i>Cautionary</span>
-  <span><i class="dot" style="background:var(--cyan)"></i>What counts</span>
-  <span><i class="line" style="background:var(--gold)"></i>Good record</span>
-  <span><i class="line" style="background:var(--red)"></i>Black marks</span>
+  <div class="bar">
+    <div class="tiers" role="group" aria-label="Show">
+      <button type="button" data-tier="all" aria-pressed="true">All</button>
+      <button type="button" data-tier="good" aria-pressed="false"><i style="background:var(--gold)"></i>High rated</button>
+      <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--amber)"></i>Controversial</button>
+      <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Cautionary</button>
+    </div>
+    <label>Show
+      <select id="count" autocomplete="off">
+        <option value="25">Top 25</option>
+        <option value="50">Top 50</option>
+        <option value="100">Top 100</option>
+        <option value="0">Everyone</option>
+      </select>
+    </label>
+    <label>Area
+      <select id="area" autocomplete="off"><option value="">Any area</option></select>
+    </label>
+  </div>
+
+  <div class="stage">
+    <canvas id="field" aria-label="Bubbles of men sized by how strong their record is. A list version is below the field."></canvas>
+    <div class="empty" id="empty">No one here yet.</div>
+    <div class="card" id="card" role="dialog" aria-live="polite"></div>
+  </div>
+
+  <details class="how">
+    <summary>How the ranking works</summary>
+    <p>Every man is ranked by a system built to pick out qualifying factors from his conduct: what he has actually done, on the public record. Facts, not opinions.</p>
+  </details>
 </div>
-
-<div class="stage">
-  <canvas id="web" aria-label="Web of men linked to what they are known for. A list version is below."></canvas>
-  <div class="card" id="card" role="dialog" aria-live="polite"></div>
-</div>
-
-<p class="hint">Higher up = better record. Tap a blue hub to light up everyone wired to it.</p>
 
 <footer>
   <details class="names">
@@ -264,332 +242,253 @@
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const COL = { good: '#ffe66d', mid: '#ff9f1c', bad: '#ff3b3b', review: '#8a94a6', hub: '#3ef2ff' };
-  // Controversial men (split record, data/wires.js) keep their place but show amber
-  const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
+  const shortName = n => n.replace(/\s*\(.*\)$/, '');
+  const COL = { good: '#ffe66d', mid: '#ff9f1c', bad: '#ff3b3b' };
+  const TIER_NAME = { good: 'High rated', mid: 'Controversial', bad: 'Cautionary' };
+  const CONTRO = window.CONTROVERSIAL || [];
+  const tier = p => CONTRO.includes(p.id) ? 'mid' : p.list;
+  const wire = (p, key) => (window.WIRES[p.id] || {})[key];
 
-  // ---------- build the graph ----------
+  // ---------- who is on the boards, and how far along his board ----------
+  // weight 1 = top of High Rated / bottom of Cautionary; it only sets bubble size
   const men = window.PEOPLE.filter(p => p.list === 'good' || p.list === 'bad');
-  // which areas each man has a good record (1) or black marks (-1) in
-  const wire = (p, d) => (window.WIRES[p.id] || {})[d.key];
-  const nodes = [], links = [];
-  const hubs = {}, byId = {};
-  window.DIMS.forEach(d => {
-    const n = { kind: 'hub', id: d.key, label: d.label, r: 30 };
-    hubs[d.key] = n;
-    nodes.push(n);
-  });
-  men.forEach(p => {
-    const n = { kind: 'man', p, id: p.id, label: p.name, r: 24 };
-    byId[p.id] = n;
-    if (p.photo) { n.img = new Image(); n.img.src = p.photo; n.img.onload = () => { n.ready = true; kick(); }; }
-    nodes.push(n);
-    window.DIMS.forEach(d => {
-      if (!wire(p, d)) return;
-      links.push({ a: n, b: hubs[d.key], sign: wire(p, d) });
-    });
-  });
-  // hubs nobody is wired to just float; keep them but faint
-  nodes.forEach(n => { n.deg = links.filter(l => l.a === n || l.b === n).length; });
-
-  // ---------- buoyancy: good men float, bad men sink ----------
-  // depth 0 = surface, 1 = sea bed. ORDER is best first on High Rated, worst first on Cautionary.
   const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
-  const byRank = list => men.filter(p => p.list === list).sort((a, b) => rank(a) - rank(b));
-  const goods = byRank('good'), bads = byRank('bad');
-  // the waterline sits lower when there are more good men, so both sides have room
-  const SURF = 0.05, BED = 0.95, GAP = 0.08;
-  let WATER = Math.max(0.5, Math.min(0.68, goods.length / (goods.length + bads.length || 1)));
-  const frac = (i, n) => n > 1 ? i / (n - 1) : 0.5;
-  nodes.forEach(n => {
-    if (n.kind === 'hub') { n.depth = WATER; return; }
-    n.depth = n.p.list === 'good'
-      ? SURF + frac(goods.indexOf(n.p), goods.length) * (WATER - GAP - SURF)
-      : BED - frac(bads.indexOf(n.p), bads.length) * (BED - WATER - GAP);
-    n.phase = Math.random() * Math.PI * 2;
-  });
-  const hubList = nodes.filter(n => n.kind === 'hub');
-  hubList.forEach((n, i) => { n.slot = (i + 0.5) / hubList.length; });
-
-  // ---------- canvas + simple force layout ----------
-  const cv = document.getElementById('web');
-  const ctx = cv.getContext('2d');
-  let W = 0, H = 0, dpr = 1, small = false, colW = 0;
-  // phones are too narrow for 100+ men to float freely (they jostle forever and
-  // the names pile up), so there they sit still in ranked rows: best at the top
-  // left, worst at the bottom right, hubs on the waterline between
-  function layoutGrid() {
-    const cols = Math.max(2, Math.floor(W / 112)), rh = 64, pad = 34;
-    colW = W / cols;
-    const rows = n => Math.ceil(n / cols);
-    const place = (list, top) => list.forEach((p, i) => {
-      const n = byId[p.id];
-      n.tx = colW * (i % cols + 0.5);
-      n.ty = top + 20 + rh * Math.floor(i / cols);
+  const ranked = t => men.filter(p => tier(p) === t).sort((a, b) =>
+    t === 'mid' ? CONTRO.indexOf(a.id) - CONTRO.indexOf(b.id) : rank(a) - rank(b));
+  const nodes = [];
+  ['good', 'mid', 'bad'].forEach(t => {
+    const list = ranked(t);
+    list.forEach((p, i) => {
+      const f = list.length > 1 ? i / (list.length - 1) : 0;
+      // split records sit in the middle, so their bubbles stay mid-sized
+      const w = t === 'mid' ? 0.55 - 0.25 * f : 1 - 0.85 * f;
+      const n = { p, t, w, r: 0, tr: 0, x: 0, y: 0, vx: 0, vy: 0, phase: Math.random() * 6.28 };
+      if (p.photo) { n.img = new Image(); n.img.src = p.photo; n.img.onload = () => { n.ready = true; }; }
+      nodes.push(n);
     });
-    place(goods, pad);
-    const wy = pad + rows(goods.length) * rh + 24;
-    place(bads.slice().reverse(), wy + 40);
-    H = wy + 40 + rows(bads.length) * rh + pad;
-    WATER = wy / H;
-    hubList.forEach(n => { n.tx = n.slot * W; n.ty = wy; });
-    cv.style.height = H + 'px';
-  }
+  });
+
+  // ---------- controls ----------
+  const state = { tier: 'all', count: matchMedia('(max-width: 551px)').matches ? 25 : 50, area: '' };
+  const countSel = document.getElementById('count');
+  const areaSel = document.getElementById('area');
+  countSel.value = String(state.count);
+  window.DIMS.forEach(d => areaSel.add(new Option(d.label, d.key)));
+
+  document.querySelectorAll('.tiers button').forEach(b => b.addEventListener('click', () => {
+    state.tier = b.dataset.tier;
+    document.querySelectorAll('.tiers button').forEach(o => o.setAttribute('aria-pressed', o === b));
+    apply();
+  }));
+  countSel.addEventListener('change', () => { state.count = +countSel.value; apply(); });
+  areaSel.addEventListener('change', () => { state.area = areaSel.value; apply(); });
+
+  // ---------- canvas ----------
+  const cv = document.getElementById('field');
+  const ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, sel = null, hover = null, heat = 1, raf = 0, t = 0;
+
   function size() {
-    dpr = window.devicePixelRatio || 1;
-    W = cv.clientWidth;
-    small = W < 520;
-    nodes.forEach(n => { n.r = n.kind === 'hub' ? (small ? 19 : 30) : (small ? 16 : 24); });
-    if (small) layoutGrid(); else cv.style.height = '';
-    H = cv.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth; H = cv.clientHeight;
     cv.width = W * dpr; cv.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    // let the page scroll past the tall phone canvas
-    cv.style.touchAction = small ? 'pan-y' : 'none';
   }
-  size();
-  // everyone starts at the waterline, then floats or sinks
-  nodes.forEach(n => {
-    n.x = n.kind === 'hub' ? n.slot * W : W * (0.08 + Math.random() * 0.84);
-    n.y = H * WATER + (Math.random() - 0.5) * 30;
-    n.vx = 0; n.vy = 0;
-  });
 
-  // little bubbles rising through the water, just for looks
-  const fizz = Array.from({ length: 40 }, () => ({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 3, s: 0.0008 + Math.random() * 0.0018 }));
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let heat = 1, raf = 0, drag = null, sel = null, hubSel = null, t = 0;
-
-  function step() {
-    if (small) {
-      // glide into place, no forces
-      nodes.forEach(n => {
-        if (n === drag) return;
-        n.x += (n.tx - n.x) * 0.2; n.y += (n.ty - n.y) * 0.2;
+  // pick who shows, then scale radii so the bubbles fill about half the field
+  function apply() {
+    let shown = nodes.filter(n =>
+      (state.tier === 'all' || n.t === state.tier) &&
+      (!state.area || wire(n.p, state.area)));
+    shown.sort((a, b) => b.w - a.w);
+    if (state.count) shown = shown.slice(0, state.count);
+    const on = new Set(shown);
+    // size by place among the men on screen, per tier, so there's always a big-to-small spread
+    ['good', 'mid', 'bad'].forEach(t => {
+      const list = shown.filter(n => n.t === t);
+      list.forEach((n, i) => {
+        const f = list.length > 1 ? i / (list.length - 1) : 0;
+        n.s = t === 'mid' ? 0.55 - 0.3 * f : 1 - 0.85 * f;
       });
-      return;
-    }
-    const k = Math.min(W, H) / 6;
-    for (let i = 0; i < nodes.length; i++) {
-      const a = nodes[i];
-      for (let j = i + 1; j < nodes.length; j++) {
-        const b = nodes[j];
-        let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || 0.01;
-        const d = Math.sqrt(d2);
-        dx /= d; dy /= d;
-        // push mostly sideways so buoyancy keeps the up/down order
-        const f = Math.min(8, (k * k) / d2);
-        a.vx -= dx * f; a.vy -= dy * f * 0.3; b.vx += dx * f; b.vy += dy * f * 0.3;
-        // keep room for name labels under the men
-        const min = a.r + b.r + (Math.abs(dy) > 0.5 ? 22 : 40);
-        if (d < min) { const push = (min - d) / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push; }
-      }
-    }
-    // wires only tug sideways, so a man drifts over the hubs he's wired to
-    links.forEach(l => {
-      const f = (l.b.x - l.a.x) * 0.0015;
-      l.a.vx += f;
     });
+    const area = shown.reduce((s, n) => s + (0.04 + n.s * n.s), 0) || 1;
+    const k = Math.sqrt((W * H * 0.55) / (Math.PI * area));
+    const cap = Math.min(W, H) * 0.2;
     nodes.forEach(n => {
-      if (n === drag) { n.vx = n.vy = 0; return; }
-      if (n.kind === 'hub') {
-        n.vx += (n.slot * W - n.x) * 0.08; n.vy += (H * WATER - n.y) * 0.08;
-      } else {
-        n.vx += (W / 2 - n.x) * 0.002;
-        n.vy += (H * n.depth - n.y) * 0.05;
+      n.on = on.has(n);
+      n.tr = n.on ? Math.max(10, Math.min(cap, k * Math.sqrt(0.04 + n.s * n.s))) : 0;
+      // newcomers appear roughly where they'll end up: gold up top, red down low
+      if (n.on && n.r < 1) {
+        const band = { good: 0.1, mid: 0.4, bad: 0.7 }[n.t];
+        n.x = W * (0.1 + Math.random() * 0.8); n.y = H * (band + Math.random() * 0.2); n.vx = n.vy = 0;
       }
-      n.vx *= 0.82; n.vy *= 0.82;
-      n.x += n.vx * heat; n.y += n.vy * heat;
-      // men keep room for their name label
-      const mx = n.kind === 'man' ? Math.max(n.r + 4, 56) : n.r + 4;
-      const my = n.kind === 'man' ? n.r + 20 : n.r + 4;
-      n.x = Math.max(mx, Math.min(W - mx, n.x));
-      n.y = Math.max(n.r + 4, Math.min(H - my, n.y));
-      // good men never sink past the waterline, bad men never rise above it (unless dragged)
-      if (n.kind === 'man') {
-        const wy = H * WATER;
-        if (n.p.list === 'good') n.y = Math.min(n.y, wy - n.r - 34);
-        else n.y = Math.max(n.y, wy + n.r + 34);
+    });
+    if (sel && !sel.on) { sel = null; showCard(null); }
+    document.getElementById('empty').classList.toggle('on', !shown.length);
+    kick(1);
+  }
+
+  // ---------- physics: drift to the middle, bump, never overlap ----------
+  let drag = null;
+  function step() {
+    const live = nodes.filter(n => n.r > 0.5 || n.tr > 0);
+    live.forEach(n => {
+      n.r += (n.tr - n.r) * 0.15;
+      if (n === drag) return;
+      n.vx += (W / 2 - n.x) * 0.0003 * (H / W);
+      // buoyancy: High Rated float up, Cautionary sink, the bigger the stronger; split records hang mid-water
+      if (n.t === 'good') n.vy -= 0.02 + 0.14 * n.s * n.s;
+      else if (n.t === 'bad') n.vy += 0.02 + 0.14 * n.s * n.s;
+      else n.vy += (H / 2 - n.y) * 0.0012;
+      if (!reduce) { n.vx += Math.cos(t * 0.011 + n.phase) * 0.02; n.vy += Math.sin(t * 0.013 + n.phase) * 0.02; }
+    });
+    for (let i = 0; i < live.length; i++) {
+      const a = live[i];
+      for (let j = i + 1; j < live.length; j++) {
+        const b = live[j];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        const min = a.r + b.r + 2;
+        if (Math.abs(dx) > min || Math.abs(dy) > min) continue;
+        const d = Math.hypot(dx, dy) || 0.01;
+        if (d >= min) continue;
+        dx /= d; dy /= d;
+        const push = (min - d) * 0.5;
+        const ma = a === drag ? 0 : 1, mb = b === drag ? 0 : 1, tot = ma + mb || 1;
+        a.x -= dx * push * 2 * ma / tot; a.y -= dy * push * 2 * ma / tot;
+        b.x += dx * push * 2 * mb / tot; b.y += dy * push * 2 * mb / tot;
+        a.vx -= dx * 0.08 * ma; a.vy -= dy * 0.08 * ma;
+        b.vx += dx * 0.08 * mb; b.vy += dy * 0.08 * mb;
       }
+    }
+    live.forEach(n => {
+      if (n === drag) return;
+      n.vx *= 0.9; n.vy *= 0.9;
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < n.r) { n.x = n.r; n.vx = Math.abs(n.vx) * 0.5; }
+      if (n.x > W - n.r) { n.x = W - n.r; n.vx = -Math.abs(n.vx) * 0.5; }
+      if (n.y < n.r) { n.y = n.r; n.vy = Math.abs(n.vy) * 0.5; }
+      if (n.y > H - n.r) { n.y = H - n.r; n.vy = -Math.abs(n.vy) * 0.5; }
     });
   }
 
-  function lit(n) {
-    if (sel) return n === sel || links.some(l => (l.a === sel && l.b === n));
-    if (hubSel) return n === hubSel || links.some(l => l.b === hubSel && l.a === n);
-    return true;
-  }
-  function litLink(l) {
-    if (sel) return l.a === sel;
-    if (hubSel) return l.b === hubSel;
-    return true;
+  // ---------- drawing ----------
+  function fitText(s, max, px) {
+    ctx.font = `${px}px Righteous, sans-serif`;
+    while (px > 8 && ctx.measureText(s).width > max) { px--; ctx.font = `${px}px Righteous, sans-serif`; }
+    return px;
   }
 
-  // gentle bob, drawn only (the layout itself stays put)
-  const bob = n => reduce || n === drag || n.kind === 'hub' ? 0 : Math.sin(t * 0.03 + n.phase) * 3;
+  function drawBubble(n) {
+    const { x, y, r } = n, c = COL[n.t];
+    const focus = n === sel || n === hover;
+    ctx.globalAlpha = sel && n !== sel ? 0.45 : 1;
 
-  function drawWater() {
-    const wy = H * WATER;
-    // rising fizz
-    ctx.fillStyle = '#bfe6ff';
-    fizz.forEach(b => {
-      ctx.globalAlpha = 0.12 + 0.25 * (1 - b.y);
-      ctx.beginPath(); ctx.arc(b.x * W + Math.sin(t * 0.02 + b.r * 9) * 4, b.y * H, b.r, 0, Math.PI * 2); ctx.fill();
-    });
-    // the waterline
-    ctx.globalAlpha = 0.5;
-    ctx.strokeStyle = COL.hub; ctx.lineWidth = 2;
-    ctx.setLineDash([10, 8]);
-    ctx.beginPath(); ctx.moveTo(0, wy); ctx.lineTo(W, wy); ctx.stroke();
+    // glassy body: dark centre, glowing rim in his tier's colour
+    const g = ctx.createRadialGradient(x, y, r * 0.2, x, y, r);
+    g.addColorStop(0, '#0a1530');
+    g.addColorStop(0.72, c + '33');
+    g.addColorStop(1, c + (focus ? 'cc' : '88'));
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+    ctx.lineWidth = focus ? 3 : 1.5;
+    ctx.strokeStyle = c;
+    if (n.p.type === 'composite') ctx.setLineDash([5, 4]);
+    ctx.stroke();
     ctx.setLineDash([]);
-    // zone labels
-    ctx.globalAlpha = 0.55;
-    ctx.font = `${W < 520 ? 10 : 13}px Bungee, sans-serif`;
-    ctx.textAlign = 'right';
-    ctx.fillStyle = COL.good; ctx.textBaseline = 'top';
-    ctx.fillText('▲ FLOATS TO THE TOP', W - 12, 10);
-    ctx.fillStyle = COL.bad; ctx.textBaseline = 'bottom';
-    ctx.fillText('▼ SINKS TO THE BOTTOM', W - 12, H - 10);
+
+    // face, plus a name once the bubble is big enough to read
+    const named = r >= 30;
+    const fr = named ? r * 0.5 : r * 0.78;
+    const fy = named ? y - r * 0.16 : y;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x, fy, fr, 0, 6.2832); ctx.clip();
+    if (n.ready) ctx.drawImage(n.img, x - fr, fy - fr, fr * 2, fr * 2);
+    else {
+      ctx.fillStyle = '#132447'; ctx.fillRect(x - fr, fy - fr, fr * 2, fr * 2);
+      ctx.fillStyle = c; ctx.font = `${Math.round(fr * 0.8)}px Bungee, sans-serif`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(initials(n.p.name), x, fy + 1);
+    }
+    ctx.restore();
+
+    if (named) {
+      const name = shortName(n.p.name);
+      const label = r < 52 ? name.split(' ').slice(-1)[0] : name;
+      fitText(label, r * 1.6, Math.round(r * 0.22));
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      ctx.fillText(label, x, fy + fr + r * 0.07);
+    }
     ctx.globalAlpha = 1;
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    drawWater();
-    links.forEach(l => {
-      const on = litLink(l);
-      ctx.strokeStyle = l.sign > 0 ? COL.good : COL.bad;
-      ctx.globalAlpha = on ? (sel || hubSel ? 0.95 : 0.4) : 0.06;
-      ctx.lineWidth = on && (sel || hubSel) ? 3 : 1.5;
-      ctx.beginPath(); ctx.moveTo(l.a.x, l.a.y + bob(l.a)); ctx.lineTo(l.b.x, l.b.y); ctx.stroke();
-    });
-    ctx.globalAlpha = 1;
-    nodes.forEach(n => {
-      const on = lit(n);
-      ctx.globalAlpha = on ? 1 : 0.25;
-      const y = n.y + bob(n);
-      if (n.kind === 'hub') {
-        ctx.fillStyle = '#0b1630';
-        ctx.strokeStyle = COL.hub;
-        ctx.lineWidth = n === hubSel ? 4 : 2.5;
-        ctx.shadowColor = COL.hub; ctx.shadowBlur = n.deg ? 16 : 0;
-        ctx.beginPath(); ctx.arc(n.x, y, n.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = COL.hub;
-        ctx.font = `${W < 520 ? 7 : 10}px Bungee, sans-serif`;
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        const parts = n.label.toUpperCase().split(' & ');
-        let lines = parts.length > 1 ? [parts[0] + ' &', parts[1]] : parts;
-        // long labels without "&" wrap word by word to fit the circle
-        if (lines.length === 1 && ctx.measureText(lines[0]).width > n.r * 1.8) {
-          lines = lines[0].split(' ').reduce((acc, w) => {
-            const last = acc[acc.length - 1];
-            if (last && ctx.measureText(last + ' ' + w).width <= n.r * 1.8) acc[acc.length - 1] = last + ' ' + w;
-            else acc.push(w);
-            return acc;
-          }, []);
-        }
-        const lh = W < 520 ? 9 : 12;
-        lines.forEach((s, i) => ctx.fillText(s, n.x, y + (i - (lines.length - 1) / 2) * lh, n.r * 1.8));
-      } else {
-        const c = COL[tier(n.p)] || COL.review;
-        ctx.save();
-        ctx.beginPath(); ctx.arc(n.x, y, n.r, 0, Math.PI * 2); ctx.closePath();
-        ctx.fillStyle = '#132447'; ctx.fill();
-        ctx.clip();
-        if (n.ready) ctx.drawImage(n.img, n.x - n.r, y - n.r, n.r * 2, n.r * 2);
-        else {
-          ctx.fillStyle = c; ctx.font = `${Math.round(n.r * 0.75)}px Bungee, sans-serif`;
-          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText(initials(n.p.name), n.x, y + 1);
-        }
-        // bubble shine
-        const g = ctx.createRadialGradient(n.x - n.r * 0.4, y - n.r * 0.45, 1, n.x - n.r * 0.4, y - n.r * 0.45, n.r * 0.7);
-        g.addColorStop(0, '#ffffffaa'); g.addColorStop(1, '#ffffff00');
-        ctx.fillStyle = g; ctx.fillRect(n.x - n.r, y - n.r, n.r * 2, n.r * 2);
-        ctx.restore();
-        ctx.strokeStyle = c;
-        ctx.lineWidth = n === sel ? 5 : 3;
-        if (n.p.type === 'composite') ctx.setLineDash([5, 4]);
-        ctx.beginPath(); ctx.arc(n.x, y, n.r, 0, Math.PI * 2); ctx.stroke();
-        ctx.setLineDash([]);
-        // soft outer bubble skin
-        ctx.globalAlpha *= 0.35;
-        ctx.strokeStyle = '#bfe6ff'; ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(n.x, y, n.r + 4, 0, Math.PI * 2); ctx.stroke();
-        ctx.globalAlpha = on ? 1 : 0.25;
-        ctx.fillStyle = '#e8f3ff';
-        ctx.font = `${W < 520 ? 10 : 12}px Righteous, sans-serif`;
-        ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-        ctx.shadowColor = '#000'; ctx.shadowBlur = 4;
-        ctx.fillText(n.p.name.replace(/\s*\(.*\)$/, ''), n.x, y + n.r + 5, small ? colW - 6 : undefined);
-        ctx.shadowBlur = 0;
-      }
-    });
-    ctx.globalAlpha = 1;
+    // biggest at the back so small bubbles never hide behind them
+    nodes.filter(n => n.r > 1).sort((a, b) => b.r - a.r).forEach(drawBubble);
+    if (sel && sel.r > 1) drawBubble(sel);
   }
 
   function loop() {
-    if (heat > 0.02 || drag) { step(); heat *= reduce ? 0.8 : 0.985; }
     t++;
-    fizz.forEach(b => { b.y -= b.s; if (b.y < 0) { b.y = 1; b.x = Math.random(); } });
+    step();
+    if (reduce) heat *= 0.96;
     draw();
-    // keep bobbing and fizzing unless reduced motion is on
-    if (!reduce || heat > 0.02 || drag) raf = requestAnimationFrame(loop);
-    else raf = 0;
+    // with reduced motion the bubbles settle, then the loop stops
+    raf = (!reduce || heat > 0.02 || drag) ? requestAnimationFrame(loop) : 0;
   }
   function kick(h) {
-    if (h) heat = Math.max(heat, h);
+    heat = Math.max(heat, h || 0.3);
     if (!raf) raf = requestAnimationFrame(loop);
   }
-  if (reduce) { for (let i = 0; i < 300; i++) step(); heat = 0.01; }
-  kick();
 
-  // ---------- pointer: drag + tap ----------
+  // ---------- pointer: tap for the card, drag and fling ----------
   const at = (x, y) => {
-    for (let i = nodes.length - 1; i >= 0; i--) {
-      const n = nodes[i];
-      if (Math.hypot(n.x - x, n.y - y) <= n.r + 6) return n;
-    }
-    return null;
+    let best = null;
+    nodes.forEach(n => { if (n.r > 3 && Math.hypot(n.x - x, n.y - y) <= n.r && (!best || n.r < best.r)) best = n; });
+    return best;
   };
+  const pos = e => { const b = cv.getBoundingClientRect(); return { x: e.clientX - b.left, y: e.clientY - b.top }; };
   let down = null;
   cv.addEventListener('pointerdown', e => {
-    const r = cv.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    down = { x, y, n: at(x, y), moved: false };
-    if (down.n) { drag = down.n; cv.classList.add('dragging'); cv.setPointerCapture(e.pointerId); kick(0.6); }
+    const p = pos(e);
+    down = { ...p, n: at(p.x, p.y), moved: false, lx: p.x, ly: p.y };
+    if (down.n && e.pointerType === 'mouse') { drag = down.n; cv.setPointerCapture(e.pointerId); kick(1); }
   });
   cv.addEventListener('pointermove', e => {
-    if (!down) return;
-    const r = cv.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    if (Math.hypot(x - down.x, y - down.y) > 6) down.moved = true;
-    if (drag) { drag.x = x; drag.y = y; kick(0.6); }
+    const p = pos(e);
+    if (!down) {
+      const h = at(p.x, p.y);
+      if (h !== hover) { hover = h; cv.style.cursor = h ? 'pointer' : 'default'; kick(0.3); }
+      return;
+    }
+    if (Math.hypot(p.x - down.x, p.y - down.y) > 6) down.moved = true;
+    if (drag) {
+      drag.vx = p.x - down.lx; drag.vy = p.y - down.ly;
+      drag.x = p.x; drag.y = p.y; down.lx = p.x; down.ly = p.y;
+      cv.style.cursor = 'grabbing';
+    }
   });
-  const up = () => {
+  cv.addEventListener('pointerup', () => {
     if (!down) return;
     if (!down.moved) {
       const n = down.n;
-      if (!n) { sel = hubSel = null; showCard(null); }
-      else if (n.kind === 'hub') { hubSel = hubSel === n ? null : n; sel = null; showCard(null); }
-      else { sel = sel === n ? null : n; hubSel = null; showCard(sel); }
-      kick(0.05);
+      sel = n && n !== sel ? n : null;
+      showCard(sel);
     }
-    drag = null; down = null; cv.classList.remove('dragging');
-  };
-  cv.addEventListener('pointerup', up);
-  // the browser took the touch over (a scroll): not a tap
-  cv.addEventListener('pointercancel', () => { drag = null; down = null; cv.classList.remove('dragging'); });
-
-  window.addEventListener('resize', () => {
-    // phones fire resize when the address bar slides; only re-lay out on a real width change
-    if (small && cv.clientWidth === W) return;
-    const ow = W, oh = H;
-    size();
-    nodes.forEach(n => { n.x *= W / ow || 1; n.y *= H / oh || 1; });
+    drag = null; down = null;
     kick(0.3);
+  });
+  cv.addEventListener('pointercancel', () => { drag = null; down = null; });
+  cv.addEventListener('pointerleave', () => { if (hover) { hover = null; kick(0.3); } });
+
+  let rw = 0;
+  window.addEventListener('resize', () => {
+    // phones fire resize when the address bar slides; only re-fit on a real size change
+    if (cv.clientWidth === W && Math.abs(cv.clientHeight - H) < 80) return;
+    clearTimeout(rw);
+    rw = setTimeout(() => { size(); apply(); }, 120);
   });
 
   // ---------- info card ----------
@@ -597,25 +496,31 @@
   function showCard(n) {
     if (!n) { card.className = 'card'; return; }
     const p = n.p;
-    const plus = window.DIMS.filter(d => wire(p, d) === 1).map(d => d.label);
-    const minus = window.DIMS.filter(d => wire(p, d) === -1).map(d => d.label);
-    card.className = 'card on ' + (p.list === 'bad' ? 'bad' : 'good');
+    const plus = window.DIMS.filter(d => wire(p, d.key) === 1).map(d => d.label);
+    const minus = window.DIMS.filter(d => wire(p, d.key) === -1).map(d => d.label);
+    card.className = 'card on ' + n.t;
     card.innerHTML = `
       <button class="x" aria-label="Close">×</button>
       <h2>${esc(p.name)}</h2>
-      <p class="role">${esc(p.role)}${p.type === 'composite' ? ' · Composite' : ''}</p>
+      <p class="role">${esc(TIER_NAME[n.t])} · ${esc(p.role)}${p.type === 'composite' ? ' · Composite' : ''}</p>
       <p class="reason">${esc(p.reason)}</p>
-      ${plus.length ? `<p class="row plus"><b>SHOWS UP IN</b><br>${plus.map(esc).join(' · ')}</p>` : ''}
-      ${minus.length ? `<p class="row minus"><b>BLACK MARKS IN</b><br>${minus.map(esc).join(' · ')}</p>` : ''}
+      ${plus.length ? `<p class="row plus"><b>Good record:</b> ${plus.map(esc).join(', ')}</p>` : ''}
+      ${minus.length ? `<p class="row minus"><b>Black marks:</b> ${minus.map(esc).join(', ')}</p>` : ''}
       ${p.status ? `<p class="row">${esc(p.status)}</p>` : ''}
-      <a class="go" href="profile.html?id=${encodeURIComponent(p.id)}">FULL PROFILE →</a>`;
-    card.querySelector('.x').onclick = () => { sel = null; showCard(null); kick(0.05); };
+      <a class="go" href="profile.html?id=${encodeURIComponent(p.id)}">FULL PROFILE</a>`;
+    card.querySelector('.x').onclick = () => { sel = null; showCard(null); kick(0.3); };
   }
 
   // ---------- text version for screen readers and no-canvas ----------
   document.getElementById('list').innerHTML =
-    '<p style="margin:0 0 8px">' + men.map(p =>
+    '<p style="margin:0 0 8px">' + men.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p =>
       `<a href="profile.html?id=${encodeURIComponent(p.id)}">${esc(p.name)}</a>`).join(' · ') + '</p>';
+
+  size();
+  apply();
+  // start everyone already settled, so the first frame isn't a pile-up
+  nodes.forEach(n => { n.r = n.tr; });
+  for (let i = 0; i < 120; i++) step();
 })();
 </script>
 </body>
