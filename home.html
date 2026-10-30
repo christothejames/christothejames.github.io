@@ -263,13 +263,14 @@
     opacity: 0.95;
   }
 
-  /* the board names the tier, so a poster only says so for a good man who has died */
-  .poster .respected {
+  /* a poster names its tier only for a good man who has died, or a Controversial man */
+  .poster .respected, .poster .controversial {
     margin: 12px 0 -8px;
     text-align: center;
     font-size: 13px;
     color: #c4161c;
   }
+  .poster .controversial { color: #9a5200; font-family: 'Bungee', sans-serif; letter-spacing: 0.04em; }
 
   .poster .name {
     font-family: 'Bungee', sans-serif;
@@ -458,9 +459,10 @@
   // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
   const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
 
-  // The board heading already names the tier, so the poster is just the man: photo, name, why, status.
+  // The poster is the man: photo, name, why, status. Controversial men are labelled on the poster too.
   function poster(p, i) {
     const respected = tier(p) === 'good' && passed(p);
+    const controversial = tier(p) === 'mid';
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
     return `
       <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}" style="--tilt:${tilt}deg">
@@ -468,6 +470,7 @@
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
         </div>
         ${respected ? '<div class="respected">Respected</div>' : ''}
+        ${controversial ? '<div class="controversial">Controversial</div>' : ''}
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
         <p class="for">${esc(p.reason)}</p>

@@ -139,8 +139,7 @@ window.WIRES = {
   "eddie-hall": {
     "body": 1,
     "community": 1,
-    "family": 1,
-    "conduct": -1
+    "family": 1
   },
   "hugh-jackman": {
     "community": 1,
@@ -761,6 +760,7 @@ window.ORDER = [
   "dwayne-johnson",
   "jelly-roll",
   "kevin-sinfield",
+  "eddie-hall",
   "steve-gleason",
   "frank-bruno",
   "harry-kane",
@@ -794,7 +794,6 @@ window.ORDER = [
   "michael-douglas",
   "ben-parkinson",
   "andrew-pollard",
-  "eddie-hall",
   "sadio-mane",
   "jonathan-van-tam",
   "tyson-fury",
@@ -901,7 +900,6 @@ window.ORDER = [
 
 // Men shown in the middle tier (Controversial) instead of their board, best first
 window.CONTROVERSIAL = [
-  "eddie-hall",
   "stephen-curry",
   "idris-elba",
   "tiger-woods",

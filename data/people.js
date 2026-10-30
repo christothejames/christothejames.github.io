@@ -527,7 +527,6 @@ window.PEOPLE = [
       { date: "2016", text: "Set a 500 kg deadlift world record.", source: "https://en.wikipedia.org/wiki/Eddie_Hall" },
       { date: "2019", text: "Coached eight men through training and diet on Beasted!", source: "https://en.wikipedia.org/wiki/Eddie_Hall" },
       { date: "", text: "Married to Alexandra; father of four.", source: "https://en.wikipedia.org/wiki/Eddie_Hall" },
-      { date: "2022", text: "A leaked recording suggested an organiser fixed his 2017 win; not proven.", source: "https://en.wikipedia.org/wiki/Eddie_Hall" },
     ],
   },
   {
