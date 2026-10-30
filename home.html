@@ -43,7 +43,7 @@
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
 
   /* ---------- Tools for the visitor: chunky arcade buttons ---------- */
-  .topnav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding-top: 20px; padding-bottom: 0; }
+  .topnav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding-top: 20px; padding-bottom: 0; }
   .topnav a {
     display: flex; align-items: center; gap: 12px;
     padding: 12px 14px;
@@ -67,13 +67,23 @@
   .topnav .t { display: block; font-size: 16px; line-height: 1.2; }
   .topnav .d { display: block; font-size: 12.5px; line-height: 1.3; color: var(--muted); margin-top: 2px; }
 
-  @media (max-width: 860px) { .topnav { grid-template-columns: 1fr 1fr; } }
+  /* Five tiles: 3 + 2 centred on tablets, 2 + 2 + 1 wide on phones */
+  @media (max-width: 1060px) {
+    .topnav { grid-template-columns: repeat(6, 1fr); }
+    .topnav a { grid-column: span 2; }
+    .topnav a:nth-child(4) { grid-column: 2 / span 2; }
+  }
+  @media (max-width: 680px) {
+    .topnav { grid-template-columns: 1fr 1fr; }
+    .topnav a, .topnav a:nth-child(4) { grid-column: auto; }
+    .topnav a:last-child { grid-column: span 2; }
+  }
   @media (max-width: 520px) {
     .topnav { gap: 10px; }
     .topnav a { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px; }
     .topnav svg { width: 26px; height: 26px; }
   }
-  @media (max-width: 360px) { .topnav { grid-template-columns: 1fr; } }
+  @media (max-width: 360px) { .topnav { grid-template-columns: 1fr; } .topnav a:last-child { grid-column: auto; } }
 
   /* ---------- Masthead: the neon title is the one loud thing ---------- */
   .masthead { text-align: center; padding: 44px 0 36px; }
@@ -421,6 +431,10 @@
   <a href="chores.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="m9 15 2 2 4-4"/></svg>
     <span><span class="t">Home game plan</span><span class="d">Reminders for jobs that slip</span></span>
+  </a>
+  <a href="pickup.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 20 11-11"/><path d="m13 7 4 4"/><path d="M18 2v3M16.5 3.5h3M21 8v2M20 9h2M9 3v2M8 4h2"/></svg>
+    <span><span class="t">The pick up artist</span><span class="d">Secret moves, revealed</span></span>
   </a>
 </nav>
 
