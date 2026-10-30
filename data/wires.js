@@ -724,6 +724,211 @@ window.WIRES = {
   "gino-dacampo": {
     "trust": -1,
     "conduct": -1
+  },
+  "usain-bolt": {
+    "community": 1
+  },
+  "ezra-frech": {
+    "body": 1,
+    "community": 1
+  },
+  "alexander-skarsgard": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "james-blunt": {
+    "service": 1,
+    "community": 1,
+    "family": 1
+  },
+  "nick-saban": {
+    "community": 1,
+    "family": 1
+  },
+  "ben-affleck": {
+    "community": 1
+  },
+  "case-keenum": {
+    "community": 1,
+    "family": 1
+  },
+  "karl-deisseroth": {
+    "community": 1
+  },
+  "lamine-yamal": {
+    "body": 1
+  },
+  "paul-mccartney": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "pierce-brosnan": {
+    "community": 1,
+    "family": 1
+  },
+  "brad-pitt": {
+    "community": 1,
+    "conduct": -1
+  },
+  "michael-dell": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "jason-sudeikis": {
+    "community": 1
+  },
+  "nathan-fielder": {
+    "community": 1
+  },
+  "sebastian-croft": {
+    "community": 1
+  },
+  "andrew-garfield": {
+    "community": 1
+  },
+  "robert-pattinson": {
+    "community": 1
+  },
+  "bruce-willis": {
+    "community": 1
+  },
+  "josh-allen": {
+    "community": 1
+  },
+  "gary-oldman": {
+    "community": 1,
+    "conduct": -1
+  },
+  "jackie-chan": {
+    "community": 1
+  },
+  "henry-cavill": {
+    "community": 1
+  },
+  "andrew-huberman": {
+    "community": 1
+  },
+  "david-goggins": {
+    "body": 1,
+    "service": 1,
+    "community": 1
+  },
+  "ninja": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "pewdiepie": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "jocko-willink": {
+    "service": 1,
+    "community": 1
+  },
+  "hank-green": {
+    "community": 1,
+    "conduct": -1
+  },
+  "kylian-mbappe": {
+    "body": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "mohamed-salah": {
+    "community": 1
+  },
+  "carlos-alcaraz": {
+    "body": 1
+  },
+  "novak-djokovic": {
+    "body": 1,
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "max-verstappen": {
+    "body": 1,
+    "conduct": -1
+  },
+  "scottie-scheffler": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "rory-mcilroy": {
+    "body": 1,
+    "family": 1
+  },
+  "oleksandr-usyk": {
+    "body": 1,
+    "service": 1
+  },
+  "anthony-joshua": {
+    "body": 1,
+    "conduct": -1
+  },
+  "khabib-nurmagomedov": {
+    "body": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "jason-kelce": {
+    "body": 1,
+    "family": 1
+  },
+  "deion-sanders": {
+    "body": 1,
+    "community": 1
+  },
+  "leonardo-dicaprio": {
+    "community": 1
+  },
+  "the-weeknd": {
+    "community": 1
+  },
+  "bill-gates": {
+    "community": 1,
+    "conduct": -1
+  },
+  "warren-buffett": {
+    "community": 1,
+    "family": 1
+  },
+  "david-attenborough": {
+    "community": 1
+  },
+  "brian-cox": {
+    "community": 1,
+    "family": 1
+  },
+  "steve-backshall": {
+    "body": 1,
+    "community": 1,
+    "family": 1
+  },
+  "ben-fogle": {
+    "body": 1,
+    "family": 1
+  },
+  "jon-bon-jovi": {
+    "community": 1,
+    "family": 1,
+    "people": 1
+  },
+  "stormzy": {
+    "community": 1,
+    "conduct": -1
+  },
+  "gary-lineker": {
+    "community": 1
+  },
+  "michael-gove": {
+    "community": 1
   }
 };
 
@@ -758,25 +963,41 @@ window.ORDER = [
   "karl-bushby",
   "dwayne-johnson",
   "jelly-roll",
+  "james-blunt",
+  "mohamed-salah",
   "kevin-sinfield",
   "eddie-hall",
   "steve-gleason",
   "frank-bruno",
   "harry-kane",
   "matthew-mcconaughey",
+  "nick-saban",
   "alex-honnold",
   "chris-herren",
   "shohei-ohtani",
   "paddy-pimblett",
   "idris-elba",
+  "ezra-frech",
+  "the-weeknd",
   "jose-andres",
   "gareth-southgate",
   "tom-hardy",
   "louis-theroux",
+  "ben-affleck",
+  "case-keenum",
+  "oleksandr-usyk",
+  "leonardo-dicaprio",
+  "warren-buffett",
+  "jon-bon-jovi",
   "chris-hadfield",
   "ross-edgley",
   "joe-wicks",
   "mat-pritchard",
+  "nathan-fielder",
+  "david-goggins",
+  "jocko-willink",
+  "scottie-scheffler",
+  "deion-sanders",
   "tim-peake",
   "rick-stanton",
   "john-volanthen",
@@ -784,14 +1005,34 @@ window.ORDER = [
   "pat-tillman",
   "roger-federer",
   "prince-william",
+  "usain-bolt",
+  "lamine-yamal",
+  "pierce-brosnan",
+  "sebastian-croft",
+  "josh-allen",
+  "rory-mcilroy",
+  "jason-kelce",
+  "brian-cox",
+  "gary-lineker",
   "arnold-schwarzenegger",
   "tom-daley",
+  "alexander-skarsgard",
+  "carlos-alcaraz",
+  "ben-fogle",
   "captain-tom-moore",
   "patrick-mahomes",
+  "karl-deisseroth",
+  "jason-sudeikis",
+  "andrew-garfield",
+  "andrew-huberman",
+  "david-attenborough",
+  "steve-backshall",
   "levison-wood",
   "prince-harry",
   "ray-mears",
   "michael-douglas",
+  "robert-pattinson",
+  "bruce-willis",
   "ben-parkinson",
   "andrew-pollard",
   "sadio-mane",
@@ -800,6 +1041,7 @@ window.ORDER = [
   "andrew-flintoff",
   "george-clooney",
   "jordan-stephens",
+  "jackie-chan",
   "juan-mata",
   "ryan-reynolds",
   "valentino-rossi",
@@ -807,6 +1049,7 @@ window.ORDER = [
   "boyan-slat",
   "stephen-graham",
   "markiplier",
+  "henry-cavill",
   "everyday-dad",
   "volunteer-coach",
   "tony-adams",
@@ -837,13 +1080,28 @@ window.ORDER = [
   "khaby-lame",
   "nicolas-cage",
   "mark-ruffalo",
+  "hank-green",
+  "kylian-mbappe",
+  "novak-djokovic",
+  "michael-gove",
   "steve-o",
   "ranulph-fiennes",
   "mo-farah",
+  "stormzy",
   "bear-grylls",
+  "paul-mccartney",
+  "michael-dell",
+  "max-verstappen",
+  "anthony-joshua",
+  "bill-gates",
   "steve-irwin",
   "hugh-fearnley-whittingstall",
+  "brad-pitt",
+  "ninja",
+  "pewdiepie",
+  "khabib-nurmagomedov",
   "marco-pierre-white",
+  "gary-oldman",
   "ben-stokes",
   "johnny-depp",
   "kevin-spacey",
