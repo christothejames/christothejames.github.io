@@ -6,7 +6,7 @@
 //  - Never call him weak, broken or a victim. He's the one making the play.
 //  - Short sentences. A 15-year-old should get it first read.
 //  - Getting help is a tactic: "call in backup", "bring in a specialist".
-//  - Anything about hurting himself always points to BACKUP right away.
+//  - Anything about hurting himself always points to URGENT HELP right away.
 //
 //  Each area has situations. Each situation has:
 //    read     – what's going on, in one or two lines
@@ -16,7 +16,204 @@
 //    who      – who that someone is
 // =====================================================================
 
+// Areas are grouped by importance on the page, most important first.
+// AREAS below are in the same order, and each area's situations run
+// most serious first.
+window.AREA_GROUPS = [
+  { name: "Tackle these first", note: "They hit your health, your safety or the people around you.", areas: ["modern", "mood", "alcohol", "anger"] },
+  { name: "Wearing you down", note: "Left alone, they drain you a bit more every week.", areas: ["pressure", "sleep", "relationship"] },
+  { name: "Level up your life", note: "Build the life you actually want.", areas: ["friends", "purpose", "dating"] },
+];
+
 window.AREAS = [
+  {
+    id: "modern", icon: "📱", name: "Modern day problems",
+    tag: "Doom scrolling, fake people online, no time",
+    situations: [
+      {
+        id: "fake-online", name: "Is anyone online even real?",
+        read: "A lot of what you see online isn't people. Bot farms run thousands of fake accounts that post, like and argue to make you angry, scared or sure that \"everyone\" thinks something. And AI is making the fakes harder to spot every year. The internet isn't a safe town square anymore. Play it smart.",
+        moves: [
+          "Assume a stranger's account could be fake. Real name and face prove nothing now. Fakes copy both.",
+          "If a post makes you furious fast, that's the trap. Rage is what bot farms are built to farm. Pause before you reply or share.",
+          "Red flags: brand new account, no real friends, posts all day, only talks about one topic, same lines as other accounts.",
+          "Don't let comment sections tell you what \"everyone\" thinks. Ask the real people in your life instead.",
+          "Never send money, photos or personal details to someone you've only met online. Scammers use fake profiles too.",
+        ],
+        quickWin: "Next time a post gets you heated, close the app and walk away for 10 minutes before doing anything.",
+        backup: ["Someone online is threatening you or asking for money or photos", "You've been scammed or blackmailed (tell the police; it's a crime against you)", "Online arguments are eating your mood every day"],
+        who: "The police for threats, scams or blackmail. A trusted mate, family member or your doctor/GP for the rest.",
+      },
+      {
+        id: "doom-scrolling", name: "Doom scrolling",
+        read: "The feed is built to never end. Every swipe is a slot machine pull. Hours vanish and you feel worse, not better. That's the design working, not you failing.",
+        moves: [
+          "Check your screen time. Look at the real number. That's your starting score.",
+          "Kill the triggers: turn off every notification that isn't a real person messaging you.",
+          "Move the worst apps off your home screen, or log out after each use. Make it a bit of effort to open them.",
+          "Set a hard stop: no feeds in bed, and none for the first 30 minutes after you wake up.",
+          "Before you open an app, ask: what am I here for? No answer = don't open it.",
+        ],
+        quickWin: "Turn off notifications for your most-used app. Right now. Takes 30 seconds.",
+        backup: ["You can't cut down even when you really try", "Scrolling is how you avoid feeling bad, every time", "It's costing you sleep, work, school or people"],
+        who: "Your doctor/GP or a counsellor. Getting stuck on screens is common and they've seen it plenty.",
+      },
+      {
+        id: "no-time", name: "Both of us work, no time left",
+        read: "It used to be one wage and one person running the home. Now most couples both work, and the house, the bills and the kids still need running. There's less time to go round. The answer isn't moaning about it. It's a system, and owning your part.",
+        moves: [
+          "Build a routine: same days for the shop, the washing, the bins, the bills. A routine means fewer decisions and fewer arguments.",
+          "Sit down once a week, 15 minutes, and plan the week together: who's working late, who's on dinner, what has to get done.",
+          "Split the jobs fairly and take turns. If one of you has a mad week, the other picks up more. Next time it swaps.",
+          "Got kids? It's a different world. Plan around them first, and tag-team so you both get a break.",
+          "Own it. See a job, do it. No speeches, no waiting to be asked, no keeping score. Just get it done.",
+          "Be the role model. Kids copy what you do, not what you say. Get your hands dirty, don't sit on the sofa waiting for it to happen.",
+        ],
+        quickWin: "Pick one job at home nobody's done yet and do it now, without mentioning it.",
+        backup: ["You're running on empty for weeks (see Low mood)", "Every chat about jobs turns into a fight (see Relationship)", "You can't remember the last time you had a day off"],
+        who: "Your doctor/GP if you're burnt out. A couples counsellor if you keep fighting over it.",
+      },
+      {
+        id: "touch-grass", name: "Too online, need something real",
+        read: "Your brain was built for real air, real hands and real people. Sometimes the best move is simple: log off and go touch grass.",
+        moves: [
+          "Go outside today. Walk, run, sit in a park. No phone in your hand. Daylight resets your head.",
+          "Start a hobby you do with your hands: gym, cooking, fixing things, an instrument, a sport. Something you can get better at.",
+          "Swap one hour of scrolling a week for something that helps others: volunteer, coach a kids' team, help a neighbour, give blood.",
+          "Build something that lasts: a skill, a project, a garden. Likes vanish in a day. This stays.",
+          "See people in person. One real coffee with a mate beats a thousand comments.",
+        ],
+        quickWin: "Put your phone in another room and go outside for 20 minutes.",
+        backup: ["Nothing offline feels worth doing for weeks (see Low mood)", "You've pulled away from everyone in real life"],
+        who: "Your doctor/GP if it's linked to low mood. Check out The Skills page for hobby ideas.",
+      },
+    ],
+  },
+  {
+    id: "mood", icon: "🌧️", name: "Low mood",
+    tag: "Running on empty, nothing feels worth it",
+    situations: [
+      {
+        id: "pointless", name: "Nothing feels worth it",
+        read: "When everything feels pointless, your brain is lying to you about what's possible. This is the time to bring in backup, not go it alone.",
+        moves: [
+          "If you've had thoughts of ending your life or hurting yourself, tap URGENT HELP at the top. Do it today.",
+          "Tell one person today: a mate, family member, teacher, coach. Say \"I'm not in a good place.\"",
+          "Book a doctor/GP appointment. Tell them exactly how it's been.",
+          "Keep yourself safe: stay away from drink and drugs while you're in this, and keep away from anything you could use to hurt yourself.",
+        ],
+        quickWin: "Send one message to someone you trust: \"Can we talk? I'm not doing great.\"",
+        backup: ["Any thoughts of not wanting to be here: that's the moment. Call now"],
+        who: "A crisis line (tap URGENT HELP), your doctor/GP, or emergency services if you're in danger.",
+        urgent: true,
+      },
+      {
+        id: "empty", name: "Running on empty",
+        read: "Your tank is low. You don't need motivation to start. Action comes first, the energy follows.",
+        moves: [
+          "Get daylight in the first hour after you wake up. Even 10 minutes outside.",
+          "Do one physical thing a day. Walk, gym, kick a ball about. It counts.",
+          "Set one small mission a day: shower, tidy one thing, reply to one person. Tick it off.",
+          "Cut back on the stuff that drains you: late-night scrolling, drinking, junk sleep.",
+          "Tell one person you trust that you're running low. You don't need a speech.",
+        ],
+        quickWin: "Get outside for 10 minutes today. No phone if you can.",
+        backup: ["It's lasted more than two weeks", "You've lost interest in things you used to enjoy", "You're sleeping way more or way less than usual"],
+        who: "Your doctor/GP. Low mood that sticks around is a health issue, like an injury. It can be treated.",
+      },
+      {
+        id: "faking", name: "Feel like I'm faking it",
+        read: "Plenty of men feel like they're acting a part. The way out is small, honest moves, not a big reveal.",
+        moves: [
+          "Write down three things you actually want, not what you think you should want.",
+          "Pick one person you can be straight with. Test it with something small.",
+          "Drop one thing you only do to look good to others.",
+          "Find something you're getting better at. Skill builds real confidence.",
+        ],
+        quickWin: "Write your three real wants down. Nobody else needs to see it.",
+        backup: ["You feel numb or cut off from everyone", "It's dragging your mood down most days"],
+        who: "A counsellor or your doctor/GP. Talking it through with a pro is like having a coach.",
+      },
+    ],
+  },
+  {
+    id: "alcohol", icon: "🍺", name: "Alcohol",
+    tag: "Drinking more than I want to",
+    situations: [
+      {
+        id: "cut-back", name: "Drinking more than I want",
+        read: "You're in charge here, not the drink. The strategy is to cut back gradually, with a plan you can stick to.",
+        moves: [
+          "Safety first: if you get the shakes, sweats or feel sick after a few hours without a drink, don't stop suddenly. That can be dangerous. See a doctor first. They'll help you come down safely.",
+          "Track it for a week. Write down every drink. Most men are surprised.",
+          "Pick drink-free days and lock them in, like training days.",
+          "Swap and slow: alternate with water or soft drinks, go for lower-strength, use smaller glasses.",
+          "Plan before you go out: decide your limit and tell a mate. Have your exit time.",
+        ],
+        quickWin: "Choose your first drink-free day this week and put it in your calendar.",
+        backup: ["Shakes, sweats or sickness when you don't drink", "You've tried to cut back and couldn't", "Drinking is causing problems with work, money or people"],
+        who: "Your doctor/GP. They can help you cut down safely and point you to free support services.",
+      },
+      {
+        id: "habit", name: "Every evening is a drink evening",
+        read: "It's become automatic. Break the routine around it, not just the drink.",
+        moves: [
+          "Spot the trigger: getting home, a certain time, being bored, stress.",
+          "Replace the first drink with something else at that exact moment: a shower, a walk, food, a call.",
+          "Don't keep a stash at home. Make it harder to start.",
+          "Eat a proper meal before any drink. Hunger makes the first one go down faster.",
+        ],
+        quickWin: "Tonight, do your swap at the trigger moment instead of opening a drink.",
+        backup: ["You need a drink to feel normal", "You feel unwell without one"],
+        who: "Your doctor/GP. Don't cut off suddenly if you're drinking every day; get help to do it safely.",
+      },
+      {
+        id: "goal", name: "Cutting back for a goal",
+        read: "Fitness, money, a clear head: having a target makes this easier. Treat it like a training block.",
+        moves: [
+          "Set the mission: e.g. no drinking on weeknights for 30 days.",
+          "Find your replacement: alcohol-free beer, a gym session, a new Friday routine.",
+          "Tell your mates the goal up front. Most will back you.",
+          "Track the wins: money saved, sleep, how you feel on a Saturday morning.",
+        ],
+        quickWin: "Write down your mission and your reason in one line.",
+        backup: ["You can't hit even a few drink-free days", "You feel unwell when you don't drink"],
+        who: "Your doctor/GP.",
+      },
+    ],
+  },
+  {
+    id: "anger", icon: "🔥", name: "Anger",
+    tag: "Snapping, losing it, regretting it",
+    situations: [
+      {
+        id: "snapping", name: "Snapping at people",
+        read: "Anger is fuel. The goal is to control when it fires, not to never feel it.",
+        moves: [
+          "Learn your warning signs: jaw, fists, heat in your face. That's your cue.",
+          "Take a tactical exit: \"I need 10 minutes.\" Walk away. Come back.",
+          "Burn it off physically: run, gym, punch bag. Not people, not walls.",
+          "Once you've cooled down, name what actually set you off. It's often not the thing you blew up about.",
+        ],
+        quickWin: "Pick your exit line now, so it's ready when you need it.",
+        backup: ["You've hurt someone or broken things", "People around you are scared of you", "You can't stop once you've started"],
+        who: "Your doctor/GP or an anger management course. It's a trainable skill.",
+      },
+      {
+        id: "regret", name: "Things I regret after",
+        read: "Owning it is the strong move. Repair the damage, then change the pattern.",
+        moves: [
+          "Own it straight: \"I was out of line. I'm sorry.\" No \"but\".",
+          "Ask what would help put it right, and do it.",
+          "Work out the pattern: drink, tiredness, certain people? Plan around it.",
+          "Practise the exit line until it's automatic.",
+        ],
+        quickWin: "Make the apology you've been putting off.",
+        backup: ["It keeps happening", "Drink or drugs are involved", "Someone's been hurt"],
+        who: "Your doctor/GP or an anger management programme.",
+      },
+    ],
+  },
   {
     id: "pressure", icon: "⚡", name: "Pressure & stress",
     tag: "Too much on, can't switch off",
@@ -64,159 +261,22 @@ window.AREAS = [
     ],
   },
   {
-    id: "mood", icon: "🌧️", name: "Low mood",
-    tag: "Running on empty, nothing feels worth it",
+    id: "sleep", icon: "🔋", name: "Sleep & energy",
+    tag: "Can't sleep, always tired",
     situations: [
       {
-        id: "empty", name: "Running on empty",
-        read: "Your tank is low. You don't need motivation to start. Action comes first, the energy follows.",
+        id: "cant-sleep", name: "Can't sleep",
+        read: "Sleep is recovery. Pro athletes treat it as training. Set yourself up for it.",
         moves: [
-          "Get daylight in the first hour after you wake up. Even 10 minutes outside.",
-          "Do one physical thing a day. Walk, gym, kick a ball about. It counts.",
-          "Set one small mission a day: shower, tidy one thing, reply to one person. Tick it off.",
-          "Cut back on the stuff that drains you: late-night scrolling, drinking, junk sleep.",
-          "Tell one person you trust that you're running low. You don't need a speech.",
+          "Same wake-up time every day, weekends too. This sets your body clock.",
+          "Phone out of the bedroom, or across the room, 30 minutes before bed.",
+          "No caffeine after early afternoon.",
+          "If you're awake for 20 minutes, get up, do something boring in low light, then try again.",
+          "Daylight and exercise in the day make sleep easier at night.",
         ],
-        quickWin: "Get outside for 10 minutes today. No phone if you can.",
-        backup: ["It's lasted more than two weeks", "You've lost interest in things you used to enjoy", "You're sleeping way more or way less than usual"],
-        who: "Your doctor/GP. Low mood that sticks around is a health issue, like an injury. It can be treated.",
-      },
-      {
-        id: "pointless", name: "Nothing feels worth it",
-        read: "When everything feels pointless, your brain is lying to you about what's possible. This is the time to bring in backup, not go it alone.",
-        moves: [
-          "If you've had thoughts of ending your life or hurting yourself, tap BACKUP NOW at the top. Do it today.",
-          "Tell one person today: a mate, family member, teacher, coach. Say \"I'm not in a good place.\"",
-          "Book a doctor/GP appointment. Tell them exactly how it's been.",
-          "Keep yourself safe: stay away from drink and drugs while you're in this, and keep away from anything you could use to hurt yourself.",
-        ],
-        quickWin: "Send one message to someone you trust: \"Can we talk? I'm not doing great.\"",
-        backup: ["Any thoughts of not wanting to be here: that's the moment. Call now"],
-        who: "A crisis line (tap BACKUP NOW), your doctor/GP, or emergency services if you're in danger.",
-        urgent: true,
-      },
-      {
-        id: "faking", name: "Feel like I'm faking it",
-        read: "Plenty of men feel like they're acting a part. The way out is small, honest moves, not a big reveal.",
-        moves: [
-          "Write down three things you actually want, not what you think you should want.",
-          "Pick one person you can be straight with. Test it with something small.",
-          "Drop one thing you only do to look good to others.",
-          "Find something you're getting better at. Skill builds real confidence.",
-        ],
-        quickWin: "Write your three real wants down. Nobody else needs to see it.",
-        backup: ["You feel numb or cut off from everyone", "It's dragging your mood down most days"],
-        who: "A counsellor or your doctor/GP. Talking it through with a pro is like having a coach.",
-      },
-    ],
-  },
-  {
-    id: "anger", icon: "🔥", name: "Anger",
-    tag: "Snapping, losing it, regretting it",
-    situations: [
-      {
-        id: "snapping", name: "Snapping at people",
-        read: "Anger is fuel. The goal is to control when it fires, not to never feel it.",
-        moves: [
-          "Learn your warning signs: jaw, fists, heat in your face. That's your cue.",
-          "Take a tactical exit: \"I need 10 minutes.\" Walk away. Come back.",
-          "Burn it off physically: run, gym, punch bag. Not people, not walls.",
-          "Once you've cooled down, name what actually set you off. It's often not the thing you blew up about.",
-        ],
-        quickWin: "Pick your exit line now, so it's ready when you need it.",
-        backup: ["You've hurt someone or broken things", "People around you are scared of you", "You can't stop once you've started"],
-        who: "Your doctor/GP or an anger management course. It's a trainable skill.",
-      },
-      {
-        id: "regret", name: "Things I regret after",
-        read: "Owning it is the strong move. Repair the damage, then change the pattern.",
-        moves: [
-          "Own it straight: \"I was out of line. I'm sorry.\" No \"but\".",
-          "Ask what would help put it right, and do it.",
-          "Work out the pattern: drink, tiredness, certain people? Plan around it.",
-          "Practise the exit line until it's automatic.",
-        ],
-        quickWin: "Make the apology you've been putting off.",
-        backup: ["It keeps happening", "Drink or drugs are involved", "Someone's been hurt"],
-        who: "Your doctor/GP or an anger management programme.",
-      },
-    ],
-  },
-  {
-    id: "alcohol", icon: "🍺", name: "Alcohol",
-    tag: "Drinking more than I want to",
-    situations: [
-      {
-        id: "cut-back", name: "Drinking more than I want",
-        read: "You're in charge here, not the drink. The strategy is to cut back gradually, with a plan you can stick to.",
-        moves: [
-          "Safety first: if you get the shakes, sweats or feel sick after a few hours without a drink, don't stop suddenly. That can be dangerous. See a doctor first. They'll help you come down safely.",
-          "Track it for a week. Write down every drink. Most men are surprised.",
-          "Pick drink-free days and lock them in, like training days.",
-          "Swap and slow: alternate with water or soft drinks, go for lower-strength, use smaller glasses.",
-          "Plan before you go out: decide your limit and tell a mate. Have your exit time.",
-        ],
-        quickWin: "Choose your first drink-free day this week and put it in your calendar.",
-        backup: ["Shakes, sweats or sickness when you don't drink", "You've tried to cut back and couldn't", "Drinking is causing problems with work, money or people"],
-        who: "Your doctor/GP. They can help you cut down safely and point you to free support services.",
-      },
-      {
-        id: "goal", name: "Cutting back for a goal",
-        read: "Fitness, money, a clear head: having a target makes this easier. Treat it like a training block.",
-        moves: [
-          "Set the mission: e.g. no drinking on weeknights for 30 days.",
-          "Find your replacement: alcohol-free beer, a gym session, a new Friday routine.",
-          "Tell your mates the goal up front. Most will back you.",
-          "Track the wins: money saved, sleep, how you feel on a Saturday morning.",
-        ],
-        quickWin: "Write down your mission and your reason in one line.",
-        backup: ["You can't hit even a few drink-free days", "You feel unwell when you don't drink"],
+        quickWin: "Tonight: phone charges outside the bedroom.",
+        backup: ["Poor sleep for more than a few weeks", "You snore heavily or wake up gasping", "Your mood is going down with it"],
         who: "Your doctor/GP.",
-      },
-      {
-        id: "habit", name: "Every evening is a drink evening",
-        read: "It's become automatic. Break the routine around it, not just the drink.",
-        moves: [
-          "Spot the trigger: getting home, a certain time, being bored, stress.",
-          "Replace the first drink with something else at that exact moment: a shower, a walk, food, a call.",
-          "Don't keep a stash at home. Make it harder to start.",
-          "Eat a proper meal before any drink. Hunger makes the first one go down faster.",
-        ],
-        quickWin: "Tonight, do your swap at the trigger moment instead of opening a drink.",
-        backup: ["You need a drink to feel normal", "You feel unwell without one"],
-        who: "Your doctor/GP. Don't cut off suddenly if you're drinking every day; get help to do it safely.",
-      },
-    ],
-  },
-  {
-    id: "dating", icon: "💬", name: "Dating & women",
-    tag: "Talking to women, rejection, confidence",
-    situations: [
-      {
-        id: "nervous", name: "Nervous to talk to her",
-        read: "Confidence isn't something you're born with. It's a skill you build by doing the reps, while treating her as a person, not a target.",
-        moves: [
-          "Start with low-stakes chats everywhere: shop staff, classmates, the gym. Get used to talking.",
-          "Be curious. Ask about her and actually listen. That beats any line.",
-          "Look after yourself: decent clothes, clean, sleep. You'll feel sharper.",
-          "Respect her answer. A no, or no reply, is information. Thank her and move on.",
-        ],
-        quickWin: "Start one friendly conversation with someone today. Anyone.",
-        backup: ["Anxiety stops you going out at all", "You feel angry at women in general"],
-        who: "A counsellor or your doctor/GP can help with social anxiety.",
-      },
-      {
-        id: "rejected", name: "Got rejected",
-        read: "Rejection is part of the game for every man. It stings, and it's information, not a verdict on you.",
-        moves: [
-          "Take it like a pro: \"No worries\" and walk off. That's the strong move.",
-          "Give yourself a day to feel it. Then move.",
-          "Ask yourself honestly if there's anything to learn. If not, it just wasn't a match.",
-          "Stay away from online spaces that turn rejection into hating women. They keep you stuck.",
-        ],
-        quickWin: "Do something today that makes you feel good about yourself: training, a skill, time with mates.",
-        backup: ["You can't stop thinking about it weeks later", "It's turning into anger at women"],
-        who: "A counsellor or a mate you trust.",
       },
     ],
   },
@@ -224,6 +284,20 @@ window.AREAS = [
     id: "relationship", icon: "❤️", name: "Relationship",
     tag: "Arguing, distance, breakups",
     situations: [
+      {
+        id: "breakup", name: "Going through a breakup",
+        read: "A breakup hits hard. The plan is to get through the first few weeks with your routine and your people.",
+        moves: [
+          "Go no-contact for a while. No checking their socials. Mute or unfollow.",
+          "Keep the basics: sleep, eat, train, work. A routine is your anchor.",
+          "Lean on your mates. Make plans, even if you don't feel like it.",
+          "Don't numb it with drink. It makes it last longer.",
+          "Use the energy: a new goal, a fitness target, a project.",
+        ],
+        quickWin: "Make one plan with a mate for this week.",
+        backup: ["You can't function weeks later", "You're drinking heavily to cope", "You have any thoughts of hurting yourself (tap URGENT HELP)"],
+        who: "Your doctor/GP or a counsellor.",
+      },
       {
         id: "arguing", name: "Arguing a lot",
         read: "You're on the same team. The goal is to win the problem, not the argument.",
@@ -236,20 +310,6 @@ window.AREAS = [
         quickWin: "Next time it starts, try the time-out line.",
         backup: ["Arguments get physical, or either of you feels scared", "Same fight every week for months"],
         who: "Couples counselling. If anyone is at risk of being hurt, call emergency services.",
-      },
-      {
-        id: "breakup", name: "Going through a breakup",
-        read: "A breakup hits hard. The plan is to get through the first few weeks with your routine and your people.",
-        moves: [
-          "Go no-contact for a while. No checking their socials. Mute or unfollow.",
-          "Keep the basics: sleep, eat, train, work. A routine is your anchor.",
-          "Lean on your mates. Make plans, even if you don't feel like it.",
-          "Don't numb it with drink. It makes it last longer.",
-          "Use the energy: a new goal, a fitness target, a project.",
-        ],
-        quickWin: "Make one plan with a mate for this week.",
-        backup: ["You can't function weeks later", "You're drinking heavily to cope", "You have any thoughts of hurting yourself (tap BACKUP NOW)"],
-        who: "Your doctor/GP or a counsellor.",
       },
       {
         id: "distant", name: "We feel distant",
@@ -270,6 +330,19 @@ window.AREAS = [
     id: "friends", icon: "🤝", name: "Friendships",
     tag: "No crew, drifted apart, need to talk",
     situations: [
+      {
+        id: "serious-talk", name: "Need to talk to a mate about something serious",
+        read: "It's hard to start. Side-by-side works better than face-to-face for most men.",
+        moves: [
+          "Pick the setting: a walk, a drive, the gym. Side by side, not staring across a table.",
+          "Open simply: \"Can I tell you something? It's been weighing on me.\"",
+          "You don't need it all worked out. Just say what's going on.",
+          "If he's the one struggling: ask twice. \"You alright?\" then \"No, really, you alright?\"",
+        ],
+        quickWin: "Text your mate and arrange the walk.",
+        backup: ["If you're worried a mate might hurt himself, call a crisis line together (tap URGENT HELP)"],
+        who: "A crisis line, his doctor/GP, or emergency services if he's in danger.",
+      },
       {
         id: "no-crew", name: "Don't really have a crew",
         read: "Most men's friendships come from doing things together. So go do things, regularly, in the same place.",
@@ -294,19 +367,6 @@ window.AREAS = [
         quickWin: "Send that message now.",
         backup: ["You feel completely cut off from everyone"],
         who: "Your doctor/GP or a men's peer group.",
-      },
-      {
-        id: "serious-talk", name: "Need to talk to a mate about something serious",
-        read: "It's hard to start. Side-by-side works better than face-to-face for most men.",
-        moves: [
-          "Pick the setting: a walk, a drive, the gym. Side by side, not staring across a table.",
-          "Open simply: \"Can I tell you something? It's been weighing on me.\"",
-          "You don't need it all worked out. Just say what's going on.",
-          "If he's the one struggling: ask twice. \"You alright?\" then \"No, really, you alright?\"",
-        ],
-        quickWin: "Text your mate and arrange the walk.",
-        backup: ["If you're worried a mate might hurt himself, call a crisis line together (tap BACKUP NOW)"],
-        who: "A crisis line, his doctor/GP, or emergency services if he's in danger.",
       },
     ],
   },
@@ -343,85 +403,34 @@ window.AREAS = [
     ],
   },
   {
-    id: "sleep", icon: "🔋", name: "Sleep & energy",
-    tag: "Can't sleep, always tired",
+    id: "dating", icon: "💬", name: "Dating & women",
+    tag: "Talking to women, rejection, confidence",
     situations: [
       {
-        id: "cant-sleep", name: "Can't sleep",
-        read: "Sleep is recovery. Pro athletes treat it as training. Set yourself up for it.",
+        id: "rejected", name: "Got rejected",
+        read: "Rejection is part of the game for every man. It stings, and it's information, not a verdict on you.",
         moves: [
-          "Same wake-up time every day, weekends too. This sets your body clock.",
-          "Phone out of the bedroom, or across the room, 30 minutes before bed.",
-          "No caffeine after early afternoon.",
-          "If you're awake for 20 minutes, get up, do something boring in low light, then try again.",
-          "Daylight and exercise in the day make sleep easier at night.",
+          "Take it like a pro: \"No worries\" and walk off. That's the strong move.",
+          "Give yourself a day to feel it. Then move.",
+          "Ask yourself honestly if there's anything to learn. If not, it just wasn't a match.",
+          "Stay away from online spaces that turn rejection into hating women. They keep you stuck.",
         ],
-        quickWin: "Tonight: phone charges outside the bedroom.",
-        backup: ["Poor sleep for more than a few weeks", "You snore heavily or wake up gasping", "Your mood is going down with it"],
-        who: "Your doctor/GP.",
-      },
-    ],
-  },
-  {
-    id: "modern", icon: "📱", name: "Modern day problems",
-    tag: "Doom scrolling, fake people online, no time",
-    situations: [
-      {
-        id: "doom-scrolling", name: "Doom scrolling",
-        read: "The feed is built to never end. Every swipe is a slot machine pull. Hours vanish and you feel worse, not better. That's the design working, not you failing.",
-        moves: [
-          "Check your screen time. Look at the real number. That's your starting score.",
-          "Kill the triggers: turn off every notification that isn't a real person messaging you.",
-          "Move the worst apps off your home screen, or log out after each use. Make it a bit of effort to open them.",
-          "Set a hard stop: no feeds in bed, and none for the first 30 minutes after you wake up.",
-          "Before you open an app, ask: what am I here for? No answer = don't open it.",
-        ],
-        quickWin: "Turn off notifications for your most-used app. Right now. Takes 30 seconds.",
-        backup: ["You can't cut down even when you really try", "Scrolling is how you avoid feeling bad, every time", "It's costing you sleep, work, school or people"],
-        who: "Your doctor/GP or a counsellor. Getting stuck on screens is common and they've seen it plenty.",
+        quickWin: "Do something today that makes you feel good about yourself: training, a skill, time with mates.",
+        backup: ["You can't stop thinking about it weeks later", "It's turning into anger at women"],
+        who: "A counsellor or a mate you trust.",
       },
       {
-        id: "fake-online", name: "Is anyone online even real?",
-        read: "A lot of what you see online isn't people. Bot farms run thousands of fake accounts that post, like and argue to make you angry, scared or sure that \"everyone\" thinks something. And AI is making the fakes harder to spot every year. The internet isn't a safe town square anymore. Play it smart.",
+        id: "nervous", name: "Nervous to talk to her",
+        read: "Confidence isn't something you're born with. It's a skill you build by doing the reps, while treating her as a person, not a target.",
         moves: [
-          "Assume a stranger's account could be fake. Real name and face prove nothing now. Fakes copy both.",
-          "If a post makes you furious fast, that's the trap. Rage is what bot farms are built to farm. Pause before you reply or share.",
-          "Red flags: brand new account, no real friends, posts all day, only talks about one topic, same lines as other accounts.",
-          "Don't let comment sections tell you what \"everyone\" thinks. Ask the real people in your life instead.",
-          "Never send money, photos or personal details to someone you've only met online. Scammers use fake profiles too.",
+          "Start with low-stakes chats everywhere: shop staff, classmates, the gym. Get used to talking.",
+          "Be curious. Ask about her and actually listen. That beats any line.",
+          "Look after yourself: decent clothes, clean, sleep. You'll feel sharper.",
+          "Respect her answer. A no, or no reply, is information. Thank her and move on.",
         ],
-        quickWin: "Next time a post gets you heated, close the app and walk away for 10 minutes before doing anything.",
-        backup: ["Someone online is threatening you or asking for money or photos", "You've been scammed or blackmailed (tell the police; it's a crime against you)", "Online arguments are eating your mood every day"],
-        who: "The police for threats, scams or blackmail. A trusted mate, family member or your doctor/GP for the rest.",
-      },
-      {
-        id: "touch-grass", name: "Too online, need something real",
-        read: "Your brain was built for real air, real hands and real people. Sometimes the best move is simple: log off and go touch grass.",
-        moves: [
-          "Go outside today. Walk, run, sit in a park. No phone in your hand. Daylight resets your head.",
-          "Start a hobby you do with your hands: gym, cooking, fixing things, an instrument, a sport. Something you can get better at.",
-          "Swap one hour of scrolling a week for something that helps others: volunteer, coach a kids' team, help a neighbour, give blood.",
-          "Build something that lasts: a skill, a project, a garden. Likes vanish in a day. This stays.",
-          "See people in person. One real coffee with a mate beats a thousand comments.",
-        ],
-        quickWin: "Put your phone in another room and go outside for 20 minutes.",
-        backup: ["Nothing offline feels worth doing for weeks (see Low mood)", "You've pulled away from everyone in real life"],
-        who: "Your doctor/GP if it's linked to low mood. Check out The Skills page for hobby ideas.",
-      },
-      {
-        id: "no-time", name: "Both of us work, no time left",
-        read: "It used to be one wage and one person running the home. Now most couples both work, and the house, the bills and the kids still need running. There's less time to go round. The answer isn't moaning about it. It's a system, and owning your part.",
-        moves: [
-          "Build a routine: same days for the shop, the washing, the bins, the bills. A routine means fewer decisions and fewer arguments.",
-          "Sit down once a week, 15 minutes, and plan the week together: who's working late, who's on dinner, what has to get done.",
-          "Split the jobs fairly and take turns. If one of you has a mad week, the other picks up more. Next time it swaps.",
-          "Got kids? It's a different world. Plan around them first, and tag-team so you both get a break.",
-          "Own it. See a job, do it. No speeches, no waiting to be asked, no keeping score. Just get it done.",
-          "Be the role model. Kids copy what you do, not what you say. Get your hands dirty, don't sit on the sofa waiting for it to happen.",
-        ],
-        quickWin: "Pick one job at home nobody's done yet and do it now, without mentioning it.",
-        backup: ["You're running on empty for weeks (see Low mood)", "Every chat about jobs turns into a fight (see Relationship)", "You can't remember the last time you had a day off"],
-        who: "Your doctor/GP if you're burnt out. A couples counsellor if you keep fighting over it.",
+        quickWin: "Start one friendly conversation with someone today. Anyone.",
+        backup: ["Anxiety stops you going out at all", "You feel angry at women in general"],
+        who: "A counsellor or your doctor/GP can help with social anxiety.",
       },
     ],
   },
