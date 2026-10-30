@@ -429,7 +429,7 @@
   const tierOf = x => (window.CONTROVERSIAL || []).includes(x.id) ? 'mid' : x.list;
   const tier = tierOf(p);
   const good = tier === 'good', mid = tier === 'mid';
-  const NAME = { good: 'High Rated', mid: 'Controversial', bad: 'Cautionary' };
+  const NAME = { good: 'High Rated', mid: 'Controversial', bad: 'Bad Influence' };
   // A good man who has died gets RESPECTED instead of HIGH RATED (death is read from his status or role).
   const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
   document.body.classList.add(tier === 'bad' || tier === 'mid' ? tier : 'good');
