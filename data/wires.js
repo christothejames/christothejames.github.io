@@ -1253,7 +1253,6 @@ window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
   "snoop-dogg",
-  "alex-pereira",
   "tiger-woods",
   "mark-wahlberg",
   "jordan-peterson",
@@ -1261,7 +1260,6 @@ window.CONTROVERSIAL = [
   "dave-chappelle",
   "sylvester-stallone",
   "matt-rife",
-  "jake-paul",
   "ishowspeed",
   "mrbeast"
 ];
