@@ -389,7 +389,7 @@
   /* ---------- Footer ---------- */
   footer {
     margin-top: 80px;
-    padding: 32px 16px 64px;
+    padding: 32px 16px 8px;
     border-top: 1px solid var(--line);
     color: var(--muted);
     font-size: 14px;
@@ -398,7 +398,6 @@
 
   footer p { max-width: 620px; margin: 0 auto 14px; }
   footer a { color: var(--bubblegum); text-underline-offset: 3px; }
-  .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; }
 
   /* the licences need the credits on the page, but folded away */
   .credits summary {
@@ -431,6 +430,26 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+/* ---------- Site footer (same on every page) ---------- */
+  .site-foot {
+    max-width: none;
+    margin: 48px 0 0;
+    padding: 40px 16px 56px;
+    background: #030812;
+    border-top: 3px solid #1e90ff;
+    box-shadow: 0 -1px 18px #1e90ff55;
+    font-family: 'Righteous', system-ui, sans-serif;
+    text-align: left;
+  }
+  .site-foot .cols { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px 48px; }
+  .site-foot h2 { margin: 0 0 12px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; letter-spacing: 0.02em; color: #fff; }
+  .site-foot ul { list-style: none; margin: 0; padding: 0; }
+  .site-foot li { margin: 0; font-size: 17px; line-height: 1.9; color: #fff; }
+  .site-foot a { font-family: inherit; font-size: inherit; letter-spacing: normal; color: #3ef2ff; text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .site-foot a:focus-visible { outline: 2px solid #ffe66d; outline-offset: 2px; border-radius: 2px; }
+  .site-foot .sep { margin: 0 6px; }
+  .site-foot a.crisis { color: #ff6b6b; }
 </style>
 </head>
 <body>
@@ -515,7 +534,6 @@
     <summary>PHOTO CREDITS</summary>
     <p id="credits"></p>
   </details>
-  <p class="footer-links"><a href="index.html">↺ Re-enter the manosphere</a><a href="privacy.html">Privacy</a></p>
 </footer>
 
 <script src="data/people.js"></script>
@@ -749,6 +767,31 @@
   render();
 })();
 </script>
+
+<footer class="site-foot">
+  <div class="cols">
+    <nav aria-label="The Real Man Report">
+      <h2>THE REAL MAN REPORT</h2>
+      <ul>
+        <li><a href="home.html">The boards</a></li>
+        <li><a href="web.html">Rankings</a></li>
+        <li><a href="skills.html">Learn a skill</a></li>
+        <li><a href="plan.html">Mental health</a></li>
+        <li><a href="chores.html">Home game plan</a></li>
+        <li><a href="pickup.html">The pick up artist</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Humbored">
+      <h2>HUMBORED</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#contact">Contact us</a><span class="sep" aria-hidden="true">|</span><a href="privacy.html">Privacy</a></li>
+        <li><a class="crisis" href="plan.html#urgent">Crisis lines/chats</a></li>
+        <li><a href="index.html">Re-enter the manosphere</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>

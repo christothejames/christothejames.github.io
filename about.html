@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About us · The Real Man Report</title>
+<meta name="description" content="What The Real Man Report is, why it exists, how men get ranked, and how to contact us.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --blue: #1e90ff;
+    --sky: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --night: #050b1a;
+    --panel: #0c1a36;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--night); }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%),
+      linear-gradient(to bottom, #050b1a, #0a1a3a 45%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--cyan); overflow-wrap: anywhere; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 40px 0 10px; }
+
+  h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, 7vw, 52px);
+    line-height: 1.05;
+    background: linear-gradient(to bottom, #fff, var(--sky) 55%, var(--blue));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+
+  .updated { color: var(--muted); margin: 8px 0 0; font-size: 14px; }
+
+  .short {
+    margin: 24px 0 8px;
+    padding: 16px 18px;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    background: #ffe66d12;
+  }
+  .short h2 { margin-top: 0; color: var(--gold); }
+  .short ul { margin: 0; padding-left: 20px; }
+
+  h2 {
+    margin: 32px 0 8px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cyan);
+  }
+
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+
+  .lead { font-size: 19px; margin: 18px 0 0; }
+
+  .lesson {
+    margin: 16px 0;
+    padding: 4px 0 4px 18px;
+    border-left: 4px solid var(--cyan);
+    font-size: 21px;
+    line-height: 1.45;
+    color: #fff;
+  }
+
+  /* contact: the one thing on this page people come back for */
+  .contact {
+    margin: 40px 0 8px;
+    padding: 20px 18px;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    background: #ffe66d12;
+    scroll-margin-top: 16px;
+  }
+  .contact h2 { margin-top: 0; color: var(--gold); }
+  .contact p { margin: 0 0 12px; }
+  .email {
+    display: block;
+    margin: 8px 0 14px;
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(16px, 4.6vw, 24px);
+    color: var(--cyan);
+    text-decoration: none;
+    overflow-wrap: normal;
+  }
+  .email:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--cyan);
+    color: var(--night);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn.ghost { background: none; color: var(--cyan); box-shadow: inset 0 0 0 2px var(--cyan); }
+  .btn:focus-visible, .email:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .copied { color: var(--gold); font-size: 14px; }
+  .crisis-note { color: var(--muted); font-size: 15px; }
+  .crisis-note a { color: #ff6b6b; }
+
+  footer { margin-top: 40px; padding: 24px 0 60px; border-top: 3px double #7cc4ff77; text-align: center; }
+  footer a { font-family: 'Bungee', sans-serif; text-decoration: none; }
+/* ---------- Site footer (same on every page) ---------- */
+  .site-foot {
+    max-width: none;
+    margin: 48px 0 0;
+    padding: 40px 16px 56px;
+    background: #030812;
+    border-top: 3px solid #1e90ff;
+    box-shadow: 0 -1px 18px #1e90ff55;
+    font-family: 'Righteous', system-ui, sans-serif;
+    text-align: left;
+  }
+  .site-foot .cols { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px 48px; }
+  .site-foot h2 { margin: 0 0 12px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; letter-spacing: 0.02em; color: #fff; }
+  .site-foot ul { list-style: none; margin: 0; padding: 0; }
+  .site-foot li { margin: 0; font-size: 17px; line-height: 1.9; color: #fff; }
+  .site-foot a { font-family: inherit; font-size: inherit; letter-spacing: normal; color: #3ef2ff; text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .site-foot a:focus-visible { outline: 2px solid #ffe66d; outline-offset: 2px; border-radius: 2px; }
+  .site-foot .sep { margin: 0 6px; }
+  .site-foot a.crisis { color: #ff6b6b; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>ABOUT US</h1>
+  <p class="lead">The Real Man Report is a scoreboard for being a decent man.</p>
+</header>
+
+<main class="wrap">
+  <h2>WHY WE BUILT IT</h2>
+  <p>Online, the loudest "alpha" influencers sell one idea of a man: rich, angry, in control of women. We think that's backwards.
+    The dad doing the school run, the friend who checks in, the guy who owns his mistakes: that's the real flex.
+    So we rank famous men on how they actually treat people, and put the good ones where young lads can see them.</p>
+
+  <h2>HOW MEN GET RANKED</h2>
+  <p>Each man is judged on his public conduct: what he did, not what he says about himself.
+    Every fact links to its source on his profile. Charges are not convictions, so a man who is charged but not convicted shows his current legal status.
+    The boards are our opinion, not a finding of guilt.</p>
+  <p>Can't find someone? Search for him on <a href="home.html">the boards</a> and request a ranking.</p>
+
+  <h2>WHO'S BEHIND IT</h2>
+  <p>humbored.com is made by one man. He's middle-aged now, and grew up in a single-parent home: his parents split when he was young, and his dad wasn't around.</p>
+  <p>What he knows about being a man, he learned from his stepdad, a farmer. Watching how he handles daily life showed him what real effort looks like, and that being a man is about what you do, not what you say.</p>
+  <p>The rest came the hard way, by working out who he is. The biggest lesson from that:</p>
+  <blockquote class="lesson">Look for the real truth. It's the only thing that brings closure. And if you can't find it, let it go.</blockquote>
+  <p>No ads, no tracking: see <a href="privacy.html">Privacy</a>.</p>
+
+  <section class="contact" id="contact" aria-labelledby="contactTitle">
+    <h2 id="contactTitle">CONTACT US</h2>
+    <p>Got an idea, spotted a mistake, or not happy with something? Email us. If a fact about a man is wrong, send a link to the source.</p>
+    <a class="email" href="mailto:humbored.contact@gmail.com">humbored.contact@<wbr>gmail.com</a>
+    <div class="actions">
+      <a class="btn" href="mailto:humbored.contact@gmail.com">Email us</a>
+      <button class="btn ghost" type="button" id="copyEmail">Copy address</button>
+      <span class="copied" id="copied" role="status"></span>
+    </div>
+  </section>
+  <p class="crisis-note">Need help right now? Don't wait for an email reply: <a href="plan.html#urgent">crisis lines and chats</a>.</p>
+</main>
+
+<footer class="wrap">
+  <a href="home.html">← BACK TO THE REAL MAN REPORT</a>
+</footer>
+
+<footer class="site-foot">
+  <div class="cols">
+    <nav aria-label="The Real Man Report">
+      <h2>THE REAL MAN REPORT</h2>
+      <ul>
+        <li><a href="home.html">The boards</a></li>
+        <li><a href="web.html">Rankings</a></li>
+        <li><a href="skills.html">Learn a skill</a></li>
+        <li><a href="plan.html">Mental health</a></li>
+        <li><a href="chores.html">Home game plan</a></li>
+        <li><a href="pickup.html">The pick up artist</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Humbored">
+      <h2>HUMBORED</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#contact">Contact us</a><span class="sep" aria-hidden="true">|</span><a href="privacy.html">Privacy</a></li>
+        <li><a class="crisis" href="plan.html#urgent">Crisis lines/chats</a></li>
+        <li><a href="index.html">Re-enter the manosphere</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // mailto does nothing without a mail app, so offer a copy too
+  document.getElementById('copyEmail').addEventListener('click', async () => {
+    const out = document.getElementById('copied');
+    try {
+      await navigator.clipboard.writeText('humbored.contact@gmail.com');
+      out.textContent = 'Copied!';
+    } catch {
+      out.textContent = 'Select the address above to copy it.';
+    }
+  });
+</script>
+
+</body>
+</html>
