@@ -12,7 +12,8 @@ window.SKILL_CATS = [
   { id: "kitchen", name: "Kitchen", ic: "🍳" },
   { id: "cleaning", name: "Cleaning & laundry", ic: "🧽" },
   { id: "car", name: "Car", ic: "🚗" },
-  { id: "life", name: "Life & safety", ic: "❤️" }
+  { id: "life", name: "Life & safety", ic: "❤️" },
+  { id: "goofy", name: "Goofy", ic: "🤪" }
 ];
 
 window.SKILLS = [
@@ -312,5 +313,86 @@ window.SKILLS = [
     tips: ["Write down what comes in", "List every bill and subscription", "Give every pound a job before the month starts"],
     video: "https://www.youtube.com/watch?v=xfPbT7HPkKA",
     by: "George Kamel"
+  },
+  {
+    id: "nunchucks",
+    cat: "goofy",
+    name: "Spin nunchucks",
+    why: "Zero practical use. Maximum Bruce Lee energy.",
+    tips: ["Start with foam ones, your head will thank you", "Slow figure-eights before anything fast", "Clear the room of lamps, pets and siblings"],
+    video: "https://www.youtube.com/watch?v=HWH7Ur2t1F4",
+    by: "Matt Pasquinilli"
+  },
+  {
+    id: "bostaff",
+    cat: "goofy",
+    name: "Twirl a bo staff",
+    why: "Turtle power. A broom handle works just as well.",
+    tips: ["Hands about shoulder-width apart", "Learn the basic strikes before the spins", "Go outside: ceilings are lower than you think"],
+    video: "https://www.youtube.com/watch?v=T7xZ4gfsaLc",
+    by: "Matt Pasquinilli"
+  },
+  {
+    id: "roundhouse",
+    cat: "goofy",
+    name: "Throw a roundhouse kick",
+    why: "Every action hero has one. Now you do too.",
+    tips: ["Pivot on the ball of your standing foot", "Lift the knee first, then snap the leg out", "Kick a pad or the air, never a person"],
+    video: "https://www.youtube.com/watch?v=BZmIA4Sseco",
+    by: "Howcast"
+  },
+  {
+    id: "bottlecap",
+    cat: "goofy",
+    name: "Flick a bottle cap",
+    why: "Pure Johnny Lawrence. Silence the whole table with one snap.",
+    tips: ["Cap rests on your middle finger, thumb on top", "Snap like you're clicking your fingers", "Aim at a bin, not someone's eye"],
+    video: "https://www.youtube.com/watch?v=f2B7zf6yyOY",
+    by: "Dylan Kowalski"
+  },
+  {
+    id: "ballspin",
+    cat: "goofy",
+    name: "Spin a basketball on your finger",
+    why: "The party trick that never gets old.",
+    tips: ["Toss it up with a flick of the wrist", "Catch it on your fingertip, not the nail", "Tap the side gently to keep it going"],
+    video: "https://www.youtube.com/watch?v=f-sq1CCbet4",
+    by: "Harlem Globetrotters"
+  },
+  {
+    id: "juggle",
+    cat: "goofy",
+    name: "Juggle three balls",
+    why: "Ten minutes a day and you're the uncle every kid wants at the barbecue.",
+    tips: ["Master one ball, then two, then three", "Throw to eye height, in an arc", "Stand by a bed so drops don't roll away"],
+    video: "https://www.youtube.com/watch?v=dCYDZDlcO6g",
+    by: "Taylor Tries"
+  },
+  {
+    id: "moonwalk",
+    cat: "goofy",
+    name: "Moonwalk",
+    why: "Wedding dance floor. Save it for the right song.",
+    tips: ["Socks on a smooth floor while you learn", "One heel up, the other foot slides back flat", "Swap and repeat, keep your top half still"],
+    video: "https://www.youtube.com/watch?v=QGm6v9-1ZBU",
+    by: "MihranTV"
+  },
+  {
+    id: "whistle",
+    cat: "goofy",
+    name: "Whistle with your fingers",
+    why: "Hail a taxi, call the dog, end a debate.",
+    tips: ["Fold your tongue back behind your bottom teeth", "Fingers in, lips sealed tight round them", "Blow hard and adjust until it sings"],
+    video: "https://www.youtube.com/watch?v=G8Oz_ELAjNg",
+    by: "Howcast"
+  },
+  {
+    id: "skim",
+    cat: "goofy",
+    name: "Skim a stone",
+    why: "Beat your personal best on every beach for life.",
+    tips: ["Flat, round, palm-sized stone", "Get low, throw sidearm", "Spin it hard off your index finger"],
+    video: "https://www.youtube.com/watch?v=ecuzK_tnbyo",
+    by: "Erie Times-News"
   }
 ];
