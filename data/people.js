@@ -2562,7 +2562,6 @@ window.PEOPLE = [
       { date: "2024", text: "Campaigns against knife crime.", source: "https://en.wikipedia.org/wiki/Idris_Elba" },
       { date: "2016", text: "Appointed OBE.", source: "https://en.wikipedia.org/wiki/Idris_Elba" },
       { date: "2015", text: "Broke a British land speed record.", source: "https://en.wikipedia.org/wiki/Idris_Elba" },
-      { date: "2019", text: "Two writers said they were pushed off a play; he published a rebuttal.", source: "https://en.wikipedia.org/wiki/Idris_Elba" },
     ],
   },
   {

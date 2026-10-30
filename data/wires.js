@@ -599,8 +599,7 @@ window.WIRES = {
   },
   "idris-elba": {
     "body": 1,
-    "community": 1,
-    "conduct": -1
+    "community": 1
   },
   "michael-douglas": {
     "body": 1,
@@ -769,6 +768,7 @@ window.ORDER = [
   "chris-herren",
   "shohei-ohtani",
   "paddy-pimblett",
+  "idris-elba",
   "jose-andres",
   "gareth-southgate",
   "tom-hardy",
@@ -813,7 +813,6 @@ window.ORDER = [
   "jamie-oliver",
   "tim-berners-lee",
   "stephen-curry",
-  "idris-elba",
   "jonathan-groff",
   "ian-mckellen",
   "munya-chawawa",
@@ -901,7 +900,6 @@ window.ORDER = [
 // Men shown in the middle tier (Controversial) instead of their board, best first
 window.CONTROVERSIAL = [
   "stephen-curry",
-  "idris-elba",
   "tiger-woods",
   "mark-wahlberg",
   "will-smith",
