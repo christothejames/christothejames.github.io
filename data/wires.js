@@ -1184,7 +1184,6 @@ window.ORDER = [
   "johnny-depp",
   "theo-von",
   "kevin-spacey",
-  "mrbeast",
   "elon-musk",
   "donald-trump",
   "cristiano-ronaldo",
@@ -1194,6 +1193,7 @@ window.ORDER = [
   "jeff-bezos",
   "mark-zuckerberg",
   "andrew-tate",
+  "mrbeast",
   "chris-brown",
   "russell-brand",
   "mike-tyson",
@@ -1253,15 +1253,13 @@ window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
   "snoop-dogg",
-  "tiger-woods",
   "mark-wahlberg",
   "jordan-peterson",
   "will-smith",
   "dave-chappelle",
   "sylvester-stallone",
   "matt-rife",
-  "ishowspeed",
-  "mrbeast"
+  "ishowspeed"
 ];
 
 // Men shown in the home page's INCEL mode (the manosphere crowd), biggest live impact first
