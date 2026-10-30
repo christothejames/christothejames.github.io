@@ -24,7 +24,7 @@
 
   * { box-sizing: border-box; }
 
-  html { background: var(--night); }
+  html { background: var(--night); scroll-padding-top: 130px; }
 
   body {
     margin: 0;
@@ -40,13 +40,13 @@
 
   a { color: var(--cyan); }
 
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 
   /* ---------- Top bar ---------- */
   .topnav {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 30;
     background: #050b1af2;
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
@@ -80,99 +80,352 @@
 
   .plan-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
-  /* ---------- Header ---------- */
-  header { text-align: center; padding: 30px 0 10px; }
+  /* ---------- Hero: title + scoreboard ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 28px;
+    align-items: center;
+    padding: 40px 0 8px;
+  }
 
-  header h1 {
+  .hero h1 {
     margin: 0;
     font-family: 'Bungee', sans-serif;
     font-weight: 400;
     font-style: italic;
-    font-size: clamp(34px, 8vw, 64px);
-    line-height: 1;
+    font-size: clamp(44px, 9vw, 88px);
+    line-height: 0.95;
     background: linear-gradient(to bottom, #fff 0%, #d6ecff 35%, var(--sky) 55%, var(--blue) 80%);
     -webkit-background-clip: text;
             background-clip: text;
     color: transparent;
-    filter: drop-shadow(3px 3px 0 var(--navy)) drop-shadow(0 0 18px #1e90ff66);
+    filter: drop-shadow(4px 4px 0 var(--navy)) drop-shadow(0 0 22px #1e90ff66);
   }
 
   .motto {
     font-family: 'Monoton', cursive;
-    font-size: clamp(13px, 2.6vw, 20px);
+    font-size: clamp(15px, 2.6vw, 24px);
     color: var(--cyan);
-    margin: 10px 0 0;
+    margin: 12px 0 0;
     text-shadow: 0 0 8px #3ef2ffaa;
   }
 
-  .intro { color: var(--muted); max-width: 600px; margin: 14px auto 0; font-size: 17px; }
+  .intro { color: var(--muted); max-width: 500px; margin: 16px 0 0; font-size: 18px; }
 
-  h2 {
+  /* The scoreboard: one light per skill, lit gold when you know it, cyan when saved. */
+  .board {
+    position: relative;
+    background: linear-gradient(160deg, var(--panel-2), var(--panel) 60%);
+    border: 2px solid #7cc4ff55;
+    border-radius: 22px;
+    padding: 20px 22px 18px;
+    box-shadow: 0 0 0 6px #050b1a, 0 0 0 7px #1e90ff33, 0 18px 40px #00000066;
+  }
+
+  .board-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+
+  .board-label { font-family: 'Bungee', sans-serif; font-size: 13px; color: var(--sky); }
+
+  .score {
     font-family: 'Bungee', sans-serif;
-    font-weight: 400;
-    font-size: clamp(20px, 4.4vw, 28px);
-    margin: 0 0 14px;
-    text-align: center;
+    font-size: clamp(38px, 6vw, 54px);
+    line-height: 1;
+    color: var(--gold);
+    text-shadow: 0 0 14px #ffe66d88;
+    font-variant-numeric: tabular-nums;
   }
 
-  /* ---------- Where you started ---------- */
-  .started { margin: 34px 0 10px; }
+  .score small { font-size: 0.42em; color: var(--muted); text-shadow: none; }
 
-  .lead {
-    margin: 0 auto;
-    max-width: 680px;
-    text-align: center;
-    font-size: 18px;
-    color: var(--muted);
+  .pips {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 17), 1fr);
+    gap: 5px;
+    margin: 16px 0 14px;
   }
 
-  .common {
-    margin: 16px 0 0;
-    text-align: center;
-    background: linear-gradient(135deg, var(--navy), var(--panel));
-    border: 1px solid #ffe66d55;
-    border-radius: 20px;
-    padding: 20px;
+  .pip {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: #ffffff10;
+    border: 1px solid #ffffff1a;
+    transition: background 0.3s, box-shadow 0.3s;
   }
 
-  .common p { margin: 0 auto; max-width: 640px; font-size: 18px; }
-  .common strong { color: var(--gold); font-weight: 400; }
+  .pip.want { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 8px #3ef2ff88; }
+  .pip.know { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 8px #ffe66d88; }
 
-  /* ---------- Progress + filters ---------- */
-  .skills-head { margin: 40px 0 0; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+  .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    margin-right: 6px;
+    background: #ffffff22;
+  }
+  .legend .l-know::before { background: var(--gold); }
+  .legend .l-want::before { background: var(--cyan); }
 
-  .progress {
-    max-width: 420px;
-    margin: 0 auto 18px;
-    text-align: center;
+  /* Save with Google: optional, sits at the bottom of the scoreboard. */
+  .cloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #7cc4ff44;
     font-size: 14px;
     color: var(--muted);
   }
 
-  .bar { height: 10px; border-radius: 999px; background: var(--panel-2); overflow: hidden; margin-top: 6px; border: 1px solid var(--line); }
-  .bar span { display: block; height: 100%; width: 0; background: linear-gradient(to right, var(--blue), var(--cyan)); transition: width 0.3s; }
+  .cloud-btn {
+    font: inherit;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 2px solid var(--sky);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-  .filters { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 18px; }
+  .cloud-btn:hover { background: #7cc4ff22; }
+  .cloud-btn:focus-visible, .cloud-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  .cloud-msg { flex: 1 1 200px; }
+  .cloud-msg b { color: var(--gold); font-weight: 400; }
+  .cloud-msg.warn b { color: var(--red); }
+  .cloud-msg a { color: inherit; }
+
+  .cloud-link {
+    font: inherit;
+    font-size: 13px;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .gbtn:empty { display: none; }
+
+  /* ---------- How it works ---------- */
+  .how {
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    counter-reset: step;
+  }
+
+  .how li {
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: #0c1a3699;
+    border: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .how li::before {
+    content: counter(step);
+    flex: none;
+    width: 30px; height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .how b { color: var(--text); font-weight: 400; }
+
+  /* ---------- Wherever you started ---------- */
+  .started {
+    margin: 44px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .started h2 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 34px);
+    line-height: 1.1;
+  }
+
+  .started .sub { margin: 10px 0 0; color: var(--muted); font-size: 16px; }
+
+  .hands { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+  .hands li {
+    padding: 12px 16px 12px 18px;
+    border-left: 3px solid var(--blue);
+    background: linear-gradient(to right, #1e90ff14, transparent);
+    border-radius: 0 12px 12px 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .hands strong { display: block; color: var(--text); font-weight: 400; font-size: 17px; }
+
+  .common {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 18px 22px;
+    border-radius: 18px;
+    border: 1px solid #ffe66d55;
+    background: linear-gradient(135deg, #ffe66d14, var(--panel) 55%);
+    font-size: 18px;
+  }
+
+  .common strong { color: var(--gold); font-weight: 400; }
+
+  /* ---------- Sticky controls ---------- */
+  .skills-area { margin: 48px 0 0; }
+
+  .skills-area > h2 {
+    margin: 0 0 14px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(22px, 4.4vw, 32px);
+  }
+
+  .controls {
+    position: sticky;
+    top: 56px;
+    z-index: 20;
+    margin: 0 -16px 8px;
+    padding: 10px 16px;
+    background: #050b1aeb;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 10px;
+  }
+
+  .views {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: start;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .views button {
+    font: inherit;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .views button:hover { color: var(--text); }
+  .views button .n { margin-left: 4px; padding: 1px 7px; border-radius: 999px; background: #ffffff1c; font-size: 11px; }
+  .views button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+  .views button[data-view="want"][aria-pressed="true"] { background: var(--cyan); color: var(--night); }
+  .views button[data-view="know"][aria-pressed="true"] { background: var(--gold); color: var(--night); }
+  .views button[aria-pressed="true"] .n { background: #00000026; }
+  .views button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  .filters {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px 24px 2px 0;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
+  }
+
+  .filters::-webkit-scrollbar { display: none; }
 
   .filters button {
+    flex: none;
     font: inherit;
     font-size: 14px;
     padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid #ffffff44;
+    border: 1px solid #ffffff33;
     background: transparent;
     color: var(--text);
     cursor: pointer;
+    white-space: nowrap;
   }
 
-  .filters button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); }
+  .filters button:hover { border-color: #ffffff88; }
+  .filters button[aria-pressed="true"] { background: #1e90ff33; border-color: var(--blue); color: #fff; }
   .filters button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* ---------- Groups ---------- */
+  .group { margin-top: 26px; }
+
+  .group-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .group-head .gi {
+    width: 40px; height: 40px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    font-size: 20px;
+  }
+
+  .group-head h3 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .group-head::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #7cc4ff55, transparent);
+  }
+
+  .group-head .gc { order: 3; font-size: 14px; color: var(--muted); white-space: nowrap; }
 
   /* ---------- Skill cards ---------- */
   .skills {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
   }
 
   .skill {
@@ -182,10 +435,11 @@
     border: 1px solid var(--line);
     border-radius: 18px;
     overflow: hidden;
+    transition: opacity 0.35s, transform 0.35s, border-color 0.2s;
   }
 
+  .skill.want { border-color: #3ef2ffaa; box-shadow: 0 0 22px #3ef2ff26; }
   .skill.know { border-color: #ffe66d88; }
-  .skill.want { border-color: #3ef2ff88; box-shadow: 0 0 16px #3ef2ff22; }
 
   .video {
     position: relative;
@@ -203,6 +457,13 @@
     border: 0;
     cursor: pointer;
     background: #000 center / cover no-repeat;
+  }
+
+  .play::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #050b1acc, transparent 45%);
   }
 
   .play::after {
@@ -226,7 +487,7 @@
 
   .clip {
     position: absolute;
-    left: 8px; bottom: 8px;
+    left: 10px; bottom: 10px;
     font-size: 12px;
     padding: 2px 8px;
     border-radius: 999px;
@@ -235,91 +496,103 @@
     pointer-events: none;
   }
 
+  .state {
+    position: absolute;
+    right: 10px; top: 10px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: var(--night);
+    pointer-events: none;
+  }
+
+  .skill:not(.want):not(.know) .state { display: none; }
+  .skill.want .state { background: var(--cyan); }
+  .skill.know .state { background: var(--gold); }
+
   .skill-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
 
-  .skill .cat { font-size: 13px; color: var(--sky); }
-
-  .skill h3 {
-    margin: 2px 0 6px;
+  .skill h4 {
+    margin: 0 0 6px;
     font-family: 'Bungee', sans-serif;
     font-weight: 400;
     font-size: 19px;
     line-height: 1.15;
   }
 
-  .skill .why { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+  .skill .why { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
 
-  .skill ul { margin: 0 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
-  .skill li { padding-left: 20px; position: relative; }
-  .skill li::before { content: "→"; position: absolute; left: 0; color: var(--blue); }
+  .skill ul {
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    list-style: none;
+    display: grid;
+    gap: 5px;
+    font-size: 15px;
+    border-radius: 12px;
+    background: #ffffff08;
+  }
 
-  .skill-foot { margin-top: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .skill li { padding-left: 24px; position: relative; }
+  .skill li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 2px;
+    width: 16px; height: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #1e90ff33;
+    color: var(--sky);
+    font-size: 10px;
+  }
 
-  .marks { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+  .skill-foot { margin-top: auto; display: grid; gap: 10px; }
+
+  .marks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
   .mark {
-    flex: 1;
     font: inherit;
     font-family: 'Bungee', sans-serif;
     font-size: 13px;
-    padding: 9px 12px;
+    padding: 10px 12px;
     border-radius: 999px;
-    border: 2px solid #ffffff55;
+    border: 2px solid #ffffff44;
     background: transparent;
     color: var(--text);
     cursor: pointer;
     white-space: nowrap;
   }
 
+  .mark.want { border-color: #3ef2ff88; color: var(--cyan); }
   .mark.want[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--night); }
   .mark.know[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--night); }
   .mark:hover { border-color: #fff; }
-
-  .sure { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
-  .sure p { margin: 0; width: 100%; font-size: 15px; color: var(--gold); }
-  .mark.yes { background: var(--gold); border-color: var(--gold); color: var(--night); }
-
-  .skill { transition: opacity 0.35s, transform 0.35s; }
-  .skill.vanish { opacity: 0; transform: scale(0.92); }
   .mark:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
-  /* ---------- Want / know tabs ---------- */
-  .views { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .sure { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sure p { margin: 0; grid-column: 1 / -1; font-size: 15px; color: var(--gold); }
+  .mark.yes { background: var(--gold); border-color: var(--gold); color: var(--night); }
 
-  .views button {
-    font: inherit;
-    font-family: 'Bungee', sans-serif;
-    font-size: 13px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: 2px solid #ffffff44;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
+  .skill.vanish { opacity: 0; transform: scale(0.92); }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    margin: 30px auto;
+    max-width: 480px;
+    padding: 24px;
+    border: 1px dashed #ffffff33;
+    border-radius: 18px;
   }
-
-  .views button .n { margin-left: 4px; padding: 1px 7px; border-radius: 999px; background: #ffffff22; font-size: 11px; }
-  .views button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .views button[data-view="want"][aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--night); }
-  .views button[data-view="know"][aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--night); }
-  .views button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-
-  .empty { text-align: center; color: var(--muted); margin: 10px auto; max-width: 480px; }
 
   .by { font-size: 12px; color: var(--muted); }
   .by a { color: var(--muted); }
 
-  .coach {
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-    margin: 26px auto 0;
-    max-width: 560px;
-  }
-
   footer {
-    margin-top: 40px;
-    padding: 22px 0 60px;
+    margin-top: 56px;
+    padding: 22px 16px 60px;
     border-top: 3px double #7cc4ff55;
     color: var(--muted);
     font-size: 13px;
@@ -330,10 +603,25 @@
 
   [hidden] { display: none !important; }
 
-  @media (max-width: 520px) {
+  @media (max-width: 820px) {
+    .hero, .started { grid-template-columns: 1fr; }
+    .hero { gap: 22px; padding-top: 28px; }
+  }
+
+  @media (max-width: 680px) {
+    .how { grid-template-columns: 1fr; gap: 8px; margin-top: 22px; }
+    .how li { padding: 10px 12px; align-items: center; }
+    .how li::before { width: 26px; height: 26px; font-size: 12px; }
+  }
+
+  @media (max-width: 560px) {
     .brand { font-size: 14px; }
     .plan-btn { font-size: 12px; padding: 7px 11px; }
     .skills { grid-template-columns: 1fr; }
+    .views { grid-template-columns: 1fr 1fr; width: 100%; border-radius: 18px; }
+    .views button { padding: 8px 6px; font-size: 12px; }
+    .pips { grid-template-columns: repeat(var(--cols-sm, 11), 1fr); gap: 4px; }
+    .common { font-size: 17px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -351,38 +639,58 @@
 </div>
 
 <div class="wrap">
-  <header>
-    <h1>THE SKILLS</h1>
-    <p class="motto">nobody's born knowing</p>
-    <p class="intro">Every man starts somewhere different. Wherever you started, there's always something new to learn, and it's never too late to learn it.</p>
+  <header class="hero">
+    <div>
+      <h1>THE SKILLS</h1>
+      <p class="motto">nobody's born knowing</p>
+      <p class="intro">Every man starts somewhere different. Wherever you started, there's always something new to learn, and it's never too late to learn it.</p>
+    </div>
+
+    <div class="board">
+      <div class="board-top">
+        <span class="board-label">SKILLS UNLOCKED</span>
+        <span class="score" id="score" aria-live="polite">0<small> / 0</small></span>
+      </div>
+      <div class="pips" id="pips" aria-hidden="true"></div>
+      <div class="legend">
+        <span class="l-know">Already know</span>
+        <span class="l-want">Saved to learn</span>
+        <span>Not yet</span>
+      </div>
+      <div class="cloud" id="cloud" aria-live="polite" hidden></div>
+    </div>
   </header>
 
-  <section class="started" aria-labelledby="startedTitle">
-    <h2 id="startedTitle">Wherever you started</h2>
-    <p class="lead">Maybe you drew a bad hand: a tough home, a family that tore you down, or nobody at all. Maybe your family backed you but pushed too hard, so competitive that nothing you did ever felt good enough. Maybe you had the perfect home and got everything done for you, and now you're on your own without the skills to match. Wherever you started, nobody got shown everything.</p>
+  <ol class="how" aria-label="How it works">
+    <li><span>Tap <b>★ Learn</b> to save a skill and start its video.</span></li>
+    <li><span>Go and do it once. Doing it once is how you learn it.</span></li>
+    <li><span>Tap <b>✓ Already know</b> to unlock it. Changed your mind? <b>↺ Put back</b> lives in the Already know tab.</span></li>
+  </ol>
 
-    <div class="common">
-      <p>None of that is a verdict on you. As men we all go through something. <strong>Getting a bit better every day</strong> is something every one of us can share, so here are the everyday skills, one short video at a time.</p>
+  <section class="started" aria-labelledby="startedTitle">
+    <div>
+      <h2 id="startedTitle">Wherever you started</h2>
+      <p class="sub">Nobody got shown everything.</p>
     </div>
+    <ul class="hands">
+      <li><strong>Maybe you drew a bad hand.</strong>A tough home, a family that tore you down, or nobody at all.</li>
+      <li><strong>Maybe your family pushed too hard.</strong>They backed you, but were so competitive that nothing you did ever felt good enough.</li>
+      <li><strong>Maybe everything got done for you.</strong>The perfect home, and now you're on your own without the skills to match.</li>
+    </ul>
+    <p class="common">None of that is a verdict on you. As men we all go through something. <strong>Getting a bit better every day</strong> is something every one of us can share, so here are the everyday skills, one short video at a time.</p>
   </section>
 
-  <section class="skills-head" aria-labelledby="skillsTitle">
+  <section class="skills-area" aria-labelledby="skillsTitle">
     <h2 id="skillsTitle">Pick one. Learn it today.</h2>
 
-    <div class="progress" aria-live="polite">
-      <span id="progressText">0 unlocked</span>
-      <div class="bar"><span id="progressBar"></span></div>
+    <div class="controls">
+      <div class="views" id="views" role="group" aria-label="Show skills by what you know"></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter skills"></div>
     </div>
 
-    <div class="views" id="views" role="group" aria-label="Show skills by what you know"></div>
-
-    <div class="filters" id="filters" role="group" aria-label="Filter skills"></div>
-
-    <div class="skills" id="skills"></div>
+    <div id="skills"></div>
 
     <p class="empty" id="empty" hidden></p>
-
-    <p class="coach">Tap <b>★ Learn</b> to save a skill for later. Watch it, then go and do it once: doing it once is how you learn it. Then tap <b>✓ Already know</b> to unlock it and clear it off your list. Changed your mind? Find it in the Already know tab and tap <b>↺ Put back</b>.</p>
   </section>
 </div>
 
@@ -498,31 +806,34 @@
         card.hidden = !inView(card.dataset.id) || (cat !== "all" && card.dataset.cat !== cat);
         if (!card.hidden) shown++;
       });
+      // A category heading only shows while it has cards under it.
+      grid.querySelectorAll(".group").forEach(g => {
+        g.hidden = !g.querySelector(".skill:not([hidden])");
+      });
       const empty = document.getElementById("empty");
       empty.hidden = shown > 0;
       empty.textContent = EMPTY[view] || "No skills here yet.";
     }
 
     // ---------- Cards ----------
-    grid.innerHTML = skills.map(s => {
+    function card(s) {
       const id = videoId(s.video);
-      const c = catById[s.cat] || { name: s.cat, ic: "" };
       const clip = s.start || s.end
         ? '<span class="clip">✂ ' + fmt(s.start || 0) + (s.end ? "–" + fmt(s.end) : "+") + "</span>"
         : "";
+      const st = status[s.id] || "";
       const video = id
         ? '<div class="video">' +
             '<button class="play" data-vid="' + id + '" aria-label="Play video: ' + esc(s.name) + '"' +
             ' style="background-image:url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)"></button>' + clip +
+            '<span class="state">' + (st === "know" ? "✓ KNOWN" : "★ SAVED") + "</span>" +
           "</div>"
         : "";
-      const st = status[s.id] || "";
       return '<article class="skill' + (st ? " " + st : "") + '" data-cat="' + esc(s.cat) + '" data-id="' + esc(s.id) + '"' +
         ' data-start="' + (s.start || 0) + '" data-end="' + (s.end || "") + '">' +
         video +
         '<div class="skill-body">' +
-          '<span class="cat">' + c.ic + " " + esc(c.name) + "</span>" +
-          "<h3>" + esc(s.name) + "</h3>" +
+          "<h4>" + esc(s.name) + "</h4>" +
           '<p class="why">' + esc(s.why) + "</p>" +
           (s.tips && s.tips.length ? "<ul>" + s.tips.map(t => "<li>" + esc(t) + "</li>").join("") + "</ul>" : "") +
           '<div class="skill-foot">' +
@@ -539,7 +850,28 @@
           "</div>" +
         "</div>" +
       "</article>";
+    }
+
+    // One group per category, in SKILL_CATS order; unknown categories go last.
+    const order = cats.map(c => c.id).filter(id => counts[id])
+      .concat(Object.keys(counts).filter(id => !catById[id]));
+
+    grid.innerHTML = order.map(cid => {
+      const c = catById[cid] || { name: cid, ic: "•" };
+      return '<section class="group" data-group="' + esc(cid) + '">' +
+        '<div class="group-head"><span class="gi" aria-hidden="true">' + c.ic + "</span>" +
+          "<h3>" + esc(c.name) + '</h3><span class="gc"></span></div>' +
+        '<div class="skills">' + skills.filter(s => s.cat === cid).map(card).join("") + "</div>" +
+      "</section>";
     }).join("");
+
+    // Even rows of lights: 2 rows on wide screens, 3 on phones.
+    const pips = document.getElementById("pips");
+    pips.style.setProperty("--cols", Math.ceil(skills.length / 2));
+    pips.style.setProperty("--cols-sm", Math.ceil(skills.length / 3));
+    pips.innerHTML = skills.map(s =>
+      '<span class="pip" data-id="' + esc(s.id) + '" title="' + esc(s.name) + '"></span>'
+    ).join("");
 
     // Load the YouTube player only when someone presses play, so the page stays fast.
     function playVideo(card) {
@@ -550,7 +882,7 @@
       if (card.dataset.end) params.set("end", card.dataset.end);
       const f = document.createElement("iframe");
       f.src = "https://www.youtube-nocookie.com/embed/" + play.dataset.vid + "?" + params;
-      f.title = card.querySelector("h3").textContent;
+      f.title = card.querySelector("h4").textContent;
       f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       f.allowFullscreen = true;
       play.replaceWith(f);
@@ -609,22 +941,196 @@
     function setStatus(card, st) {
       const id = card.dataset.id;
       st ? (status[id] = st) : delete status[id];
+      paint(card);
+      save();
+      cloudSave();
+      updateProgress();
+    }
+
+    // Shows a card's saved state on its buttons, border and corner tag.
+    function paint(card) {
+      const st = status[card.dataset.id] || "";
       card.classList.toggle("want", st === "want");
       card.classList.toggle("know", st === "know");
       card.querySelectorAll(".marks .mark").forEach(b => b.setAttribute("aria-pressed", b.dataset.mark === st));
       card.querySelector(".mark.want").textContent = st === "want" ? "★ SAVED" : "★ LEARN";
       card.querySelector(".mark.know").textContent = st === "know" ? "↺ PUT BACK" : "✓ ALREADY KNOW";
-      save();
-      updateProgress();
+      const tag = card.querySelector(".state");
+      if (tag) tag.textContent = st === "know" ? "✓ KNOWN" : "★ SAVED";
     }
+
+    // ---------- Save with Google (optional) ----------
+    // Signed in, the list is also kept on the private admin site under a scrambled account code,
+    // so it follows you to another phone or computer. Without signing in it stays in this browser only.
+    // Client ID is public, not a secret; it must match GOOGLE_CLIENT_ID in home.html and the admin repo. Empty = hidden.
+    const GOOGLE_CLIENT_ID = "958568316588-du1d98s3ghbpiudet67kvr5s0140stna.apps.googleusercontent.com";
+    const PROGRESS_URL = "https://humbored-admin.pages.dev/public/progress";
+    const CLOUD_FLAG = "rmr-skills-cloud"; // "1" = signed in here before, so offer Google's quick sign-in on the next visit
+    const cloudBox = document.getElementById("cloud");
+    let credential = null; // Google sign-in token, kept only in memory (expires after an hour)
+    let cloudState = "out"; // out | loading | saving | saved | error | expired | erased
+    let cloudTimer;
+
+    function flag(on) {
+      try { on ? localStorage.setItem(CLOUD_FLAG, "1") : localStorage.removeItem(CLOUD_FLAG); } catch (e) {}
+    }
+
+    async function cloud(body) {
+      const r = await fetch(PROGRESS_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ page: "skills", credential, ...body })
+      });
+      const d = await r.json().catch(() => ({}));
+      if (d.signin) {
+        credential = null;
+        setCloud("expired");
+        throw new Error("signin");
+      }
+      if (!r.ok) throw new Error(d.error || "Couldn't reach the save server.");
+      return d;
+    }
+
+    function setCloud(state) {
+      cloudState = state;
+      renderCloud();
+    }
+
+    // Google's sign-in script loads only once someone chooses to sign in, or signed in here before.
+    let gisLoading;
+    function loadGoogle() {
+      gisLoading = gisLoading || new Promise((ok, fail) => {
+        const s = document.createElement("script");
+        s.src = "https://accounts.google.com/gsi/client?hl=en";
+        s.async = true;
+        s.onload = ok;
+        s.onerror = fail;
+        document.head.appendChild(s);
+      }).then(() => {
+        google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, auto_select: true, callback: r => signedIn(r.credential) });
+      });
+      return gisLoading;
+    }
+
+    async function startSignin() {
+      cloudBox.querySelector(".cloud-btn").disabled = true;
+      try {
+        await loadGoogle();
+      } catch (e) {
+        setCloud("error");
+        return;
+      }
+      renderCloud();
+      google.accounts.id.prompt();
+    }
+
+    // On sign-in: bring both lists together (a skill you know on either device stays known), then save.
+    async function signedIn(token) {
+      credential = token;
+      flag(true);
+      setCloud("loading");
+      try {
+        const d = await cloud({});
+        const theirs = d.data || {};
+        const merged = { ...status };
+        Object.keys(theirs).forEach(id => {
+          if (!merged[id] || theirs[id] === "know") merged[id] = theirs[id];
+        });
+        status = merged;
+        save();
+        grid.querySelectorAll(".skill").forEach(paint);
+        updateProgress();
+        applyFilters();
+        if (JSON.stringify(merged) !== JSON.stringify(theirs)) await cloud({ data: status });
+        setCloud("saved");
+      } catch (e) {
+        if (e.message !== "signin") setCloud("error");
+      }
+    }
+
+    function cloudSave() {
+      if (!credential) return;
+      clearTimeout(cloudTimer);
+      setCloud("saving");
+      cloudTimer = setTimeout(() => {
+        cloud({ data: status }).then(() => setCloud("saved"), e => { if (e.message !== "signin") setCloud("error"); });
+      }, 800);
+    }
+
+    function signOut() {
+      credential = null;
+      clearTimeout(cloudTimer);
+      flag(false);
+      if (window.google && google.accounts) google.accounts.id.disableAutoSelect();
+      setCloud("out");
+    }
+
+    async function erase() {
+      if (!confirm("Delete your saved skills from our server? They stay on this device.")) return;
+      try {
+        await cloud({ erase: true });
+        signOut();
+        setCloud("erased");
+      } catch (e) {
+        if (e.message !== "signin") setCloud("error");
+      }
+    }
+
+    const PRIVACY = ' We keep a scrambled code, never your name or email. <a href="privacy.html">Privacy</a>';
+    const MSG = {
+      out: "Keep your skills on any phone or computer.",
+      loading: "<b>Signed in.</b> Loading your saved skills…",
+      saving: "<b>✓ Signed in with Google.</b> Saving…",
+      saved: "<b>✓ Saved to your Google account.</b> Changes save as you go.",
+      error: "<b>Couldn't save just now.</b> Your skills are safe on this device. Try again in a bit.",
+      expired: "<b>Your sign-in ran out.</b> Sign in again to keep saving.",
+      erased: "<b>Deleted from our server.</b> Your skills are still on this device."
+    };
+
+    // Signed out: our own button until Google's script is loaded, then Google's button.
+    // Signed in: the save status, sign out and delete.
+    function renderCloud() {
+      cloudBox.hidden = !GOOGLE_CLIENT_ID;
+      if (cloudBox.hidden) return;
+      const googleReady = !!(window.google && google.accounts && google.accounts.id);
+      const warn = cloudState === "error" || cloudState === "expired";
+      cloudBox.innerHTML =
+        (credential ? "" : googleReady ? '<span class="gbtn"></span>' : '<button type="button" class="cloud-btn">☁ SAVE WITH GOOGLE</button>') +
+        '<span class="cloud-msg' + (warn ? " warn" : "") + '">' + MSG[cloudState] + (credential ? "" : PRIVACY) + "</span>" +
+        (credential
+          ? '<button type="button" class="cloud-link" data-do="out">sign out</button>' +
+            '<button type="button" class="cloud-link" data-do="erase">delete saved copy</button>'
+          : "");
+      const gbtn = cloudBox.querySelector(".gbtn");
+      if (gbtn) google.accounts.id.renderButton(gbtn, { theme: "filled_black", size: "large", shape: "pill", text: "signin_with", locale: "en" });
+    }
+
+    cloudBox.addEventListener("click", e => {
+      if (e.target.closest(".cloud-btn")) startSignin();
+      const link = e.target.closest(".cloud-link");
+      if (link && link.dataset.do === "out") signOut();
+      if (link && link.dataset.do === "erase") erase();
+    });
+
+    renderCloud();
+    // Signed in here before: load Google straight away so it can sign you back in.
+    try {
+      if (GOOGLE_CLIENT_ID && localStorage.getItem(CLOUD_FLAG)) {
+        loadGoogle().then(() => { renderCloud(); google.accounts.id.prompt(); }, () => {});
+      }
+    } catch (e) {}
 
     function updateProgress() {
       const n = { want: 0, know: 0, new: 0 };
       skills.forEach(s => { n[status[s.id] || "new"]++; });
-      document.getElementById("progressText").textContent = n.know + " of " + skills.length + " skills unlocked";
-      document.getElementById("progressBar").style.width = (skills.length ? (n.know / skills.length) * 100 : 0) + "%";
+      document.getElementById("score").innerHTML = n.know + "<small> / " + skills.length + "</small>";
+      document.querySelectorAll(".pip").forEach(p => { p.className = "pip " + (status[p.dataset.id] || ""); });
       n.all = skills.length - n.know;
       views.querySelectorAll("button").forEach(b => { b.querySelector(".n").textContent = n[b.dataset.view]; });
+      grid.querySelectorAll(".group").forEach(g => {
+        const ids = skills.filter(s => s.cat === g.dataset.group).map(s => s.id);
+        g.querySelector(".gc").textContent = ids.filter(id => status[id] === "know").length + " of " + ids.length + " known";
+      });
     }
 
     updateProgress();
