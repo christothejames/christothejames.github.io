@@ -2129,6 +2129,7 @@ window.PEOPLE = [
     posts: [
       { date: "2025–26", text: "Charged with rape and sexual assault; pleaded not guilty; trial began October 2026.", source: "https://variety.com/2026/tv/global/russell-brand-rape-trial-starts-london-1236900009/" },
       { date: "2023", text: "Five women accused him of sexual assault and abuse; he denies it.", source: "https://en.wikipedia.org/wiki/Russell_Brand" },
+      { date: "2026", text: "Said on The Megyn Kelly Show that he slept with a 16-year-old when he was 30, and called it exploitative. He said it was legal and consensual, and he denies the assault allegations.", source: "https://variety.com/2026/film/news/russell-brand-slept-with-16-year-old-exploitative-1236728354/" },
       { date: "2008", text: "Resigned from the BBC over prank calls to Andrew Sachs.", source: "https://en.wikipedia.org/wiki/Russell_Brand" },
       { date: "2017–", text: "Married Laura Gallacher; three children.", source: "https://en.wikipedia.org/wiki/Russell_Brand" },
     ],

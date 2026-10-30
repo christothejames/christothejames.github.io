@@ -856,8 +856,8 @@ window.ORDER = [
   "jeff-bezos",
   "andrew-tate",
   "chris-brown",
-  "mike-tyson",
   "russell-brand",
+  "mike-tyson",
   "clavicular",
   "nidal-hasan",
   "logan-paul",
@@ -903,7 +903,6 @@ window.CONTROVERSIAL = [
   "tiger-woods",
   "mark-wahlberg",
   "will-smith",
-  "russell-brand",
   "clavicular",
   "mrbeast"
 ];
