@@ -929,6 +929,80 @@ window.WIRES = {
   },
   "michael-gove": {
     "community": 1
+  },
+  "ishowspeed": {
+    "conduct": -1
+  },
+  "liver-king": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "mark-zuckerberg": {
+    "community": 1,
+    "family": 1,
+    "trust": -1,
+    "conduct": -1
+  },
+  "richard-branson": {
+    "community": 1,
+    "conduct": -1,
+    "people": -1
+  },
+  "matt-rife": {
+    "conduct": -1,
+    "people": -1
+  },
+  "kevin-hart": {
+    "family": -1,
+    "conduct": -1
+  },
+  "jake-paul": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "sylvester-stallone": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "dana-white": {
+    "conduct": -1
+  },
+  "dave-chappelle": {
+    "conduct": -1
+  },
+  "bam-margera": {
+    "conduct": -1
+  },
+  "travis-scott": {
+    "conduct": -1
+  },
+  "salt-bae": {
+    "conduct": -1
+  },
+  "theo-von": {
+    "conduct": -1
+  },
+  "jordan-peterson": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "alex-pereira": {
+    "body": 1,
+    "family": -1,
+    "conduct": 1
+  },
+  "canelo-alvarez": {
+    "body": 1,
+    "conduct": -1
+  },
+  "snoop-dogg": {
+    "community": 1,
+    "family": 1,
+    "conduct": -1
+  },
+  "tom-cruise": {
+    "body": 1
   }
 };
 
@@ -1019,6 +1093,7 @@ window.ORDER = [
   "alexander-skarsgard",
   "carlos-alcaraz",
   "ben-fogle",
+  "tom-cruise",
   "captain-tom-moore",
   "patrick-mahomes",
   "karl-deisseroth",
@@ -1088,12 +1163,14 @@ window.ORDER = [
   "ranulph-fiennes",
   "mo-farah",
   "stormzy",
+  "snoop-dogg",
   "bear-grylls",
   "paul-mccartney",
   "michael-dell",
   "max-verstappen",
   "anthony-joshua",
   "bill-gates",
+  "canelo-alvarez",
   "steve-irwin",
   "hugh-fearnley-whittingstall",
   "brad-pitt",
@@ -1102,25 +1179,34 @@ window.ORDER = [
   "khabib-nurmagomedov",
   "marco-pierre-white",
   "gary-oldman",
+  "jordan-peterson",
   "ben-stokes",
   "johnny-depp",
+  "theo-von",
   "kevin-spacey",
   "mrbeast",
   "elon-musk",
   "donald-trump",
   "cristiano-ronaldo",
   "lionel-messi",
+  "richard-branson",
   "conor-mcgregor",
   "jeff-bezos",
+  "mark-zuckerberg",
   "andrew-tate",
   "chris-brown",
   "russell-brand",
   "mike-tyson",
   "clavicular",
   "nidal-hasan",
+  "ishowspeed",
+  "kevin-hart",
   "logan-paul",
   "sunny-balwani",
+  "matt-rife",
+  "sylvester-stallone",
   "martin-shkreli",
+  "jake-paul",
   "will-smith",
   "jay-z",
   "joe-rogan",
@@ -1133,34 +1219,50 @@ window.ORDER = [
   "sean-combs",
   "lance-armstrong",
   "jeremy-clarkson",
+  "liver-king",
   "tristan-tate",
   "alex-jones",
   "oscar-pistorius",
   "jordan-belfort",
+  "dana-white",
   "kanye-west",
   "gino-dacampo",
   "harvey-weinstein",
   "gerard-depardieu",
   "myron-gaines",
   "mel-gibson",
+  "travis-scott",
   "hstikkytokky",
   "sam-bankman-fried",
   "danny-masterson",
+  "dave-chappelle",
+  "bam-margera",
   "tom-brady",
   "sneako",
   "nick-fuentes",
+  "alex-pereira",
   "mark-wahlberg",
   "bernie-madoff",
+  "salt-bae",
   "ed-matthews",
   "ant-middleton"
 ];
 
 // Men shown in the middle tier (Controversial) instead of their board, best first
 window.CONTROVERSIAL = [
+  "tom-cruise",
   "stephen-curry",
+  "snoop-dogg",
+  "alex-pereira",
   "tiger-woods",
   "mark-wahlberg",
+  "jordan-peterson",
   "will-smith",
+  "dave-chappelle",
+  "sylvester-stallone",
+  "matt-rife",
+  "jake-paul",
+  "ishowspeed",
   "mrbeast"
 ];
 
