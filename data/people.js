@@ -778,6 +778,7 @@ window.PEOPLE = [
       { date: "2026", text: "Charged in Massachusetts with rape, drugging a person for sex and giving alcohol to a minor, over a May 2025 incident; prosecutors say the girl was 17. He pleaded not guilty and denies the charges.", source: "https://newschannel9.com/news/nation-world/looksmaxxing-influencer-clavicular-charged-with-rape-drugging-a-woman-cape-cod-massachusetts-uber" },
       { date: "2026", text: "Arrested for battery after detectives said he instigated a fight between two women, one his girlfriend, to film it for social media. The charge was later dropped.", source: "https://wsvn.com/news/local/broward/controversial-streamer-faces-mounting-legal-troubles-following-arrest-for-battery-in-fort-lauderdale/" },
       { date: "2026", text: "Filmed singing along to a song called \"Heil Hitler\" at a Miami Beach nightclub; the club banned the group. He called it \"just a song\".", source: "https://en.wikipedia.org/wiki/Clavicular_(influencer)" },
+      { date: "2026", text: "Livestreamed himself approaching women in Paris to test his self-proclaimed \"alpha male\" pull. They turned him down, and he said they were probably lesbians.", source: "https://www.lemonde.fr/en/m-le-mag/article/2026/07/05/clavicular-an-american-masculinist-in-paris-gets-rejected_6755167_117.html" },
       { date: "2025", text: "Filmed himself injecting his then-17-year-old girlfriend with fat-dissolving peptides to reshape her jaw.", source: "https://en.wikipedia.org/wiki/Clavicular_(influencer)" },
     ],
   },

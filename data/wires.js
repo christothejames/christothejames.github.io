@@ -903,7 +903,6 @@ window.CONTROVERSIAL = [
   "tiger-woods",
   "mark-wahlberg",
   "will-smith",
-  "clavicular",
   "mrbeast"
 ];
 
