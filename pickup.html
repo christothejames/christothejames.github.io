@@ -209,6 +209,23 @@
     box-shadow: 0 0 24px #3ef2ff33;
   }
 
+  /* Then and now: the pick up house (pink, the bait's colour) beside the War Room (red) */
+  .then-now { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .then-now article { padding: 18px 20px; border-radius: 14px; border: 2px solid; }
+  .then-now article:first-child { border-color: #ff3fb466; background: #ff3fb40d; }
+  .then-now article:last-child { border-color: #ff3b3b88; background: #ff3b3b10; }
+  .then-now h3 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 19px; }
+  .then-now article:first-child h3 { color: var(--sleaze); }
+  .then-now article:last-child h3 { color: #ff7a7a; }
+  .then-now .when { margin: 2px 0 10px; color: var(--muted); font-size: 14px; }
+  .then-now ul { margin: 0; padding-left: 18px; }
+  .then-now li + li { margin-top: 6px; }
+
+  .wizard { margin-top: 16px; padding: 18px 20px; background: linear-gradient(to bottom, #12264d, var(--panel)); border: 2px solid #3ef2ff40; border-radius: 14px; }
+  .wizard h3 { margin: 0 0 6px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 17px; color: var(--sky); }
+  .wizard p { margin: 0; }
+  .wizard p + p { margin-top: 8px; }
+
   .tells { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
   .tells li { padding-left: 28px; position: relative; }
   .tells li::before { content: "!"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'Bungee', sans-serif; font-size: 12px; line-height: 20px; text-align: center; }
@@ -234,7 +251,7 @@
 
   @media (max-width: 640px) {
     .move { grid-template-columns: 1fr; }
-    .played, .tells { grid-template-columns: 1fr; }
+    .played, .tells, .then-now { grid-template-columns: 1fr; }
     .bait-btn { font-size: 16px; padding: 14px 22px; }
   }
 
@@ -293,7 +310,7 @@
           <h3>Isolating the target</h3>
           <div>
             <p class="sold"><i>Sold as:</i> get her away from her friends, they'll only "block" you.</p>
-            <p class="real"><b>Really:</b> cutting her off from the people looking out for her. Her friends aren't obstacles. Notice the word "target".</p>
+            <p class="real"><b>Really:</b> cutting her off from the people looking out for her. Her friends aren't obstacles. Notice the word "target". <a href="#warroomH">It turns up again in Andrew Tate's War Room.</a></p>
           </div>
         </li>
         <li class="move">
@@ -344,6 +361,43 @@
         </article>
       </div>
       <p class="punch">A man who teaches you to manipulate women is manipulating you too. You're not his student. You're his customer.</p>
+    </section>
+
+    <section aria-labelledby="warroomH">
+      <h2 id="warroomH">From the mansion to the War Room</h2>
+      <p class="lede">The pick up house never really closed. It moved online, got a new logo and raised its prices.</p>
+      <div class="then-now">
+        <article>
+          <h3>Project Hollywood</h3>
+          <p class="when">The Game, mid-2000s</p>
+          <ul>
+            <li>A Hollywood mansion where the top pick up gurus lived together</li>
+            <li>A guru at the top, and men paying to learn his moves</li>
+            <li>Women treated as targets to win</li>
+            <li>It fell apart in fights over money and ego</li>
+          </ul>
+        </article>
+        <article>
+          <h3>The War Room</h3>
+          <p class="when">Andrew Tate, 2020s</p>
+          <ul>
+            <li>A paid, secretive "brotherhood" of hundreds of men worldwide</li>
+            <li>"Generals" at the top, and men paying to learn their methods</li>
+            <li>Women treated as income: leaked chats show members taught to push women into webcam work</li>
+            <li>It's at the centre of criminal cases in Romania and the UK</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="wizard">
+        <h3>The "wizard" behind him</h3>
+        <p>In 2023 the BBC read 12,000 pages of leaked War Room chats. A man calling himself "Iggy Semmelweis", a self-styled wizard, came across as its real teacher. A former member told them "Iggy is at the top."</p>
+        <p>The chats show him teaching men to take "sole authority" over a woman and "remove her entire support structure". That's <a href="#movesH">isolating the target</a>, the same move from the pick up books, taken much further. The BBC said members' chats described at least 45 women.</p>
+        <p class="src">Andrew Tate denies all wrongdoing and has not been convicted. His spokesperson called the BBC's reporting false. <a href="profile.html?id=andrew-tate">His profile</a> has his current legal status.</p>
+        <p class="src">Sources: <a href="https://www.bellingcat.com/news/2023/08/10/revealing-andrew-tates-secretive-war-room-brothers/" target="_blank" rel="noopener">Bellingcat</a>, <a href="https://womensagenda.com.au/latest/andrew-tates-war-room-exploited-dozens-of-women-investigation-finds/" target="_blank" rel="noopener">Women's Agenda on the BBC investigation</a>, <a href="https://en.wikipedia.org/wiki/The_Game:_Penetrating_the_Secret_Society_of_Pickup_Artists" target="_blank" rel="noopener">The Game</a>, <a href="https://en.wikipedia.org/wiki/Andrew_Tate" target="_blank" rel="noopener">Andrew Tate</a> (Wikipedia)</p>
+      </div>
+
+      <p class="punch">Same blueprint, bigger price. A guru at the top, men paying at the bottom, and women as the product.</p>
     </section>
 
     <section aria-labelledby="spotH">
