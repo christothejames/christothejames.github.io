@@ -91,16 +91,17 @@
     line-height: 1.05;
     letter-spacing: .02em;
   }
-  .sign .the, .sign .artist { display: block; color: #fff; text-shadow: 0 0 6px #fff, 0 0 18px var(--sleaze), 0 0 40px var(--sleaze); }
+  /* Crisp neon: a tight bright tube glow, with only a faint wide halo so the strokes stay sharp */
+  .sign .the, .sign .artist { display: block; color: #fff; text-shadow: 0 0 1px #fff, 0 0 4px var(--sleaze), 0 0 10px rgba(255, 63, 180, .8), 0 0 28px rgba(255, 63, 180, .4); }
   .sign .the { font-size: .45em; }
   .sign .swap { display: grid; justify-items: center; }
   .sign .swap > span { grid-area: 1 / 1; }
-  .sign .pick { color: var(--sleaze); text-shadow: 0 0 6px #ffb3e0, 0 0 22px var(--sleaze), 0 0 48px var(--sleaze); }
-  .sign .con { color: var(--cyan); text-shadow: 0 0 6px #c8fbff, 0 0 22px var(--cyan), 0 0 48px var(--blue); opacity: 0; }
+  .sign .pick { color: #ff6cc6; text-shadow: 0 0 1px #ffd6ee, 0 0 4px var(--sleaze), 0 0 11px rgba(255, 63, 180, .85), 0 0 30px rgba(255, 63, 180, .45); }
+  .sign .con { color: #7ff6ff; text-shadow: 0 0 1px #e0fdff, 0 0 4px var(--cyan), 0 0 11px rgba(62, 242, 255, .8), 0 0 30px rgba(30, 144, 255, .5); opacity: 0; }
 
   .switched .sign .pick { animation: dying 1.1s steps(1) forwards; }
   .switched .sign .con { animation: lighting 1.6s steps(1) forwards; }
-  .switched .sign .the, .switched .sign .artist { text-shadow: 0 0 6px #fff, 0 0 18px var(--blue), 0 0 40px var(--blue); transition: text-shadow .4s 1s; }
+  .switched .sign .the, .switched .sign .artist { text-shadow: 0 0 1px #fff, 0 0 4px var(--blue), 0 0 10px rgba(30, 144, 255, .8), 0 0 28px rgba(30, 144, 255, .4); transition: text-shadow .4s 1s; }
 
   @keyframes dying {
     0% { opacity: 1; } 12% { opacity: .15; } 20% { opacity: 1; } 34% { opacity: .1; }
