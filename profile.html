@@ -333,16 +333,32 @@
   .facts dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
   .facts dd { margin: 0; }
 
-  .people { display: grid; gap: 10px; }
+  .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 
   .person {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 6px;
     align-items: center;
+    text-align: center;
     text-decoration: none;
     color: var(--text);
-    padding: 6px;
+    font-size: 12px;
+    line-height: 1.25;
+    padding: 8px 4px;
     border-radius: 10px;
+    min-width: 0;
+  }
+
+  .person span { overflow-wrap: anywhere; }
+  .person .mini { width: 52px; height: 52px; }
+
+  .all-boards {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--accent);
   }
 
   .person:hover { background: var(--panel-2); }
@@ -362,7 +378,6 @@
 
   .mini.bad { background: linear-gradient(135deg, #2a1236, #6b1020); }
 
-  .person small { display: block; font-size: 12px; color: var(--muted); }
 
   /* ---------- Posts ---------- */
   .post {
@@ -543,7 +558,15 @@
       ? `<div class="ig"><span class="ig-btn banned">🚫 Banned from Instagram</span><small>Nothing to unfollow. Instagram already did it.</small></div>`
       : '';
 
-  const others = PEOPLE.filter(x => x.id !== p.id && (x.list === 'good' || x.list === 'bad'));
+  // "Also on the board": the 6 men closest to him in board order on his own tier, not the whole list.
+  const rank = id => { const i = (window.ORDER || []).indexOf(id); return i < 0 ? 1e9 : i; };
+  const board = PEOPLE.filter(x => (x.list === 'good' || x.list === 'bad') && tierOf(x) === tier)
+    .sort((a, b) => rank(a.id) - rank(b.id));
+  const at = Math.max(0, board.findIndex(x => x.id === p.id));
+  const others = board.filter(x => x.id !== p.id)
+    .map(x => [x, Math.abs(board.indexOf(x) - at)])
+    .sort((a, b) => a[1] - b[1]).slice(0, 6)
+    .sort((a, b) => board.indexOf(a[0]) - board.indexOf(b[0])).map(([x]) => x);
   const today = new Date();
   const isFuture = d => { const t = Date.parse(d); return !isNaN(t) && t > today.getTime(); };
 
@@ -583,14 +606,15 @@
             ${p.type === 'composite' ? '<p class="note" style="margin-top:12px">This is a composite, not a real person.</p>' : ''}
           </div>
           <div class="box">
-            <h2>Also on the boards</h2>
+            <h2>Also on ${NAME[tier]}</h2>
             <div class="people">
               ${others.map(x => `
-                <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}">
+                <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}" title="${esc(x.name)}, ${esc(x.role)}">
                   ${small(x, x.list === 'bad' ? 'bad' : '')}
-                  <span>${esc(x.name)}<small>${NAME[tierOf(x)]} ·${esc(x.role)}</small></span>
+                  <span>${esc(x.name)}</span>
                 </a>`).join('')}
             </div>
+            <a class="all-boards" href="home.html">See every board</a>
           </div>
         </aside>
 
