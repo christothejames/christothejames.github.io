@@ -219,7 +219,7 @@
   <div class="bar">
     <div class="tiers" role="group" aria-label="Show">
       <button type="button" data-tier="all" aria-pressed="true">All</button>
-      <button type="button" data-tier="good" aria-pressed="false"><i style="background:var(--green)"></i>High rated</button>
+      <button type="button" data-tier="good" aria-pressed="false"><i style="background:var(--green)"></i>Big Dawgz!</button>
       <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--yellow)"></i>Coin toss</button>
       <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Last Picks</button>
     </div>
@@ -264,7 +264,7 @@
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const shortName = n => n.replace(/\s*\(.*\)$/, '');
   const COL = { good: '#3dff8b', mid: '#ffe66d', bad: '#ff3b3b' };
-  const TIER_NAME = { good: 'High rated', mid: 'Coin toss', bad: 'Last picks' };
+  const TIER_NAME = { good: 'Big Dawgz!', mid: 'Coin toss', bad: 'Last picks' };
   const CONTRO = window.CONTROVERSIAL || [];
   const tier = p => CONTRO.includes(p.id) ? 'mid' : p.list;
   const wire = (p, key) => (window.WIRES[p.id] || {})[key];
