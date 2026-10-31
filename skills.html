@@ -725,6 +725,8 @@
     const cats = window.SKILL_CATS || [];
     const skills = window.SKILLS || [];
     const catById = Object.fromEntries(cats.map(c => [c.id, c]));
+    // Satirical categories (Goofy) don't count towards SKILLS UNLOCKED.
+    const scored = skills.filter(s => !(catById[s.cat] || {}).unscored);
     const STORE = "rmr-skills-status";
     const OLD_STORE = "rmr-skills-learned";
 
@@ -887,9 +889,9 @@
 
     // Even rows of lights: 2 rows on wide screens, 3 on phones.
     const pips = document.getElementById("pips");
-    pips.style.setProperty("--cols", Math.ceil(skills.length / 2));
-    pips.style.setProperty("--cols-sm", Math.ceil(skills.length / 3));
-    pips.innerHTML = skills.map(s =>
+    pips.style.setProperty("--cols", Math.ceil(scored.length / 2));
+    pips.style.setProperty("--cols-sm", Math.ceil(scored.length / 3));
+    pips.innerHTML = scored.map(s =>
       '<span class="pip" data-id="' + esc(s.id) + '" title="' + esc(s.name) + '"></span>'
     ).join("");
 
@@ -1143,7 +1145,8 @@
     function updateProgress() {
       const n = { want: 0, know: 0, new: 0 };
       skills.forEach(s => { n[status[s.id] || "new"]++; });
-      document.getElementById("score").innerHTML = n.know + "<small> / " + skills.length + "</small>";
+      const unlocked = scored.filter(s => status[s.id] === "know").length;
+      document.getElementById("score").innerHTML = unlocked + "<small> / " + scored.length + "</small>";
       document.querySelectorAll(".pip").forEach(p => { p.className = "pip " + (status[p.dataset.id] || ""); });
       n.all = skills.length - n.know;
       views.querySelectorAll("button").forEach(b => { b.querySelector(".n").textContent = n[b.dataset.view]; });

@@ -4,6 +4,7 @@
 //   video: paste any YouTube link (watch?v=, youtu.be/, /shorts/ or /embed/ all work)
 //   start / end: optional, in seconds. Use them to clip in just the useful part of a long video.
 //   cat: must match one of the SKILL_CATS ids.
+//   unscored: on a category, keeps its skills off the SKILLS UNLOCKED scoreboard (Goofy is satire).
 
 window.SKILL_CATS = [
   { id: "grooming", name: "Grooming", ic: "🪒" },
@@ -13,7 +14,7 @@ window.SKILL_CATS = [
   { id: "cleaning", name: "Cleaning & laundry", ic: "🧽" },
   { id: "car", name: "Car", ic: "🚗" },
   { id: "life", name: "Life & safety", ic: "❤️" },
-  { id: "goofy", name: "Goofy", ic: "🤪" }
+  { id: "goofy", name: "Goofy", ic: "🤪", unscored: true }
 ];
 
 window.SKILLS = [
