@@ -1010,6 +1010,22 @@ window.WIRES = {
   },
   "tom-cruise": {
     "survival": 1
+  },
+  "clint-eastwood": {
+    "survival": 1,
+    "service": 1,
+    "conduct": -1
+  },
+  "dr-disrespect": {
+    "family": -1,
+    "conduct": -1
+  },
+  "gregg-wallace": {
+    "conduct": -1,
+    "people": -1
+  },
+  "drake": {
+    "conduct": -1
   }
 };
 
@@ -1187,6 +1203,7 @@ window.ORDER = [
   "marco-pierre-white",
   "gary-oldman",
   "jordan-peterson",
+  "clint-eastwood",
   "ben-stokes",
   "johnny-depp",
   "theo-von",
@@ -1227,6 +1244,7 @@ window.ORDER = [
   "lance-armstrong",
   "jeremy-clarkson",
   "liver-king",
+  "dr-disrespect",
   "tristan-tate",
   "alex-jones",
   "oscar-pistorius",
@@ -1234,6 +1252,7 @@ window.ORDER = [
   "dana-white",
   "kanye-west",
   "gino-dacampo",
+  "drake",
   "harvey-weinstein",
   "gerard-depardieu",
   "myron-gaines",
@@ -1250,6 +1269,7 @@ window.ORDER = [
   "alex-pereira",
   "mark-wahlberg",
   "bernie-madoff",
+  "gregg-wallace",
   "salt-bae",
   "ed-matthews",
   "ant-middleton"
@@ -1327,7 +1347,8 @@ window.AREA_ORDER = {
     "rick-stanton",
     "john-volanthen",
     "michael-douglas",
-    "lewis-pugh"
+    "lewis-pugh",
+    "clint-eastwood"
   ],
   "service": [
     "johnson-beharry",
@@ -1354,6 +1375,7 @@ window.AREA_ORDER = {
     "ant-middleton",
     "bear-grylls",
     "alexander-skarsgard",
+    "clint-eastwood",
     "prince-harry",
     "steve-irwin",
     "jose-andres",
@@ -1608,6 +1630,7 @@ window.AREA_ORDER = {
     "arnold-schwarzenegger",
     "alex-pereira",
     "mel-gibson",
+    "dr-disrespect",
     "jay-z",
     "floyd-mayweather",
     "charlie-sheen",
@@ -1656,6 +1679,7 @@ window.AREA_ORDER = {
     "snoop-dogg",
     "hugh-fearnley-whittingstall",
     "andrew-flintoff",
+    "clint-eastwood",
     "brad-pitt",
     "anthony-joshua",
     "jason-momoa",
@@ -1693,6 +1717,7 @@ window.AREA_ORDER = {
     "sadio-mane",
     "liver-king",
     "johnny-depp",
+    "gregg-wallace",
     "mike-tyson",
     "kylian-mbappe",
     "elon-musk",
@@ -1704,7 +1729,9 @@ window.AREA_ORDER = {
     "travis-scott",
     "ant-middleton",
     "kevin-hart",
+    "dr-disrespect",
     "nick-fuentes",
+    "drake",
     "sneako",
     "bam-margera",
     "kanye-west",
@@ -1761,6 +1788,7 @@ window.AREA_ORDER = {
     "dwayne-johnson",
     "keanu-reeves",
     "tom-hanks",
+    "gregg-wallace",
     "donald-trump",
     "alex-jones",
     "matt-rife",
@@ -1783,6 +1811,7 @@ window.CONTROVERSIAL = [
   "jordan-peterson",
   "will-smith",
   "dave-chappelle",
+  "drake",
   "sylvester-stallone",
   "matt-rife",
   "ishowspeed"
