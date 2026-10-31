@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
-<meta name="description" content="High Rated, Controversial and Bad Influence: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
+<meta name="description" content="High Rated, Controversial and Toxic: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -212,7 +212,7 @@
   .board.good h2 { color: var(--gold); }
   .board.mid h2 { color: var(--amber); }
 
-  /* The Bad Influence heading is a rubber stamp: the one bold mark for the whole board */
+  /* The Toxic heading is a rubber stamp: the one bold mark for the whole board */
   .board.bad h2 {
     color: var(--red);
     padding: 8px 16px 6px;
@@ -320,7 +320,7 @@
     opacity: 0.95;
   }
 
-  /* a poster names its tier only for a good man who has died, a Controversial man or a Bad Influence */
+  /* a poster names its tier only for a good man who has died, a Controversial man or a Toxic man */
   .poster .respected, .poster .controversial, .poster .badinf {
     margin: 12px 0 -8px;
     text-align: center;
@@ -495,7 +495,7 @@
     <nav class="tiers" aria-label="Boards">
       <a class="good" href="#good">High Rated</a>
       <a class="mid" href="#mid">Controversial</a>
-      <a class="bad" href="#bad">Bad Influence</a>
+      <a class="bad" href="#bad">Toxic</a>
     </nav>
   </div>
 </div>
@@ -521,8 +521,8 @@
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2>BAD INFLUENCE</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Bad Influence men to show"></select></div>
-    <p class="board-sub">Men we would keep away from young lads: "masculinity" built on money, ego and control over women. A ranking is our opinion, not a finding of guilt.</p>
+    <div class="board-head"><h2>TOXIC</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Toxic men to show"></select></div>
+    <p class="board-sub">Toxic masculinity: men we would keep away from young lads, who pass off money, ego and control over women as being a man. A ranking is our opinion, not a finding of guilt.</p>
     <div class="posters" id="badGrid"></div>
   </section>
 </main>
@@ -551,7 +551,7 @@
   // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
   const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
 
-  // The poster is the man: photo, name, why, status. Controversial and Bad Influence men are labelled on the poster too.
+  // The poster is the man: photo, name, why, status. Controversial and Toxic men are labelled on the poster too.
   function poster(p, i) {
     const respected = tier(p) === 'good' && passed(p);
     const controversial = tier(p) === 'mid';
@@ -563,7 +563,7 @@
         </div>
         ${respected ? '<div class="respected">Respected</div>' : ''}
         ${controversial ? '<div class="controversial">Controversial</div>' : ''}
-        ${tier(p) === 'bad' ? '<div class="badinf">Bad Influence</div>' : ''}
+        ${tier(p) === 'bad' ? '<div class="badinf">Toxic</div>' : ''}
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
         <p class="for">${esc(p.reason)}</p>
@@ -601,7 +601,7 @@
     pick.addEventListener('change', render);
   });
 
-  // The Bad Influence stamp slams down once, the first time its board scrolls into view
+  // The Toxic stamp slams down once, the first time its board scrolls into view
   const stamp = document.querySelector('#bad h2');
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     stamp.classList.add('armed');
