@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
-<meta name="description" content="High Rated, Controversial and Last Picks: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
+<meta name="description" content="High Rated, Coin Toss and Last Picks: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -494,7 +494,7 @@
     </form>
     <nav class="tiers" aria-label="Boards">
       <a class="good" href="#good">High Rated</a>
-      <a class="mid" href="#mid">Controversial</a>
+      <a class="mid" href="#mid">Coin Toss</a>
       <a class="bad" href="#bad">Last Picks</a>
     </nav>
   </div>
@@ -515,14 +515,14 @@
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>CONTROVERSIAL</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Controversial men to show"></select></div>
-    <p class="board-sub">A split record: the good and the black marks come out close to even. Read the facts and make your own call.</p>
+    <div class="board-head"><h2>COIN TOSS</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select></div>
+    <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
   </section>
 
   <section class="board bad" id="bad">
     <div class="board-head"><h2>LAST PICKS</h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Last Picks men to show"></select></div>
-    <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on. A ranking is our opinion, not a finding of guilt.</p>
+    <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
     <div class="posters" id="badGrid"></div>
   </section>
 </main>
@@ -568,7 +568,7 @@
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
         </div>
         ${respected ? '<div class="respected">Respected</div>' : ''}
-        ${controversial ? '<div class="controversial">Controversial</div>' : ''}
+        ${controversial ? '<div class="controversial">Coin Toss</div>' : ''}
         ${tier(p) === 'bad' ? '<div class="badinf">Last Picks</div>' : ''}
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
