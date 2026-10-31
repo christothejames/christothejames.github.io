@@ -241,6 +241,50 @@
   .ig-btn.banned { background: var(--panel-2); color: var(--muted); box-shadow: none; border: 1px dashed #ffffff33; }
   .ig small { font-size: 12px; color: var(--muted); }
 
+  /* A good man's follow is an invite, not a badge: a warm card that says what he adds to your feed */
+  .ig-invite {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 440px;
+    padding: 12px 12px 12px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    background: linear-gradient(120deg, #ffe66d1f, #3ef2ff12);
+    border: 1px solid #ffe66d55;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+  }
+  .ig-invite:hover, .ig-invite:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px #ffe66d2e;
+    outline: none;
+  }
+  .ig-invite:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .ig-invite .copy { flex: 1; text-align: left; }
+  .ig-invite b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; color: var(--gold); }
+  .ig-invite .copy span { font-size: 13px; color: var(--muted); }
+  .ig-invite .handle { font-family: 'Righteous', sans-serif; color: var(--text); }
+  @media (max-width: 480px) {
+    .ig-invite { flex-direction: column; align-items: stretch; text-align: center; padding: 14px; }
+    .ig-invite .copy { text-align: center; }
+    .ig-invite .go { text-align: center; }
+  }
+  .ig-invite .go {
+    flex: none;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    color: var(--night);
+    background: var(--gold);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ig-invite { transition: none; }
+    .ig-invite:hover, .ig-invite:focus-visible { transform: none; }
+  }
+
   /* ---------- Tabs ---------- */
   .tabs { display: flex; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 
@@ -390,7 +434,7 @@
     .avatar { width: 140px; height: 140px; font-size: 44px; margin-top: -84px; }
     .actions { justify-content: center; width: 100%; }
     .ig { align-items: center; }
-    .ig-btn { align-self: center; }
+    .ig-btn, .ig-invite { align-self: center; }
     .who { text-align: center; }
     .side { order: 2; }
   }
@@ -482,11 +526,19 @@
   // Instagram: follow good men to train your feed; unfollow bad ones (Instagram can't let us do it for you).
   // Controversial men get no button: the call is the viewer's.
   const igBanned = !p.instagram && /instagram/i.test((p.about || {})['Banned from'] + ' ' + p.status);
+  const igUrl = p.instagram && `https://www.instagram.com/${encodeURIComponent(p.instagram)}/`;
   const igBlock = mid ? '' : p.instagram && !respected
-    ? `<div class="ig">
-        <a class="ig-btn" href="https://www.instagram.com/${encodeURIComponent(p.instagram)}/" target="_blank" rel="noopener">${good ? '📸 Follow on Instagram' : '🚫 Unfollow on Instagram'}</a>
-        <small>${good ? `Train your feed: follow good men. @${esc(p.instagram)}` : `Following him? Tap “Following”, then “Unfollow”. @${esc(p.instagram)}`}</small>
-      </div>`
+    ? good
+      ? `<div class="ig">
+          <a class="ig-invite" href="${igUrl}" target="_blank" rel="noopener">
+            <span class="copy"><b>Follow on Instagram <span class="handle">@${esc(p.instagram)}</span></b><span>A good one for your feed. You follow him in the Instagram app.</span></span>
+            <span class="go">Open Instagram <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>`
+      : `<div class="ig">
+          <a class="ig-btn" href="${igUrl}" target="_blank" rel="noopener">🚫 Unfollow on Instagram</a>
+          <small>Following him? Tap “Following”, then “Unfollow”. @${esc(p.instagram)}</small>
+        </div>`
     : igBanned && !good
       ? `<div class="ig"><span class="ig-btn banned">🚫 Banned from Instagram</span><small>Nothing to unfollow. Instagram already did it.</small></div>`
       : '';
