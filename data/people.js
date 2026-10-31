@@ -21,7 +21,12 @@
 //
 //  Photo: put an image in /images and set photo: "images/name.jpg".
 //  Only use photos you have the right to use (e.g. Wikimedia Commons) and
-//  put the credit in photoCredit. With no photo, the site shows initials.
+//  put the credit in photoCredit.
+//  No free photo? Set facebook: "page" and/or tiktok: "handle" (no @) from
+//  his Wikidata entry (P2013, P7085) and the site shows his own public
+//  profile picture, loaded live from that platform (never copied here).
+//  Instagram has no free public picture link, so it can't be used.
+//  If that fails too, the site shows initials.
 // =====================================================================
 
 window.PEOPLE = [
@@ -1506,6 +1511,8 @@ window.PEOPLE = [
     type: "public",
     role: "Former special forces soldier, TV presenter",
     instagram: "antmiddleton",
+    facebook: "antmiddletonsas",
+    tiktok: "antmiddleton",
     reason: "Ex-special forces hard man, jailed for assaulting police officers.",
     status: "Active",
     about: {},
@@ -3623,6 +3630,7 @@ window.PEOPLE = [
     type: "public",
     role: "Ultra-endurance athlete, former Navy SEAL",
     instagram: "davidgoggins",
+    facebook: "iamdavidgoggins",
     reason: "Former Navy SEAL turned ultra-endurance machine.",
     status: "Active · author of Can't Hurt Me",
     about: {},
@@ -4502,3 +4510,20 @@ window.PEOPLE = [
     ],
   },
 ];
+
+// No free photo? Show his own public profile picture from Facebook or TikTok,
+// loaded live from the platform on each visit. Pages fall back to initials if it fails.
+window.PEOPLE.forEach(p => {
+  if (p.photo || p.type !== 'public') return;
+  const fb = p.facebook && encodeURIComponent(p.facebook), tt = p.tiktok && encodeURIComponent(p.tiktok);
+  if (fb) Object.assign(p, {
+    photo: `https://graph.facebook.com/${fb}/picture?type=large`,
+    photoCredit: 'his own Facebook profile',
+    photoSource: `https://www.facebook.com/${fb}`,
+  });
+  else if (tt) Object.assign(p, {
+    photo: `https://unavatar.io/tiktok/${tt}?fallback=false`,
+    photoCredit: 'his own TikTok profile',
+    photoSource: `https://www.tiktok.com/@${tt}`,
+  });
+});

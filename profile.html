@@ -456,11 +456,19 @@
   document.title = `${p.name} · The Real Man Report`;
 
   const big = p.photo
-    ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}">`
+    ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}" data-ini="${esc(initials(p.name))}">`
     : `<div class="avatar" aria-hidden="true">${esc(initials(p.name))}</div>`;
   const small = (x, cls = '') => x.photo
-    ? `<img class="mini ${cls}" src="${esc(x.photo)}" alt="">`
+    ? `<img class="mini ${cls}" src="${esc(x.photo)}" alt="" data-ini="${esc(initials(x.name))}">`
     : `<div class="mini ${cls}" aria-hidden="true">${esc(initials(x.name))}</div>`;
+
+  // A live social profile picture can fail to load: show his initials instead (or drop it from Photos).
+  document.addEventListener('error', e => {
+    const img = e.target;
+    if (img.tagName !== 'IMG') return;
+    if (img.dataset.ini) img.outerHTML = `<div class="${esc(img.className)}" aria-hidden="true">${esc(img.dataset.ini)}</div>`;
+    else if (img.closest('.photo-grid')) img.closest('[data-panel="photos"]').querySelector('.photo-grid').outerHTML = '<p class="muted">No photos yet.</p>';
+  }, true);
 
   // ---------- reactions (saved only in this browser) ----------
   const RKEY = 'rmr_reactions';

@@ -551,6 +551,12 @@
   // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
   const tier = p => (window.CONTROVERSIAL || []).includes(p.id) ? 'mid' : p.list;
 
+  // A live social profile picture can fail to load: show his initials instead.
+  document.addEventListener('error', e => {
+    const img = e.target;
+    if (img.tagName === 'IMG' && img.dataset.ini) img.outerHTML = `<span class="ini" aria-hidden="true">${esc(img.dataset.ini)}</span>`;
+  }, true);
+
   // The poster is the man: photo, name, why, status. Controversial and Toxic men are labelled on the poster too.
   function poster(p, i) {
     const respected = tier(p) === 'good' && passed(p);
@@ -559,7 +565,7 @@
     return `
       <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}" style="--tilt:${tilt}deg">
         <div class="mug">
-          ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
+          ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
         </div>
         ${respected ? '<div class="respected">Respected</div>' : ''}
         ${controversial ? '<div class="controversial">Controversial</div>' : ''}
