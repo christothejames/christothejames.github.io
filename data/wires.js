@@ -445,11 +445,13 @@ window.WIRES = {
     "family": 1
   },
   "cristiano-ronaldo": {
+    "body": 1,
     "survival": 1,
     "conduct": -1,
     "people": -1
   },
   "lionel-messi": {
+    "body": 1,
     "survival": 1,
     "community": 1,
     "people": -1
@@ -1256,8 +1258,10 @@ window.ORDER = [
 // Per-area order for the Rankings page's Area filter, best record in that area first
 window.AREA_ORDER = {
   "body": [
+    "cristiano-ronaldo",
     "lewis-hamilton",
     "eddie-hall",
+    "lionel-messi",
     "justin-verlander",
     "kylian-mbappe",
     "alex-honnold",
@@ -1764,8 +1768,8 @@ window.AREA_ORDER = {
     "andrew-tate",
     "jeff-bezos",
     "richard-branson",
-    "lionel-messi",
     "cristiano-ronaldo",
+    "lionel-messi",
     "elon-musk"
   ]
 };

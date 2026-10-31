@@ -1867,6 +1867,7 @@ window.PEOPLE = [
     status: "Active",
     about: {},
     posts: [
+      { date: "2008–25", text: "Won five Ballons d'Or and five Champions Leagues, and led Portugal to Euro 2016 and two Nations Leagues.", source: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo" },
       { date: "teen", text: "Came back to training days after heart surgery as a teenager.", source: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo" },
       { date: "2019", text: "Accepted a suspended sentence and a €18.8m fine for tax fraud in Spain.", source: "https://www.irishtimes.com/sport/soccer/cristiano-ronaldo-agrees-to-pay-19m-fine-to-settle-tax-fraud-case-1.3766489" },
       { date: "2018–22", text: "A US rape lawsuit was dismissed in 2022; he denies it and was never charged.", source: "https://www.graphic.com.gh/sports/sports-news/us-judge-dismisses-rape-lawsuit-against-cristiano-ronaldo.html" },
@@ -1886,6 +1887,7 @@ window.PEOPLE = [
     status: "Active · Presidential Medal of Freedom (2025)",
     about: {},
     posts: [
+      { date: "2009–24", text: "Won a record eight Ballons d'Or and led Argentina to the 2022 World Cup and two Copa Américas.", source: "https://en.wikipedia.org/wiki/Lionel_Messi" },
       { date: "childhood", text: "Overcame a growth hormone deficiency to play.", source: "https://en.wikipedia.org/wiki/Lionel_Messi" },
       { date: "2025", text: "Received the Presidential Medal of Freedom.", source: "https://en.wikipedia.org/wiki/Lionel_Messi" },
       { date: "2016–17", text: "Convicted of tax fraud in Spain; 21-month suspended sentence upheld.", source: "https://indaily.com.au/sport/soccer/2017/05/25/messi-handed-suspended-prison-term-losing-appeal" },
