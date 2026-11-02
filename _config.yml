@@ -1,0 +1,3 @@
+# GitHub Pages (Jekyll) settings. Files listed here stay in the repo but are not published.
+exclude:
+  - CLAUDE.md
