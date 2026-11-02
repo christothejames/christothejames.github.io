@@ -1026,6 +1026,105 @@ window.WIRES = {
   },
   "drake": {
     "conduct": -1
+  },
+  "colin-farrell": {
+    "community": 1
+  },
+  "marco-mengoni": {
+    "community": 1
+  },
+  "roberto-benigni": {
+    "community": 1
+  },
+  "alessandro-gassmann": {
+    "community": 1
+  },
+  "pierfrancesco-favino": {
+    "community": 1
+  },
+  "andrea-bocelli": {
+    "community": 1
+  },
+  "jimmy-fallon": {
+    "community": 1
+  },
+  "stephen-king": {
+    "community": 1
+  },
+  "tim-burton": {
+    "community": 1
+  },
+  "stanley-tucci": {
+    "community": 1
+  },
+  "david-tennant": {
+    "community": 1
+  },
+  "steve-redgrave": {
+    "body": 1
+  },
+  "john-amaechi": {
+    "community": 1
+  },
+  "akala": {
+    "community": 1
+  },
+  "dan-reynolds": {
+    "community": 1
+  },
+  "brian-kelley": {
+    "community": 1
+  },
+  "ryan-murphy": {
+    "community": 1
+  },
+  "ludacris": {
+    "community": 1
+  },
+  "john-legend": {
+    "community": 1
+  },
+  "brendon-urie": {
+    "community": 1
+  },
+  "matthieu-ricard": {
+    "community": 1
+  },
+  "kimi-antonelli": {
+    "body": 1
+  },
+  "daniel-libeskind": {
+    "community": 1
+  },
+  "jean-nouvel": {
+    "community": 1
+  },
+  "tadao-ando": {
+    "community": 1
+  },
+  "rem-koolhaas": {
+    "community": 1
+  },
+  "renzo-piano": {
+    "community": 1
+  },
+  "norman-foster": {
+    "community": 1
+  },
+  "gary-barlow": {
+    "community": 1
+  },
+  "robbie-williams": {
+    "community": 1
+  },
+  "lin-manuel-miranda": {
+    "community": 1
+  },
+  "nick-offerman": {
+    "community": 1
+  },
+  "ryan-gosling": {
+    "community": 1
   }
 };
 
@@ -1148,6 +1247,11 @@ window.ORDER = [
   "stephen-graham",
   "markiplier",
   "henry-cavill",
+  "andrea-bocelli",
+  "brendon-urie",
+  "matthieu-ricard",
+  "kimi-antonelli",
+  "robbie-williams",
   "everyday-dad",
   "volunteer-coach",
   "tony-adams",
@@ -1182,6 +1286,34 @@ window.ORDER = [
   "kylian-mbappe",
   "novak-djokovic",
   "michael-gove",
+  "colin-farrell",
+  "marco-mengoni",
+  "roberto-benigni",
+  "alessandro-gassmann",
+  "pierfrancesco-favino",
+  "jimmy-fallon",
+  "stephen-king",
+  "tim-burton",
+  "stanley-tucci",
+  "david-tennant",
+  "steve-redgrave",
+  "john-amaechi",
+  "akala",
+  "dan-reynolds",
+  "brian-kelley",
+  "ryan-murphy",
+  "ludacris",
+  "john-legend",
+  "daniel-libeskind",
+  "jean-nouvel",
+  "tadao-ando",
+  "rem-koolhaas",
+  "renzo-piano",
+  "norman-foster",
+  "gary-barlow",
+  "lin-manuel-miranda",
+  "nick-offerman",
+  "ryan-gosling",
   "steve-o",
   "ranulph-fiennes",
   "mo-farah",
@@ -1311,7 +1443,9 @@ window.AREA_ORDER = {
     "stephen-curry",
     "patrick-mahomes",
     "deion-sanders",
+    "kimi-antonelli",
     "oscar-pistorius",
+    "steve-redgrave",
     "frank-bruno"
   ],
   "survival": [
@@ -1512,6 +1646,10 @@ window.AREA_ORDER = {
     "tim-peake",
     "lance-armstrong",
     "markiplier",
+    "andrea-bocelli",
+    "brendon-urie",
+    "matthieu-ricard",
+    "robbie-williams",
     "steve-backshall",
     "jason-sudeikis",
     "james-blunt",
@@ -1546,6 +1684,15 @@ window.AREA_ORDER = {
     "khaby-lame",
     "mark-ruffalo",
     "michael-gove",
+    "colin-farrell",
+    "marco-mengoni",
+    "pierfrancesco-favino",
+    "stanley-tucci",
+    "ryan-murphy",
+    "daniel-libeskind",
+    "lin-manuel-miranda",
+    "nick-offerman",
+    "ryan-gosling",
     "alexander-skarsgard",
     "ben-stokes",
     "bruce-willis",
@@ -1558,7 +1705,25 @@ window.AREA_ORDER = {
     "barack-obama",
     "christian-bale",
     "steve-carell",
-    "nicolas-cage"
+    "nicolas-cage",
+    "roberto-benigni",
+    "alessandro-gassmann",
+    "jimmy-fallon",
+    "stephen-king",
+    "tim-burton",
+    "david-tennant",
+    "john-amaechi",
+    "akala",
+    "dan-reynolds",
+    "brian-kelley",
+    "ludacris",
+    "john-legend",
+    "jean-nouvel",
+    "rem-koolhaas",
+    "renzo-piano",
+    "norman-foster",
+    "gary-barlow",
+    "tadao-ando"
   ],
   "family": [
     "lebron-james",
