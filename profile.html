@@ -221,7 +221,17 @@
   .btn:hover, .btn:focus-visible { border-color: var(--cyan); outline: none; }
 
   .btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .wiki-btn { text-decoration: none; }
+  /* Same "Dig Deeper" warning button on every profile; the matched Wikipedia section is the hover hint */
+  .wiki-btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    text-decoration: none;
+    color: #ffd21f;
+    background: #2a2108;
+    border: 1.5px dashed #ffd21f;
+  }
+  .wiki-btn:hover, .wiki-btn:focus-visible { border-color: #ffd21f; background: #3a2e0a; outline: 2px solid var(--cyan); outline-offset: 2px; }
 
   /* ---------- Instagram: follow good men, unfollow bad ones ---------- */
   .ig { display: flex; flex-direction: column; gap: 4px; flex-basis: 100%; }
@@ -559,12 +569,12 @@
       ? `<div class="ig"><span class="ig-btn banned">🚫 Banned from Instagram</span><small>Nothing to unfollow. Instagram already did it.</small></div>`
       : '';
 
-  // Wikipedia: the matched section's heading comes from the link's #anchor.
+  // Wikipedia: one "Dig Deeper" label for everyone; the matched section's heading (from the #anchor) is the hover hint.
   const wikiSection = p.controversy_match !== false && (p.controversy_url || '').split('#')[1];
   let wikiLabel = 'Wikipedia article';
   if (wikiSection) try { wikiLabel = 'Wikipedia: ' + decodeURIComponent(wikiSection).replace(/_/g, ' '); } catch {}
   const wikiBtn = p.controversy_url
-    ? `<a class="btn wiki-btn" href="${esc(p.controversy_url)}" target="_blank" rel="noopener">📖 ${esc(wikiLabel)} ↗</a>` : '';
+    ? `<a class="btn wiki-btn" href="${esc(p.controversy_url)}" target="_blank" rel="noopener" title="${esc(wikiLabel)}" aria-label="Dig Deeper: ${esc(wikiLabel)} (opens Wikipedia)">⚠ Dig Deeper ↗</a>` : '';
 
   // "Also on the board": the 6 men closest to him in board order on his own tier, not the whole list.
   const rank = id => { const i = (window.ORDER || []).indexOf(id); return i < 0 ? 1e9 : i; };
