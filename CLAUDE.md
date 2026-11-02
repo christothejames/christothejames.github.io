@@ -80,6 +80,10 @@ Hosted on GitHub Pages from `christothejames/christothejames.github.io`; the `CN
 - Posters for people charged but not convicted must show their current legal status and that the board is opinion, not a finding of guilt.
 - Only use photos we have the right to use (e.g. Wikimedia Commons) and fill in `photoCredit`. Exception (owner, 31 Oct 2026): a man's own public Facebook/TikTok profile picture, hotlinked, when Commons has none.
 - After changes, open the page in a browser and check it on a narrow (phone) width before saying it's done.
+- Wikipedia controversy links (owner, 2 Nov 2026; see `data/people.js` above):
+  - After adding new profiles, always run `node tools/controversy-links.mjs` on them and show the owner its "Weak matches to review" list before pushing.
+  - When a profile with no Wikipedia page gets one (now: Myron Gaines, Ed Matthews, Mat Pritchard), add `wiki: "<title>"` to him and run the script for that profile.
+  - Never change a profile marked `controversy_manual: true`.
 
 ## Where we left off (owner's to-do)
 - 24 Oct 2026 scout-real-men run: 50 living men researched and scored (tagged `scouted: "2026-10"` in `admin/shadow.js`). 18 cleared the bar and went straight onto the Wanted board (their public profiles are in `data/people.js`, built from their sourced points; 14 have Commons photos, while Rick Stanton, Ben Parkinson, Andrew Pollard and Prince Harry still need one); 32 wait in `review` for the owner (Ranulph Fiennes scores highest but has a 1966 fine, so he's held for the owner's call).
