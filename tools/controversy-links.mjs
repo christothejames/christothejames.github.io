@@ -1,18 +1,19 @@
 // Adds a Wikipedia "controversies" link to every public profile in data/people.js.
 //
-//   node tools/controversy-links.mjs [--batches N] [--dry-run] [--recheck]
+//   node tools/controversy-links.mjs [--batches N] [--dry-run] [--recheck [--apply]]
 //
 // For each man without `controversy_url` it finds his English Wikipedia title
 // (`wiki` field, else `qid` via Wikidata, else the Wikipedia page his posts cite,
 // else his name), fetches ONLY the section list (action=parse&prop=sections),
-// and links the first section whose heading matches KEYWORDS (see pickSection
-// for the exclusions). No match = the main article URL with
-// `controversy_match: false`. Runs 50 profiles per batch, saves people.js and
-// the cache after each batch. Cache: tools/.cache/ (gitignored).
+// and links the best heading by TIERS (see pickSection for the exclusions).
+// No match = the main article URL with `controversy_match: false`. Weak-tier
+// matches are saved but listed for review. Runs 50 profiles per batch, saves
+// people.js and the cache after each batch. Cache: tools/.cache/ (gitignored).
 //
-// --recheck also re-applies the rules to links this script set earlier and
-// prints every heading that changes. A link edited by hand (it no longer matches
-// the cache) is never touched, so fix a bad match by editing people.js.
+// --recheck re-applies the rules to links this script set earlier and lists
+// every heading that would change; nothing is saved without --apply. A link
+// set by hand is never touched: fix a bad match in people.js and add
+// `controversy_manual: true` to that man.
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -23,15 +24,23 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PEOPLE = join(ROOT, 'data', 'people.js');
 const CACHE = join(ROOT, 'tools', '.cache', 'controversy.json');
 const BATCH = 50;
-const KEYWORDS = ['controvers', 'criticism', 'legal', 'lawsuit', 'allegation', 'scandal', 'dispute', 'investigation'];
+// A strong heading beats a weak one anywhere in the article; within a tier the first wins.
 // Keywords match at the start of a word, so "Undisputed champion" isn't a dispute.
-const KEYWORD_RE = new RegExp(`\\b(${KEYWORDS.join('|')})`, 'i');
+const TIERS = {
+  strong: ['controvers', 'allegation', 'arrest', 'charges', 'conviction', 'trial', 'murder', 'misconduct', 'scandal'],
+  weak: ['criticism', 'legal', 'dispute', 'lawsuit', 'investigation'],
+};
+const TIER_RE = Object.fromEntries(Object.entries(TIERS).map(([t, ks]) => [t, new RegExp(`\\b(${ks.join('|')})`, 'i')]));
+// Career-phase and life-stage headings ("2011–2015: …", "Early years: …", "Early life").
+const PHASE_RE = /^\s*(\d{4}\s*[–—-]\s*(\d{4}|present)?\s*:|(early|later)\s+(years|life)\b)/i;
 const UA = 'humbored-controversy-links/1.0 (https://humbored.com; humbored.contact@gmail.com)';
 const API = 'https://en.wikipedia.org/w/api.php';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const recheck = args.includes('--recheck');
+// A recheck only lists what would change; --apply writes it.
+const save = !dryRun && (!recheck || args.includes('--apply'));
 const maxBatches = Number(args[args.indexOf('--batches') + 1]) || Infinity;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -84,30 +93,45 @@ async function titlesFromQids(qids) {
 async function fetchSections(title) {
   const data = await getJson(`${API}?action=parse&format=json&formatversion=2&prop=sections&redirects=1&page=${encodeURIComponent(title)}`);
   if (data.error) return { error: data.error.code };
-  return { title: data.parse.title, sections: data.parse.sections.map(s => ({ line: s.line, anchor: s.anchor })) };
+  return { title: data.parse.title, sections: data.parse.sections.map(s => ({ line: s.line, anchor: s.anchor, level: s.toclevel })) };
 }
 
-// First heading about him that has a keyword. Skipped:
+// Best-tier heading about him that has a keyword. Skipped:
 // - "career" headings ("Legal career" is a job, not a lawsuit);
+// - career-phase and life-stage headings (PHASE_RE), unless a year range has a strong keyword;
 // - "Criticism of X" when X isn't him (criticism he made of someone else);
 // - keywords inside a work's title: italics (<i>A Very Royal Scandal</i>) or quotes.
+// A strong match inside a weak section ("2013 arrest" under "Legal issues") links the
+// weak parent instead, which covers the whole record.
 function pickSection(p, page) {
   const own = new Set([p.name, page.title.replace(/\s*\(.*\)$/, '')]
     .flatMap(n => n.split(/\s+/)).map(norm).filter(w => w.length > 2));
-  return page.sections.find(s => {
+  const secs = page.sections.map(s => {
     const heading = stripTags(s.line);
-    if (/\bcareer/i.test(heading)) return false;
+    const text = stripTags(s.line.replace(/<i>.*?<\/i>/g, ' ').replace(/"[^"]*"|“[^”]*”/g, ' '));
+    const tier = Object.keys(TIERS).find(t => TIER_RE[t].test(text));
     const target = /\bcriticism of (.+)/i.exec(heading)?.[1];
-    if (target && !target.split(/\s+/).some(w => own.has(norm(w)))) return false;
-    const outsideTitles = s.line.replace(/<i>.*?<\/i>/g, ' ').replace(/"[^"]*"|“[^”]*”/g, ' ');
-    return KEYWORD_RE.test(stripTags(outsideTitles));
+    const phase = PHASE_RE.test(heading) && !(/^\s*\d{4}\s*[–—-]/.test(heading) && tier === 'strong');
+    const usable = !/\bcareer/i.test(heading) && !phase && (!target || target.split(/\s+/).some(w => own.has(norm(w))));
+    return { ...s, tier: usable ? tier : undefined };
   });
+  const weakParent = i => {
+    for (let j = i - 1, level = secs[i].level; j >= 0 && level > 1; j--) {
+      if (secs[j].level >= level) continue;
+      if (secs[j].tier === 'weak') return secs[j];
+      level = secs[j].level;
+    }
+  };
+  for (const tier of Object.keys(TIERS)) {
+    const i = secs.findIndex(s => s.tier === tier);
+    if (i >= 0) return (tier === 'strong' && weakParent(i)) || secs[i];
+  }
 }
 
 function result(p, page) {
   const hit = pickSection(p, page);
   return hit
-    ? { controversy_url: wikiUrl(page.title, hit.anchor), controversy_match: true, section: stripTags(hit.line) }
+    ? { controversy_url: wikiUrl(page.title, hit.anchor), controversy_match: true, section: stripTags(hit.line), tier: hit.tier }
     : { controversy_url: wikiUrl(page.title), controversy_match: false };
 }
 
@@ -125,36 +149,38 @@ function writeFields(src, p, r) {
 
 let src = readFileSync(PEOPLE, 'utf8');
 const cache = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
-const isScriptSet = p => cache[p.id] && cache[p.id].controversy_url === p.controversy_url &&
+const isScriptSet = p => !p.controversy_manual && cache[p.id] &&cache[p.id].controversy_url === p.controversy_url &&
   cache[p.id].controversy_match === (p.controversy_match !== false);
 const people = loadPeople(src).filter(p => p.type === 'public');
 const todo = people.filter(p => !('controversy_url' in p) || (recheck && isScriptSet(p)));
 console.log(`${todo.length} profiles to do${dryRun ? ' (dry run, nothing saved)' : ''}`);
 
 const qidTitles = await titlesFromQids([...new Set(todo.filter(p => !p.wiki && p.qid && !cache[p.id]).map(p => p.qid))]);
-const failed = [], changed = [];
+const failed = [], changed = [], weak = [];
 let matched = 0, unmatched = 0;
 
 for (let b = 0; b * BATCH < todo.length && b < maxBatches; b++) {
   const batch = todo.slice(b * BATCH, (b + 1) * BATCH);
   for (const p of batch) {
     let page = cache[p.id]?.page;
-    if (!page) {
-      const title = cache[p.id]?.title || p.wiki || qidTitles[p.qid] || titleFromPosts(p) || p.name;
+    // Cache entries from before heading levels were kept are fetched again.
+    if (!page || page.sections.some(s => !('level' in s))) {
+      const title = page?.title || cache[p.id]?.title || p.wiki || qidTitles[p.qid] || titleFromPosts(p) || p.name;
       try { page = await fetchSections(title); } catch (e) { page = { error: e.message }; }
       await sleep(250);
       if (page.error) { failed.push(`${p.id} (${title}): ${page.error}`); continue; }
     }
     const r = result(p, page);
     const before = cache[p.id];
-    if (before && before.controversy_url !== r.controversy_url)
-      changed.push(`${p.id}: ${before.section || 'main article'} → ${r.section || 'main article'}`);
+    const label = x => x.section ? `${x.section}${x.tier ? ` [${x.tier}]` : ''}` : 'main article';
+    if (before && before.controversy_url !== r.controversy_url) changed.push(`${p.id}: ${label(before)} → ${label(r)}`);
+    if (r.tier === 'weak' && !before) weak.push(`${p.id}: ${r.section}`);
     cache[p.id] = { ...r, page };
     src = writeFields(src, p, r);
     r.controversy_match ? matched++ : unmatched++;
-    console.log(`${r.controversy_match ? '✓' : '·'} ${p.id} → ${r.section || 'main article'}`);
+    console.log(`${r.controversy_match ? (r.tier === 'weak' ? '?' : '✓') : '·'} ${p.id} → ${label(r)}`);
   }
-  if (!dryRun) {
+  if (save) {
     writeFileSync(PEOPLE, src);
     mkdirSync(dirname(CACHE), { recursive: true });
     writeFileSync(CACHE, JSON.stringify(cache, null, 2));
@@ -164,4 +190,5 @@ for (let b = 0; b * BATCH < todo.length && b < maxBatches; b++) {
 
 console.log(`\n${matched} with a controversy section, ${unmatched} main article only, ${failed.length} failed`);
 if (failed.length) console.log(failed.map(f => '  ' + f).join('\n'));
-if (changed.length) console.log(`\nHeadings changed:\n${changed.map(c => '  ' + c).join('\n')}`);
+if (weak.length) console.log(`\nWeak matches to review (saved; set the link by hand if it's wrong):\n${weak.map(w => '  ' + w).join('\n')}`);
+if (changed.length) console.log(`\nHeadings ${save ? 'changed' : 'that would change (run with --apply to save)'}:\n${changed.map(c => '  ' + c).join('\n')}`);
