@@ -251,6 +251,8 @@
   .board.bad .show { color: var(--red); }
   .board.mid .show { color: var(--amber); }
   .show option { color: #fff; background: var(--night); }
+  /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
+  .show.age { color: var(--cyan); }
 
   .posters {
     display: grid;
@@ -494,6 +496,14 @@
         SEARCH
       </button>
     </form>
+    <select class="show age" id="age" aria-label="Filter the boards by age">
+      <option value="">Any age</option>
+      <option value="0-29">Under 30</option>
+      <option value="30-39">30s</option>
+      <option value="40-49">40s</option>
+      <option value="50-59">50s</option>
+      <option value="60-999">60+</option>
+    </select>
     <nav class="tiers" aria-label="Boards">
       <a class="good" href="#good">Big Dawgz!</a>
       <a class="mid" href="#mid">Coin Toss</a>
@@ -580,7 +590,13 @@
   function render() {
     const term = document.getElementById('search').value.trim().toLowerCase();
     const typed = words(term);
-    const match = p => startsWords(typed, p.name + ' ' + p.role);
+    // Age filter: his age this year (from `born`). Men who have died, or with no known
+    // birth year, only show under "Any age".
+    const ageSel = document.getElementById('age').value;
+    const [lo, hi] = ageSel.split('-').map(Number);
+    const age = p => p.born && !p.died && !passed(p) ? new Date().getFullYear() - p.born : null;
+    const inAge = p => !ageSel || (age(p) !== null && age(p) >= lo && age(p) <= hi);
+    const match = p => startsWords(typed, p.name + ' ' + p.role) && inAge(p);
     // Board order comes from the private ranking (data/wires.js)
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
     const mids = window.CONTROVERSIAL || [];
@@ -592,6 +608,8 @@
       const n = term ? all.length : (pick.value === 'all' ? all.length : +pick.value);
       const shown = all.slice(0, n);
       pick.hidden = !!term || all.length <= 12;
+      // After the age filter, "All" counts only the men left
+      pick.querySelector('option[value="all"]').textContent = 'All ' + all.length;
       document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
       document.getElementById(list + 'Count').textContent = shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
@@ -762,6 +780,7 @@
   });
 
   document.getElementById('search').addEventListener('input', () => { render(); searchUnranked(); });
+  document.getElementById('age').addEventListener('change', render);
   // SEARCH button (or the keyboard's Go key): close the keyboard and show the results
   document.getElementById('search-form').addEventListener('submit', e => {
     e.preventDefault();
@@ -780,7 +799,7 @@
     if (!a) return;
     // Keep the tapped poster at the same height on screen (fonts and photos can shift raw scroll numbers)
     const spot = { href: a.getAttribute('href'), top: a.getBoundingClientRect().top, y: scrollY,
-      search: document.getElementById('search').value, shows: shows.map(s => s.value) };
+      search: document.getElementById('search').value, age: document.getElementById('age').value, shows: shows.map(s => s.value) };
     try { sessionStorage.setItem(SPOT, JSON.stringify(spot)); } catch {}
   });
   let spot = null;
@@ -790,6 +809,7 @@
   }
   if (spot) {
     document.getElementById('search').value = spot.search || '';
+    document.getElementById('age').value = spot.age || '';
     shows.forEach((s, i) => { if ([...s.options].some(o => o.value === spot.shows?.[i])) s.value = spot.shows[i]; });
   }
   render();

@@ -182,7 +182,9 @@
     .tiers button { padding: 7px 8px; font-size: 12.5px; gap: 5px; white-space: nowrap; }
     .tiers button i { width: 8px; height: 8px; }
     .bar label { flex: 1 1 0; min-width: 0; }
-    .bar select { flex: 1; min-width: 0; text-overflow: ellipsis; }
+    .bar select { flex: 1; min-width: 0; text-overflow: ellipsis; padding-left: 10px; padding-right: 24px; background-position: right 9px center; }
+    /* three dropdowns share one row on a phone: drop the little words, keep them for screen readers */
+    .bar .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     canvas { height: max(440px, calc(100vh - 260px)); }
   }
 /* ---------- Site footer (same on every page) ---------- */
@@ -223,7 +225,7 @@
       <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--yellow)"></i>Coin toss</button>
       <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Last Picks</button>
     </div>
-    <label>Show
+    <label><span class="lbl">Show</span>
       <select id="count" autocomplete="off">
         <option value="25">Top 25</option>
         <option value="50">Top 50</option>
@@ -231,8 +233,18 @@
         <option value="0">Everyone</option>
       </select>
     </label>
-    <label>Area
+    <label><span class="lbl">Area</span>
       <select id="area" autocomplete="off"><option value="">Any area</option></select>
+    </label>
+    <label><span class="lbl">Age</span>
+      <select id="age" autocomplete="off">
+        <option value="">Any age</option>
+        <option value="0-29">Under 30</option>
+        <option value="30-39">30s</option>
+        <option value="40-49">40s</option>
+        <option value="50-59">50s</option>
+        <option value="60-999">60+</option>
+      </select>
     </label>
   </div>
 
@@ -268,6 +280,15 @@
   const CONTRO = window.CONTROVERSIAL || [];
   const tier = p => CONTRO.includes(p.id) ? 'mid' : p.list;
   const wire = (p, key) => (window.WIRES[p.id] || {})[key];
+  // His age this year (from `born`); men who have died or have no known birth year have none,
+  // so they only show under "Any age" (same rule as home.html)
+  const passed = p => p.died || /^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || '');
+  const age = p => p.born && !passed(p) ? new Date().getFullYear() - p.born : null;
+  const inAge = (p, range) => {
+    if (!range) return true;
+    const [lo, hi] = range.split('-').map(Number);
+    return age(p) !== null && age(p) >= lo && age(p) <= hi;
+  };
 
   // ---------- who is on the boards, and how far along his board ----------
   // weight 1 = top of High Rated / bottom of Last Picks; it only sets bubble size
@@ -289,9 +310,10 @@
   });
 
   // ---------- controls ----------
-  const state = { tier: 'all', count: matchMedia('(max-width: 551px)').matches ? 25 : 50, area: '' };
+  const state = { tier: 'all', count: matchMedia('(max-width: 551px)').matches ? 25 : 50, area: '', age: '' };
   const countSel = document.getElementById('count');
   const areaSel = document.getElementById('area');
+  const ageSel = document.getElementById('age');
   countSel.value = String(state.count);
   window.DIMS.forEach(d => areaSel.add(new Option(d.label, d.key)));
 
@@ -302,6 +324,7 @@
   }));
   countSel.addEventListener('change', () => { state.count = +countSel.value; apply(); });
   areaSel.addEventListener('change', () => { state.area = areaSel.value; apply(); });
+  ageSel.addEventListener('change', () => { state.age = ageSel.value; apply(); });
 
   // ---------- canvas ----------
   const cv = document.getElementById('field');
@@ -320,7 +343,7 @@
   function apply() {
     let shown = nodes.filter(n =>
       (state.tier === 'all' || n.t === state.tier) &&
-      (!state.area || wire(n.p, state.area)));
+      (!state.area || wire(n.p, state.area)) && inAge(n.p, state.age));
     // an Area is its own ranking: good record there floats (green), black marks sink (red),
     // whatever his overall tier; best first / worst last from AREA_ORDER
     const areaOrder = state.area ? (window.AREA_ORDER || {})[state.area] || [] : null;
