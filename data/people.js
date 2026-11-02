@@ -33,6 +33,8 @@ window.PEOPLE = [
   {
     id: "bear-grylls",
     name: "Bear Grylls",
+    controversy_url: "https://en.wikipedia.org/wiki/Bear_Grylls",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Adventurer, former SAS reservist, TV host",
@@ -61,6 +63,8 @@ window.PEOPLE = [
   {
     id: "marcus-rashford",
     name: "Marcus Rashford",
+    controversy_url: "https://en.wikipedia.org/wiki/Marcus_Rashford",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer, child food poverty campaigner",
@@ -87,6 +91,8 @@ window.PEOPLE = [
   {
     id: "steve-irwin",
     name: "Steve Irwin",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve_Irwin",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Wildlife conservationist, the Crocodile Hunter (1962–2006)",
@@ -149,6 +155,7 @@ window.PEOPLE = [
   {
     id: "andrew-tate",
     name: "Andrew Tate",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrew_Tate#Criminal_investigations_and_civil_cases",
     list: "bad",
     type: "public",
     role: "Influencer, former kickboxer",
@@ -176,6 +183,7 @@ window.PEOPLE = [
   {
     id: "conor-mcgregor",
     name: "Conor McGregor",
+    controversy_url: "https://en.wikipedia.org/wiki/Conor_McGregor#Charges_and_controversies",
     list: "bad",
     type: "public",
     role: "MMA fighter, former two-division UFC champion",
@@ -211,6 +219,8 @@ window.PEOPLE = [
   {
     id: "chris-hadfield",
     name: "Chris Hadfield",
+    controversy_url: "https://en.wikipedia.org/wiki/Chris_Hadfield",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Astronaut, former fighter pilot",
@@ -231,6 +241,8 @@ window.PEOPLE = [
   {
     id: "tim-peake",
     name: "Tim Peake",
+    controversy_url: "https://en.wikipedia.org/wiki/Tim_Peake",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Astronaut, former Army helicopter pilot",
@@ -251,6 +263,8 @@ window.PEOPLE = [
   {
     id: "alex-honnold",
     name: "Alex Honnold",
+    controversy_url: "https://en.wikipedia.org/wiki/Alex_Honnold",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rock climber",
@@ -272,6 +286,8 @@ window.PEOPLE = [
   {
     id: "rick-stanton",
     name: "Rick Stanton",
+    controversy_url: "https://en.wikipedia.org/wiki/Rick_Stanton",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Cave diver, rescuer",
@@ -292,6 +308,8 @@ window.PEOPLE = [
   {
     id: "john-volanthen",
     name: "John Volanthen",
+    controversy_url: "https://en.wikipedia.org/wiki/John_Volanthen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Cave diver, rescuer",
@@ -311,6 +329,8 @@ window.PEOPLE = [
   {
     id: "levison-wood",
     name: "Levison Wood",
+    controversy_url: "https://en.wikipedia.org/wiki/Levison_Wood",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Explorer, Army officer",
@@ -331,6 +351,8 @@ window.PEOPLE = [
   {
     id: "ross-edgley",
     name: "Ross Edgley",
+    controversy_url: "https://en.wikipedia.org/wiki/Ross_Edgley",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Endurance swimmer, coach",
@@ -352,6 +374,8 @@ window.PEOPLE = [
   {
     id: "ben-parkinson",
     name: "Ben Parkinson",
+    controversy_url: "https://en.wikipedia.org/wiki/Ben_Parkinson_(British_Army_soldier)",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Paratrooper, veterans' campaigner",
@@ -371,6 +395,8 @@ window.PEOPLE = [
   {
     id: "kevin-sinfield",
     name: "Kevin Sinfield",
+    controversy_url: "https://en.wikipedia.org/wiki/Kevin_Sinfield",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rugby league legend, MND fundraiser",
@@ -390,6 +416,7 @@ window.PEOPLE = [
   {
     id: "jose-andres",
     name: "José Andrés",
+    controversy_url: "https://en.wikipedia.org/wiki/Jos%C3%A9_Andr%C3%A9s#Trump_Hotel_restaurant_and_lawsuit",
     list: "good",
     type: "public",
     role: "Chef, World Central Kitchen founder",
@@ -411,6 +438,8 @@ window.PEOPLE = [
   {
     id: "andrew-pollard",
     name: "Andrew Pollard",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrew_Pollard_(immunologist)",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Vaccine scientist",
@@ -429,6 +458,8 @@ window.PEOPLE = [
   {
     id: "gareth-southgate",
     name: "Gareth Southgate",
+    controversy_url: "https://en.wikipedia.org/wiki/Gareth_Southgate",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former England manager",
@@ -450,6 +481,8 @@ window.PEOPLE = [
   {
     id: "joe-wicks",
     name: "Joe Wicks",
+    controversy_url: "https://en.wikipedia.org/wiki/Joe_Wicks_(coach)",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Fitness coach",
@@ -472,6 +505,8 @@ window.PEOPLE = [
   {
     id: "denzel-washington",
     name: "Denzel Washington",
+    controversy_url: "https://en.wikipedia.org/wiki/Denzel_Washington",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -495,6 +530,8 @@ window.PEOPLE = [
   {
     id: "tom-hanks",
     name: "Tom Hanks",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Hanks",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -517,6 +554,8 @@ window.PEOPLE = [
   {
     id: "eddie-hall",
     name: "Eddie Hall",
+    controversy_url: "https://en.wikipedia.org/wiki/Eddie_Hall",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Strongman",
@@ -537,6 +576,8 @@ window.PEOPLE = [
   {
     id: "hugh-jackman",
     name: "Hugh Jackman",
+    controversy_url: "https://en.wikipedia.org/wiki/Hugh_Jackman",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, former PE teacher",
@@ -560,6 +601,7 @@ window.PEOPLE = [
   {
     id: "prince-harry",
     name: "Prince Harry",
+    controversy_url: "https://en.wikipedia.org/wiki/Prince_Harry%2C_Duke_of_Sussex#Legal_issues_and_incidents",
     list: "good",
     type: "public",
     role: "Former Army officer, Invictus Games founder",
@@ -579,6 +621,8 @@ window.PEOPLE = [
   {
     id: "justin-verlander",
     name: "Justin Verlander",
+    controversy_url: "https://en.wikipedia.org/wiki/Justin_Verlander",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Baseball pitcher (retired 2026)",
@@ -598,6 +642,8 @@ window.PEOPLE = [
   {
     id: "steve-gleason",
     name: "Steve Gleason",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve_Gleason",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former NFL player, ALS campaigner",
@@ -618,6 +664,8 @@ window.PEOPLE = [
   {
     id: "karl-bushby",
     name: "Karl Bushby",
+    controversy_url: "https://en.wikipedia.org/wiki/Karl_Bushby",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Ex-paratrooper, walked home from Chile",
@@ -637,6 +685,8 @@ window.PEOPLE = [
   {
     id: "jeff-bezos",
     name: "Jeff Bezos",
+    controversy_url: "https://en.wikipedia.org/wiki/Jeff_Bezos",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Amazon founder",
@@ -660,6 +710,8 @@ window.PEOPLE = [
   {
     id: "michael-sheen",
     name: "Michael Sheen",
+    controversy_url: "https://en.wikipedia.org/wiki/Michael_Sheen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, campaigner",
@@ -679,6 +731,8 @@ window.PEOPLE = [
   {
     id: "tom-hardy",
     name: "Tom Hardy",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Hardy",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -699,6 +753,7 @@ window.PEOPLE = [
   {
     id: "tristan-tate",
     name: "Tristan Tate",
+    controversy_url: "https://en.wikipedia.org/wiki/Legal_affairs_of_the_Tate_brothers#Arrests%2C_investigations_and_asset_seizures",
     list: "bad",
     type: "public",
     role: "Influencer, Andrew Tate's brother",
@@ -716,6 +771,8 @@ window.PEOPLE = [
   {
     id: "hstikkytokky",
     name: "HSTikkyTokky (Harrison Sullivan)",
+    controversy_url: "https://en.wikipedia.org/wiki/HSTikkyTokky",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "TikTok influencer",
@@ -753,6 +810,8 @@ window.PEOPLE = [
   {
     id: "sneako",
     name: "Sneako (Nicolas De Balinthazy)",
+    controversy_url: "https://en.wikipedia.org/wiki/Sneako",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Streamer",
@@ -770,6 +829,7 @@ window.PEOPLE = [
   {
     id: "clavicular",
     name: "Clavicular (Braden Peters)",
+    controversy_url: "https://en.wikipedia.org/wiki/Clavicular_(influencer)#Legal_issues",
     list: "bad",
     type: "public",
     role: "\"Looksmaxxing\" streamer",
@@ -809,6 +869,7 @@ window.PEOPLE = [
   {
     id: "joe-rogan",
     name: "Joe Rogan",
+    controversy_url: "https://en.wikipedia.org/wiki/Joe_Rogan#Altercations",
     list: "bad",
     type: "public",
     role: "Host of The Joe Rogan Experience",
@@ -831,6 +892,8 @@ window.PEOPLE = [
   {
     id: "steven-bartlett",
     name: "Steven Bartlett",
+    controversy_url: "https://en.wikipedia.org/wiki/Steven_Bartlett",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Host of The Diary of a CEO, Dragons' Den investor",
@@ -851,6 +914,7 @@ window.PEOPLE = [
   {
     id: "donald-trump",
     name: "Donald Trump",
+    controversy_url: "https://en.wikipedia.org/wiki/Donald_Trump#Legal_affairs_and_bankruptcies",
     list: "bad",
     type: "public",
     role: "US President, businessman",
@@ -874,6 +938,8 @@ window.PEOPLE = [
   {
     id: "alex-jones",
     name: "Alex Jones",
+    controversy_url: "https://en.wikipedia.org/wiki/Alex_Jones",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "InfoWars host",
@@ -892,6 +958,7 @@ window.PEOPLE = [
   {
     id: "r-kelly",
     name: "R. Kelly",
+    controversy_url: "https://en.wikipedia.org/wiki/R._Kelly#Legal_issues",
     list: "bad",
     type: "public",
     role: "Singer (in prison)",
@@ -910,6 +977,7 @@ window.PEOPLE = [
   {
     id: "danny-masterson",
     name: "Danny Masterson",
+    controversy_url: "https://en.wikipedia.org/wiki/Danny_Masterson#Legal_issues",
     list: "bad",
     type: "public",
     role: "Actor (in prison)",
@@ -927,6 +995,7 @@ window.PEOPLE = [
   {
     id: "gerard-depardieu",
     name: "Gérard Depardieu",
+    controversy_url: "https://en.wikipedia.org/wiki/G%C3%A9rard_Depardieu#Sexual_assault_and_rape_allegations",
     list: "bad",
     type: "public",
     role: "French actor",
@@ -943,6 +1012,7 @@ window.PEOPLE = [
   {
     id: "nick-fuentes",
     name: "Nick Fuentes",
+    controversy_url: "https://en.wikipedia.org/wiki/Nick_Fuentes#Battery_arrest",
     list: "bad",
     type: "public",
     role: "Livestreamer, America First host",
@@ -960,6 +1030,8 @@ window.PEOPLE = [
   {
     id: "louis-theroux",
     name: "Louis Theroux",
+    controversy_url: "https://en.wikipedia.org/wiki/List_of_Louis_Theroux_documentaries",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Documentary maker",
@@ -979,6 +1051,7 @@ window.PEOPLE = [
   {
     id: "stephen-fry",
     name: "Stephen Fry",
+    controversy_url: "https://en.wikipedia.org/wiki/Stephen_Fry#Poland_controversy",
     list: "good",
     type: "public",
     role: "Actor, writer, mental health campaigner",
@@ -1001,6 +1074,8 @@ window.PEOPLE = [
   {
     id: "frank-bruno",
     name: "Frank Bruno",
+    controversy_url: "https://en.wikipedia.org/wiki/Frank_Bruno",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former heavyweight champion",
@@ -1020,6 +1095,8 @@ window.PEOPLE = [
   {
     id: "chris-herren",
     name: "Chris Herren",
+    controversy_url: "https://en.wikipedia.org/wiki/Chris_Herren",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former NBA player, addiction speaker",
@@ -1058,6 +1135,8 @@ window.PEOPLE = [
   {
     id: "tony-adams",
     name: "Tony Adams",
+    controversy_url: "https://en.wikipedia.org/wiki/Tony_Adams",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Arsenal and England captain",
@@ -1077,6 +1156,8 @@ window.PEOPLE = [
   {
     id: "steve-o",
     name: "Steve-O",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve-O",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Jackass star, comedian, podcaster",
@@ -1096,6 +1177,8 @@ window.PEOPLE = [
   {
     id: "danny-trejo",
     name: "Danny Trejo",
+    controversy_url: "https://en.wikipedia.org/wiki/Danny_Trejo",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, former prisoner",
@@ -1117,6 +1200,8 @@ window.PEOPLE = [
   {
     id: "professor-green",
     name: "Professor Green",
+    controversy_url: "https://en.wikipedia.org/wiki/Professor_Green",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rapper, mental health campaigner",
@@ -1134,6 +1219,8 @@ window.PEOPLE = [
   {
     id: "keanu-reeves",
     name: "Keanu Reeves",
+    controversy_url: "https://en.wikipedia.org/wiki/Keanu_Reeves",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -1154,6 +1241,8 @@ window.PEOPLE = [
   {
     id: "shaquille-oneal",
     name: "Shaquille O'Neal",
+    controversy_url: "https://en.wikipedia.org/wiki/Shaquille_O'Neal",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Basketball legend, broadcaster",
@@ -1176,6 +1265,8 @@ window.PEOPLE = [
   {
     id: "terry-crews",
     name: "Terry Crews",
+    controversy_url: "https://en.wikipedia.org/wiki/Terry_Crews",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, former NFL player",
@@ -1197,6 +1288,8 @@ window.PEOPLE = [
   {
     id: "mark-hamill",
     name: "Mark Hamill",
+    controversy_url: "https://en.wikipedia.org/wiki/Mark_Hamill",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, voice of the Joker",
@@ -1217,6 +1310,7 @@ window.PEOPLE = [
   {
     id: "john-cena",
     name: "John Cena",
+    controversy_url: "https://en.wikipedia.org/wiki/John_Cena#Legal_issues",
     list: "good",
     type: "public",
     role: "Actor, retired wrestler",
@@ -1236,6 +1330,8 @@ window.PEOPLE = [
   {
     id: "jason-momoa",
     name: "Jason Momoa",
+    controversy_url: "https://en.wikipedia.org/wiki/Jason_Momoa",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, ocean campaigner",
@@ -1257,6 +1353,8 @@ window.PEOPLE = [
   {
     id: "dwayne-johnson",
     name: "Dwayne Johnson",
+    controversy_url: "https://en.wikipedia.org/wiki/Dwayne_Johnson",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, former wrestler",
@@ -1278,6 +1376,7 @@ window.PEOPLE = [
   {
     id: "arnold-schwarzenegger",
     name: "Arnold Schwarzenegger",
+    controversy_url: "https://en.wikipedia.org/wiki/Arnold_Schwarzenegger#Allegations_of_sexual_misconduct",
     list: "good",
     type: "public",
     role: "Bodybuilder, actor, former Governor of California",
@@ -1303,6 +1402,7 @@ window.PEOPLE = [
   {
     id: "marco-pierre-white",
     name: "Marco Pierre White",
+    controversy_url: "https://en.wikipedia.org/wiki/Marco_Pierre_White#Controversies",
     list: "good",
     type: "public",
     role: "Chef",
@@ -1323,6 +1423,7 @@ window.PEOPLE = [
   {
     id: "floyd-mayweather",
     name: "Floyd Mayweather Jr.",
+    controversy_url: "https://en.wikipedia.org/wiki/Floyd_Mayweather_Jr.#Legal_issues",
     list: "bad",
     type: "public",
     role: "Boxer",
@@ -1341,6 +1442,8 @@ window.PEOPLE = [
   {
     id: "johnson-beharry",
     name: "Johnson Beharry",
+    controversy_url: "https://en.wikipedia.org/wiki/Johnson_Beharry",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "British Army soldier, Victoria Cross",
@@ -1360,6 +1463,7 @@ window.PEOPLE = [
   {
     id: "pat-tillman",
     name: "Pat Tillman",
+    controversy_url: "https://en.wikipedia.org/wiki/Pat_Tillman#Criticisms",
     list: "good",
     type: "public",
     role: "NFL player turned Army Ranger (died 2004)",
@@ -1379,6 +1483,8 @@ window.PEOPLE = [
   {
     id: "captain-tom-moore",
     name: "Captain Sir Tom Moore",
+    controversy_url: "https://en.wikipedia.org/wiki/Captain_Tom_Moore",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "WWII veteran, NHS fundraiser (died 2021)",
@@ -1398,6 +1504,8 @@ window.PEOPLE = [
   {
     id: "ray-mears",
     name: "Ray Mears",
+    controversy_url: "https://en.wikipedia.org/wiki/Ray_Mears",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Bushcraft and survival expert",
@@ -1418,6 +1526,7 @@ window.PEOPLE = [
   {
     id: "jamie-oliver",
     name: "Jamie Oliver",
+    controversy_url: "https://en.wikipedia.org/wiki/Jamie_Oliver#Views_and_criticism",
     list: "good",
     type: "public",
     role: "Chef, food campaigner",
@@ -1440,6 +1549,7 @@ window.PEOPLE = [
   {
     id: "tiger-woods",
     name: "Tiger Woods",
+    controversy_url: "https://en.wikipedia.org/wiki/Tiger_Woods#Infidelity_scandal_and_fallout",
     list: "bad",
     type: "public",
     role: "Golfer",
@@ -1462,6 +1572,7 @@ window.PEOPLE = [
   {
     id: "mrbeast",
     name: "MrBeast (Jimmy Donaldson)",
+    controversy_url: "https://en.wikipedia.org/wiki/MrBeast#Controversies",
     list: "bad",
     type: "public",
     role: "YouTuber, philanthropist",
@@ -1486,6 +1597,7 @@ window.PEOPLE = [
   {
     id: "jeremy-clarkson",
     name: "Jeremy Clarkson",
+    controversy_url: "https://en.wikipedia.org/wiki/Jeremy_Clarkson#Controversies",
     list: "bad",
     type: "public",
     role: "Broadcaster, farmer",
@@ -1507,6 +1619,7 @@ window.PEOPLE = [
   {
     id: "ant-middleton",
     name: "Ant Middleton",
+    controversy_url: "https://en.wikipedia.org/wiki/Ant_Middleton#Legal_issues",
     list: "bad",
     type: "public",
     role: "Former special forces soldier, TV presenter",
@@ -1528,6 +1641,7 @@ window.PEOPLE = [
   {
     id: "lance-armstrong",
     name: "Lance Armstrong",
+    controversy_url: "https://en.wikipedia.org/wiki/Lance_Armstrong#Doping_allegations%2C_investigation%2C_and_confession",
     list: "bad",
     type: "public",
     role: "Former cyclist",
@@ -1549,6 +1663,7 @@ window.PEOPLE = [
   {
     id: "chris-brown",
     name: "Chris Brown",
+    controversy_url: "https://en.wikipedia.org/wiki/Chris_Brown#Legal_issues",
     list: "bad",
     type: "public",
     role: "Singer",
@@ -1569,6 +1684,7 @@ window.PEOPLE = [
   {
     id: "bernie-madoff",
     name: "Bernie Madoff",
+    controversy_url: "https://en.wikipedia.org/wiki/Bernie_Madoff#Investment_scandal",
     list: "bad",
     type: "public",
     role: "Fraudster (died 2021)",
@@ -1586,6 +1702,7 @@ window.PEOPLE = [
   {
     id: "sam-bankman-fried",
     name: "Sam Bankman-Fried",
+    controversy_url: "https://en.wikipedia.org/wiki/Sam_Bankman-Fried#Arrest_and_charges",
     list: "bad",
     type: "public",
     role: "Former FTX founder",
@@ -1604,6 +1721,7 @@ window.PEOPLE = [
   {
     id: "martin-shkreli",
     name: "Martin Shkreli",
+    controversy_url: "https://en.wikipedia.org/wiki/Martin_Shkreli#Investigation_and_charges",
     list: "bad",
     type: "public",
     role: "Former pharma executive",
@@ -1624,6 +1742,7 @@ window.PEOPLE = [
   {
     id: "mike-tyson",
     name: "Mike Tyson",
+    controversy_url: "https://en.wikipedia.org/wiki/Mike_Tyson#Controversies_and_legal_challenges",
     list: "bad",
     type: "public",
     role: "Former boxer",
@@ -1650,6 +1769,8 @@ window.PEOPLE = [
   {
     id: "ranulph-fiennes",
     name: "Ranulph Fiennes",
+    controversy_url: "https://en.wikipedia.org/wiki/Ranulph_Fiennes",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Explorer, former soldier",
@@ -1672,6 +1793,8 @@ window.PEOPLE = [
   {
     id: "juan-mata",
     name: "Juan Mata",
+    controversy_url: "https://en.wikipedia.org/wiki/Juan_Mata",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer",
@@ -1690,6 +1813,8 @@ window.PEOPLE = [
   {
     id: "sadio-mane",
     name: "Sadio Mané",
+    controversy_url: "https://en.wikipedia.org/wiki/Sadio_Man%C3%A9",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer",
@@ -1709,6 +1834,8 @@ window.PEOPLE = [
   {
     id: "roger-federer",
     name: "Roger Federer",
+    controversy_url: "https://en.wikipedia.org/wiki/Roger_Federer",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Tennis player",
@@ -1726,6 +1853,8 @@ window.PEOPLE = [
   {
     id: "lebron-james",
     name: "LeBron James",
+    controversy_url: "https://en.wikipedia.org/wiki/LeBron_James",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Basketball player",
@@ -1744,6 +1873,8 @@ window.PEOPLE = [
   {
     id: "mo-farah",
     name: "Mo Farah",
+    controversy_url: "https://en.wikipedia.org/wiki/Mo_Farah",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Distance runner",
@@ -1763,6 +1894,8 @@ window.PEOPLE = [
   {
     id: "hugh-fearnley-whittingstall",
     name: "Hugh Fearnley-Whittingstall",
+    controversy_url: "https://en.wikipedia.org/wiki/Hugh_Fearnley-Whittingstall",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Chef, smallholder",
@@ -1783,6 +1916,8 @@ window.PEOPLE = [
   {
     id: "tim-berners-lee",
     name: "Tim Berners-Lee",
+    controversy_url: "https://en.wikipedia.org/wiki/Tim_Berners-Lee",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Inventor of the World Wide Web",
@@ -1800,6 +1935,8 @@ window.PEOPLE = [
   {
     id: "jonathan-van-tam",
     name: "Jonathan Van-Tam",
+    controversy_url: "https://en.wikipedia.org/wiki/Jonathan_Van-Tam",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Doctor, former Deputy Chief Medical Officer",
@@ -1818,6 +1955,8 @@ window.PEOPLE = [
   {
     id: "patrick-stewart",
     name: "Patrick Stewart",
+    controversy_url: "https://en.wikipedia.org/wiki/Patrick_Stewart",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -1837,6 +1976,7 @@ window.PEOPLE = [
   {
     id: "ed-sheeran",
     name: "Ed Sheeran",
+    controversy_url: "https://en.wikipedia.org/wiki/Ed_Sheeran#Legal_issues",
     list: "good",
     type: "public",
     role: "Musician",
@@ -1856,6 +1996,7 @@ window.PEOPLE = [
   {
     id: "cristiano-ronaldo",
     name: "Cristiano Ronaldo",
+    controversy_url: "https://en.wikipedia.org/wiki/Cristiano_Ronaldo#Legal_issues",
     list: "bad",
     type: "public",
     role: "Footballer",
@@ -1876,6 +2017,8 @@ window.PEOPLE = [
   {
     id: "lionel-messi",
     name: "Lionel Messi",
+    controversy_url: "https://en.wikipedia.org/wiki/Lionel_Messi",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Footballer",
@@ -1897,6 +2040,7 @@ window.PEOPLE = [
   {
     id: "will-smith",
     name: "Will Smith",
+    controversy_url: "https://en.wikipedia.org/wiki/Will_Smith#Legal_issues",
     list: "bad",
     type: "public",
     role: "Actor",
@@ -1917,6 +2061,7 @@ window.PEOPLE = [
   {
     id: "kanye-west",
     name: "Kanye West (Ye)",
+    controversy_url: "https://en.wikipedia.org/wiki/Kanye_West#Legal_issues",
     list: "bad",
     type: "public",
     role: "Rapper, designer",
@@ -1936,6 +2081,7 @@ window.PEOPLE = [
   {
     id: "kevin-spacey",
     name: "Kevin Spacey",
+    controversy_url: "https://en.wikipedia.org/wiki/Kevin_Spacey#Sexual_misconduct_allegations",
     list: "good",
     type: "public",
     role: "Actor",
@@ -1957,6 +2103,8 @@ window.PEOPLE = [
   {
     id: "ben-stokes",
     name: "Ben Stokes",
+    controversy_url: "https://en.wikipedia.org/wiki/Ben_Stokes",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Cricketer, England captain",
@@ -1975,6 +2123,8 @@ window.PEOPLE = [
   {
     id: "tom-brady",
     name: "Tom Brady",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Brady",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Former quarterback",
@@ -1992,6 +2142,7 @@ window.PEOPLE = [
   {
     id: "logan-paul",
     name: "Logan Paul",
+    controversy_url: "https://en.wikipedia.org/wiki/Logan_Paul#2017%E2%80%932018%3A_Suicide_forest_controversy",
     list: "bad",
     type: "public",
     role: "YouTuber, wrestler",
@@ -2012,6 +2163,7 @@ window.PEOPLE = [
   {
     id: "mark-wahlberg",
     name: "Mark Wahlberg",
+    controversy_url: "https://en.wikipedia.org/wiki/Mark_Wahlberg#Legal_issues",
     list: "bad",
     type: "public",
     role: "Actor",
@@ -2031,6 +2183,7 @@ window.PEOPLE = [
   {
     id: "mel-gibson",
     name: "Mel Gibson",
+    controversy_url: "https://en.wikipedia.org/wiki/Mel_Gibson#Alcohol_abuse_and_legal_issues",
     list: "bad",
     type: "public",
     role: "Actor, director",
@@ -2049,6 +2202,7 @@ window.PEOPLE = [
   {
     id: "charlie-sheen",
     name: "Charlie Sheen",
+    controversy_url: "https://en.wikipedia.org/wiki/Charlie_Sheen#Legal_issues",
     list: "bad",
     type: "public",
     role: "Actor",
@@ -2067,6 +2221,8 @@ window.PEOPLE = [
   {
     id: "tom-daley",
     name: "Tom Daley",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Daley",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Olympic diver",
@@ -2085,6 +2241,7 @@ window.PEOPLE = [
   {
     id: "gordon-ramsay",
     name: "Gordon Ramsay",
+    controversy_url: "https://en.wikipedia.org/wiki/Gordon_Ramsay#Pre-prepared_meal_controversy",
     list: "good",
     type: "public",
     role: "Chef, TV host",
@@ -2107,6 +2264,7 @@ window.PEOPLE = [
   {
     id: "elon-musk",
     name: "Elon Musk",
+    controversy_url: "https://en.wikipedia.org/wiki/Elon_Musk#Legal_affairs",
     list: "bad",
     type: "public",
     role: "Tesla and SpaceX CEO",
@@ -2127,6 +2285,7 @@ window.PEOPLE = [
   {
     id: "russell-brand",
     name: "Russell Brand",
+    controversy_url: "https://en.wikipedia.org/wiki/Russell_Brand#Legal_issues",
     list: "bad",
     type: "public",
     role: "Comedian, podcaster",
@@ -2148,6 +2307,7 @@ window.PEOPLE = [
   {
     id: "lewis-hamilton",
     name: "Lewis Hamilton",
+    controversy_url: "https://en.wikipedia.org/wiki/Lewis_Hamilton#Legal_issues",
     list: "good",
     type: "public",
     role: "Formula One driver",
@@ -2169,6 +2329,8 @@ window.PEOPLE = [
   {
     id: "harry-kane",
     name: "Harry Kane",
+    controversy_url: "https://en.wikipedia.org/wiki/Harry_Kane",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer, England captain",
@@ -2187,6 +2349,7 @@ window.PEOPLE = [
   {
     id: "johnny-depp",
     name: "Johnny Depp",
+    controversy_url: "https://en.wikipedia.org/wiki/Johnny_Depp#Legal_issues_and_allegations",
     list: "good",
     type: "public",
     role: "Actor",
@@ -2205,6 +2368,7 @@ window.PEOPLE = [
   {
     id: "oscar-pistorius",
     name: "Oscar Pistorius",
+    controversy_url: "https://en.wikipedia.org/wiki/Oscar_Pistorius#Murder_of_Reeva_Steenkamp",
     list: "bad",
     type: "public",
     role: "Former Paralympic sprinter",
@@ -2223,6 +2387,7 @@ window.PEOPLE = [
   {
     id: "sean-combs",
     name: "Sean Combs (Diddy)",
+    controversy_url: "https://en.wikipedia.org/wiki/Sean_Combs#Legal_issues",
     list: "bad",
     type: "public",
     role: "Music mogul",
@@ -2242,6 +2407,8 @@ window.PEOPLE = [
   {
     id: "harvey-weinstein",
     name: "Harvey Weinstein",
+    controversy_url: "https://en.wikipedia.org/wiki/Harvey_Weinstein",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Former film producer",
@@ -2260,6 +2427,8 @@ window.PEOPLE = [
   {
     id: "ryan-reynolds",
     name: "Ryan Reynolds",
+    controversy_url: "https://en.wikipedia.org/wiki/Ryan_Reynolds",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2281,6 +2450,7 @@ window.PEOPLE = [
   {
     id: "trey-parker",
     name: "Trey Parker",
+    controversy_url: "https://en.wikipedia.org/wiki/Trey_Parker#Casa_Bonita_controversy",
     list: "good",
     type: "public",
     role: "Co-creator of South Park",
@@ -2300,6 +2470,7 @@ window.PEOPLE = [
   {
     id: "matt-stone",
     name: "Matt Stone",
+    controversy_url: "https://en.wikipedia.org/wiki/Matt_Stone#Casa_Bonita_controversy",
     list: "good",
     type: "public",
     role: "Co-creator of South Park",
@@ -2320,6 +2491,8 @@ window.PEOPLE = [
   {
     id: "mark-rober",
     name: "Mark Rober",
+    controversy_url: "https://en.wikipedia.org/wiki/Mark_Rober",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Engineer, YouTuber",
@@ -2339,6 +2512,8 @@ window.PEOPLE = [
   {
     id: "patrick-mahomes",
     name: "Patrick Mahomes",
+    controversy_url: "https://en.wikipedia.org/wiki/Patrick_Mahomes",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "American football player",
@@ -2357,6 +2532,7 @@ window.PEOPLE = [
   {
     id: "shohei-ohtani",
     name: "Shohei Ohtani",
+    controversy_url: "https://en.wikipedia.org/wiki/Shohei_Ohtani#Interpreter_gambling_scandal",
     list: "good",
     type: "public",
     role: "Baseball player",
@@ -2376,6 +2552,8 @@ window.PEOPLE = [
   {
     id: "stephen-curry",
     name: "Stephen Curry",
+    controversy_url: "https://en.wikipedia.org/wiki/Stephen_Curry",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Basketball player",
@@ -2396,6 +2574,8 @@ window.PEOPLE = [
   {
     id: "tyson-fury",
     name: "Tyson Fury",
+    controversy_url: "https://en.wikipedia.org/wiki/Tyson_Fury",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Boxer",
@@ -2417,6 +2597,8 @@ window.PEOPLE = [
   {
     id: "andrew-flintoff",
     name: "Freddie Flintoff",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrew_Flintoff",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former cricketer, TV presenter",
@@ -2435,6 +2617,8 @@ window.PEOPLE = [
   {
     id: "stephen-colbert",
     name: "Stephen Colbert",
+    controversy_url: "https://en.wikipedia.org/wiki/Stephen_Colbert",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Talk show host, satirist",
@@ -2452,6 +2636,8 @@ window.PEOPLE = [
   {
     id: "guy-fieri",
     name: "Guy Fieri",
+    controversy_url: "https://en.wikipedia.org/wiki/Guy_Fieri",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Chef, TV presenter",
@@ -2470,6 +2656,8 @@ window.PEOPLE = [
   {
     id: "prince-william",
     name: "Prince William",
+    controversy_url: "https://en.wikipedia.org/wiki/William%2C_Prince_of_Wales",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Prince of Wales, former rescue pilot",
@@ -2490,6 +2678,8 @@ window.PEOPLE = [
   {
     id: "jelly-roll",
     name: "Jelly Roll",
+    controversy_url: "https://en.wikipedia.org/wiki/Jelly_Roll_(singer)",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician",
@@ -2507,6 +2697,8 @@ window.PEOPLE = [
   {
     id: "bruce-springsteen",
     name: "Bruce Springsteen",
+    controversy_url: "https://en.wikipedia.org/wiki/Bruce_Springsteen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician",
@@ -2525,6 +2717,8 @@ window.PEOPLE = [
   {
     id: "paddy-pimblett",
     name: "Paddy Pimblett",
+    controversy_url: "https://en.wikipedia.org/wiki/Paddy_Pimblett",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Mixed martial artist",
@@ -2542,6 +2736,8 @@ window.PEOPLE = [
   {
     id: "matthew-mcconaughey",
     name: "Matthew McConaughey",
+    controversy_url: "https://en.wikipedia.org/wiki/Matthew_McConaughey",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, professor",
@@ -2560,6 +2756,8 @@ window.PEOPLE = [
   {
     id: "idris-elba",
     name: "Idris Elba",
+    controversy_url: "https://en.wikipedia.org/wiki/Idris_Elba",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2579,6 +2777,7 @@ window.PEOPLE = [
   {
     id: "michael-douglas",
     name: "Michael Douglas",
+    controversy_url: "https://en.wikipedia.org/wiki/Michael_Douglas#Legal_issues",
     list: "good",
     type: "public",
     role: "Actor, producer",
@@ -2598,6 +2797,8 @@ window.PEOPLE = [
   {
     id: "jonathan-groff",
     name: "Jonathan Groff",
+    controversy_url: "https://en.wikipedia.org/wiki/Jonathan_Groff",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, singer",
@@ -2614,6 +2815,8 @@ window.PEOPLE = [
   {
     id: "ian-mckellen",
     name: "Ian McKellen",
+    controversy_url: "https://en.wikipedia.org/wiki/Ian_McKellen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2631,6 +2834,8 @@ window.PEOPLE = [
   {
     id: "valentino-rossi",
     name: "Valentino Rossi",
+    controversy_url: "https://en.wikipedia.org/wiki/Valentino_Rossi",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Retired motorcycle racer",
@@ -2648,6 +2853,8 @@ window.PEOPLE = [
   {
     id: "lewis-pugh",
     name: "Lewis Pugh",
+    controversy_url: "https://en.wikipedia.org/wiki/Lewis_Pugh",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Endurance swimmer, ocean advocate",
@@ -2665,6 +2872,8 @@ window.PEOPLE = [
   {
     id: "boyan-slat",
     name: "Boyan Slat",
+    controversy_url: "https://en.wikipedia.org/wiki/Boyan_Slat",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Inventor, founder of The Ocean Cleanup",
@@ -2682,6 +2891,8 @@ window.PEOPLE = [
   {
     id: "munya-chawawa",
     name: "Munya Chawawa",
+    controversy_url: "https://en.wikipedia.org/wiki/Munya_Chawawa",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Comedian, presenter",
@@ -2698,6 +2909,7 @@ window.PEOPLE = [
   {
     id: "gabor-mate",
     name: "Gabor Maté",
+    controversy_url: "https://en.wikipedia.org/wiki/Gabor_Mat%C3%A9#Criticisms",
     list: "good",
     type: "public",
     role: "Physician, author on addiction",
@@ -2714,6 +2926,8 @@ window.PEOPLE = [
   {
     id: "george-clooney",
     name: "George Clooney",
+    controversy_url: "https://en.wikipedia.org/wiki/George_Clooney",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, filmmaker",
@@ -2732,6 +2946,8 @@ window.PEOPLE = [
   {
     id: "avi-schiffmann",
     name: "Avi Schiffmann",
+    controversy_url: "https://en.wikipedia.org/wiki/Avi_Schiffmann",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Technologist",
@@ -2745,6 +2961,8 @@ window.PEOPLE = [
   {
     id: "jordan-stephens",
     name: "Jordan Stephens",
+    controversy_url: "https://en.wikipedia.org/wiki/Jordan_Stephens",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician (Rizzle Kicks), actor",
@@ -2761,6 +2979,8 @@ window.PEOPLE = [
   {
     id: "bukayo-saka",
     name: "Bukayo Saka",
+    controversy_url: "https://en.wikipedia.org/wiki/Bukayo_Saka",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer",
@@ -2777,6 +2997,8 @@ window.PEOPLE = [
   {
     id: "loyle-carner",
     name: "Loyle Carner",
+    controversy_url: "https://en.wikipedia.org/wiki/Loyle_Carner",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rapper",
@@ -2793,6 +3015,8 @@ window.PEOPLE = [
   {
     id: "barack-obama",
     name: "Barack Obama",
+    controversy_url: "https://en.wikipedia.org/wiki/Barack_Obama",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former US President",
@@ -2809,6 +3033,8 @@ window.PEOPLE = [
   {
     id: "daniel-day-lewis",
     name: "Daniel Day-Lewis",
+    controversy_url: "https://en.wikipedia.org/wiki/Daniel_Day-Lewis",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2826,6 +3052,8 @@ window.PEOPLE = [
   {
     id: "daniel-craig",
     name: "Daniel Craig",
+    controversy_url: "https://en.wikipedia.org/wiki/Daniel_Craig",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2842,6 +3070,8 @@ window.PEOPLE = [
   {
     id: "ncuti-gatwa",
     name: "Ncuti Gatwa",
+    controversy_url: "https://en.wikipedia.org/wiki/Ncuti_Gatwa",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2858,6 +3088,8 @@ window.PEOPLE = [
   {
     id: "lewis-capaldi",
     name: "Lewis Capaldi",
+    controversy_url: "https://en.wikipedia.org/wiki/Lewis_Capaldi",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer-songwriter",
@@ -2874,6 +3106,8 @@ window.PEOPLE = [
   {
     id: "taron-egerton",
     name: "Taron Egerton",
+    controversy_url: "https://en.wikipedia.org/wiki/Taron_Egerton",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2890,6 +3124,8 @@ window.PEOPLE = [
   {
     id: "christian-bale",
     name: "Christian Bale",
+    controversy_url: "https://en.wikipedia.org/wiki/Christian_Bale",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2906,6 +3142,8 @@ window.PEOPLE = [
   {
     id: "rupaul",
     name: "RuPaul",
+    controversy_url: "https://en.wikipedia.org/wiki/RuPaul",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Drag performer, TV host",
@@ -2922,6 +3160,8 @@ window.PEOPLE = [
   {
     id: "stephen-graham",
     name: "Stephen Graham",
+    controversy_url: "https://en.wikipedia.org/wiki/Stephen_Graham",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, writer",
@@ -2939,6 +3179,8 @@ window.PEOPLE = [
   {
     id: "markiplier",
     name: "Markiplier",
+    controversy_url: "https://en.wikipedia.org/wiki/Markiplier",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "YouTuber",
@@ -2956,6 +3198,8 @@ window.PEOPLE = [
   {
     id: "steve-carell",
     name: "Steve Carell",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve_Carell",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, comedian",
@@ -2972,6 +3216,8 @@ window.PEOPLE = [
   {
     id: "tom-holland",
     name: "Tom Holland",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Holland",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -2988,6 +3234,8 @@ window.PEOPLE = [
   {
     id: "doctor-mike",
     name: "Doctor Mike",
+    controversy_url: "https://en.wikipedia.org/wiki/Doctor_Mike",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Physician, YouTuber (Mikhail Varshavski)",
@@ -3004,6 +3252,8 @@ window.PEOPLE = [
   {
     id: "viggo-mortensen",
     name: "Viggo Mortensen",
+    controversy_url: "https://en.wikipedia.org/wiki/Viggo_Mortensen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, director",
@@ -3020,6 +3270,7 @@ window.PEOPLE = [
   {
     id: "bill-murray",
     name: "Bill Murray",
+    controversy_url: "https://en.wikipedia.org/wiki/Bill_Murray#Feuds_and_misconduct_allegation",
     list: "good",
     type: "public",
     role: "Actor, comedian",
@@ -3036,6 +3287,8 @@ window.PEOPLE = [
   {
     id: "jesse-eisenberg",
     name: "Jesse Eisenberg",
+    controversy_url: "https://en.wikipedia.org/wiki/Jesse_Eisenberg",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, writer, director",
@@ -3052,6 +3305,8 @@ window.PEOPLE = [
   {
     id: "khaby-lame",
     name: "Khaby Lame",
+    controversy_url: "https://en.wikipedia.org/wiki/Khaby_Lame",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Content creator",
@@ -3068,6 +3323,7 @@ window.PEOPLE = [
   {
     id: "nicolas-cage",
     name: "Nicolas Cage",
+    controversy_url: "https://en.wikipedia.org/wiki/Nicolas_Cage#Legal_issues",
     list: "good",
     type: "public",
     role: "Actor",
@@ -3084,6 +3340,8 @@ window.PEOPLE = [
   {
     id: "mark-ruffalo",
     name: "Mark Ruffalo",
+    controversy_url: "https://en.wikipedia.org/wiki/Mark_Ruffalo",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3101,6 +3359,7 @@ window.PEOPLE = [
   {
     id: "sunny-balwani",
     name: "Sunny Balwani",
+    controversy_url: "https://en.wikipedia.org/wiki/Sunny_Balwani#Legal_proceedings",
     list: "bad",
     type: "public",
     role: "Former Theranos president",
@@ -3118,6 +3377,7 @@ window.PEOPLE = [
   {
     id: "nidal-hasan",
     name: "Nidal Hasan",
+    controversy_url: "https://en.wikipedia.org/wiki/Nidal_Hasan#Legal_proceedings",
     list: "bad",
     type: "public",
     role: "Former Army psychiatrist, Fort Hood gunman",
@@ -3135,6 +3395,7 @@ window.PEOPLE = [
   {
     id: "jordan-belfort",
     name: "Jordan Belfort",
+    controversy_url: "https://en.wikipedia.org/wiki/Jordan_Belfort#Australian_training_scandal",
     list: "bad",
     type: "public",
     role: "Motivational speaker, ex-stockbroker",
@@ -3152,6 +3413,7 @@ window.PEOPLE = [
   {
     id: "jon-jones",
     name: "Jon Jones",
+    controversy_url: "https://en.wikipedia.org/wiki/Jon_Jones#Controversies",
     list: "bad",
     type: "public",
     role: "Mixed martial artist",
@@ -3172,6 +3434,7 @@ window.PEOPLE = [
   {
     id: "jay-z",
     name: "Jay-Z",
+    controversy_url: "https://en.wikipedia.org/wiki/Jay-Z#Legal_issues",
     list: "bad",
     type: "public",
     role: "Musician, businessman",
@@ -3190,6 +3453,7 @@ window.PEOPLE = [
   {
     id: "gino-dacampo",
     name: "Gino D'Acampo",
+    controversy_url: "https://en.wikipedia.org/wiki/Gino_D'Acampo#Allegations_of_inappropriate_conduct",
     list: "bad",
     type: "public",
     role: "Chef, TV presenter",
@@ -3207,6 +3471,8 @@ window.PEOPLE = [
   {
     id: "usain-bolt",
     name: "Usain Bolt",
+    controversy_url: "https://en.wikipedia.org/wiki/Usain_Bolt",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Sprinter",
@@ -3225,6 +3491,8 @@ window.PEOPLE = [
   {
     id: "ezra-frech",
     name: "Ezra Frech",
+    controversy_url: "https://en.wikipedia.org/wiki/Ezra_Frech",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Paralympic champion",
@@ -3242,6 +3510,8 @@ window.PEOPLE = [
   {
     id: "alexander-skarsgard",
     name: "Alexander Skarsgård",
+    controversy_url: "https://en.wikipedia.org/wiki/Alexander_Skarsg%C3%A5rd",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3261,6 +3531,8 @@ window.PEOPLE = [
   {
     id: "james-blunt",
     name: "James Blunt",
+    controversy_url: "https://en.wikipedia.org/wiki/James_Blunt",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer, former Army captain",
@@ -3280,6 +3552,8 @@ window.PEOPLE = [
   {
     id: "nick-saban",
     name: "Nick Saban",
+    controversy_url: "https://en.wikipedia.org/wiki/Nick_Saban",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former football coach, broadcaster",
@@ -3298,6 +3572,7 @@ window.PEOPLE = [
   {
     id: "ben-affleck",
     name: "Ben Affleck",
+    controversy_url: "https://en.wikipedia.org/wiki/Ben_Affleck#MeToo_allegations",
     list: "good",
     type: "public",
     role: "Actor, filmmaker",
@@ -3315,6 +3590,8 @@ window.PEOPLE = [
   {
     id: "case-keenum",
     name: "Case Keenum",
+    controversy_url: "https://en.wikipedia.org/wiki/Case_Keenum",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "NFL quarterback",
@@ -3332,6 +3609,8 @@ window.PEOPLE = [
   {
     id: "karl-deisseroth",
     name: "Karl Deisseroth",
+    controversy_url: "https://en.wikipedia.org/wiki/Karl_Deisseroth",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Scientist, psychiatrist",
@@ -3349,6 +3628,7 @@ window.PEOPLE = [
   {
     id: "lamine-yamal",
     name: "Lamine Yamal",
+    controversy_url: "https://en.wikipedia.org/wiki/Lamine_Yamal#Criticisms",
     list: "good",
     type: "public",
     role: "Footballer",
@@ -3366,6 +3646,8 @@ window.PEOPLE = [
   {
     id: "paul-mccartney",
     name: "Paul McCartney",
+    controversy_url: "https://en.wikipedia.org/wiki/Paul_McCartney",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician, the Beatles",
@@ -3386,6 +3668,8 @@ window.PEOPLE = [
   {
     id: "pierce-brosnan",
     name: "Pierce Brosnan",
+    controversy_url: "https://en.wikipedia.org/wiki/Pierce_Brosnan",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3404,6 +3688,7 @@ window.PEOPLE = [
   {
     id: "brad-pitt",
     name: "Brad Pitt",
+    controversy_url: "https://en.wikipedia.org/wiki/Brad_Pitt#Abuse_allegation",
     list: "good",
     type: "public",
     role: "Actor, producer",
@@ -3422,6 +3707,7 @@ window.PEOPLE = [
   {
     id: "michael-dell",
     name: "Michael Dell",
+    controversy_url: "https://en.wikipedia.org/wiki/Michael_Dell#Accounting_fraud_allegations",
     list: "good",
     type: "public",
     role: "Dell Technologies founder",
@@ -3440,6 +3726,8 @@ window.PEOPLE = [
   {
     id: "jason-sudeikis",
     name: "Jason Sudeikis",
+    controversy_url: "https://en.wikipedia.org/wiki/Jason_Sudeikis",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, comedian",
@@ -3456,6 +3744,8 @@ window.PEOPLE = [
   {
     id: "nathan-fielder",
     name: "Nathan Fielder",
+    controversy_url: "https://en.wikipedia.org/wiki/Nathan_Fielder",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Comedian, filmmaker",
@@ -3473,6 +3763,8 @@ window.PEOPLE = [
   {
     id: "sebastian-croft",
     name: "Sebastian Croft",
+    controversy_url: "https://en.wikipedia.org/wiki/Sebastian_Croft",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, singer",
@@ -3490,6 +3782,8 @@ window.PEOPLE = [
   {
     id: "andrew-garfield",
     name: "Andrew Garfield",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrew_Garfield",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3506,6 +3800,8 @@ window.PEOPLE = [
   {
     id: "robert-pattinson",
     name: "Robert Pattinson",
+    controversy_url: "https://en.wikipedia.org/wiki/Robert_Pattinson",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3522,6 +3818,8 @@ window.PEOPLE = [
   {
     id: "bruce-willis",
     name: "Bruce Willis",
+    controversy_url: "https://en.wikipedia.org/wiki/Bruce_Willis",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor (retired)",
@@ -3538,6 +3836,8 @@ window.PEOPLE = [
   {
     id: "josh-allen",
     name: "Josh Allen",
+    controversy_url: "https://en.wikipedia.org/wiki/Josh_Allen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "NFL quarterback",
@@ -3555,6 +3855,8 @@ window.PEOPLE = [
   {
     id: "gary-oldman",
     name: "Gary Oldman",
+    controversy_url: "https://en.wikipedia.org/wiki/Gary_Oldman",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3573,6 +3875,8 @@ window.PEOPLE = [
   {
     id: "jackie-chan",
     name: "Jackie Chan",
+    controversy_url: "https://en.wikipedia.org/wiki/Jackie_Chan",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, martial artist, filmmaker",
@@ -3593,6 +3897,8 @@ window.PEOPLE = [
   {
     id: "henry-cavill",
     name: "Henry Cavill",
+    controversy_url: "https://en.wikipedia.org/wiki/Henry_Cavill",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -3611,6 +3917,8 @@ window.PEOPLE = [
   {
     id: "andrew-huberman",
     name: "Andrew Huberman",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrew_Huberman",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Neuroscientist, podcaster",
@@ -3628,6 +3936,8 @@ window.PEOPLE = [
   {
     id: "david-goggins",
     name: "David Goggins",
+    controversy_url: "https://en.wikipedia.org/wiki/David_Goggins",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Ultra-endurance athlete, former Navy SEAL",
@@ -3645,6 +3955,7 @@ window.PEOPLE = [
   {
     id: "ninja",
     name: "Ninja",
+    controversy_url: "https://en.wikipedia.org/wiki/Ninja_(gamer)#Controversies",
     list: "good",
     type: "public",
     role: "Streamer",
@@ -3664,6 +3975,7 @@ window.PEOPLE = [
   {
     id: "pewdiepie",
     name: "PewDiePie",
+    controversy_url: "https://en.wikipedia.org/wiki/PewDiePie#2017%E2%80%932018%3A_Media_controversies_and_formatted_shows",
     list: "good",
     type: "public",
     role: "YouTuber",
@@ -3684,6 +3996,8 @@ window.PEOPLE = [
   {
     id: "jocko-willink",
     name: "Jocko Willink",
+    controversy_url: "https://en.wikipedia.org/wiki/Jocko_Willink",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former Navy SEAL, author, podcaster",
@@ -3703,6 +4017,8 @@ window.PEOPLE = [
   {
     id: "hank-green",
     name: "Hank Green",
+    controversy_url: "https://en.wikipedia.org/wiki/Hank_Green",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Educator, YouTuber",
@@ -3723,6 +4039,7 @@ window.PEOPLE = [
   {
     id: "kylian-mbappe",
     name: "Kylian Mbappé",
+    controversy_url: "https://en.wikipedia.org/wiki/Kylian_Mbapp%C3%A9#Legal",
     list: "good",
     type: "public",
     role: "Footballer",
@@ -3742,6 +4059,8 @@ window.PEOPLE = [
   {
     id: "mohamed-salah",
     name: "Mohamed Salah",
+    controversy_url: "https://en.wikipedia.org/wiki/Mohamed_Salah",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Footballer",
@@ -3760,6 +4079,8 @@ window.PEOPLE = [
   {
     id: "carlos-alcaraz",
     name: "Carlos Alcaraz",
+    controversy_url: "https://en.wikipedia.org/wiki/Carlos_Alcaraz",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Tennis player",
@@ -3777,6 +4098,7 @@ window.PEOPLE = [
   {
     id: "novak-djokovic",
     name: "Novak Djokovic",
+    controversy_url: "https://en.wikipedia.org/wiki/Novak_Djokovic#2022%3A_Australian_Open_controversy",
     list: "good",
     type: "public",
     role: "Tennis player",
@@ -3798,6 +4120,8 @@ window.PEOPLE = [
   {
     id: "max-verstappen",
     name: "Max Verstappen",
+    controversy_url: "https://en.wikipedia.org/wiki/Max_Verstappen",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Racing driver",
@@ -3816,6 +4140,8 @@ window.PEOPLE = [
   {
     id: "scottie-scheffler",
     name: "Scottie Scheffler",
+    controversy_url: "https://en.wikipedia.org/wiki/Scottie_Scheffler",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Golfer",
@@ -3834,6 +4160,8 @@ window.PEOPLE = [
   {
     id: "rory-mcilroy",
     name: "Rory McIlroy",
+    controversy_url: "https://en.wikipedia.org/wiki/Rory_McIlroy",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Golfer",
@@ -3852,6 +4180,8 @@ window.PEOPLE = [
   {
     id: "oleksandr-usyk",
     name: "Oleksandr Usyk",
+    controversy_url: "https://en.wikipedia.org/wiki/Oleksandr_Usyk",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Boxer",
@@ -3870,6 +4200,7 @@ window.PEOPLE = [
   {
     id: "anthony-joshua",
     name: "Anthony Joshua",
+    controversy_url: "https://en.wikipedia.org/wiki/Anthony_Joshua#Legal_issues",
     list: "good",
     type: "public",
     role: "Boxer",
@@ -3888,6 +4219,7 @@ window.PEOPLE = [
   {
     id: "khabib-nurmagomedov",
     name: "Khabib Nurmagomedov",
+    controversy_url: "https://en.wikipedia.org/wiki/Khabib_Nurmagomedov#Controversies",
     list: "good",
     type: "public",
     role: "Mixed martial artist, coach",
@@ -3908,6 +4240,8 @@ window.PEOPLE = [
   {
     id: "jason-kelce",
     name: "Jason Kelce",
+    controversy_url: "https://en.wikipedia.org/wiki/Jason_Kelce",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former American football player, podcaster",
@@ -3925,6 +4259,8 @@ window.PEOPLE = [
   {
     id: "deion-sanders",
     name: "Deion Sanders",
+    controversy_url: "https://en.wikipedia.org/wiki/Deion_Sanders",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Football coach",
@@ -3943,6 +4279,8 @@ window.PEOPLE = [
   {
     id: "leonardo-dicaprio",
     name: "Leonardo DiCaprio",
+    controversy_url: "https://en.wikipedia.org/wiki/Leonardo_DiCaprio",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, environmentalist",
@@ -3960,6 +4298,7 @@ window.PEOPLE = [
   {
     id: "the-weeknd",
     name: "The Weeknd",
+    controversy_url: "https://en.wikipedia.org/wiki/The_Weeknd#Controversies",
     list: "good",
     type: "public",
     role: "Musician",
@@ -3978,6 +4317,8 @@ window.PEOPLE = [
   {
     id: "bill-gates",
     name: "Bill Gates",
+    controversy_url: "https://en.wikipedia.org/wiki/Bill_Gates",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Microsoft co-founder, philanthropist",
@@ -3998,6 +4339,8 @@ window.PEOPLE = [
   {
     id: "warren-buffett",
     name: "Warren Buffett",
+    controversy_url: "https://en.wikipedia.org/wiki/Warren_Buffett",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Investor",
@@ -4016,6 +4359,8 @@ window.PEOPLE = [
   {
     id: "david-attenborough",
     name: "David Attenborough",
+    controversy_url: "https://en.wikipedia.org/wiki/David_Attenborough",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Naturalist, broadcaster",
@@ -4033,6 +4378,8 @@ window.PEOPLE = [
   {
     id: "brian-cox",
     name: "Brian Cox",
+    controversy_url: "https://en.wikipedia.org/wiki/Brian_Cox_(physicist)",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Physicist, broadcaster",
@@ -4053,6 +4400,8 @@ window.PEOPLE = [
   {
     id: "steve-backshall",
     name: "Steve Backshall",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve_Backshall",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Naturalist, explorer",
@@ -4071,6 +4420,8 @@ window.PEOPLE = [
   {
     id: "ben-fogle",
     name: "Ben Fogle",
+    controversy_url: "https://en.wikipedia.org/wiki/Ben_Fogle",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Adventurer, TV presenter",
@@ -4090,6 +4441,8 @@ window.PEOPLE = [
   {
     id: "jon-bon-jovi",
     name: "Jon Bon Jovi",
+    controversy_url: "https://en.wikipedia.org/wiki/Jon_Bon_Jovi",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician",
@@ -4108,6 +4461,8 @@ window.PEOPLE = [
   {
     id: "stormzy",
     name: "Stormzy",
+    controversy_url: "https://en.wikipedia.org/wiki/Stormzy",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Musician",
@@ -4127,6 +4482,8 @@ window.PEOPLE = [
   {
     id: "gary-lineker",
     name: "Gary Lineker",
+    controversy_url: "https://en.wikipedia.org/wiki/Gary_Lineker",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Former footballer, broadcaster",
@@ -4144,6 +4501,8 @@ window.PEOPLE = [
   {
     id: "michael-gove",
     name: "Michael Gove",
+    controversy_url: "https://en.wikipedia.org/wiki/Michael_Gove",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Politician, editor of The Spectator",
@@ -4160,6 +4519,8 @@ window.PEOPLE = [
   {
     id: "ishowspeed",
     name: "IShowSpeed",
+    controversy_url: "https://en.wikipedia.org/wiki/IShowSpeed",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Streamer, YouTuber",
@@ -4179,6 +4540,7 @@ window.PEOPLE = [
   {
     id: "liver-king",
     name: "Liver King",
+    controversy_url: "https://en.wikipedia.org/wiki/Liver_King#Legal_issues",
     list: "bad",
     type: "public",
     role: "Fitness influencer",
@@ -4194,6 +4556,7 @@ window.PEOPLE = [
   {
     id: "mark-zuckerberg",
     name: "Mark Zuckerberg",
+    controversy_url: "https://en.wikipedia.org/wiki/Mark_Zuckerberg#Lawsuits",
     list: "bad",
     type: "public",
     role: "Founder of Meta",
@@ -4216,6 +4579,8 @@ window.PEOPLE = [
   {
     id: "richard-branson",
     name: "Richard Branson",
+    controversy_url: "https://en.wikipedia.org/wiki/Richard_Branson",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Founder of Virgin",
@@ -4236,6 +4601,7 @@ window.PEOPLE = [
   {
     id: "matt-rife",
     name: "Matt Rife",
+    controversy_url: "https://en.wikipedia.org/wiki/Matt_Rife#Controversies",
     list: "bad",
     type: "public",
     role: "Comedian",
@@ -4254,6 +4620,7 @@ window.PEOPLE = [
   {
     id: "kevin-hart",
     name: "Kevin Hart",
+    controversy_url: "https://en.wikipedia.org/wiki/Kevin_Hart#Legal_issues",
     list: "bad",
     type: "public",
     role: "Comedian, actor",
@@ -4273,6 +4640,7 @@ window.PEOPLE = [
   {
     id: "jake-paul",
     name: "Jake Paul",
+    controversy_url: "https://en.wikipedia.org/wiki/Jake_Paul#Controversies_and_legal_issues",
     list: "bad",
     type: "public",
     role: "YouTuber, boxer",
@@ -4293,6 +4661,7 @@ window.PEOPLE = [
   {
     id: "sylvester-stallone",
     name: "Sylvester Stallone",
+    controversy_url: "https://en.wikipedia.org/wiki/Sylvester_Stallone#Legal_issues",
     list: "bad",
     type: "public",
     role: "Actor, filmmaker",
@@ -4311,6 +4680,8 @@ window.PEOPLE = [
   {
     id: "dana-white",
     name: "Dana White",
+    controversy_url: "https://en.wikipedia.org/wiki/Dana_White",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "UFC president",
@@ -4329,6 +4700,7 @@ window.PEOPLE = [
   {
     id: "dave-chappelle",
     name: "Dave Chappelle",
+    controversy_url: "https://en.wikipedia.org/wiki/Dave_Chappelle#Controversies",
     list: "bad",
     type: "public",
     role: "Comedian",
@@ -4347,6 +4719,7 @@ window.PEOPLE = [
   {
     id: "bam-margera",
     name: "Bam Margera",
+    controversy_url: "https://en.wikipedia.org/wiki/Bam_Margera#Legal_issues",
     list: "bad",
     type: "public",
     role: "Skateboarder, Jackass star",
@@ -4365,6 +4738,7 @@ window.PEOPLE = [
   {
     id: "travis-scott",
     name: "Travis Scott",
+    controversy_url: "https://en.wikipedia.org/wiki/Travis_Scott#Legal_issues",
     list: "bad",
     type: "public",
     role: "Musician",
@@ -4384,6 +4758,7 @@ window.PEOPLE = [
   {
     id: "salt-bae",
     name: "Salt Bae",
+    controversy_url: "https://en.wikipedia.org/wiki/Salt_Bae#Legal_problems",
     list: "bad",
     type: "public",
     role: "Chef, restaurateur",
@@ -4402,6 +4777,8 @@ window.PEOPLE = [
   {
     id: "theo-von",
     name: "Theo Von",
+    controversy_url: "https://en.wikipedia.org/wiki/Theo_Von",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Comedian, podcaster",
@@ -4419,6 +4796,8 @@ window.PEOPLE = [
   {
     id: "jordan-peterson",
     name: "Jordan Peterson",
+    controversy_url: "https://en.wikipedia.org/wiki/Jordan_Peterson",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Psychologist, author",
@@ -4439,6 +4818,8 @@ window.PEOPLE = [
   {
     id: "alex-pereira",
     name: "Alex Pereira",
+    controversy_url: "https://en.wikipedia.org/wiki/Alex_Pereira",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Mixed martial artist",
@@ -4460,6 +4841,8 @@ window.PEOPLE = [
   {
     id: "canelo-alvarez",
     name: "Canelo Álvarez",
+    controversy_url: "https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Boxer",
@@ -4478,6 +4861,7 @@ window.PEOPLE = [
   {
     id: "snoop-dogg",
     name: "Snoop Dogg",
+    controversy_url: "https://en.wikipedia.org/wiki/Snoop_Dogg#Legal_issues",
     list: "good",
     type: "public",
     role: "Musician",
@@ -4497,6 +4881,7 @@ window.PEOPLE = [
   {
     id: "tom-cruise",
     name: "Tom Cruise",
+    controversy_url: "https://en.wikipedia.org/wiki/Tom_Cruise#Controversies",
     list: "good",
     type: "public",
     role: "Actor",
@@ -4514,6 +4899,8 @@ window.PEOPLE = [
   {
     id: "clint-eastwood",
     name: "Clint Eastwood",
+    controversy_url: "https://en.wikipedia.org/wiki/Clint_Eastwood",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, filmmaker",
@@ -4532,6 +4919,8 @@ window.PEOPLE = [
   {
     id: "dr-disrespect",
     name: "Dr Disrespect",
+    controversy_url: "https://en.wikipedia.org/wiki/Dr_Disrespect",
+    controversy_match: false,
     list: "bad",
     type: "public",
     role: "Streamer",
@@ -4551,6 +4940,7 @@ window.PEOPLE = [
   {
     id: "gregg-wallace",
     name: "Gregg Wallace",
+    controversy_url: "https://en.wikipedia.org/wiki/Gregg_Wallace#Allegations_of_misconduct",
     list: "bad",
     type: "public",
     role: "TV presenter",
@@ -4568,6 +4958,7 @@ window.PEOPLE = [
   {
     id: "drake",
     name: "Drake",
+    controversy_url: "https://en.wikipedia.org/wiki/Drake_(musician)#Legal_issues",
     list: "bad",
     type: "public",
     role: "Musician",
@@ -4586,6 +4977,8 @@ window.PEOPLE = [
   {
     id: "colin-farrell",
     name: "Colin Farrell",
+    controversy_url: "https://en.wikipedia.org/wiki/Colin_Farrell",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -4602,6 +4995,8 @@ window.PEOPLE = [
   {
     id: "marco-mengoni",
     name: "Marco Mengoni",
+    controversy_url: "https://en.wikipedia.org/wiki/Marco_Mengoni",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer",
@@ -4619,6 +5014,8 @@ window.PEOPLE = [
   {
     id: "roberto-benigni",
     name: "Roberto Benigni",
+    controversy_url: "https://en.wikipedia.org/wiki/Roberto_Benigni",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, director",
@@ -4635,6 +5032,8 @@ window.PEOPLE = [
   {
     id: "alessandro-gassmann",
     name: "Alessandro Gassmann",
+    controversy_url: "https://en.wikipedia.org/wiki/Alessandro_Gassmann",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, director",
@@ -4651,6 +5050,8 @@ window.PEOPLE = [
   {
     id: "pierfrancesco-favino",
     name: "Pierfrancesco Favino",
+    controversy_url: "https://en.wikipedia.org/wiki/Pierfrancesco_Favino",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -4668,6 +5069,8 @@ window.PEOPLE = [
   {
     id: "andrea-bocelli",
     name: "Andrea Bocelli",
+    controversy_url: "https://en.wikipedia.org/wiki/Andrea_Bocelli",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Tenor",
@@ -4685,6 +5088,8 @@ window.PEOPLE = [
   {
     id: "jimmy-fallon",
     name: "Jimmy Fallon",
+    controversy_url: "https://en.wikipedia.org/wiki/Jimmy_Fallon",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "TV host, comedian",
@@ -4702,6 +5107,8 @@ window.PEOPLE = [
   {
     id: "stephen-king",
     name: "Stephen King",
+    controversy_url: "https://en.wikipedia.org/wiki/Stephen_King",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Author",
@@ -4719,6 +5126,8 @@ window.PEOPLE = [
   {
     id: "tim-burton",
     name: "Tim Burton",
+    controversy_url: "https://en.wikipedia.org/wiki/Tim_Burton",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Director",
@@ -4736,6 +5145,8 @@ window.PEOPLE = [
   {
     id: "stanley-tucci",
     name: "Stanley Tucci",
+    controversy_url: "https://en.wikipedia.org/wiki/Stanley_Tucci",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, writer, presenter",
@@ -4753,6 +5164,8 @@ window.PEOPLE = [
   {
     id: "david-tennant",
     name: "David Tennant",
+    controversy_url: "https://en.wikipedia.org/wiki/David_Tennant",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",
@@ -4770,6 +5183,8 @@ window.PEOPLE = [
   {
     id: "steve-redgrave",
     name: "Steve Redgrave",
+    controversy_url: "https://en.wikipedia.org/wiki/Steve_Redgrave",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rower",
@@ -4786,6 +5201,8 @@ window.PEOPLE = [
   {
     id: "john-amaechi",
     name: "John Amaechi",
+    controversy_url: "https://en.wikipedia.org/wiki/John_Amaechi",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Psychologist, former basketball player",
@@ -4802,6 +5219,8 @@ window.PEOPLE = [
   {
     id: "akala",
     name: "Akala",
+    controversy_url: "https://en.wikipedia.org/wiki/Akala",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Rapper, author",
@@ -4819,6 +5238,8 @@ window.PEOPLE = [
   {
     id: "dan-reynolds",
     name: "Dan Reynolds",
+    controversy_url: "https://en.wikipedia.org/wiki/Dan_Reynolds",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer, Imagine Dragons",
@@ -4836,6 +5257,8 @@ window.PEOPLE = [
   {
     id: "brian-kelley",
     name: "Brian Kelley",
+    controversy_url: "https://en.wikipedia.org/wiki/Brian_Kelley",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer, Florida Georgia Line",
@@ -4852,6 +5275,8 @@ window.PEOPLE = [
   {
     id: "ryan-murphy",
     name: "Ryan Murphy",
+    controversy_url: "https://en.wikipedia.org/wiki/Ryan_Murphy",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "TV producer, writer, director",
@@ -4869,6 +5294,7 @@ window.PEOPLE = [
   {
     id: "ludacris",
     name: "Ludacris",
+    controversy_url: "https://en.wikipedia.org/wiki/Ludacris#Controversies",
     list: "good",
     type: "public",
     role: "Rapper, actor",
@@ -4886,6 +5312,8 @@ window.PEOPLE = [
   {
     id: "john-legend",
     name: "John Legend",
+    controversy_url: "https://en.wikipedia.org/wiki/John_Legend",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer, songwriter",
@@ -4903,6 +5331,8 @@ window.PEOPLE = [
   {
     id: "brendon-urie",
     name: "Brendon Urie",
+    controversy_url: "https://en.wikipedia.org/wiki/Brendon_Urie",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer, Panic! at the Disco",
@@ -4920,6 +5350,8 @@ window.PEOPLE = [
   {
     id: "matthieu-ricard",
     name: "Matthieu Ricard",
+    controversy_url: "https://en.wikipedia.org/wiki/Matthieu_Ricard",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Buddhist monk, author",
@@ -4937,6 +5369,8 @@ window.PEOPLE = [
   {
     id: "kimi-antonelli",
     name: "Kimi Antonelli",
+    controversy_url: "https://en.wikipedia.org/wiki/Kimi_Antonelli",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Formula 1 driver",
@@ -4954,6 +5388,7 @@ window.PEOPLE = [
   {
     id: "daniel-libeskind",
     name: "Daniel Libeskind",
+    controversy_url: "https://en.wikipedia.org/wiki/Daniel_Libeskind#Criticism",
     list: "good",
     type: "public",
     role: "Architect",
@@ -4970,6 +5405,8 @@ window.PEOPLE = [
   {
     id: "jean-nouvel",
     name: "Jean Nouvel",
+    controversy_url: "https://en.wikipedia.org/wiki/Jean_Nouvel",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Architect",
@@ -4986,6 +5423,8 @@ window.PEOPLE = [
   {
     id: "tadao-ando",
     name: "Tadao Ando",
+    controversy_url: "https://en.wikipedia.org/wiki/Tadao_Ando",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Architect",
@@ -5002,6 +5441,8 @@ window.PEOPLE = [
   {
     id: "rem-koolhaas",
     name: "Rem Koolhaas",
+    controversy_url: "https://en.wikipedia.org/wiki/Rem_Koolhaas",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Architect",
@@ -5019,6 +5460,8 @@ window.PEOPLE = [
   {
     id: "renzo-piano",
     name: "Renzo Piano",
+    controversy_url: "https://en.wikipedia.org/wiki/Renzo_Piano",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Architect",
@@ -5035,6 +5478,8 @@ window.PEOPLE = [
   {
     id: "norman-foster",
     name: "Norman Foster",
+    controversy_url: "https://en.wikipedia.org/wiki/Norman_Foster",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Architect",
@@ -5051,6 +5496,7 @@ window.PEOPLE = [
   {
     id: "gary-barlow",
     name: "Gary Barlow",
+    controversy_url: "https://en.wikipedia.org/wiki/Gary_Barlow#Tax_avoidance_controversy",
     list: "good",
     type: "public",
     role: "Singer, songwriter, Take That",
@@ -5068,6 +5514,8 @@ window.PEOPLE = [
   {
     id: "robbie-williams",
     name: "Robbie Williams",
+    controversy_url: "https://en.wikipedia.org/wiki/Robbie_Williams",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Singer",
@@ -5085,6 +5533,8 @@ window.PEOPLE = [
   {
     id: "lin-manuel-miranda",
     name: "Lin-Manuel Miranda",
+    controversy_url: "https://en.wikipedia.org/wiki/Lin-Manuel_Miranda",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Composer, playwright, actor",
@@ -5101,6 +5551,8 @@ window.PEOPLE = [
   {
     id: "nick-offerman",
     name: "Nick Offerman",
+    controversy_url: "https://en.wikipedia.org/wiki/Nick_Offerman",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor, woodworker",
@@ -5117,6 +5569,8 @@ window.PEOPLE = [
   {
     id: "ryan-gosling",
     name: "Ryan Gosling",
+    controversy_url: "https://en.wikipedia.org/wiki/Ryan_Gosling",
+    controversy_match: false,
     list: "good",
     type: "public",
     role: "Actor",

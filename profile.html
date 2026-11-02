@@ -221,6 +221,7 @@
   .btn:hover, .btn:focus-visible { border-color: var(--cyan); outline: none; }
 
   .btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .wiki-btn { text-decoration: none; }
 
   /* ---------- Instagram: follow good men, unfollow bad ones ---------- */
   .ig { display: flex; flex-direction: column; gap: 4px; flex-basis: 100%; }
@@ -558,6 +559,13 @@
       ? `<div class="ig"><span class="ig-btn banned">🚫 Banned from Instagram</span><small>Nothing to unfollow. Instagram already did it.</small></div>`
       : '';
 
+  // Wikipedia: the matched section's heading comes from the link's #anchor.
+  const wikiSection = p.controversy_match !== false && (p.controversy_url || '').split('#')[1];
+  let wikiLabel = 'Wikipedia article';
+  if (wikiSection) try { wikiLabel = 'Wikipedia: ' + decodeURIComponent(wikiSection).replace(/_/g, ' '); } catch {}
+  const wikiBtn = p.controversy_url
+    ? `<a class="btn wiki-btn" href="${esc(p.controversy_url)}" target="_blank" rel="noopener">📖 ${esc(wikiLabel)} ↗</a>` : '';
+
   // "Also on the board": the 6 men closest to him in board order on his own tier, not the whole list.
   const rank = id => { const i = (window.ORDER || []).indexOf(id); return i < 0 ? 1e9 : i; };
   const board = PEOPLE.filter(x => (x.list === 'good' || x.list === 'bad') && tierOf(x) === tier)
@@ -585,6 +593,7 @@
         <div class="actions">
           <button class="btn" id="respect" aria-pressed="false">${p.list === 'bad' ? '👎 Not for me' : '👍 Respect'}</button>
           <button class="btn" id="share">🔗 Share</button>
+          ${wikiBtn}
           ${igBlock}
         </div>
       </div>
