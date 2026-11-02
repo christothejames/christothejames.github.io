@@ -542,7 +542,7 @@
     ? good
       ? `<div class="ig">
           <a class="ig-invite" href="${igUrl}" target="_blank" rel="noopener">
-            <span class="copy"><b>Follow on Instagram <span class="handle">@${esc(p.instagram)}</span></b><span>A good one for your feed. You follow him in the Instagram app.</span></span>
+            <span class="copy"><b>Follow on Instagram <span class="handle">@${esc(p.instagram)}</span></b><span>A good one for your feed.</span></span>
             <span class="go">Open Instagram <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </div>`
@@ -592,7 +592,6 @@
       </div>
       <div class="tabs" role="tablist">
         <button class="tab" role="tab" aria-selected="true" data-tab="posts">Posts</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="about">About</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="photos">Photos</button>
       </div>
 
@@ -606,6 +605,7 @@
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
             </dl>
             ${p.type === 'composite' ? '<p class="note" style="margin-top:12px">This is a composite, not a real person.</p>' : ''}
+            <p class="note" style="margin-top:12px">Every post on this profile links to its source. Being ranked ${NAME[tier]} is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
           </div>
           <div class="box">
             <h2>Also on ${NAME[tier]}</h2>
@@ -643,19 +643,6 @@
                 </div>
               </article>`;
             }).join('')}
-          </div>
-
-          <div data-panel="about" hidden>
-            <div class="box">
-              <h2>About ${esc(p.name)}</h2>
-              <dl class="facts">
-                <div><span aria-hidden="true">🧾</span><span><dt>Who</dt><dd>${esc(p.role)}</dd></span></div>
-                <div><span aria-hidden="true">📍</span><span><dt>Status</dt><dd>${esc(p.status)}</dd></span></div>
-                ${Object.entries(p.about || {}).map(([k, v]) => `
-                  <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
-              </dl>
-            </div>
-            <p class="note">Every post on this profile links to its source. Being ranked ${NAME[tier]} is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
           </div>
 
           <div data-panel="photos" hidden>
