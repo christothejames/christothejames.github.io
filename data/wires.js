@@ -952,8 +952,7 @@ window.WIRES = {
   },
   "richard-branson": {
     "community": 1,
-    "conduct": -1,
-    "people": -1
+    "conduct": -1
   },
   "matt-rife": {
     "conduct": -1,
@@ -1364,7 +1363,6 @@ window.ORDER = [
   "jake-paul",
   "will-smith",
   "jay-z",
-  "richard-branson",
   "joe-rogan",
   "steven-bartlett",
   "jon-jones",
@@ -1403,6 +1401,7 @@ window.ORDER = [
   "bernie-madoff",
   "gregg-wallace",
   "salt-bae",
+  "richard-branson",
   "ed-matthews",
   "ant-middleton"
 ];
@@ -1958,7 +1957,6 @@ window.AREA_ORDER = {
     "donald-trump",
     "alex-jones",
     "matt-rife",
-    "richard-branson",
     "conor-mcgregor",
     "andrew-tate",
     "cristiano-ronaldo",
@@ -1972,6 +1970,7 @@ window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
   "snoop-dogg",
+  "richard-branson",
   "mark-wahlberg",
   "jordan-peterson",
   "jeff-bezos",
