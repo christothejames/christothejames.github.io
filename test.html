@@ -241,11 +241,35 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+
+/* ---------- Home button (same on every page) ---------- */
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+    font-family: 'Bungee', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: .5px;
+    line-height: 1;
+    color: #7cc4ff;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 7px 12px 7px 9px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px #7cc4ff66;
+    transition: color .15s, background .15s, box-shadow .15s;
+  }
+  .home-btn svg { width: 16px; height: 16px; }
+  .home-btn:hover { color: #fff; background: #1e90ff26; box-shadow: inset 0 0 0 1.5px #7cc4ff; }
+  .home-btn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="home.html">← Back to The Real Man Report</a>
+  <a class="home-btn back" href="home.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20h13V9.5"/></svg>Home</a>
 
   <header>
     <h1>THE MANLY TEST</h1>
