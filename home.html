@@ -770,7 +770,41 @@
       - document.querySelector('.toolbar').offsetHeight;
     scrollTo({ top, behavior: 'smooth' });
   });
+
+  // Opening a poster remembers the spot (scroll, search, how many shown); the profile's
+  // "← Back" link (home.html#back) lands back there.
+  const SPOT = 'homeSpot';
+  const shows = ['good', 'mid', 'bad'].map(l => document.getElementById(l + 'Show'));
+  document.querySelector('main').addEventListener('click', e => {
+    const a = e.target.closest('a.poster');
+    if (!a) return;
+    // Keep the tapped poster at the same height on screen (fonts and photos can shift raw scroll numbers)
+    const spot = { href: a.getAttribute('href'), top: a.getBoundingClientRect().top, y: scrollY,
+      search: document.getElementById('search').value, shows: shows.map(s => s.value) };
+    try { sessionStorage.setItem(SPOT, JSON.stringify(spot)); } catch {}
+  });
+  let spot = null;
+  if (location.hash === '#back') {
+    try { spot = JSON.parse(sessionStorage.getItem(SPOT)); } catch {}
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  if (spot) {
+    document.getElementById('search').value = spot.search || '';
+    shows.forEach((s, i) => { if ([...s.options].some(o => o.value === spot.shows?.[i])) s.value = spot.shows[i]; });
+  }
   render();
+  if (spot) {
+    if (spot.search) searchUnranked();
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const place = () => {
+      const a = [...document.querySelectorAll('a.poster')].find(x => x.getAttribute('href') === spot.href);
+      scrollTo(0, a ? a.getBoundingClientRect().top + scrollY - spot.top : spot.y);
+    };
+    place();
+    requestAnimationFrame(place);
+    document.fonts?.ready.then(place);
+    addEventListener('load', place, { once: true });
+  }
 })();
 </script>
 

@@ -77,10 +77,11 @@
   .wanted-btn:hover { transform: scale(1.06); box-shadow: 0 0 22px #ffe66daa; }
 
   @media (max-width: 560px) {
-    .topnav .wrap { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
-    .brand { font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+    .topnav .wrap { grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; }
+    .brand { font-size: 13px; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
     .wanted-btn { font-size: 11px; padding: 6px 10px; letter-spacing: .5px; }
-    .back { display: none; }
+    .back { font-size: 15px; color: var(--text); }
+    .back .long { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     .wanted-btn { transition: none; }
@@ -99,7 +100,9 @@
     white-space: nowrap;
   }
 
-  .back { margin-left: auto; color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+  .brand { justify-self: center; }
+  .wanted-btn { justify-self: end; }
+  .back { justify-self: start; color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; padding: 8px 0; }
   .back:hover { color: var(--text); }
 
   /* ---------- Cover + header ---------- */
@@ -475,9 +478,9 @@
 
 <div class="topnav">
   <div class="wrap">
+    <a class="back" href="home.html#back">← Back<span class="long"> to posters</span></a>
     <a class="brand" href="home.html">THE REAL MAN REPORT</a>
     <a class="wanted-btn" href="home.html#good">Home</a>
-    <a class="back" href="home.html">← All posters</a>
   </div>
 </div>
 
