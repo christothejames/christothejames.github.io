@@ -1124,6 +1124,109 @@ window.WIRES = {
   },
   "ryan-gosling": {
     "community": 1
+  },
+  "jim-parsons": {
+    "community": 1
+  },
+  "russell-peters": {
+    "community": 1
+  },
+  "kumail-nanjiani": {
+    "community": 1
+  },
+  "justin-chon": {
+    "community": 1
+  },
+  "steven-yeun": {
+    "community": 1
+  },
+  "russell-crowe": {
+    "conduct": -1
+  },
+  "mads-mikkelsen": {
+    "community": 1
+  },
+  "jude-law": {
+    "community": 1
+  },
+  "eddie-redmayne": {
+    "community": 1
+  },
+  "benedict-cumberbatch": {
+    "community": 1
+  },
+  "george-ezra": {
+    "community": 1
+  },
+  "august-diehl": {
+    "community": 1
+  },
+  "louis-hofmann": {
+    "community": 1
+  },
+  "tom-schilling": {
+    "community": 1
+  },
+  "peter-fox": {
+    "community": 1
+  },
+  "thomas-muller": {
+    "body": 1
+  },
+  "moritz-bleibtreu": {
+    "community": 1
+  },
+  "daniel-bruhl": {
+    "community": 1
+  },
+  "armin-maiwald": {
+    "community": 1
+  },
+  "thomas-pesquet": {
+    "community": 1
+  },
+  "victor-wembanyama": {
+    "community": 1
+  },
+  "teddy-riner": {
+    "body": 1
+  },
+  "jean-dujardin": {
+    "community": 1
+  },
+  "vincent-cassel": {
+    "community": 1
+  },
+  "jean-reno": {
+    "community": 1
+  },
+  "omar-sy": {
+    "community": 1
+  },
+  "javier-bardem": {
+    "community": 1
+  },
+  "remco-evenepoel": {
+    "body": 1
+  },
+  "luke-littler": {
+    "body": 1,
+    "community": 1
+  },
+  "luka-doncic": {
+    "body": 1
+  },
+  "jakob-ingebrigtsen": {
+    "body": 1
+  },
+  "erling-haaland": {
+    "community": 1
+  },
+  "gianmarco-tamberi": {
+    "body": 1
+  },
+  "lenny-kravitz": {
+    "community": 1
   }
 };
 
@@ -1238,6 +1341,7 @@ window.ORDER = [
   "george-clooney",
   "jordan-stephens",
   "jackie-chan",
+  "luke-littler",
   "juan-mata",
   "sadio-mane",
   "ryan-reynolds",
@@ -1245,6 +1349,11 @@ window.ORDER = [
   "stephen-graham",
   "henry-cavill",
   "kimi-antonelli",
+  "teddy-riner",
+  "remco-evenepoel",
+  "luka-doncic",
+  "jakob-ingebrigtsen",
+  "gianmarco-tamberi",
   "everyday-dad",
   "volunteer-coach",
   "tony-adams",
@@ -1311,11 +1420,38 @@ window.ORDER = [
   "lin-manuel-miranda",
   "nick-offerman",
   "ryan-gosling",
+  "jim-parsons",
+  "russell-peters",
+  "kumail-nanjiani",
+  "justin-chon",
+  "steven-yeun",
+  "mads-mikkelsen",
+  "jude-law",
+  "eddie-redmayne",
+  "benedict-cumberbatch",
+  "george-ezra",
+  "august-diehl",
+  "louis-hofmann",
+  "tom-schilling",
+  "peter-fox",
+  "thomas-muller",
+  "moritz-bleibtreu",
+  "daniel-bruhl",
+  "thomas-pesquet",
+  "victor-wembanyama",
+  "jean-dujardin",
+  "vincent-cassel",
+  "jean-reno",
+  "omar-sy",
+  "javier-bardem",
+  "erling-haaland",
+  "lenny-kravitz",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
   "snoop-dogg",
   "tadao-ando",
+  "armin-maiwald",
   "mo-farah",
   "paul-mccartney",
   "michael-dell",
@@ -1403,7 +1539,8 @@ window.ORDER = [
   "salt-bae",
   "richard-branson",
   "ed-matthews",
-  "ant-middleton"
+  "ant-middleton",
+  "russell-crowe"
 ];
 
 // Per-area order for the Rankings page's Area filter, best record in that area first
@@ -1442,9 +1579,16 @@ window.AREA_ORDER = {
     "stephen-curry",
     "patrick-mahomes",
     "deion-sanders",
+    "luke-littler",
     "kimi-antonelli",
+    "teddy-riner",
+    "remco-evenepoel",
+    "luka-doncic",
+    "jakob-ingebrigtsen",
+    "gianmarco-tamberi",
     "oscar-pistorius",
     "steve-redgrave",
+    "thomas-muller",
     "frank-bruno"
   ],
   "survival": [
@@ -1662,6 +1806,7 @@ window.AREA_ORDER = {
     "levison-wood",
     "andrew-garfield",
     "ben-parkinson",
+    "luke-littler",
     "jonathan-groff",
     "lewis-pugh",
     "munya-chawawa",
@@ -1692,6 +1837,16 @@ window.AREA_ORDER = {
     "lin-manuel-miranda",
     "nick-offerman",
     "ryan-gosling",
+    "kumail-nanjiani",
+    "justin-chon",
+    "steven-yeun",
+    "benedict-cumberbatch",
+    "george-ezra",
+    "louis-hofmann",
+    "thomas-pesquet",
+    "victor-wembanyama",
+    "jean-reno",
+    "erling-haaland",
     "alexander-skarsgard",
     "ben-stokes",
     "bruce-willis",
@@ -1722,7 +1877,23 @@ window.AREA_ORDER = {
     "renzo-piano",
     "norman-foster",
     "gary-barlow",
-    "tadao-ando"
+    "jim-parsons",
+    "russell-peters",
+    "mads-mikkelsen",
+    "jude-law",
+    "eddie-redmayne",
+    "august-diehl",
+    "tom-schilling",
+    "peter-fox",
+    "moritz-bleibtreu",
+    "daniel-bruhl",
+    "jean-dujardin",
+    "vincent-cassel",
+    "omar-sy",
+    "javier-bardem",
+    "lenny-kravitz",
+    "tadao-ando",
+    "armin-maiwald"
   ],
   "family": [
     "lebron-james",
@@ -1857,6 +2028,7 @@ window.AREA_ORDER = {
     "lewis-hamilton",
     "gary-oldman",
     "joe-wicks",
+    "russell-crowe",
     "cristiano-ronaldo",
     "marco-pierre-white",
     "alex-jones",
