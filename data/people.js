@@ -6548,6 +6548,25 @@ window.PEOPLE = [
       { date: "1999–2002", text: "Won the Grammy for Best Male Rock Vocal Performance four years running (1999–2002).", source: "https://www.grammy.com/awards/categories/best-male-rock-vocal-performance/2002/" },
     ],
   },
+  {
+    id: "aziz-ansari",
+    name: "Aziz Ansari",
+    controversy_url: "https://en.wikipedia.org/wiki/Aziz_Ansari#Sexual_misconduct_accusation",
+    list: "good",
+    type: "public",
+    born: 1983,
+    role: "Comedian, actor, writer",
+    instagram: "azizansari",
+    photo: "images/aziz-ansari.jpg",
+    photoCredit: "David Shankbone, CC BY 3.0, via Wikimedia Commons (cropped)",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Aziz_Ansari_2012_Shankbone.JPG",
+    reason: "Two-time Emmy-winning writer of Master of None.",
+    status: "Active",
+    about: {},
+    posts: [
+      { date: "2016–2017", text: "Won the Primetime Emmy for Outstanding Writing for a Comedy Series in 2016 and 2017 for Master of None (shared with his co-writers).", source: "https://www.emmys.com/bios/aziz-ansari" },
+    ],
+  },
 ];
 
 // No free photo? Show his own public profile picture from Facebook or TikTok,

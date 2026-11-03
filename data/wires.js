@@ -1227,6 +1227,9 @@ window.WIRES = {
   },
   "lenny-kravitz": {
     "community": 1
+  },
+  "aziz-ansari": {
+    "community": 1
   }
 };
 
@@ -1446,6 +1449,7 @@ window.ORDER = [
   "javier-bardem",
   "erling-haaland",
   "lenny-kravitz",
+  "aziz-ansari",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
@@ -1847,6 +1851,7 @@ window.AREA_ORDER = {
     "victor-wembanyama",
     "jean-reno",
     "erling-haaland",
+    "aziz-ansari",
     "alexander-skarsgard",
     "ben-stokes",
     "bruce-willis",
