@@ -1230,6 +1230,36 @@ window.WIRES = {
   },
   "aziz-ansari": {
     "community": 1
+  },
+  "sam-neill": {
+    "community": 1
+  },
+  "prince": {
+    "community": 1
+  },
+  "frank-gehry": {
+    "community": 1
+  },
+  "robin-williams": {
+    "community": 1
+  },
+  "luciano-pavarotti": {
+    "community": 1
+  },
+  "piero-angela": {
+    "community": 1
+  },
+  "gino-strada": {
+    "community": 1
+  },
+  "richard-reeves-writer": {
+    "community": 1
+  },
+  "alan-rickman": {
+    "community": 1
+  },
+  "steve-jobs": {
+    "community": 1
   }
 };
 
@@ -1357,6 +1387,8 @@ window.ORDER = [
   "luka-doncic",
   "jakob-ingebrigtsen",
   "gianmarco-tamberi",
+  "frank-gehry",
+  "gino-strada",
   "everyday-dad",
   "volunteer-coach",
   "tony-adams",
@@ -1450,6 +1482,14 @@ window.ORDER = [
   "erling-haaland",
   "lenny-kravitz",
   "aziz-ansari",
+  "sam-neill",
+  "prince",
+  "robin-williams",
+  "luciano-pavarotti",
+  "piero-angela",
+  "richard-reeves-writer",
+  "alan-rickman",
+  "steve-jobs",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
@@ -1771,6 +1811,7 @@ window.AREA_ORDER = {
     "boyan-slat",
     "stephen-graham",
     "henry-cavill",
+    "gino-strada",
     "michael-dell",
     "ninja",
     "steve-irwin",
@@ -1785,6 +1826,7 @@ window.AREA_ORDER = {
     "jocko-willink",
     "roger-federer",
     "chris-hadfield",
+    "frank-gehry",
     "scottie-scheffler",
     "ezra-frech",
     "bear-grylls",
@@ -1797,6 +1839,7 @@ window.AREA_ORDER = {
     "brendon-urie",
     "matthieu-ricard",
     "robbie-williams",
+    "piero-angela",
     "steve-backshall",
     "jason-sudeikis",
     "james-blunt",
@@ -1805,6 +1848,9 @@ window.AREA_ORDER = {
     "hugh-fearnley-whittingstall",
     "chris-brown",
     "michael-douglas",
+    "luciano-pavarotti",
+    "alan-rickman",
+    "steve-jobs",
     "ray-mears",
     "ranulph-fiennes",
     "levison-wood",
@@ -1860,6 +1906,9 @@ window.AREA_ORDER = {
     "mark-wahlberg",
     "martin-shkreli",
     "ian-mckellen",
+    "prince",
+    "robin-williams",
+    "richard-reeves-writer",
     "rick-stanton",
     "barack-obama",
     "christian-bale",
@@ -1897,6 +1946,7 @@ window.AREA_ORDER = {
     "omar-sy",
     "javier-bardem",
     "lenny-kravitz",
+    "sam-neill",
     "tadao-ando",
     "armin-maiwald"
   ],
