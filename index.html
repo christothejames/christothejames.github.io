@@ -71,12 +71,13 @@
     height: 30%;
     background:
       linear-gradient(to bottom, var(--night) 0%, transparent 25%),
-      repeating-linear-gradient(to right, var(--hot-pink) 0 2px, transparent 2px 80px),
-      repeating-linear-gradient(to bottom, var(--hot-pink) 0 2px, transparent 2px 50px);
+      repeating-linear-gradient(to right, #ff3cc7 0 2px, transparent 2px 80px),
+      repeating-linear-gradient(to bottom, #ff3cc7 0 2px, transparent 2px 50px);
     transform: perspective(300px) rotateX(60deg);
     transform-origin: top center;
     animation: floorMove 1s linear infinite;
-    opacity: 0.8;
+    filter: drop-shadow(0 0 3px #ff3cc7) drop-shadow(0 0 8px rgba(255, 60, 199, 0.7));
+    opacity: 0.9;
     z-index: 2;
   }
 
