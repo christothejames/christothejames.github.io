@@ -113,6 +113,7 @@
     border-radius: 16px;
     padding: 18px;
     margin: 22px 0;
+    scroll-margin-top: 70px;
   }
 
   h2 {
@@ -137,11 +138,85 @@
 
   .hint { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
 
-  /* ---------- Quick add ---------- */
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  /* ---------- Pick what slips ---------- */
+  /* One row of category tabs that scrolls sideways on phones, so the list below stays short. */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0 -18px 14px;
+    padding: 2px 18px 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs .chip { flex: none; display: inline-flex; align-items: center; gap: 6px; }
+  .tabs .count {
+    min-width: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--night);
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+  }
 
-  .presets { display: grid; gap: 8px; }
+  .presets { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
 
+  .tile-wrap { position: relative; }
+
+  /* The whole tile is the add / remove button: one tap, no small targets. */
+  .tile {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 4px 10px;
+    align-items: center;
+    text-align: left;
+    font: inherit;
+    color: var(--text);
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 40px 12px 12px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, box-shadow .15s;
+  }
+  .tile:hover { border-color: #7cc4ff88; }
+  .tile .emoji { grid-row: span 2; font-size: 28px; text-align: center; }
+  .tile .pname { font-size: 16px; line-height: 1.25; }
+  .tile .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+  .tile .pwhen { color: var(--muted); font-size: 13px; line-height: 1.3; }
+  .tile .state {
+    font-family: 'Bungee', sans-serif;
+    font-size: 12px;
+    color: var(--cyan);
+  }
+  .tile[aria-pressed="true"] {
+    background: #1e90ff2e;
+    border-color: var(--blue);
+    box-shadow: inset 0 0 0 1px var(--blue), 0 0 14px #1e90ff44;
+  }
+  .tile[aria-pressed="true"] .state { color: var(--gold); }
+
+  .hide-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .hide-btn:hover { color: var(--text); background: var(--night); }
+
+  /* Hidden suggestions, folded away */
   .preset {
     display: grid;
     grid-template-columns: 34px 1fr auto;
@@ -150,15 +225,11 @@
     background: var(--panel-2);
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 10px 12px;
+    padding: 8px 12px;
   }
-
-  .preset .emoji { font-size: 24px; text-align: center; }
-  .preset .pname { font-size: 16px; }
-  .preset .pwhen { color: var(--muted); font-size: 13px; }
-  .preset .cat { color: var(--sky); font-size: 12px; opacity: .8; }
-  .preset.added { opacity: .55; }
-  .preset-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .preset .emoji { font-size: 22px; text-align: center; }
+  .preset .pname { font-size: 15px; }
+  .preset-actions { display: flex; gap: 6px; justify-content: flex-end; }
 
   .mini {
     font-family: 'Bungee', sans-serif;
@@ -171,11 +242,6 @@
     cursor: pointer;
     white-space: nowrap;
   }
-
-  .mini.add { background: var(--blue); border-color: #fff; }
-  .mini.got { color: var(--gold); border-color: #ffe66d66; }
-  .mini.skip { color: var(--muted); }
-  .mini:disabled { cursor: default; background: transparent; border-color: var(--line); color: var(--cyan); }
 
   .hidden-toggle {
     margin-top: 14px;
@@ -190,9 +256,6 @@
 
   .hidden-list { display: grid; gap: 8px; margin-top: 8px; }
   .hidden-list .preset { opacity: .8; }
-  .tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--night); }
-  .tag.got { color: var(--gold); }
-  .tag.skip { color: var(--muted); }
 
   .chip {
     font: inherit;
@@ -211,6 +274,27 @@
     outline: 3px solid var(--gold);
     outline-offset: 2px;
   }
+
+  /* ---------- Add your own (folded) ---------- */
+  .own { margin-top: 14px; }
+  .own > summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1.5px dashed #7cc4ff77;
+    color: var(--sky);
+    cursor: pointer;
+  }
+  .own > summary::-webkit-details-marker { display: none; }
+  .own > summary:hover { border-color: var(--cyan); color: #fff; }
+  .own > summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .own[open] > summary { margin-bottom: 14px; border-style: solid; }
+  .own .form { padding: 14px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--line); }
 
   /* ---------- Form ---------- */
   .form { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
@@ -371,6 +455,33 @@
 
   footer { text-align: center; color: var(--muted); font-size: 13px; padding: 10px 0 40px; }
 
+  /* ---------- Plan dock: your plan is always one tap away ---------- */
+  .dock {
+    position: fixed;
+    left: 50%;
+    bottom: 12px;
+    z-index: 30;
+    transform: translateX(-50%);
+    width: min(828px, calc(100% - 24px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 8px 8px 16px;
+    border-radius: 999px;
+    background: #071433f5;
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 22px #1e90ff66, 0 10px 30px #000a;
+    backdrop-filter: blur(6px);
+  }
+  .dock[hidden] { display: none; }
+  .dock .sum { min-width: 0; line-height: 1.2; }
+  .dock .sum b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; color: #fff; }
+  .dock .sum span { font-size: 13px; color: var(--muted); }
+  .dock .sum span.heavy { color: var(--gold); }
+  .dock .go { margin-left: auto; display: flex; gap: 6px; flex: none; }
+  .dock .btn { font-size: 13px; padding: 9px 14px; box-shadow: none; text-decoration: none; }
+  body.has-dock { padding-bottom: 84px; }
+
   /* ---------- Phone preview ---------- */
   .overlay {
     position: fixed;
@@ -474,9 +585,14 @@
   @media (max-width: 600px) {
     .form { grid-template-columns: 1fr; }
     .how { grid-template-columns: 1fr; }
-    .task, .preset { grid-template-columns: 34px 1fr; }
-    .preset-actions { grid-column: 1 / -1; }
+    .task { grid-template-columns: 34px 1fr; }
     .task .emoji { font-size: 24px; }
+    .presets { grid-template-columns: 1fr; gap: 8px; }
+    .tile { grid-template-columns: 34px 1fr; padding: 10px 40px 10px 10px; }
+    .tile .emoji { font-size: 24px; }
+    .dock .sum span { display: none; }
+    .dock .sum b { white-space: nowrap; }
+    .dock .btn { padding: 9px 12px; }
     .task-actions { grid-column: 1 / -1; justify-content: flex-end; }
     .week-day { grid-template-columns: 70px 1fr; }
     .nav-btn { font-size: 12px; padding: 7px 11px; }
@@ -544,21 +660,26 @@
   <header>
     <h1>THE HOME GAME PLAN</h1>
     <p class="motto">pull your weight</p>
-    <p class="intro">The everyday stuff we all have to do, and all let slip sometimes. Showered, teeth brushed, bins out, house hoovered. Pick yours, get a reminder, stay on top of it.</p>
+    <p class="intro">Showered, teeth brushed, bins out, house hoovered. Pick the few jobs that slip, and your phone's calendar will remind you.</p>
   </header>
 
   <section>
-    <h2><span class="num">1</span>What slips?</h2>
-    <p class="hint">These are just suggestions, not a to-do list. Only add the few that actually slip, so your phone isn't buzzing all day. <b>+ Add</b> the ones that slip. <b>✓ Got it</b> for the ones you already nail. <b>Skip</b> anything that's not for you. You can change your mind any time.</p>
-    <div class="filters" id="filters"></div>
+    <h2><span class="num">1</span>Pick what slips</h2>
+    <p class="hint">Tap a job to add it, tap again to take it out. Only pick the ones you forget, so your phone isn't buzzing all day. ✕ hides one you already do or don't need.</p>
+    <div class="tabs" id="filters" aria-label="Job groups"></div>
     <div class="presets" id="presets"></div>
     <button class="hidden-toggle" id="hiddenToggle" type="button" aria-expanded="false"></button>
     <div class="hidden-list" id="hiddenList" hidden></div>
   </section>
 
-  <section>
-    <h2><span class="num">2</span><span id="formTitle">Add your own</span></h2>
-    <p class="hint">Any job, any schedule.</p>
+  <section id="plan">
+    <h2><span class="num">2</span>Your plan</h2>
+    <p class="hint">Tap 🔔 to see what the reminder looks like on your phone.</p>
+    <p class="load" id="load" hidden></p>
+    <div class="tasks" id="tasks"></div>
+
+    <details class="own" id="own">
+      <summary id="formTitle">+ Add your own job</summary>
     <form class="form" id="form" autocomplete="off">
       <div class="full">
         <label for="name">Job</label>
@@ -609,13 +730,7 @@
         <p class="error" id="error" role="alert"></p>
       </div>
     </form>
-  </section>
-
-  <section>
-    <h2><span class="num">3</span>Your plan</h2>
-    <p class="hint">Tap 🔔 to see what the reminder looks like on your phone.</p>
-    <p class="load" id="load" hidden></p>
-    <div class="tasks" id="tasks"></div>
+    </details>
   </section>
 
   <section>
@@ -624,8 +739,8 @@
     <div class="week" id="week"></div>
   </section>
 
-  <section class="export">
-    <h2><span class="num">4</span>Put it on your phone</h2>
+  <section class="export" id="export">
+    <h2><span class="num">3</span>Put it on your phone</h2>
     <p class="hint">One tap adds every job to your phone's calendar, with the reminders built in.</p>
     <button class="btn gold" id="exportAll">📅 ADD ALL TO MY CALENDAR</button>
     <div class="how">
@@ -646,6 +761,14 @@
   </section>
 
   <footer>Your plan is saved only in this browser.</footer>
+</div>
+
+<div class="dock" id="dock" hidden>
+  <div class="sum"><b id="dockCount"></b><span id="dockLoad"></span></div>
+  <div class="go">
+    <a class="btn ghost" href="#plan">See plan</a>
+    <button class="btn gold" type="button" id="dockCal">📅 Calendar</button>
+  </div>
 </div>
 
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Reminder preview">
@@ -724,8 +847,8 @@
   ];
 
   let tasks = load();
-  let hiddenPresets = loadHidden(); // { name: 'got' | 'skip' }
-  let filter = 'all';
+  let hiddenPresets = loadHidden(); // { name: 'got' | 'skip' } (older saves), now always 'skip'
+  let filter = CATEGORIES[0].id;
   let editingId = null;
   let formDays = [2];
 
@@ -822,14 +945,25 @@
   }
 
   // ---------- Rendering ----------
+  const inPlan = p => tasks.some(t => t.name === p.name);
+
+  // One tab per group; the gold number is how many of that group are in the plan.
   function renderFilters() {
     const box = $('filters');
     box.innerHTML = '';
-    [{ id: 'all', label: 'All' }].concat(CATEGORIES).forEach(c => {
+    CATEGORIES.forEach(c => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'chip';
       b.textContent = c.label;
+      const n = PRESETS.filter(p => p.cat === c.id && inPlan(p)).length;
+      if (n) {
+        const count = document.createElement('span');
+        count.className = 'count';
+        count.textContent = n;
+        count.setAttribute('aria-label', n + ' in your plan');
+        b.appendChild(count);
+      }
       b.setAttribute('aria-pressed', filter === c.id);
       b.addEventListener('click', () => { filter = c.id; renderFilters(); renderPresets(); });
       box.appendChild(b);
@@ -855,27 +989,50 @@
     return el;
   }
 
+  // Each suggestion is one big button: tap to add, tap again to take it out.
   function renderPresets() {
     const box = $('presets');
     box.innerHTML = '';
-    const shown = PRESETS.filter(p => !hiddenPresets[p.name] && (filter === 'all' || p.cat === filter));
+    const shown = PRESETS.filter(p => !hiddenPresets[p.name] && p.cat === filter);
     if (!shown.length) {
-      box.innerHTML = '<div class="empty">All sorted in this section.</div>';
+      box.innerHTML = '<div class="empty">All hidden in this group. Put any back below.</div>';
     }
     shown.forEach(p => {
-      const el = presetRow(p);
-      const acts = el.querySelector('.preset-actions');
-      if (tasks.some(t => t.name === p.name)) {
-        el.classList.add('added');
-        acts.append(mini('', '✓ IN YOUR PLAN'));
-      } else {
-        acts.append(
-          mini('add', '+ ADD', () => addTask(Object.assign({ monthDay: 1 }, p, { days: p.days.slice() }))),
-          mini('got', '✓ GOT IT', () => hidePreset(p, 'got')),
-          mini('skip', 'SKIP', () => hidePreset(p, 'skip'))
-        );
+      const added = inPlan(p);
+      const wrap = document.createElement('div');
+      wrap.className = 'tile-wrap';
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'tile';
+      tile.setAttribute('aria-pressed', added);
+      tile.innerHTML = '<span class="emoji" aria-hidden="true"></span><span class="pname"></span><span class="meta"><span class="pwhen"></span><span class="state"></span></span>';
+      tile.querySelector('.emoji').textContent = p.emoji;
+      tile.querySelector('.pname').textContent = p.name;
+      tile.querySelector('.pwhen').textContent = describe(Object.assign({ monthDay: 1 }, p));
+      tile.querySelector('.state').textContent = added ? '✓ In your plan' : '+ Add';
+      tile.addEventListener('click', () => {
+        if (inPlan(p)) {
+          tasks = tasks.filter(t => t.name !== p.name);
+          save(); render();
+        } else {
+          addTask(Object.assign({ monthDay: 1 }, p, { days: p.days.slice() }));
+        }
+        // keep focus on the same tile after the list redraws
+        const again = [...$('presets').querySelectorAll('.tile')].find(x => x.querySelector('.pname').textContent === p.name);
+        if (again) again.focus();
+      });
+      wrap.appendChild(tile);
+      if (!added) {
+        const hide = document.createElement('button');
+        hide.type = 'button';
+        hide.className = 'hide-btn';
+        hide.textContent = '✕';
+        hide.setAttribute('aria-label', 'Hide ' + p.name);
+        hide.title = 'Hide: already do it, or not for me';
+        hide.addEventListener('click', () => hidePreset(p, 'skip'));
+        wrap.appendChild(hide);
       }
-      box.appendChild(el);
+      box.appendChild(wrap);
     });
     renderHidden();
   }
@@ -893,15 +1050,11 @@
     toggle.hidden = !names.length;
     if (!names.length) { list.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
     const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.textContent = (open ? '▾ ' : '▸ ') + 'Got it or skipped (' + names.length + ')';
+    toggle.textContent = (open ? '▾ ' : '▸ ') + 'Hidden (' + names.length + ')';
     list.innerHTML = '';
     names.forEach(p => {
       const el = presetRow(p);
-      const why = hiddenPresets[p.name];
-      const tag = document.createElement('span');
-      tag.className = 'tag ' + why;
-      tag.textContent = why === 'got' ? '✓ Got it' : 'Skipped';
-      el.querySelector('.pwhen').replaceWith(tag);
+      el.querySelector('.pwhen').remove();
       el.querySelector('.preset-actions').append(mini('', '↺ PUT BACK', () => {
         delete hiddenPresets[p.name];
         saveHidden();
@@ -1000,9 +1153,21 @@
     el.className = 'load' + (heavy ? ' heavy' : '');
     el.textContent = 'Up to ' + most + ' reminder' + (most === 1 ? '' : 's') + ' on your busiest day.' +
       (heavy ? ' That\'s a lot of buzzing. Reminders work best for the few things that slip. Try removing the ones you\'d do anyway.' : '');
+    renderDock(most, heavy);
+  }
+
+  function renderDock(most, heavy) {
+    const dock = $('dock');
+    dock.hidden = !tasks.length;
+    document.body.classList.toggle('has-dock', !!tasks.length);
+    if (!tasks.length) return;
+    $('dockCount').innerHTML = tasks.length + (tasks.length === 1 ? ' job' : ' jobs') + '<span class="wide"> in your plan</span>';
+    $('dockLoad').textContent = heavy ? 'Busiest day: ' + most + ' reminders. That\'s a lot.' : 'Busiest day: ' + most + ' reminder' + (most === 1 ? '' : 's');
+    $('dockLoad').className = heavy ? 'heavy' : '';
   }
 
   function render() {
+    renderFilters();
     renderPresets();
     renderTasks();
     renderLoad();
@@ -1031,7 +1196,7 @@
 
     $('freq').addEventListener('change', syncFreq);
     $('form').addEventListener('submit', onSubmit);
-    $('cancelBtn').addEventListener('click', resetForm);
+    $('cancelBtn').addEventListener('click', () => { resetForm(); $('own').open = false; });
     syncDays();
     syncFreq();
   }
@@ -1074,6 +1239,7 @@
       addTask(data);
     }
     resetForm();
+    $('own').open = false;
   }
 
   function addTask(data) {
@@ -1091,9 +1257,10 @@
     $('remind').value = t.remind;
     formDays = t.days.slice();
     syncDays(); syncFreq();
-    $('formTitle').textContent = 'Edit ' + t.name;
+    $('formTitle').textContent = '✏️ Edit ' + t.name;
     $('saveBtn').textContent = '✓ SAVE CHANGES';
     $('cancelBtn').hidden = false;
+    $('own').open = true;
     $('form').scrollIntoView({ behavior: 'smooth', block: 'center' });
     $('name').focus({ preventScroll: true });
   }
@@ -1104,7 +1271,7 @@
     $('time').value = '19:00';
     formDays = [2];
     syncDays(); syncFreq();
-    $('formTitle').textContent = 'Add your own';
+    $('formTitle').textContent = '+ Add your own job';
     $('saveBtn').textContent = '+ ADD TO MY PLAN';
     $('cancelBtn').hidden = true;
     $('error').textContent = '';
@@ -1195,9 +1362,9 @@
   }
 
   $('exportAll').addEventListener('click', () => download(tasks, 'home-game-plan'));
+  $('dockCal').addEventListener('click', () => download(tasks, 'home-game-plan'));
 
   setupForm();
-  renderFilters();
   render();
 })();
 </script>
