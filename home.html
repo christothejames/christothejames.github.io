@@ -599,7 +599,7 @@
         <div class="mug">
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
         </div>
-        <div class="tierlbl">${respected ? 'Respected' : TIER_LABEL[tier(p)]}</div>
+        ${respected ? '<div class="tierlbl">Respected</div>' : ''}
         <div class="name">${esc(p.name)}</div>
         <div class="role">${esc(p.role)}${p.type === 'composite' ? '<span class="tag">Composite</span>' : ''}</div>
         <p class="for">${esc(p.reason)}</p>

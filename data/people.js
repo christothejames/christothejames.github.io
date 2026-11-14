@@ -1628,7 +1628,7 @@ window.PEOPLE = [
     photo: "images/tiger-woods.jpg",
     photoCredit: "The White House, public domain, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:President_Donald_Trump_hosts_a_reception_honoring_Black_History_Month_(54341713089)_(cropped).jpg",
-    reason: "Golf legend whose life off the course didn't match the image.",
+    reason: "Two reckless-driving pleas after DUI arrests, and admitted being unfaithful to his wife.",
     status: "Licence suspended for five years (2026) · No-contest plea to reckless driving",
     about: {},
     posts: [
@@ -2235,7 +2235,7 @@ window.PEOPLE = [
     photo: "images/tom-brady.jpg",
     photoCredit: "Barcex, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Tom_Brady_-_240422_191334_(cropped)_(cropped).jpg",
-    reason: "Seven-time champion with a Deflategate ban.",
+    reason: "Banned four games over Deflategate; the NFL cited the destruction of his phone.",
     status: "Retired",
     about: {},
     posts: [
@@ -2686,7 +2686,7 @@ window.PEOPLE = [
     photo: "images/stephen-curry.jpg",
     photoCredit: "Clément Bardot, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Stephen_Curry,_Olympic_Games_2024_(cropped).jpg",
-    reason: "Four-time NBA champion who feeds and teaches kids.",
+    reason: "His foundation gave 16 million meals to Oakland kids; named in an FTX promoters lawsuit (unproven).",
     status: "Active · Golden State Warriors",
     about: {},
     posts: [
@@ -4759,7 +4759,7 @@ window.PEOPLE = [
     photo: "images/ishowspeed.jpg",
     photoCredit: "Chin Yu Chu, CC BY-SA 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:IShowSpeed_at_Chinatown_(Portrait)_04.jpg",
-    reason: "Streamer whose world tours made him a global name.",
+    reason: "Global streaming star, once banned from Twitch over sexual comments to a guest. He later said it was wrong.",
     status: "Active · one of the biggest streamers on YouTube",
     about: {},
     posts: [
@@ -4797,7 +4797,7 @@ window.PEOPLE = [
     photo: "images/mark-zuckerberg.jpg",
     photoCredit: "Anthony Quintano from Westminster, United States, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Mark_Zuckerberg_F8_2019_Keynote_(32830578717)_(cropped).jpg",
-    reason: "Facebook founder.",
+    reason: "Facebook was fined a record $5bn over privacy, and its own research found Instagram worsened body image for 1 in 3 teen girls.",
     status: "Active · billionaire",
     about: {},
     posts: [
@@ -4822,7 +4822,7 @@ window.PEOPLE = [
     photo: "images/richard-branson.jpg",
     photoCredit: "David Shankbone, CC BY 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:5.3.10RichardBransonByDavidShankbone.jpg",
-    reason: "Virgin founder and adventurer.",
+    reason: "Co-founded The Elders, but lives on his own island in a tax haven and once settled a tax evasion case.",
     status: "Active · knighted 2000 · billionaire",
     about: {},
     posts: [
@@ -4844,7 +4844,7 @@ window.PEOPLE = [
     photo: "images/matt-rife.jpg",
     photoCredit: "OVERNIGHT, CC BY 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Matt_Rife,_2021.jpg",
-    reason: "TikTok-famous comedian.",
+    reason: "Opened his Netflix special with a domestic violence joke, then mocked the backlash.",
     status: "Active",
     about: {},
     posts: [
@@ -4864,7 +4864,7 @@ window.PEOPLE = [
     photo: "images/kevin-hart.jpg",
     photoCredit: "Eva Rinaldi, CC BY-SA 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Kevin_Hart_2014_(cropped_2).jpg",
-    reason: "One of the highest-paid comedians in the world.",
+    reason: "Quit as Oscars host over homophobic tweets, and admitted cheating on his pregnant wife.",
     status: "Active",
     about: {},
     posts: [
@@ -4885,7 +4885,7 @@ window.PEOPLE = [
     photo: "images/jake-paul.jpg",
     photoCredit: "Erik Drost, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Jake_Paul_(53116882732).jpg",
-    reason: "YouTuber turned headline boxer.",
+    reason: "Settled SEC charges over paid crypto promotion, and was filmed using a racial slur.",
     status: "Active · denies the sexual assault allegation · never charged over it",
     about: {},
     posts: [
@@ -4928,7 +4928,7 @@ window.PEOPLE = [
     photo: "images/dana-white.jpg",
     photoCredit: "Press Service of the President of the Republic of Azerbaijan, CC BY 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Dana_White_in_June_2025_(cropped).jpg",
-    reason: "The man who built the UFC.",
+    reason: "Filmed slapping his wife at a party. He apologised; no charges.",
     status: "Active",
     about: {},
     posts: [
@@ -4948,7 +4948,7 @@ window.PEOPLE = [
     photo: "images/dave-chappelle.jpg",
     photoCredit: "John Bauld from Toronto, Canada, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Dave_Chappelle_(42791297960)_(cropped).jpg",
-    reason: "Comedy great with a string of backlash.",
+    reason: "His Netflix special The Closer sparked a staff walkout over jokes about trans people.",
     status: "Active",
     about: {},
     posts: [
@@ -4968,7 +4968,7 @@ window.PEOPLE = [
     photo: "images/bam-margera.jpg",
     photoCredit: "Nikki Margera, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Bam_Margera_2017.jpg",
-    reason: "Jackass star with a run of arrests.",
+    reason: "Arrested over allegedly kicking a woman and punching his brother, then for allegedly breaking probation.",
     status: "Active · on probation (2024)",
     about: {},
     posts: [
@@ -5009,7 +5009,7 @@ window.PEOPLE = [
     photo: "images/salt-bae.jpg",
     photoCredit: "Terron F.Beckham, CC BY 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Salt_Bae.png",
-    reason: "The steak-salting meme.",
+    reason: "Paid $230,000 to settle former staff claims that he took a share of their tips.",
     status: "Active",
     about: {},
     posts: [
@@ -5050,7 +5050,7 @@ window.PEOPLE = [
     photo: "images/jordan-peterson.jpg",
     photoCredit: "Gage Skidmore, CC BY-SA 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Jordan_Peterson_by_Gage_Skidmore.jpg",
-    reason: "Psychologist and author with a huge following among young men.",
+    reason: "Former Harvard professor whose regulator ordered him to take social media training over his public statements.",
     status: "Active · 12 Rules for Life",
     about: {},
     posts: [
@@ -5117,7 +5117,7 @@ window.PEOPLE = [
     photo: "images/snoop-dogg.jpg",
     photoCredit: "Glenn Francis, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Snoop_Dogg_2019_by_Glenn_Francis.jpg",
-    reason: "Rapper who runs a youth football league.",
+    reason: "Runs a youth football league, after repeated jail spells before fame.",
     status: "Active",
     about: {},
     posts: [
@@ -5138,10 +5138,15 @@ window.PEOPLE = [
     photo: "images/tom-cruise.jpg",
     photoCredit: "Kevin Paul, CC BY 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Tom_Cruise_at_53rd_Saturn_Awards_2026-01.jpg",
-    reason: "Does his own stunts at 64.",
+    reason: "Does his own death-defying stunts, and is Scientology's best-known promoter, a church France convicted of organised fraud.",
     status: "Active",
     about: {},
     posts: [
+      { date: "2012", text: "A Paris appeal court upheld the Church's fraud conviction.", source: "https://www.thenationalnews.com/world/europe/french-court-upholds-scientology-fraud-conviction-1.592744" },
+      { date: "2009", text: "Not about him personally: the Church of Scientology was convicted of organised fraud in France and fined $900,000.", source: "https://www.aljazeera.com/news/2009/10/28/paris-court-convicts-scientologists" },
+      { date: "2004–", text: "One of Scientology's best-known members and public promoters; the Church gave him its highest honour, the Freedom Medal of Valor.", source: "https://abcnews.com/Entertainment/drives-tom-cruises-true-mission/story?id=4155022" },
+      { date: "2004", text: "Seen praising Scientology's leader in promotional videos made in 2004, which surfaced in 2008.", source: "https://foxnews.com/story/tom-cruises-devotion-to-scientology-revealed-in-new-videos.amp" },
+      { date: "1996", text: "France put Scientology on a parliamentary list of dangerous cults under government surveillance.", source: "https://theworld.org/stories/2017/05/13/france-labels-scientology-fraud-not-church" },
       { date: "2011–", text: "Performs his own extreme stunts, from the Burj Khalifa to a jump off the Stade de France roof.", source: "https://en.wikipedia.org/wiki/Tom_Cruise" },
     ],
   },
@@ -5179,7 +5184,7 @@ window.PEOPLE = [
     photo: "images/dr-disrespect.jpg",
     photoCredit: "PUBG n8bit, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Dr_DisRespect_Cropped.jpg",
-    reason: "Streamer permanently banned from Twitch.",
+    reason: "Banned from Twitch over messages to a minor. He admits they were inappropriate but denies anything illegal.",
     status: "Active · streams on YouTube",
     about: {},
     posts: [
@@ -5219,7 +5224,7 @@ window.PEOPLE = [
     photo: "images/drake.jpg",
     photoCredit: "The Come Up Show, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Drake_July_2016.jpg",
-    reason: "One of the best-selling artists ever.",
+    reason: "Sued his own label over Kendrick Lamar's diss track; the case was dismissed and his appeal is pending.",
     status: "Active",
     about: {},
     posts: [
