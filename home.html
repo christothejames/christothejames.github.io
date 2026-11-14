@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
-<meta name="description" content="Real Men, Coin Toss and Last Picks: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
+<meta name="description" content="Real Men, Bro WTF and Last Picks: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -15,6 +15,7 @@
     --gold: #ffe66d;
     --red: #ff3b3b;
     --amber: #ff9f1c;
+    --wtf: #ffd60a; /* caution yellow, the Bro, WTF? board */
     --night: #050b1a;
     --purple: #0d2a5c;
     --panel: #0c1a36;
@@ -189,7 +190,7 @@
   .tiers a { text-decoration: none; }
   .tiers a:hover, .tiers a:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
   .tiers .good { color: var(--gold); }
-  .tiers .mid { color: var(--amber); }
+  .tiers .mid { color: var(--wtf); }
   .tiers .bad { color: #ff7a7a; } /* the board red is too dark for small text on navy */
 
   /* ---------- Boards ---------- */
@@ -226,6 +227,21 @@
     letter-spacing: 0.02em;
   }
   .board.mid h2 { color: var(--amber); }
+
+  /* Bro, WTF? heading: a crooked caution-yellow rubber stamp (owner, 14 Nov 2026; option 6 in
+     design-options/bro-wtf-heading.html, where the other styles tried are kept) */
+  .board.mid h2.wtf {
+    color: var(--wtf);
+    display: inline-block;
+    transform: rotate(-6deg);
+    padding: 4px 14px;
+    margin: 8px 10px 12px 4px;
+    border: 4px solid var(--wtf);
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    -webkit-mask: repeating-radial-gradient(circle at 30% 40%, #000 0 2px, #000c 2px 3px, #000 3px 5px);
+            mask: repeating-radial-gradient(circle at 30% 40%, #000 0 2px, #000c 2px 3px, #000 3px 5px);
+  }
 
   /* The Last Picks heading is a rubber stamp: the one bold mark for the whole board */
   .board.bad h2 {
@@ -264,7 +280,7 @@
   }
   .board.good .show { color: var(--gold); }
   .board.bad .show { color: var(--red); }
-  .board.mid .show { color: var(--amber); }
+  .board.mid .show { color: var(--wtf); }
   .show option { color: #fff; background: var(--night); }
   /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
   .show.age { color: var(--cyan); }
@@ -521,7 +537,7 @@
     </select>
     <nav class="tiers" aria-label="Boards">
       <a class="good" href="#good">Real Men</a>
-      <a class="mid" href="#mid">Coin Toss</a>
+      <a class="mid" href="#mid">Bro, WTF?</a>
       <a class="bad" href="#bad">Last Picks</a>
     </nav>
   </div>
@@ -542,7 +558,7 @@
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>COIN TOSS</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select></div>
+    <div class="board-head"><h2 class="wtf">BRO, WTF?</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Bro, WTF? men to show"></select></div>
     <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
   </section>
@@ -585,7 +601,7 @@
   }, true);
 
   // The poster is the man: photo, tier, name, why, status.
-  const TIER_LABEL = { good: 'Real Men', mid: 'Coin Toss', bad: 'Last Picks' };
+  const TIER_LABEL = { good: 'Real Men', mid: 'Bro, WTF?', bad: 'Last Picks' };
   function poster(p, i) {
     const respected = tier(p) === 'good' && passed(p);
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Design options for the home page "Bro, WTF?" heading (renaming Coin Toss), 14 Nov 2026. Owner chose 6, caution stamp; the rest are kept for a future revision. Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bro WTF Heading Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --yellow: #ffd60a; --amber: #ff9f1c; }
+  body { margin: 0; background: radial-gradient(ellipse at top, #0d2a5c 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  .opt { max-width: 900px; margin: 0 auto 26px; padding: 26px 20px 18px; border: 1px dashed #1e90ff55; border-radius: 14px; overflow: hidden; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 13px; color: #7cc4ff; margin: 0 0 16px; }
+  .head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .count { font-size: 15px; }
+  .pill { font-family: 'Bungee', sans-serif; font-size: 14px; color: var(--yellow); border: 2px solid var(--yellow); border-radius: 999px; padding: 6px 14px; }
+  .sub { margin: 12px 0 0; font-size: 16px; }
+  h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(30px, 6vw, 50px); line-height: 1.05; }
+
+  /* 0. Plain, for reference */
+  .o0 h2 { color: var(--yellow); }
+
+  /* 1. Caution tape: black letters on a strip of yellow-and-black hazard tape, slapped on crooked */
+  .o1 .tape { display: inline-block; transform: rotate(-2.5deg); padding: 6px 22px;
+    background: var(--yellow); color: #111; box-shadow: 0 6px 0 #00000055;
+    border-top: 9px solid transparent; border-bottom: 9px solid transparent;
+    border-image: repeating-linear-gradient(-45deg, #111 0 12px, var(--yellow) 12px 24px) 9; }
+  .o1 h2 { color: #111; letter-spacing: 0.02em; }
+
+  /* 2. Comic shout: chunky yellow, thick black outline, red punch shadow, tilted, with a jolt */
+  .o2 h2 { color: var(--yellow); -webkit-text-stroke: 2.5px #111; paint-order: stroke fill;
+    text-shadow: 5px 5px 0 #ff3b3b, 7px 7px 0 #111; transform: rotate(-4deg) skewX(-6deg); display: inline-block;
+    animation: jolt 2.4s ease-in-out infinite; }
+  @keyframes jolt { 0%, 86%, 100% { transform: rotate(-4deg) skewX(-6deg); } 89% { transform: rotate(-1deg) skewX(-6deg) translateX(3px); } 92% { transform: rotate(-7deg) skewX(-6deg) translateX(-3px); } 95% { transform: rotate(-4deg) skewX(-6deg); } }
+
+  /* 3. Warning sign: yellow on black hazard plate with flashing triangles either side */
+  .o3 .sign { display: inline-flex; align-items: center; gap: 12px; padding: 8px 18px; border-radius: 8px;
+    background: #111; border: 4px solid var(--yellow); box-shadow: 0 0 0 4px #111, 0 0 18px #ffd60a55; }
+  .o3 h2 { color: var(--yellow); }
+  .o3 .tri { width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid var(--yellow); position: relative; animation: blink 1s steps(1) infinite; }
+  .o3 .tri::after { content: '!'; position: absolute; left: -4px; top: 6px; font: 16px/1 'Bungee', sans-serif; color: #111; }
+  @keyframes blink { 50% { opacity: 0.25; } }
+
+  /* 4. Siren neon: yellow neon tube that flickers like it is about to blow, amber glow */
+  .o4 h2 { color: #fff8c4; text-shadow: 0 0 4px var(--yellow), 0 0 12px var(--yellow), 0 0 26px var(--amber), 0 0 44px #ff6a0088;
+    animation: flicker 3s linear infinite; }
+  @keyframes flicker { 0%, 18%, 22%, 62%, 64%, 100% { opacity: 1; } 20%, 63% { opacity: 0.35; text-shadow: none; } }
+
+  /* 5. Glitch: yellow text with red and cyan split, like the screen can't believe it either */
+  .o5 h2 { color: var(--yellow); position: relative; text-shadow: -3px 0 #ff3b3b, 3px 0 #3ef2ff;
+    animation: glitch 2.2s steps(1) infinite; }
+  @keyframes glitch { 0%, 90%, 100% { transform: none; text-shadow: -3px 0 #ff3b3b, 3px 0 #3ef2ff; }
+    92% { transform: translate(-3px, 1px) skewX(-8deg); text-shadow: 5px 0 #ff3b3b, -5px 0 #3ef2ff; }
+    95% { transform: translate(3px, -1px); text-shadow: -6px 0 #ff3b3b, 6px 0 #3ef2ff; } }
+
+  /* 6. Stamped: yellow rubber stamp at an angle, like Last Picks' red stamp but in caution yellow */
+  .o6 h2 { color: var(--yellow); display: inline-block; transform: rotate(-6deg); padding: 4px 14px;
+    border: 4px solid var(--yellow); border-radius: 6px; letter-spacing: 0.04em;
+    -webkit-mask: repeating-radial-gradient(circle at 30% 40%, #000 0 2px, #000c 2px 3px, #000 3px 5px); mask: repeating-radial-gradient(circle at 30% 40%, #000 0 2px, #000c 2px 3px, #000 3px 5px); }
+
+  @media (prefers-reduced-motion: reduce) { .o2 h2, .o3 .tri, .o4 h2, .o5 h2 { animation: none; } }
+</style>
+</head>
+<body>
+  <section class="opt o0"><p class="tag">0 · Plain yellow (reference)</p>
+    <div class="head"><h2>BRO, WTF?</h2><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o1"><p class="tag">1 · Caution tape</p>
+    <div class="head"><div class="tape"><h2>BRO, WTF?</h2></div><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o2"><p class="tag">2 · Comic shout</p>
+    <div class="head"><h2>BRO, WTF?!</h2><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o3"><p class="tag">3 · Warning sign</p>
+    <div class="head"><div class="sign"><span class="tri" aria-hidden="true"></span><h2>BRO, WTF?</h2><span class="tri" aria-hidden="true"></span></div><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o4"><p class="tag">4 · Siren neon</p>
+    <div class="head"><h2>BRO, WTF?</h2><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o5"><p class="tag">5 · Glitch</p>
+    <div class="head"><h2>BRO, WTF?</h2><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+
+  <section class="opt o6"><p class="tag">6 · Caution stamp (chosen, live on home)</p>
+    <div class="head"><h2>BRO, WTF?</h2><span class="count">top 12 of 15</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p></section>
+</body>
+</html>
