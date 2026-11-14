@@ -1219,7 +1219,8 @@ window.WIRES = {
     "community": 1
   },
   "remco-evenepoel": {
-    "body": 1
+    "body": 1,
+    "community": 1
   },
   "luke-littler": {
     "body": 1,
@@ -1397,6 +1398,7 @@ window.ORDER = [
   "jesse-eisenberg",
   "jackie-chan",
   "teddy-riner",
+  "remco-evenepoel",
   "luke-littler",
   "luka-doncic",
   "juan-mata",
@@ -1423,7 +1425,6 @@ window.ORDER = [
   "thomas-muller",
   "thomas-pesquet",
   "omar-sy",
-  "remco-evenepoel",
   "jakob-ingebrigtsen",
   "erling-haaland",
   "gianmarco-tamberi",
@@ -1645,10 +1646,10 @@ window.AREA_ORDER = {
     "patrick-mahomes",
     "deion-sanders",
     "teddy-riner",
+    "remco-evenepoel",
     "luke-littler",
     "luka-doncic",
     "kimi-antonelli",
-    "remco-evenepoel",
     "jakob-ingebrigtsen",
     "gianmarco-tamberi",
     "oscar-pistorius",
@@ -1895,6 +1896,7 @@ window.AREA_ORDER = {
     "gary-barlow",
     "robbie-williams",
     "benedict-cumberbatch",
+    "daniel-bruhl",
     "robin-williams",
     "piero-angela",
     "steve-backshall",
@@ -1917,6 +1919,7 @@ window.AREA_ORDER = {
     "valentino-rossi",
     "jesse-eisenberg",
     "teddy-riner",
+    "remco-evenepoel",
     "luke-littler",
     "thomas-muller",
     "jonathan-groff",
@@ -1975,7 +1978,6 @@ window.AREA_ORDER = {
     "tom-schilling",
     "peter-fox",
     "moritz-bleibtreu",
-    "daniel-bruhl",
     "jean-dujardin",
     "vincent-cassel",
     "javier-bardem",
