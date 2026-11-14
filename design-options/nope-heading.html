@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Design options for the home page "Nope." heading (renaming Last Picks), 14 Nov 2026. Owner chose 2, dead neon, with the words "Out of Service." and more letters flickering; the rest are kept for a future revision. Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nope Heading Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --red: #ff3b3b; }
+  body { margin: 0; background: radial-gradient(ellipse at top, #0d2a5c 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  .opt { max-width: 900px; margin: 0 auto 26px; padding: 26px 20px 18px; border: 1px dashed #1e90ff55; border-radius: 14px; overflow: hidden; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 13px; color: #7cc4ff; margin: 0 0 16px; }
+  .head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .count { font-size: 15px; }
+  .pill { font-family: 'Bungee', sans-serif; font-size: 14px; color: var(--red); border: 2px solid var(--red); border-radius: 999px; padding: 6px 14px; }
+  .sub { margin: 14px 0 0; font-size: 16px; max-width: 640px; }
+  h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(30px, 6vw, 50px); line-height: 1.05; }
+
+  /* 0. The current Last Picks rubber stamp, just with the new word (slams down when the page loads) */
+  .o0 h2 { color: var(--red); padding: 8px 16px 6px; border: 4px solid currentColor; outline: 2px solid currentColor; outline-offset: 4px;
+    border-radius: 6px; transform: rotate(-3deg); margin: 6px 10px 6px 6px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1 1 0.3 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1 1 0.3 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='80' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: slam 0.25s cubic-bezier(.5,0,.9,.4) both; }
+  @keyframes slam { from { opacity: 0; transform: rotate(-3deg) scale(1.9); } to { opacity: 1; transform: rotate(-3deg); } }
+
+  /* 1. Game-show wrong answer: a big red X tile, then the word, like the buzzer just went */
+  .o1 .x { display: inline-grid; place-items: center; width: 62px; height: 62px; border-radius: 10px; background: #2a0508;
+    border: 3px solid var(--red); box-shadow: 0 0 14px #ff3b3b88, inset 0 0 12px #ff3b3b55; }
+  .o1 .x::before { content: '✕'; font: 44px/1 'Bungee', sans-serif; color: var(--red); text-shadow: 0 0 10px var(--red); }
+  .o1 h2 { color: #fff; text-shadow: 3px 3px 0 var(--red); }
+  .o1 .wrap { display: inline-flex; align-items: center; gap: 14px; }
+
+  /* 2. Dead neon: a red NOPE. sign with one letter half-blown, buzzing */
+  .o2 h2 { color: #ffd2d2; text-shadow: 0 0 4px var(--red), 0 0 12px var(--red), 0 0 28px #ff1a1a, 0 0 46px #ff000088; letter-spacing: 0.04em; }
+  .o2 h2 .dead { color: #6b2a2a; text-shadow: none; animation: buzz 2.6s steps(1) infinite; }
+  @keyframes buzz { 0%, 70%, 74%, 100% { color: #6b2a2a; text-shadow: none; } 72%, 76% { color: #ffd2d2; text-shadow: 0 0 4px var(--red), 0 0 12px var(--red); } }
+
+  /* 3. Error box: a fake old-computer error dialog that just says NOPE. */
+  .o3 .dlg { display: inline-block; min-width: 260px; background: #c3c3c3; border: 2px solid #fff; border-right-color: #404040; border-bottom-color: #404040; box-shadow: 4px 4px 0 #0008; }
+  .o3 .bar { background: linear-gradient(90deg, #8b0000, #ff3b3b); color: #fff; font: 13px/1 'Bungee', sans-serif; padding: 5px 8px; display: flex; justify-content: space-between; }
+  .o3 .bar b { background: #c3c3c3; color: #000; padding: 0 5px; border: 1px solid #fff; border-right-color: #404040; border-bottom-color: #404040; }
+  .o3 .body { display: flex; align-items: center; gap: 14px; padding: 12px 18px 14px; }
+  .o3 .ic { width: 38px; height: 38px; border-radius: 50%; background: var(--red); color: #fff; display: grid; place-items: center; font: 22px/1 'Bungee', sans-serif; box-shadow: inset -3px -3px 0 #a00; }
+  .o3 h2 { color: #111; }
+
+  /* 4. Spray paint: red tag sprayed on the wall, with drips */
+  .o4 h2 { color: var(--red); transform: rotate(-4deg); display: inline-block; position: relative; letter-spacing: 0.02em;
+    text-shadow: 0 0 2px #ff3b3b, 0 0 8px #ff3b3b99, 0 0 16px #ff3b3b55; filter: url(#rough); }
+  .o4 .sub { margin-top: 34px; }
+  .o4 .drips { position: absolute; left: 0; right: 0; top: 78%; height: 34px; pointer-events: none; }
+  .o4 .drips i { position: absolute; top: 0; width: 5px; border-radius: 0 0 4px 4px; background: var(--red); box-shadow: 0 0 6px #ff3b3b88; }
+  .o4 .drips i::after { content: ''; position: absolute; left: -2px; bottom: -4px; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+  .o4 .drips i:nth-child(1) { left: 9%; height: 26px; }
+  .o4 .drips i:nth-child(2) { left: 44%; height: 14px; }
+  .o4 .drips i:nth-child(3) { left: 66%; height: 30px; }
+
+  /* 5. No-entry sign: NOPE. inside a red circle-slash road sign */
+  .o5 .sign { position: relative; display: inline-grid; place-items: center; padding: 18px 34px; border: 7px solid var(--red); border-radius: 999px; background: #fff; }
+  .o5 .sign::after { content: ''; position: absolute; left: 6%; right: 6%; top: 50%; height: 7px; background: var(--red); transform: rotate(-14deg); border-radius: 4px; }
+  .o5 h2 { color: #111; position: relative; }
+
+  /* 6. Hard no: huge, heavy, red with a black slab shadow, slightly crushed like it was shouted */
+  .o6 h2 { color: var(--red); font-size: clamp(38px, 8vw, 68px); letter-spacing: -0.01em; transform: scaleY(1.12) skewX(-4deg); transform-origin: left center;
+    text-shadow: 4px 4px 0 #2a0508, 8px 8px 0 #00000088; }
+
+  @media (prefers-reduced-motion: reduce) { .o0 h2, .o2 h2 .dead { animation: none; } }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></svg>
+
+  <section class="opt o0"><p class="tag">0 · Same rubber stamp as now</p>
+    <div class="head"><h2>NOPE.</h2><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o1"><p class="tag">1 · Wrong answer buzzer</p>
+    <div class="head"><span class="wrap"><span class="x" aria-hidden="true"></span><h2>NOPE.</h2></span><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o2"><p class="tag">2 · Dead neon (chosen as "OUT OF SERVICE.", live on home)</p>
+    <div class="head"><h2>NO<span class="dead">P</span>E.</h2><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o3"><p class="tag">3 · Error box</p>
+    <div class="head"><div class="dlg"><div class="bar"><span>Error</span><b aria-hidden="true">✕</b></div><div class="body"><span class="ic" aria-hidden="true">✕</span><h2>NOPE.</h2></div></div><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o4"><p class="tag">4 · Spray paint</p>
+    <div class="head"><h2>NOPE.<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o5"><p class="tag">5 · No-entry sign</p>
+    <div class="head"><div class="sign"><h2>NOPE.</h2></div><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+
+  <section class="opt o6"><p class="tag">6 · Hard no</p>
+    <div class="head"><h2>NOPE.</h2><span class="count">top 12 of 56</span><span class="pill">TOP 12</span></div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p></section>
+</body>
+</html>

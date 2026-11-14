@@ -247,7 +247,7 @@
       <button type="button" data-tier="all" aria-pressed="true">All</button>
       <button type="button" data-tier="good" aria-pressed="false"><i style="background:var(--green)"></i>Real Men</button>
       <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--yellow)"></i>Coin toss</button>
-      <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Last Picks</button>
+      <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Out of Service</button>
     </div>
     <label><span class="lbl">Show</span>
       <select id="count" autocomplete="off">
@@ -300,7 +300,7 @@
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const shortName = n => n.replace(/\s*\(.*\)$/, '');
   const COL = { good: '#3dff8b', mid: '#ffe66d', bad: '#ff3b3b' };
-  const TIER_NAME = { good: 'Real Men', mid: 'Coin toss', bad: 'Last picks' };
+  const TIER_NAME = { good: 'Real Men', mid: 'Coin toss', bad: 'Out of service' };
   const CONTRO = window.CONTROVERSIAL || [];
   const tier = p => CONTRO.includes(p.id) ? 'mid' : p.list;
   const wire = (p, key) => (window.WIRES[p.id] || {})[key];
@@ -315,7 +315,7 @@
   };
 
   // ---------- who is on the boards, and how far along his board ----------
-  // weight 1 = top of High Rated / bottom of Last Picks; it only sets bubble size
+  // weight 1 = top of High Rated / bottom of Out of Service; it only sets bubble size
   const men = window.PEOPLE.filter(p => p.list === 'good' || p.list === 'bad');
   const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
   const ranked = t => men.filter(p => tier(p) === t).sort((a, b) =>
@@ -420,7 +420,7 @@
       // everyone huddles in the middle so the two sides meet...
       n.vx += (W / 2 - n.x) * 0.0009 * (H / W);
       n.vy += (H / 2 - n.y) * 0.0015;
-      // ...while High Rated float up and Last Picks sink, the bigger the stronger
+      // ...while High Rated float up and Out of Service sink, the bigger the stronger
       const lift = 0.06 + 0.08 * n.s * n.s;
       if (n.side === 'good') n.vy -= lift;
       else if (n.side === 'bad') n.vy += lift;
