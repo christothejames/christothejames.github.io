@@ -1173,7 +1173,8 @@ window.WIRES = {
     "community": 1
   },
   "thomas-muller": {
-    "body": 1
+    "body": 1,
+    "community": 1
   },
   "moritz-bleibtreu": {
     "community": 1
@@ -1403,8 +1404,10 @@ window.ORDER = [
   "ryan-murphy",
   "ludacris",
   "kimi-antonelli",
+  "tadao-ando",
   "renzo-piano",
   "lin-manuel-miranda",
+  "thomas-muller",
   "teddy-riner",
   "omar-sy",
   "remco-evenepoel",
@@ -1480,7 +1483,6 @@ window.ORDER = [
   "louis-hofmann",
   "tom-schilling",
   "peter-fox",
-  "thomas-muller",
   "moritz-bleibtreu",
   "daniel-bruhl",
   "thomas-pesquet",
@@ -1503,7 +1505,6 @@ window.ORDER = [
   "ranulph-fiennes",
   "tim-berners-lee",
   "snoop-dogg",
-  "tadao-ando",
   "armin-maiwald",
   "mo-farah",
   "paul-mccartney",
@@ -1642,8 +1643,8 @@ window.AREA_ORDER = {
     "jakob-ingebrigtsen",
     "gianmarco-tamberi",
     "oscar-pistorius",
-    "steve-redgrave",
     "thomas-muller",
+    "steve-redgrave",
     "frank-bruno"
   ],
   "survival": [
@@ -1853,6 +1854,7 @@ window.AREA_ORDER = {
     "roger-federer",
     "chris-hadfield",
     "mark-ruffalo",
+    "tadao-ando",
     "frank-gehry",
     "scottie-scheffler",
     "ezra-frech",
@@ -1864,6 +1866,7 @@ window.AREA_ORDER = {
     "luka-doncic",
     "markiplier",
     "andrea-bocelli",
+    "david-tennant",
     "akala",
     "brendon-urie",
     "matthieu-ricard",
@@ -1891,6 +1894,7 @@ window.AREA_ORDER = {
     "ben-parkinson",
     "valentino-rossi",
     "luke-littler",
+    "thomas-muller",
     "jonathan-groff",
     "lewis-pugh",
     "munya-chawawa",
@@ -1944,7 +1948,6 @@ window.AREA_ORDER = {
     "alessandro-gassmann",
     "jimmy-fallon",
     "tim-burton",
-    "david-tennant",
     "brian-kelley",
     "jean-nouvel",
     "rem-koolhaas",
@@ -1962,7 +1965,6 @@ window.AREA_ORDER = {
     "javier-bardem",
     "sam-neill",
     "jimmy-carr",
-    "tadao-ando",
     "armin-maiwald"
   ],
   "family": [
