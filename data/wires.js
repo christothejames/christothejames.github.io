@@ -1260,6 +1260,10 @@ window.WIRES = {
   },
   "steve-jobs": {
     "community": 1
+  },
+  "gerard-butler": {},
+  "jimmy-carr": {
+    "community": 1
   }
 };
 
@@ -1490,6 +1494,7 @@ window.ORDER = [
   "richard-reeves-writer",
   "alan-rickman",
   "steve-jobs",
+  "jimmy-carr",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
@@ -1515,6 +1520,7 @@ window.ORDER = [
   "pewdiepie",
   "jordan-peterson",
   "clint-eastwood",
+  "gerard-butler",
   "ben-stokes",
   "johnny-depp",
   "theo-von",
@@ -1947,6 +1953,7 @@ window.AREA_ORDER = {
     "javier-bardem",
     "lenny-kravitz",
     "sam-neill",
+    "jimmy-carr",
     "tadao-ando",
     "armin-maiwald"
   ],
@@ -2196,6 +2203,7 @@ window.AREA_ORDER = {
 window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
+  "jimmy-carr",
   "snoop-dogg",
   "richard-branson",
   "mark-wahlberg",
