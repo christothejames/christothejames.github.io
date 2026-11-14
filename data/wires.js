@@ -1138,7 +1138,8 @@ window.WIRES = {
     "community": 1
   },
   "russell-peters": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "kumail-nanjiani": {
     "community": 1
@@ -1522,6 +1523,7 @@ window.ORDER = [
   "stormzy",
   "bear-grylls",
   "steve-irwin",
+  "gary-oldman",
   "ninja",
   "max-verstappen",
   "khabib-nurmagomedov",
@@ -1529,7 +1531,6 @@ window.ORDER = [
   "marco-pierre-white",
   "hugh-fearnley-whittingstall",
   "brad-pitt",
-  "gary-oldman",
   "pewdiepie",
   "jordan-peterson",
   "clint-eastwood",
@@ -1789,6 +1790,7 @@ window.AREA_ORDER = {
     "everyday-dad",
     "volunteer-coach",
     "leonardo-dicaprio",
+    "gary-oldman",
     "ian-mckellen",
     "novak-djokovic",
     "tony-adams",
@@ -1861,7 +1863,6 @@ window.AREA_ORDER = {
     "ninja",
     "steve-irwin",
     "eddie-hall",
-    "gary-oldman",
     "pierce-brosnan",
     "david-attenborough",
     "johnson-beharry",
@@ -1882,6 +1883,7 @@ window.AREA_ORDER = {
     "tim-peake",
     "lance-armstrong",
     "luka-doncic",
+    "daniel-day-lewis",
     "markiplier",
     "bill-murray",
     "andrea-bocelli",
@@ -1923,7 +1925,6 @@ window.AREA_ORDER = {
     "gabor-mate",
     "avi-schiffmann",
     "loyle-carner",
-    "daniel-day-lewis",
     "ncuti-gatwa",
     "taron-egerton",
     "rupaul",
@@ -2213,6 +2214,7 @@ window.AREA_ORDER = {
     "keanu-reeves",
     "tom-hanks",
     "jesse-eisenberg",
+    "russell-peters",
     "jimmy-carr",
     "jeff-bezos",
     "gregg-wallace",
