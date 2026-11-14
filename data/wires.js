@@ -1263,7 +1263,9 @@ window.WIRES = {
   },
   "gerard-butler": {},
   "jimmy-carr": {
-    "community": 1
+    "community": 1,
+    "conduct": -1,
+    "people": -1
   }
 };
 
@@ -1494,7 +1496,6 @@ window.ORDER = [
   "richard-reeves-writer",
   "alan-rickman",
   "steve-jobs",
-  "jimmy-carr",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
@@ -1523,6 +1524,7 @@ window.ORDER = [
   "gerard-butler",
   "ben-stokes",
   "johnny-depp",
+  "jimmy-carr",
   "theo-von",
   "kevin-spacey",
   "donald-trump",
@@ -2070,6 +2072,7 @@ window.AREA_ORDER = {
     "alex-pereira",
     "steve-o",
     "danny-trejo",
+    "jimmy-carr",
     "richard-branson",
     "ranulph-fiennes",
     "paul-mccartney",
@@ -2186,6 +2189,7 @@ window.AREA_ORDER = {
     "dwayne-johnson",
     "keanu-reeves",
     "tom-hanks",
+    "jimmy-carr",
     "jeff-bezos",
     "gregg-wallace",
     "donald-trump",
@@ -2203,13 +2207,13 @@ window.AREA_ORDER = {
 window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
-  "jimmy-carr",
   "snoop-dogg",
   "richard-branson",
   "cristiano-ronaldo",
   "mark-wahlberg",
   "jordan-peterson",
   "jeff-bezos",
+  "jimmy-carr",
   "will-smith",
   "dave-chappelle",
   "drake",

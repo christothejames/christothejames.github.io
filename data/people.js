@@ -608,7 +608,7 @@ window.PEOPLE = [
     photo: "images/hugh-jackman.jpg",
     photoCredit: "Gage Skidmore, CC BY-SA 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Hugh_Jackman_by_Gage_Skidmore_3.jpg",
-    reason: "Was a PE teacher before he was Wolverine.",
+    reason: "Gives his coffee profits to farming communities, and surprised a sick boy as Wolverine for Make-A-Wish.",
     status: "Active · Companion of the Order of Australia (2019)",
     about: {},
     posts: [
@@ -1950,7 +1950,7 @@ window.PEOPLE = [
     photo: "images/lebron-james.jpg",
     photoCredit: "Erik Drost, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:LeBron_James_(51959977144)_(cropped2).jpg",
-    reason: "Raised millions for Boys & Girls Clubs.",
+    reason: "Raised $2.5m for Boys & Girls Clubs.",
     status: "Active",
     about: {},
     posts: [
@@ -2035,7 +2035,7 @@ window.PEOPLE = [
     photo: "images/jonathan-van-tam.jpg",
     photoCredit: "UK Government, OGL v3, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:S960_Professor_Van-Tam_(cropped).jpg",
-    reason: "Explained the pandemic in football metaphors.",
+    reason: "Army Cadet officer since 1998 who explained science to children in the Royal Institution Christmas Lectures.",
     status: "Active",
     about: {},
     posts: [
@@ -2080,7 +2080,7 @@ window.PEOPLE = [
     photo: "images/ed-sheeran.jpg",
     photoCredit: "Number 10, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Ed_Sheeran_2022_(3x4_crop).jpg",
-    reason: "Funds music for kids who can't afford lessons.",
+    reason: "Gave £170,000 to his old school and launched a music foundation for young artists.",
     status: "Active",
     about: {},
     posts: [
@@ -2276,7 +2276,7 @@ window.PEOPLE = [
     photo: "images/mark-wahlberg.jpg",
     photoCredit: "U.S. Marine Corps photo by Sgt. Jorge A. Rosales, public domain, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Mark_Wahlberg_2021.jpg",
-    reason: "Jailed as a teen for a violent assault.",
+    reason: "Jailed as a teen for a violent assault, then turned it around and set up a foundation for young people.",
     status: "Active",
     about: {},
     posts: [
@@ -2339,7 +2339,7 @@ window.PEOPLE = [
     photo: "images/tom-daley.jpg",
     photoCredit: "Jim Thurston, CC BY-SA 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Tom_Daley_London_(cropped).jpg",
-    reason: "Beat school bullies and became Olympic champion.",
+    reason: "Olympic champion appointed OBE for diving, LGBTQ+ rights and charity.",
     status: "Retired · OBE (2022)",
     about: {},
     posts: [
@@ -2453,7 +2453,7 @@ window.PEOPLE = [
     photo: "images/harry-kane.jpg",
     photoCredit: "Bryan Berlin, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Harry_Kane_England_v_Ghana_23_June_2026-024_(cropped).jpg",
-    reason: "England's record goalscorer.",
+    reason: "World Cup Golden Boot winner and two-time European Golden Shoe.",
     status: "Active · Bayern Munich",
     about: {},
     posts: [
@@ -2556,7 +2556,7 @@ window.PEOPLE = [
     photo: "images/ryan-reynolds.jpg",
     photoCredit: "Dick Thomas Johnson from Tokyo, Japan, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_(cropped).jpg",
-    reason: "Gives big to charity and keeps it funny.",
+    reason: "Gave $1m to the Red Cross for children caught in the Israel–Gaza conflict, and ran a marathon for Parkinson's research.",
     status: "Active · Order of Canada (2024)",
     about: {},
     posts: [
@@ -2755,7 +2755,7 @@ window.PEOPLE = [
     photo: "images/stephen-colbert.jpg",
     photoCredit: "Montclair Film, CC BY 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Stephen_Colbert_2025.jpg",
-    reason: "Twenty years of satire that made the powerful the punchline.",
+    reason: "Twenty years of satire that made the powerful the punchline, with Emmys and Peabodys to show for it.",
     status: "Active · The Late Show (ending 2026)",
     about: {},
     posts: [
@@ -2839,7 +2839,7 @@ window.PEOPLE = [
     photo: "images/bruce-springsteen.jpg",
     photoCredit: "Bryan Berlin, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Bruce_Springsteen_Springsteen-79_(cropped).jpg",
-    reason: "The Boss.",
+    reason: "Raises money for food banks at his shows and speaks openly about his depression.",
     status: "Active",
     about: {},
     posts: [
@@ -3658,7 +3658,7 @@ window.PEOPLE = [
     photo: "images/usain-bolt.jpg",
     photoCredit: "Fernando Frazão/Agência Brasil, CC BY 3.0 br, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Usain_Bolt_Rio_100m_final_2016k.jpg",
-    reason: "Fastest man ever.",
+    reason: "Fastest man ever, who gave $50,000 to children hit by the Sichuan earthquake.",
     status: "Retired",
     about: {},
     posts: [
@@ -3782,7 +3782,7 @@ window.PEOPLE = [
     photo: "images/case-keenum.jpg",
     photoCredit: "Kevin B Long, CC BY-SA 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Case_Keenum.jpg",
-    reason: "Veteran NFL quarterback.",
+    reason: "Veteran NFL quarterback who mentored the Bears' young starter.",
     status: "Active · Chicago Bears",
     about: {},
     posts: [
@@ -3842,7 +3842,7 @@ window.PEOPLE = [
     photo: "images/paul-mccartney.jpg",
     photoCredit: "Raph_PH, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Paul_McCartney_in_October_2018.jpg",
-    reason: "Beatle, knight and campaigner.",
+    reason: "Beatle and knight who backs Make Poverty History and anti-landmine campaigns.",
     status: "Active · Knighted (1997)",
     about: {},
     posts: [
@@ -3904,7 +3904,7 @@ window.PEOPLE = [
     photo: "images/michael-dell.jpg",
     photoCredit: "mikeandryan, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Michael_Dell_2010.jpg",
-    reason: "Tech founder and philanthropist.",
+    reason: "His foundation funds children's health and education.",
     status: "Active",
     about: {},
     posts: [
@@ -4083,7 +4083,7 @@ window.PEOPLE = [
     photo: "images/jackie-chan.jpg",
     photoCredit: "Segolene Liger, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Jackie_Chan_-_2025_Locarno_Film_Festival.jpg",
-    reason: "Visitor request.",
+    reason: "Martial arts film legend with an honorary Oscar, UNICEF Goodwill Ambassador since 2004 and founder of his own charity.",
     status: "Active",
     about: {},
     posts: [
@@ -4106,7 +4106,7 @@ window.PEOPLE = [
     photo: "images/henry-cavill.jpg",
     photoCredit: "Gage Skidmore from Peoria, AZ, United States of America, CC BY-SA 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Henry_Cavill_(48417913146)_(cropped).jpg",
-    reason: "Visitor request.",
+    reason: "Raised over £100,000 for the Royal Marines charity and champions wildlife conservation.",
     status: "Active",
     about: {},
     posts: [
@@ -4145,7 +4145,7 @@ window.PEOPLE = [
     role: "Ultra-endurance athlete, former Navy SEAL",
     instagram: "davidgoggins",
     facebook: "iamdavidgoggins",
-    reason: "Former Navy SEAL turned ultra-endurance machine.",
+    reason: "Former Navy SEAL who has raised over $2 million for the Special Operations Warrior Foundation through endurance races.",
     status: "Active · author of Can't Hurt Me",
     about: {},
     posts: [
@@ -4166,7 +4166,7 @@ window.PEOPLE = [
     photo: "images/ninja.jpg",
     photoCredit: "State Farm, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Krystalogy,_Jess,_Ninja,_and_Typical_Gamer_relaxing_in_the_State_Farm_Gamerhood_(52899874282)_(cropped)_3.jpg",
-    reason: "The streamer who made Fortnite famous.",
+    reason: "Raised $93,000 for cancer research with his brother.",
     status: "Active · Fortnite star",
     about: {},
     posts: [
@@ -4187,7 +4187,7 @@ window.PEOPLE = [
     photo: "images/pewdiepie.jpg",
     photoCredit: "Cold Ones Clips, CC BY 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Pewdiepie_head_shot.jpg",
-    reason: "Once the most-subscribed YouTuber in the world.",
+    reason: "Raised over $1 million for charities including Save the Children and Movember.",
     status: "Semi-retired · lives in Japan",
     about: {},
     posts: [
@@ -4316,7 +4316,7 @@ window.PEOPLE = [
     photo: "images/novak-djokovic.jpg",
     photoCredit: "Andymiah, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Novak_Djokovic_Paris_2024_Olympic_Games_(cropped).jpg",
-    reason: "Record 24 Grand Slam titles.",
+    reason: "Record 24 Grand Slam titles; his foundation funds early education in Serbia.",
     status: "Active",
     about: {},
     posts: [
@@ -4360,7 +4360,7 @@ window.PEOPLE = [
     photo: "images/scottie-scheffler.jpg",
     photoCredit: "Bryan Berlin, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Scottie_Scheffler_Ryder_Cup_2025_(cropped).jpg",
-    reason: "World No. 1 golfer.",
+    reason: "World No. 1 who gave $50,000 to a children's cancer foundation and set up golf for young patients.",
     status: "Active · world No. 1",
     about: {},
     posts: [
@@ -4719,7 +4719,7 @@ window.PEOPLE = [
     photo: "images/gary-lineker.jpg",
     photoCredit: "Liton Ali, CC BY 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Gary_Lineker_(cropped).jpg",
-    reason: "England great who hosted refugees in his home.",
+    reason: "Gave £140,000 to the British Red Cross for COVID research, and backed a leukaemia charity for over a decade.",
     status: "Active · OBE",
     about: {},
     posts: [
@@ -4739,7 +4739,7 @@ window.PEOPLE = [
     photo: "images/michael-gove.jpg",
     photoCredit: "©House of Lords / photography by Roger Harris, CC BY 3.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Official_portrait_of_Lord_Gove_crop_2.jpg",
-    reason: "Visitor request.",
+    reason: "Made a life peer in 2025.",
     status: "Active · Life peer",
     about: {},
     posts: [
@@ -6789,7 +6789,7 @@ window.PEOPLE = [
     photo: "images/gerard-butler.jpg",
     photoCredit: "Gordon Correll, CC BY-SA 2.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Gerard_Butler_(29681162176).jpg",
-    reason: "Scottish actor. No sourced record on file yet.",
+    reason: "Scottish actor. Nothing sourced on file yet.",
     status: "Active",
     about: {},
     posts: [],
@@ -6805,10 +6805,12 @@ window.PEOPLE = [
     photo: "images/jimmy-carr.jpg",
     photoCredit: "Albin Olsson, CC BY-SA 4.0, via Wikimedia Commons (cropped)",
     photoSource: "https://commons.wikimedia.org/wiki/File:Jimmy_Carr,_2015-04-13_2.jpg",
-    reason: "Won the British Comedy Award for Best Live Stand-Up.",
+    reason: "Award-winning stand-up who used an offshore tax avoidance scheme and called it \"a terrible error of judgment\", and dropped a joke about amputee soldiers after an outcry.",
     status: "Active",
     about: {},
     posts: [
+      { date: "2012", text: "Used the K2 offshore tax avoidance scheme. After the Prime Minister called such schemes \"morally wrong\", he apologised for \"a terrible error of judgment\" and left it.", source: "https://www.irishtimes.com/news/carr-admits-terrible-error-of-judgment-1.721384" },
+      { date: "2009", text: "Dropped a joke about soldiers who lost limbs in battle after widespread condemnation.", source: "https://www.chortle.co.uk/news/2009/10/26/9837/carr_drops_amputee_gag" },
       { date: "2006", text: "Won the British Comedy Award for Best Live Stand-Up.", source: "https://www.britishcomedyawards.com/past-winners/2006.aspx" },
     ],
   },
