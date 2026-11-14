@@ -530,8 +530,8 @@
   const tierOf = x => (window.CONTROVERSIAL || []).includes(x.id) ? 'mid' : x.list;
   const tier = tierOf(p);
   const good = tier === 'good', mid = tier === 'mid';
-  const NAME = { good: 'Big Dawgz!', mid: 'Coin Toss', bad: 'Last Picks' };
-  // A good man who has died gets RESPECTED instead of BIG DAWGZ! (death is read from his status or role).
+  const NAME = { good: 'Real Men', mid: 'Coin Toss', bad: 'Last Picks' };
+  // A good man who has died gets RESPECTED instead of REAL MEN (death is read from his status or role).
   const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
   document.body.classList.add(tier === 'bad' || tier === 'mid' ? tier : 'good');
   document.title = `${p.name} · The Real Man Report`;
@@ -631,10 +631,10 @@
                 <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
             </dl>
             ${p.type === 'composite' ? '<p class="note" style="margin-top:12px">This is a composite, not a real person.</p>' : ''}
-            <p class="note" style="margin-top:12px">Every post on this profile links to its source. Being ranked ${NAME[tier]} is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
+            <p class="note" style="margin-top:12px">Every post on this profile links to its source. Being on the ${NAME[tier]} board is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
           </div>
           <div class="box">
-            <h2>Also on ${NAME[tier]}</h2>
+            <h2>Also on the ${NAME[tier]} board</h2>
             <div class="people">
               ${others.map(x => `
                 <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}" title="${esc(x.name)}, ${esc(x.role)}">
