@@ -416,6 +416,7 @@
   }
 
   .empty { color: var(--muted); font-style: italic; }
+  .no-match { padding: 48px 0 10px; font-size: 17px; }
 
   /* ---------- Not ranked yet: request a man ---------- */
   .ask { margin-top: 24px; padding: 16px; border: 2px dashed var(--cyan); border-radius: 12px; background: #0b1a3a99; }
@@ -565,6 +566,8 @@
     <div class="ask-list" id="askList"></div>
   </section>
 
+  <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
+
   <section class="board good" id="good">
     <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
@@ -646,6 +649,10 @@
     const rank = p => { const i = (window.ORDER || []).indexOf(p.id); return i < 0 ? 1e9 : i; };
     const mids = window.CONTROVERSIAL || [];
     const order = (a, b) => tier(a) === 'mid' ? mids.indexOf(a.id) - mids.indexOf(b.id) : rank(a) - rank(b);
+    // While searching or filtering by age, a board with no matches is hidden (owner, 14 Nov 2026: only show
+    // what's needed). If no board matches at all, one line says so instead of three empty boards.
+    const filtering = !!term || !!ageSel;
+    let found = 0;
     ['good', 'mid', 'bad'].forEach(list => {
       const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)).sort(order);
       // Each board shows its top 12 (fills full rows); the dropdown shows more. A search shows every match.
@@ -658,7 +665,10 @@
       document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
       document.getElementById(list + 'Count').textContent = shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
+      document.getElementById(list).hidden = filtering && !all.length;
+      found += all.length;
     });
+    document.getElementById('noMatch').hidden = !filtering || found > 0;
   }
 
   // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns)
