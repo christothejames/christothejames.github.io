@@ -698,7 +698,8 @@ window.WIRES = {
     "community": 1
   },
   "jesse-eisenberg": {
-    "community": 1
+    "community": 1,
+    "people": 1
   },
   "khaby-lame": {
     "community": 1
@@ -1192,7 +1193,8 @@ window.WIRES = {
     "community": 1
   },
   "teddy-riner": {
-    "body": 1
+    "body": 1,
+    "community": 1
   },
   "jean-dujardin": {
     "community": 1
@@ -1384,7 +1386,9 @@ window.ORDER = [
   "valentino-rossi",
   "george-clooney",
   "jordan-stephens",
+  "jesse-eisenberg",
   "jackie-chan",
+  "teddy-riner",
   "luke-littler",
   "luka-doncic",
   "juan-mata",
@@ -1407,9 +1411,9 @@ window.ORDER = [
   "tadao-ando",
   "renzo-piano",
   "lin-manuel-miranda",
+  "george-ezra",
   "thomas-muller",
   "thomas-pesquet",
-  "teddy-riner",
   "omar-sy",
   "remco-evenepoel",
   "jakob-ingebrigtsen",
@@ -1440,7 +1444,6 @@ window.ORDER = [
   "doctor-mike",
   "viggo-mortensen",
   "bill-murray",
-  "jesse-eisenberg",
   "khaby-lame",
   "nicolas-cage",
   "hank-green",
@@ -1480,7 +1483,6 @@ window.ORDER = [
   "jude-law",
   "eddie-redmayne",
   "benedict-cumberbatch",
-  "george-ezra",
   "august-diehl",
   "louis-hofmann",
   "tom-schilling",
@@ -1635,10 +1637,10 @@ window.AREA_ORDER = {
     "stephen-curry",
     "patrick-mahomes",
     "deion-sanders",
+    "teddy-riner",
     "luke-littler",
     "luka-doncic",
     "kimi-antonelli",
-    "teddy-riner",
     "remco-evenepoel",
     "jakob-ingebrigtsen",
     "gianmarco-tamberi",
@@ -1836,6 +1838,7 @@ window.AREA_ORDER = {
     "dan-reynolds",
     "ludacris",
     "renzo-piano",
+    "george-ezra",
     "thomas-pesquet",
     "omar-sy",
     "erling-haaland",
@@ -1895,6 +1898,8 @@ window.AREA_ORDER = {
     "andrew-garfield",
     "ben-parkinson",
     "valentino-rossi",
+    "jesse-eisenberg",
+    "teddy-riner",
     "luke-littler",
     "thomas-muller",
     "jonathan-groff",
@@ -1911,7 +1916,6 @@ window.AREA_ORDER = {
     "doctor-mike",
     "viggo-mortensen",
     "bill-murray",
-    "jesse-eisenberg",
     "khaby-lame",
     "michael-gove",
     "marco-mengoni",
@@ -1926,7 +1930,6 @@ window.AREA_ORDER = {
     "justin-chon",
     "steven-yeun",
     "jude-law",
-    "george-ezra",
     "louis-hofmann",
     "victor-wembanyama",
     "jean-reno",
@@ -2197,6 +2200,7 @@ window.AREA_ORDER = {
     "dwayne-johnson",
     "keanu-reeves",
     "tom-hanks",
+    "jesse-eisenberg",
     "jimmy-carr",
     "jeff-bezos",
     "gregg-wallace",
