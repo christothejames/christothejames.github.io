@@ -213,18 +213,43 @@
 
   .board.good h2 { color: var(--gold); }
 
-  /* Real Men heading: 80s chrome (owner, 14 Nov 2026). Sky-and-ground reflection, white edge, pink neon glow.
-     The other options tried are kept in design-options/real-men-heading.html. */
+  /* Real Men heading: brushed-steel letters stamped into a riveted gunmetal plate (owner, 14 Nov 2026;
+     option 2 in design-options/real-men-heading.html, replacing the 80s chrome; the other options are kept there) */
+  .board.good .plate {
+    position: relative;
+    padding: 10px 34px 12px;
+    border-radius: 6px;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 4px),
+      linear-gradient(180deg, #4a535e 0%, #2b3139 55%, #1d2228 100%);
+    border: 1px solid #6b7580;
+    box-shadow: inset 0 1px 0 #9aa3ad, inset 0 -2px 0 #11151a, 0 6px 0 #0a0d11, 0 10px 22px #000a;
+  }
+  .board.good .plate::before, .board.good .plate::after, .board.good .plate i::before, .board.good .plate i::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #f2f4f7, #7d8792 60%, #2b3139);
+    box-shadow: 0 1px 1px #000;
+  }
+  .board.good .plate::before { top: 8px; left: 10px; }
+  .board.good .plate::after { top: 8px; right: 10px; }
+  .board.good .plate i::before { bottom: 8px; left: 10px; }
+  .board.good .plate i::after { bottom: 8px; right: 10px; }
   .board.good h2.metal {
-    font-style: italic;
-    background: linear-gradient(180deg, #0b3a7a 0%, #7cc4ff 40%, #ffffff 49%, #2a1a3a 51%, #c7a0ff 70%, #ffffff 100%);
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 1px, transparent 1px 3px),
+      linear-gradient(180deg, #ffffff 0%, #d9dee4 22%, #9aa3ad 46%, #f2f4f7 50%, #b8c0c9 68%, #7d8792 100%);
     -webkit-background-clip: text;
             background-clip: text;
     color: transparent;
-    -webkit-text-stroke: 1.5px #ffffff;
-    filter: drop-shadow(0 0 3px #ff3cc7) drop-shadow(0 0 12px rgba(255, 60, 199, 0.67)) drop-shadow(3px 3px 0 #0d2a5c);
+    -webkit-text-stroke: 1px #3a424c;
+    filter: drop-shadow(0 -1px 0 #0d1014) drop-shadow(0 1px 0 #6b7580);
     letter-spacing: 0.02em;
   }
+  @media (max-width: 520px) { .board.good .plate { padding: 8px 24px 10px; } }
   .board.mid h2 { color: var(--amber); }
 
   /* Out of Service heading: a red neon sign with its V blown, buzzing back on now and then
@@ -541,7 +566,7 @@
   </section>
 
   <section class="board good" id="good">
-    <div class="board-head"><h2 class="metal">REAL MEN</h2><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select></div>
+    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
     <div class="posters" id="goodGrid"></div>
   </section>
