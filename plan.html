@@ -407,8 +407,19 @@
   .coach p b { color: var(--text); font-weight: 400; }
   .coach .ghost { flex: none; }
   /* Forum band (owner, 15 Nov 2026): one link to the Brotherhood page, never the raw Discord invite; at the top of the page (owner: more important than the rest). Urgent help stays in the top bar. */
-  .coach.forum { margin: 0 0 28px; }
+  .coach.forum {
+    margin: 0 0 28px;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 6px var(--cyan), 0 0 18px #3ef2ff66, inset 0 0 14px #3ef2ff22;
+  }
   a.ghost { color: #fff; text-decoration: none; text-align: center; }
+  .coach.forum .ghost {
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 6px var(--cyan), 0 0 14px #3ef2ff66, inset 0 0 8px #3ef2ff33;
+    text-shadow: 0 0 6px #3ef2ff99;
+    transition: background .2s, box-shadow .2s;
+  }
+  .coach.forum .ghost:hover, .coach.forum .ghost:focus-visible { background: #3ef2ff1f; box-shadow: 0 0 8px var(--cyan), 0 0 22px #3ef2ffaa, inset 0 0 10px #3ef2ff44; }
 
   /* ---------- Urgent help panel ---------- */
   dialog {
