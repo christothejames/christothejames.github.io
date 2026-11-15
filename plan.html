@@ -406,6 +406,9 @@
   .coach p { margin: 0; color: var(--muted); font-size: 15px; }
   .coach p b { color: var(--text); font-weight: 400; }
   .coach .ghost { flex: none; }
+  /* Forum band (owner, 15 Nov 2026): one link to the Brotherhood page, never the raw Discord invite; at the top of the page (owner: more important than the rest). Urgent help stays in the top bar. */
+  .coach.forum { margin: 0 0 28px; }
+  a.ghost { color: #fff; text-decoration: none; text-align: center; }
 
   /* ---------- Urgent help panel ---------- */
   dialog {
@@ -601,6 +604,11 @@
     <p class="motto">every pro has a strategy</p>
     <p class="intro">Pick what you're dealing with. Get your moves, a quick win for today, and when to call in backup. Takes two minutes.</p>
   </header>
+
+  <div class="coach forum">
+    <p>Want to talk it out with other men? <b>The Brotherhood has a mental-health forum.</b> It isn't for emergencies: if you're in crisis, use Urgent help.</p>
+    <a class="ghost" href="brotherhood.html">Join the brotherhood</a>
+  </div>
 
   <ol class="track" aria-hidden="true">
     <li data-step="1"><b>1</b><span>What's up</span></li>
