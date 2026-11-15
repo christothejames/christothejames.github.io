@@ -8,6 +8,8 @@
 // Accounts (owner, 15 Nov 2026, light and private for now): after the first Google sign-in a "Pick a username" sheet
 // offers a free profile (POST /public/account); it keeps the username and followed men, so they follow the person
 // to any device. "Maybe later" stops the sheet coming back (localStorage `say-skip-name`). Profile page: me.html.
+// Staying logged in: the Google token is swapped for a 30-day session code (localStorage `say-session`), sent as
+// `session` on every call, so a new page doesn't need Google again. Log out deletes it on the server too.
 // This file also runs Google sign-in for any page that loads it (home.html's request card uses SAY.auth).
 //
 //   SAY.strip(id, name, solo)  -> HTML for the vote + follow strip under a card
@@ -22,16 +24,22 @@
   const API = 'https://humbored-admin.pages.dev/public';
   const KEY = 'say';
   const SIGNED = 'say-signin'; // "1" = signed in here before, so Google can sign them back in quietly
+  // The login session code (owner, 15 Nov 2026: "it keeps logging me out"): after a Google sign-in the server gives
+  // this browser a random code that keeps it logged in on every page for 30 days. Log out deletes it here and there.
+  const SESSION = 'say-session';
 
   let s = {};
   try { s = JSON.parse(localStorage.getItem(KEY)) || {}; } catch {}
-  // votes: this browser's copy of the signed-in account's votes (the server has the real ones)
+  // votes / account: this browser's copy of the logged-in account's votes and profile (the server has the real ones),
+  // so the page shows them straight away while it checks in.
   // (My order was dropped on 15 Nov 2026; any saved `order` from before is simply ignored and dropped on the next save.)
-  s = { votes: s.votes || {}, follow: s.follow || [] };
+  s = { votes: s.votes || {}, follow: s.follow || [], account: s.account || null };
   const store = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
   const flag = on => { try { on ? localStorage.setItem(SIGNED, '1') : localStorage.removeItem(SIGNED); } catch {} };
   const flagged = () => { try { return !!localStorage.getItem(SIGNED); } catch { return false; } };
-  if (!flagged() && Object.keys(s.votes).length) { s.votes = {}; store(); }
+  const savedSession = () => { try { return localStorage.getItem(SESSION); } catch { return null; } };
+  const keepSession = id => { try { id ? localStorage.setItem(SESSION, id) : localStorage.removeItem(SESSION); } catch {} };
+  if (!savedSession() && (Object.keys(s.votes).length || s.account)) { s.votes = {}; s.account = null; store(); }
 
   const fns = [];
   const changed = (kind, id) => fns.forEach(f => f(kind, id));
@@ -138,26 +146,53 @@
   const renderButton = (el, text = 'signin_with') => load().then(() => google.accounts.id.renderButton(el,
     { theme: 'filled_black', size: 'large', shape: 'pill', text, locale: 'en' }));
 
-  async function signedIn(t) {
-    token = t;
+  // Google said yes: swap its one-hour token for our 30-day session code, then load the account.
+  async function signedIn(googleToken) {
     flag(true);
     const p = pending; // closing the sheet clears it, so keep the vote they were casting
     const signup = wantsName; // pressed "Sign up": offer the username even if they said "Maybe later" before
     pending = null;
     wantsName = false;
     sheet?.close();
+    try {
+      token = null;
+      const d = await call({ action: 'get', credential: googleToken }, 'account');
+      token = d.session;
+      keepSession(token);
+      authChanged();
+      setVotes(d.votes);
+      setAccount(d.account, true, signup);
+      if (signup && d.account) toast(`Welcome back, ${d.account.username}. You already have a profile.`);
+    } catch (e) {
+      toast(e.signin ? 'Google sign-in didn’t go through. Try again.' : e.message);
+      return;
+    }
+    if (p?.id) castVote(p.id, p.act);
+  }
+  // A page opened while logged in: show the saved login at once, then check the code is still good.
+  async function resume() {
+    token = savedSession();
+    if (!token) return;
+    account = s.account;
     authChanged();
     try {
       const d = await call({ action: 'get' }, 'account');
       setVotes(d.votes);
-      setAccount(d.account, true, signup);
-      if (signup && d.account) toast(`Welcome back, ${d.account.username}. You already have a profile.`);
-    } catch {}
-    if (p?.id) castVote(p.id, p.act);
+      setAccount(d.account);
+    } catch (e) {
+      if (!e.signin) return; // offline or server trouble: stay logged in, try again next page
+      keepSession(null);
+      account = null;
+      s.account = null;
+      setVotes({});
+    }
   }
   function signOut() {
+    if (token) fetch(API + '/account', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'logout', session: token }) }).catch(() => {});
     token = null;
     account = null;
+    s.account = null;
+    keepSession(null);
     flag(false);
     window.google?.accounts?.id?.disableAutoSelect();
     setVotes({});
@@ -172,6 +207,8 @@
 
   function setAccount(a, fromSignIn, signup) {
     account = a || null;
+    s.account = account;
+    store();
     if (account) {
       // Follows from this device and the account come together; the account then keeps the full list.
       const merged = [...new Set([...s.follow, ...(account.follows || [])])];
@@ -193,7 +230,7 @@
     clearTimeout(followTimer);
     followTimer = setTimeout(() => {
       call({ action: 'follows', follows: s.follow }, 'account')
-        .then(d => { account = d.account; }, e => { if (!e.signin) toast(e.message); });
+        .then(d => { account = d.account; s.account = account; store(); }, e => { if (!e.signin) toast(e.message); });
     }, 800);
   }
 
@@ -201,11 +238,17 @@
     if (!token || !account) return;
     if (!confirm('Delete your account? Your username, the men you follow (on our server) and all your votes go, and it can’t be undone.')) return;
     try {
-      const d = await call({ action: 'delete' }, 'account');
-      setVotes(d.votes);
-      account = null;
+      await call({ action: 'delete' }, 'account');
       try { localStorage.setItem(SKIP, '1'); } catch {}
-      paintAccounts();
+      // The server ended this login too, so the browser logs out.
+      token = null;
+      keepSession(null);
+      account = null;
+      s.account = null;
+      flag(false);
+      window.google?.accounts?.id?.disableAutoSelect();
+      setVotes({});
+      authChanged();
       changed('account');
       toast('Your account is deleted.');
     } catch (e) { if (!e.signin) toast(e.message); }
@@ -275,9 +318,13 @@
   }
 
   async function call(body, path = 'vote') {
-    const r = await fetch(API + '/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential: token, ...body }) });
+    const r = await fetch(API + '/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...(token && { session: token }), ...body }) });
     const d = await r.json().catch(() => ({}));
-    if (d.signin) { token = null; authChanged(); throw Object.assign(new Error('signin'), { signin: true }); }
+    if (d.signin) {
+      // The login code ran out (30 days) or was logged out elsewhere.
+      if (token) { token = null; keepSession(null); account = null; s.account = null; store(); authChanged(); }
+      throw Object.assign(new Error('signin'), { signin: true });
+    }
     if (!r.ok) throw new Error(d.error || 'Couldn’t reach our server. Try again in a bit.');
     return d;
   }
@@ -474,8 +521,10 @@
     }
   });
 
-  // Signed in here before: let Google sign them back in quietly.
-  if (GOOGLE_CLIENT_ID && flagged()) load().then(() => google.accounts.id.prompt(), () => {});
+  // Logged in here before: pick the login back up from the saved session code. Without one (an older login, from
+  // before session codes), let Google sign them back in quietly.
+  if (GOOGLE_CLIENT_ID && savedSession()) resume();
+  else if (GOOGLE_CLIENT_ID && flagged()) load().then(() => google.accounts.id.prompt(), () => {});
 
   window.SAY = {
     strip,

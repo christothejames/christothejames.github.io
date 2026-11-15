@@ -756,7 +756,7 @@
   // per man: 'a' = requested signed in, 'i' = requested anonymously (can still upgrade by signing in)
   let requested = {};
   try { requested = JSON.parse(localStorage.getItem(RKEY)) || {}; } catch {}
-  const credential = () => SAY.auth.token(); // kept only in memory by say.js (expires after an hour)
+  const credential = () => SAY.auth.token(); // the login session code from say.js (30 days; Log out ends it)
   let lastMen = [];
   const plain = n => n.replace(/\s*\(.*\)/, '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
   const onSite = new Set(window.PEOPLE.map(p => plain(p.name)));
@@ -850,7 +850,7 @@
     let msg = '';
     try {
       const r = await fetch(REQUEST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: row.dataset.title, ...(credential() && { credential: credential() }) }) });
+        body: JSON.stringify({ name: row.dataset.title, ...(credential() && { session: credential() }) }) });
       const d = await r.json().catch(() => ({}));
       if (d.signin) SAY.auth.signOut();
       if (!r.ok) throw new Error(d.error || 'Something went wrong. Try again later.');
