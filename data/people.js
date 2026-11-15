@@ -8771,6 +8771,10 @@ window.PEOPLE = [
     list: "good",
     type: "public",
     role: "Fitness influencer",
+    // not on Wikidata: TikTok handle from his videos embedded by Fitness Volt (2022), Instagram from
+    // Generation Iron (2023); note @joeyswoll on TikTok is someone else
+    tiktok: "thejoeyswoll",
+    instagram: "joeyswoll",
     reason: "Calls out gym-goers who film or mock other people without their consent.",
     status: "Active",
     about: {},
