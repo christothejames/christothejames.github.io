@@ -5,9 +5,11 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join the Brotherhood · The Real Man Report</title>
-<meta name="description" content="No fees, no forms, no catch. Join the brotherhood and live by one code: better yourself every day, learn from your mistakes, and help a brother in need.">
+<meta name="description" content="No fees, no strings. Join the brotherhood, live by one code (better yourself every day, learn from your mistakes, help a brother in need) and talk it out with other men on our Discord, The Brotherhood.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
+  /* Two doors (owner, 15 Nov 2026: "simply Join the brotherhood and Join our discord channel"):
+     a parchment charter you seal with one tap, then a neon sign that switches on and leads to Discord. */
   :root {
     --blue: #1e90ff;
     --sky: #7cc4ff;
@@ -36,16 +38,15 @@
     overflow-x: hidden;
   }
   a { color: var(--cyan); }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 
   /* ---------- Hero ---------- */
-  header { padding: 48px 0 8px; text-align: center; }
-  .kicker { margin: 0 0 10px; font-family: 'Monoton', cursive; font-size: clamp(15px, 3.6vw, 22px); color: var(--cyan); letter-spacing: .04em; text-shadow: 0 0 10px #3ef2ff88; }
+  header { padding: 52px 0 0; text-align: center; }
   h1 {
     margin: 0;
     font-family: 'Bungee', sans-serif;
     font-weight: 400;
-    font-size: clamp(32px, 8vw, 64px);
+    font-size: clamp(32px, 8vw, 68px);
     line-height: 1.02;
     background:
       repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 1px, transparent 1px 3px),
@@ -56,19 +57,30 @@
     -webkit-text-stroke: 1px #3a424c;
     filter: drop-shadow(0 3px 0 #0a0d11) drop-shadow(0 0 18px #1e90ff44);
   }
-  .lead { max-width: 560px; margin: 18px auto 0; font-size: 19px; }
-  .terms { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: 18px 0 0; padding: 0; list-style: none; }
-  .terms li { padding: 4px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px #7cc4ff66; color: var(--sky); font-size: 14px; }
+  .lead { max-width: 600px; margin: 18px auto 0; font-size: clamp(17px, 2.4vw, 20px); color: #d6e4f7; }
+  .lead b { color: #fff; font-weight: 400; }
 
-  /* ---------- Steps ---------- */
-  .step { margin: 40px 0 0; scroll-margin-top: 76px; } /* clear the sticky top bar when jumping to a step */
-  .step h2 { margin: 0 0 6px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 20px; color: var(--cyan); }
-  .step > p { margin: 0 0 16px; color: var(--muted); }
+  /* ---------- The two doors ---------- */
+  .doors {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    align-items: stretch; margin: 44px 0 0;
+  }
+  @media (max-width: 820px) { .doors { grid-template-columns: 1fr; gap: 40px; } }
+  .door { display: flex; flex-direction: column; scroll-margin-top: 76px; }
+  .door-head { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; }
+  .door-head .n {
+    flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    font-family: 'Bungee', sans-serif; font-size: 16px; color: #1d2228;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #c9d0d8 40%, #6f7882 85%);
+    box-shadow: 0 1px 0 #0008, inset 0 -1px 0 #0006;
+  }
+  .door-head h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.2; color: #fff; }
+  .door-head .sub { margin: 0; font-size: 15px; line-height: 1.3; color: var(--muted); }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: 'Bungee', sans-serif; font-size: 17px;
-    padding: 14px 26px;
+    font-family: 'Bungee', sans-serif; font-size: 17px; line-height: 1.2; text-align: center;
+    padding: 15px 28px;
     border: 0; border-radius: 999px;
     background: var(--cyan); color: var(--night);
     box-shadow: 0 5px 0 #0b6e7a, 0 0 22px #3ef2ff55;
@@ -78,96 +90,152 @@
   .btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #0b6e7a, 0 0 28px #3ef2ff77; }
   .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #0b6e7a; }
   .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-  .btn.gold { background: var(--gold); box-shadow: 0 5px 0 #8a6f00, 0 0 22px #ffe66d55; }
-  .btn.gold:active { box-shadow: 0 2px 0 #8a6f00; }
+  .btn.chrome {
+    color: #1d2228;
+    background: linear-gradient(180deg, #ffffff 0%, #dfe4e9 40%, #9aa3ad 52%, #e9edf1 60%, #b9c1ca 100%);
+    box-shadow: 0 5px 0 #3a424c, 0 0 18px #ffffff22, inset 0 1px 0 #fff;
+  }
+  .btn.chrome:hover { box-shadow: 0 7px 0 #3a424c, 0 0 24px #ffffff44, inset 0 1px 0 #fff; }
+  .btn.chrome:active { box-shadow: 0 2px 0 #3a424c, inset 0 1px 0 #fff; }
   .btn[hidden] { display: none; }
-  .btn[disabled] { opacity: .35; cursor: not-allowed; transform: none; box-shadow: none; }
-  .center { text-align: center; }
 
-  .joined { display: none; margin: 0; font-family: 'Bungee', sans-serif; font-size: clamp(22px, 5vw, 30px); color: var(--gold); text-shadow: 0 0 14px #ffe66d55; }
-  body.is-in .joined { display: block; }
-  body.is-in #joinBtn { display: none; }
-  .joined small { display: block; font-family: 'Righteous', sans-serif; font-size: 15px; color: var(--muted); text-shadow: none; }
-
-  /* The code only opens once he has joined */
-  #oathStep { opacity: .35; pointer-events: none; transition: opacity .4s; }
-  body.is-in #oathStep { opacity: 1; pointer-events: auto; }
-
-  /* ---------- The code plaque: the one loud thing on this page ---------- */
-  .plaque {
-    position: relative;
-    padding: 30px clamp(18px, 5vw, 44px) 28px;
-    border-radius: 8px;
+  /* ---------- Door 1: the charter (owner, 15 Nov 2026: "some kind of medieval transcript, like something you would sign
+     if you was joining an old fashioned cult"). A parchment scroll in brown and red ink, signed with a wax seal. ---------- */
+  .charter {
+    --ink: #3a2614; --red: #8b1a1a;
+    position: relative; flex: 1;
+    display: flex; flex-direction: column;
+    margin: 14px 0;
+    padding: 34px clamp(20px, 4.5vw, 40px) 30px;
+    border-radius: 3px;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
     background:
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 4px),
-      linear-gradient(180deg, #4a535e 0%, #2b3139 55%, #1d2228 100%);
-    border: 1px solid #6b7580;
-    box-shadow: inset 0 1px 0 #9aa3ad, inset 0 -2px 0 #11151a, 0 8px 0 #0a0d11, 0 14px 30px #000a;
+      radial-gradient(ellipse at 20% 15%, #ffffff33 0%, transparent 35%),
+      radial-gradient(ellipse at 80% 90%, #8a5a2a22 0%, transparent 40%),
+      repeating-linear-gradient(0deg, #00000006 0 2px, transparent 2px 5px),
+      radial-gradient(ellipse at 50% 45%, #f6ead0 0%, #efdfba 50%, #dfc48f 82%, #c29a5e 100%);
+    box-shadow: inset 0 0 38px #7a4a1a66, inset 0 0 6px #5a3410aa, 0 12px 30px #000b;
   }
-  .plaque::before, .plaque::after, .plaque > i::before, .plaque > i::after {
-    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, var(--steel-hi), var(--steel-lo) 60%, #2b3139);
-    box-shadow: 0 1px 1px #000;
+  /* rolled ends of the scroll */
+  .charter::before, .charter::after {
+    content: ''; position: absolute; left: -8px; right: -8px; height: 22px; border-radius: 12px;
+    background: linear-gradient(180deg, #e9d3a3 0%, #c9a46a 45%, #8a6232 75%, #b88c52 100%);
+    box-shadow: 0 3px 6px #0008, inset 0 1px 0 #fff6;
   }
-  .plaque::before { top: 12px; left: 12px; } .plaque::after { top: 12px; right: 12px; }
-  .plaque > i::before { bottom: 12px; left: 12px; } .plaque > i::after { bottom: 12px; right: 12px; }
-  .plaque h3 { margin: 0 0 16px; text-align: center; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .12em; color: #c9d1da; }
+  .charter::before { top: -14px; }
+  .charter::after { bottom: -14px; }
+  .charter h3 {
+    margin: 0; text-align: center; font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.1;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--red);
+    text-shadow: 0 1px 0 #ffffff66;
+  }
+  .charter .of { margin: 2px 0 0; text-align: center; font-style: italic; font-size: 17px; color: var(--ink); }
+  .charter .flourish { margin: 8px 0 18px; text-align: center; color: var(--red); font-size: 20px; line-height: 1; }
 
-  /* The code: three plain lines, nothing to tap. They turn chrome once he's in. */
-  .vow { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .vow li {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px; border-radius: 10px;
-    background: #0d1116aa; border: 1px solid #ffffff1a;
-    color: #dfe5ec; font-size: clamp(17px, 4.2vw, 21px); line-height: 1.3;
-    transition: background .3s, border-color .3s, color .3s;
+  .creed p { margin: 0 0 14px; font-size: clamp(16px, 2.2vw, 18px); line-height: 1.6; text-align: justify; hyphens: auto; }
+  .creed p b { font-weight: 700; }
+  .creed p.first::first-letter {
+    float: left; margin: 4px 8px 0 0; font-size: 3.3em; line-height: .8; color: var(--red);
+    text-shadow: 1px 1px 0 #00000022;
   }
-  .vow .num { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: 'Bungee', sans-serif; font-size: 14px; color: #1d2228; background: radial-gradient(circle at 35% 30%, var(--steel-hi), var(--steel-lo) 70%); }
-  /* Lit: chrome lettering on dark bars with a steel edge (owner, 15 Nov 2026: option 1 in design-options/code-lines.html) */
-  body.is-sworn .vow li { background: #0d1116cc; border-color: #9aa3ad; box-shadow: inset 0 1px 0 #ffffff14; }
-  body.is-sworn .vow .t {
-    font-family: 'Bungee', sans-serif; font-size: clamp(15px, 3.6vw, 19px); letter-spacing: .02em;
-    background: linear-gradient(180deg, #ffffff 0%, #e6eaee 30%, #8e98a3 50%, #f4f6f8 54%, #b9c1ca 75%, #6f7882 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 1px 0 #000);
+  .creed .punch {
+    margin: 18px 0 0; text-align: center;
+    font-style: italic; font-weight: 700; font-size: clamp(20px, 3vw, 24px); line-height: 1.3; color: var(--red);
   }
-  body.is-sworn .vow .num { background: radial-gradient(circle at 35% 30%, #ffffff, #c9d0d8 40%, #6f7882 85%); color: #1d2228; box-shadow: 0 1px 0 #0008, inset 0 -1px 0 #0006; }
 
-  .swear { margin: 22px 0 0; text-align: center; }
-  .hint { margin: 10px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
+  .sign-off { margin-top: auto; padding-top: 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .sigline { flex: 1; min-width: 0; }
+  .sigline .line { display: block; min-height: 34px; border-bottom: 1.5px solid var(--ink); font-style: italic; font-size: 20px; line-height: 34px; color: #1f2a5a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sigline small { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #6b4a2a; }
 
-  /* Sworn stamp, slammed onto the plaque once */
+  /* The join button is a blob of melted red wax (owner, 15 Nov 2026: "Press to Enlist"); once pressed it becomes a red wax fingerprint */
+  .seal {
+    position: relative; flex: none; width: 128px; height: 128px; padding: 0; margin: 0 -6px -10px 0;
+    display: grid; place-items: center; border: 0; background: none; cursor: pointer;
+    font-family: Georgia, 'Times New Roman', serif; font-weight: 700; text-transform: uppercase; line-height: 1.05; color: #ffe1d6;
+    text-shadow: 0 -1px 0 #3a0000, 0 1px 0 #ff9a8a55;
+    filter: drop-shadow(0 4px 0 #4a0609) drop-shadow(0 8px 10px #0009);
+    transition: transform .15s, filter .15s;
+  }
+  .seal svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .seal .words { position: relative; display: block; text-align: center; transform: rotate(-6deg); }
+  .seal .words small { display: block; font-size: 11px; letter-spacing: .14em; }
+  .seal .words b { display: block; font-size: 19px; letter-spacing: .08em; }
+  button.seal:hover { transform: translateY(-2px) rotate(-3deg); }
+  button.seal:active { transform: translateY(3px) scale(.97); filter: drop-shadow(0 1px 0 #4a0609) drop-shadow(0 3px 5px #0009); }
+  button.seal:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 50%; }
+  .seal.done { display: none; cursor: default; }
+  body.is-in #joinBtn { display: none; }
+  body.is-in .seal.done { display: grid; }
+  @media (prefers-reduced-motion: no-preference) {
+    body.just-in .seal.done { animation: squish .35s cubic-bezier(.3, 1.6, .5, 1) both; }
+    @keyframes squish { from { transform: scale(1.25, .8); } to { transform: none; } }
+  }
+  .joined { display: none; margin: 14px 0 0; text-align: center; font-weight: 700; font-size: 18px; color: var(--red); }
+  body.is-in .joined { display: block; }
+
+  /* Red ink rubber stamp, slammed onto the charter once he joins */
   .stamp {
     display: none;
-    position: absolute; right: clamp(10px, 4vw, 28px); bottom: 18px;
-    padding: 6px 14px 4px; border: 3px solid var(--gold); border-radius: 6px;
-    font-family: 'Bungee', sans-serif; font-size: clamp(14px, 3.6vw, 18px); line-height: 1.2; text-align: center;
-    color: var(--gold); transform: rotate(-8deg); background: #1d2228e6;
-    box-shadow: 0 0 18px #ffe66d44;
+    position: absolute; left: 50%; top: 18px; white-space: nowrap;
+    padding: 5px 12px 3px; border: 3px solid #b3121a; border-radius: 6px;
+    font-family: 'Bungee', sans-serif; font-size: clamp(13px, 3.2vw, 16px); line-height: 1.2; text-align: center;
+    color: #b3121a; transform: translateX(-50%) rotate(-4deg); opacity: .85; mix-blend-mode: multiply;
   }
-  .stamp small { display: block; font-family: 'Righteous', sans-serif; font-size: 12px; letter-spacing: .04em; }
-  body.is-sworn .stamp { display: block; }
-  body.is-sworn .swear, body.is-sworn .hint { display: none; }
-  body.is-sworn .vow button { cursor: default; }
-  @media (prefers-reduced-motion: no-preference) {
-    body.just-sworn .stamp { animation: slam .28s cubic-bezier(.5, 0, .9, .4) both; }
-    @keyframes slam { from { opacity: 0; transform: rotate(-8deg) scale(2); } to { opacity: 1; transform: rotate(-8deg); } }
-  }
-  /* leave room under the vows for the stamp */
-  body.is-sworn .plaque { padding-bottom: 86px; }
+  body.is-in .stamp { display: block; }
+  body.is-in .charter { padding-top: 70px; } /* room for the stamp above the title */
 
-  /* ---------- Forum (opens after Hold my beer) ---------- */
-  #forumStep { display: none; }
-  body.is-sworn #forumStep { display: block; }
-  .forum { padding: 18px; border: 2px solid var(--gold); border-radius: 12px; background: #ffe66d10; }
-  .house-rules { margin: 0 0 14px; padding-left: 20px; }
-  .house-rules li { margin: 4px 0; }
-  .house-rules b { color: var(--gold); font-weight: 400; }
-  .crisis-pin { margin: 0 0 18px; font-size: 15px; color: var(--muted); }
-  .crisis-pin a { color: #ff6b6b; }
+  /* ---------- Door 2: the neon sign (Discord) ---------- */
+  .sign {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 28px clamp(18px, 4vw, 32px) 26px;
+    border-radius: 18px;
+    background: radial-gradient(ellipse at 50% 0%, #0f2c4d 0%, #071328 70%);
+    border: 2px solid #3ef2ff2e;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .sign-name {
+    margin: 0 0 16px; text-align: center;
+    font-family: 'Monoton', cursive; font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.1;
+    color: #1d3a4f; transition: color .3s, text-shadow .3s;
+  }
+  .sign p { margin: 0 0 14px; color: var(--muted); }
+  .sign p b { color: #fff; font-weight: 400; }
+  .rules { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 6px; }
+  .rules li { padding-left: 22px; position: relative; color: #d6e4f7; }
+  .rules li::before { content: ''; position: absolute; left: 4px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+  .sign-foot { margin-top: auto; text-align: center; }
+  .sign-foot .fine { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
+  .sign-foot .fine a { color: #ff6b6b; }
   .soon { margin: 0; font-family: 'Bungee', sans-serif; color: var(--gold); }
+  .locked { margin: 0; font-family: 'Bungee', sans-serif; font-size: 15px; color: #6f8aa8; }
+  #forumBtn { display: none; }
+  body.is-in .locked { display: none; }
+  body.is-in #forumBtn:not([hidden]) { display: inline-flex; }
 
-  .small-print { margin: 40px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
+  /* Lit once he has joined */
+  body.is-in .sign {
+    border-color: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan), 0 0 26px #3ef2ff55, inset 0 0 22px #3ef2ff1f;
+  }
+  body.is-in .sign-name {
+    color: #e9fdff;
+    text-shadow: 0 0 4px #fff, 0 0 10px var(--cyan), 0 0 22px var(--cyan), 0 0 40px #1e90ff;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body.just-in .stamp { animation: slam .28s cubic-bezier(.5, 0, .9, .4) both; }
+    @keyframes slam { from { opacity: 0; transform: translateX(-50%) rotate(-4deg) scale(2); } to { opacity: .85; transform: translateX(-50%) rotate(-4deg); } }
+    /* the sign flickers on, once, after the stamp lands */
+    body.just-in .sign, body.just-in .sign-name { animation: flicker-on .9s .35s both; }
+    @keyframes flicker-on {
+      0%, 12%, 22%, 38% { opacity: .35; }
+      8%, 18%, 30%, 100% { opacity: 1; }
+    }
+  }
+
+  .small-print { margin: 44px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
   .small-print button { font: inherit; color: var(--muted); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
 
   footer.back { margin-top: 40px; padding: 24px 0 0; border-top: 3px double #7cc4ff77; text-align: center; }
@@ -196,7 +264,7 @@
 
 /* ---------- Top bar ---------- */
   .topnav { position: sticky; top: 0; z-index: 20; background: #050b1af2; backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-  .topnav .wrap { display: flex; align-items: center; gap: 10px; height: 56px; }
+  .topnav .wrap { display: flex; align-items: center; gap: 10px; height: 56px; max-width: 760px; }
   .brand {
     font-family: 'Bungee', sans-serif; font-style: italic; font-size: 17px; text-decoration: none;
     background: linear-gradient(to bottom, #fff, var(--sky) 55%, var(--blue));
@@ -216,7 +284,7 @@
   .home-btn svg { width: 16px; height: 16px; }
   .home-btn:hover { color: #fff; background: #1e90ff26; box-shadow: inset 0 0 0 1.5px #7cc4ff; }
   .home-btn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
-  @media (prefers-reduced-motion: reduce) { .home-btn, .btn, #oathStep { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .home-btn, .btn, .sign, .sign-name { transition: none; } }
 </style>
 </head>
 <body>
@@ -229,60 +297,95 @@
 </nav>
 
 <header class="wrap">
-  <p class="kicker">no fees. no forms. no catch.</p>
   <h1>JOIN THE BROTHERHOOD</h1>
-  <p class="lead">No membership card, no subscription, no sign-up. You're in the moment you decide you are. All we ask is that you live by the code.</p>
-  <ul class="terms" aria-label="What it costs">
-    <li>Free, forever</li>
-    <li>No email</li>
-    <li>No account</li>
-  </ul>
+  <p class="lead">Men getting better, owning their mistakes and backing each other up. <b>No fees. No strings.</b> Two taps and you're in.</p>
 </header>
 
 <main class="wrap">
-  <section class="step center" aria-labelledby="joinTitle">
-    <h2 id="joinTitle">STEP 1: JOIN</h2>
-    <p>One tap. That's it.</p>
-    <button class="btn" type="button" id="joinBtn">Join the brotherhood</button>
-    <p class="joined" id="joined" role="status">You're in, brother.<small id="joinedWhen"></small></p>
-  </section>
-
-  <section class="step" id="oathStep" aria-labelledby="oathTitle">
-    <h2 id="oathTitle">STEP 2: SET THE STANDARD</h2>
-
-    <div class="plaque">
-      <i aria-hidden="true"></i>
-      <h3>THE CODE</h3>
-      <ul class="vow" id="vow">
-        <li><span class="num" aria-hidden="true">1</span><span class="t">Better yourself every day.</span></li>
-        <li><span class="num" aria-hidden="true">2</span><span class="t">Learn from your mistakes.</span></li>
-        <li><span class="num" aria-hidden="true">3</span><span class="t">Help a brother who is in need.</span></li>
-      </ul>
-      <div class="swear"><button class="btn gold" type="button" id="swearBtn">Hold my beer</button></div>
-      <div class="stamp" id="stamp" aria-hidden="true">LET'S GO CHAMP<small id="swornWhen"></small></div>
-    </div>
-  </section>
-
-  <section class="step" id="forumStep" aria-labelledby="forumTitle">
-    <h2 id="forumTitle">STEP 3: TALK IT OUT</h2>
-    <p>The brotherhood forum: an open room for anything men deal with. Relationships, kids, work, money, health, modern-day problems, the challenges nobody talks about. No topic is off limits. Respect is.</p>
-    <div class="forum">
-      <ul class="house-rules" aria-label="Forum house rules">
-        <li><b>Live by the code.</b> Better yourself, own your mistakes, help a brother out.</li>
-        <li><b>No hate, no harassment.</b> Disagree with the idea, never attack the man.</li>
-        <li><b>Keep it real, keep it private.</b> Don't name or share people who aren't public figures.</li>
-        <li><b>18 and over.</b></li>
-      </ul>
-      <p class="crisis-pin">In crisis right now? Don't wait for a reply: <a href="plan.html#urgent">crisis lines and chats</a>.</p>
-      <div class="center">
-        <a class="btn gold" id="forumBtn" href="#" target="_blank" rel="noopener" hidden>Enter the brotherhood forum ↗</a>
-        <p class="soon" id="forumSoon">The forum opens soon. Check back here.</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="waxFill" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#e2463d"/><stop offset=".45" stop-color="#a8141b"/><stop offset="1" stop-color="#650910"/></radialGradient>
+      <radialGradient id="waxDip" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#b81a20"/><stop offset="1" stop-color="#7a0b12"/></radialGradient>
+      <path id="sealedArc" d="M19 64A43 43 0 0 0 105 64"/>
+      <clipPath id="printClip"><ellipse cx="62" cy="62" rx="28" ry="34"/></clipPath>
+    </defs>
+  </svg>
+  <div class="doors">
+    <section class="door" id="joinDoor" aria-labelledby="joinTitle">
+      <div class="door-head">
+        <span class="n" aria-hidden="true">1</span>
+        <div><h2 id="joinTitle">Join the brotherhood</h2><p class="sub">Read the code. Press the seal.</p></div>
       </div>
-      <p class="hint">The forum runs on Discord, so you'll need a free Discord account.</p>
-    </div>
-  </section>
+      <div class="charter">
+        <h3>The Code</h3>
+        <p class="of">of the Brotherhood</p>
+        <p class="flourish" aria-hidden="true">&#10086;</p>
+        <div class="creed">
+          <p class="first">You found your way here, so you're welcome to join. There's one condition: <b>keep working to be a better man.</b></p>
+          <p>Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+          <p class="punch">We don't punch down.<br>We pull people up.</p>
+        </div>
+        <div class="sign-off">
+          <div class="sigline">
+            <span class="line" id="sigLine"></span>
+            <small>Signed, a brother</small>
+          </div>
+          <button class="seal" type="button" id="joinBtn" aria-label="Press to enlist and join the brotherhood">
+            <svg viewBox="0 0 124 124" aria-hidden="true"><g fill="url(#waxFill)"><path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z"/><path d="M94 103c3 6 5 11 3 15-2 4-7 3-7-2 0-4 2-8 4-13z"/><path d="M30 104c-1 5-3 9-6 10-3 1-5-2-3-5 2-3 5-4 9-5z"/><circle cx="118" cy="30" r="3.5"/><circle cx="8" cy="60" r="2.6"/></g>
+            <path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z" fill="none" stroke="#ff8a7a" stroke-opacity=".35" stroke-width="1.5" transform="translate(-1 -1)"/>
+            <circle cx="62" cy="61" r="36" fill="url(#waxDip)"/>
+            <circle cx="62" cy="61" r="36" fill="none" stroke="#4a0609" stroke-opacity=".45" stroke-width="2"/>
+            <circle cx="62" cy="61" r="36" fill="none" stroke="#ff9a8a" stroke-opacity=".35" stroke-width="1.2" transform="translate(1 1.5)"/></svg>
+            <span class="words" aria-hidden="true"><small>Press to</small><b>Enlist</b></span>
+          </button>
+          <div class="seal done" aria-hidden="true">
+            <svg viewBox="0 0 124 124"><g fill="url(#waxFill)"><path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z"/><path d="M94 103c3 6 5 11 3 15-2 4-7 3-7-2 0-4 2-8 4-13z"/><path d="M30 104c-1 5-3 9-6 10-3 1-5-2-3-5 2-3 5-4 9-5z"/><circle cx="118" cy="30" r="3.5"/><circle cx="8" cy="60" r="2.6"/></g>
+            <path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z" fill="none" stroke="#ff8a7a" stroke-opacity=".35" stroke-width="1.5" transform="translate(-1 -1)"/>
+            <circle cx="62" cy="61" r="36" fill="url(#waxDip)"/>
+            <circle cx="62" cy="61" r="36" fill="none" stroke="#4a0609" stroke-opacity=".45" stroke-width="2"/>
+            <circle cx="62" cy="61" r="36" fill="none" stroke="#ff9a8a" stroke-opacity=".35" stroke-width="1.2" transform="translate(1 1.5)"/>
+            <g clip-path="url(#printClip)" fill="none" stroke-linecap="round" transform="rotate(-12 62 61)">
+              <path d="M60.5 59C60.5 53 64.5 53 64.5 59M57.6 64.1C57.6 49.1 66.4 49.1 66.4 63.1M54.7 66.2C54.7 44.8 69.3 44.8 69.3 65.2M51.8 68.3C51.8 40.4 72.2 40.4 72.2 67.3M48.9 70.4C48.9 36.0 75.1 36.0 75.1 69.4M46.0 72.5C46.0 31.6 78.0 31.6 78.0 71.5M43.1 74.6C43.1 27.3 80.9 27.3 80.9 73.6M40.2 76.7C40.2 22.9 83.8 22.9 83.8 75.7M37.3 78.8C37.3 18.5 86.7 18.5 86.7 77.8M34.4 80.9C34.4 14.1 89.6 14.1 89.6 79.9M30 81.0Q62 92.0 95 78.0M30 84.8Q62 95.8 95 81.8M30 88.6Q62 99.6 95 85.6M30 92.4Q62 103.4 95 89.4M30 96.2Q62 107.2 95 93.2" stroke="#ff9a8a" stroke-opacity=".4" stroke-width="1.3" transform="translate(.8 1)" stroke-dasharray="46 2.5 30 3 70 2"/>
+              <path d="M60.5 59C60.5 53 64.5 53 64.5 59M57.6 64.1C57.6 49.1 66.4 49.1 66.4 63.1M54.7 66.2C54.7 44.8 69.3 44.8 69.3 65.2M51.8 68.3C51.8 40.4 72.2 40.4 72.2 67.3M48.9 70.4C48.9 36.0 75.1 36.0 75.1 69.4M46.0 72.5C46.0 31.6 78.0 31.6 78.0 71.5M43.1 74.6C43.1 27.3 80.9 27.3 80.9 73.6M40.2 76.7C40.2 22.9 83.8 22.9 83.8 75.7M37.3 78.8C37.3 18.5 86.7 18.5 86.7 77.8M34.4 80.9C34.4 14.1 89.6 14.1 89.6 79.9M30 81.0Q62 92.0 95 78.0M30 84.8Q62 95.8 95 81.8M30 88.6Q62 99.6 95 85.6M30 92.4Q62 103.4 95 89.4M30 96.2Q62 107.2 95 93.2" stroke="#3d0306" stroke-opacity=".7" stroke-width="1.7" stroke-dasharray="46 2.5 30 3 70 2"/>
+            </g>
+            <text class="sealed-word" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="700" letter-spacing="2.5" text-anchor="middle">
+              <textPath href="#sealedArc" startOffset="50%" fill="#3d0306" fill-opacity=".55" dy="1">SEALED</textPath>
+            </text>
+            <text font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="700" letter-spacing="2.5" text-anchor="middle">
+              <textPath href="#sealedArc" startOffset="50%" fill="#ffe1d6">SEALED</textPath>
+            </text></svg>
+          </div>
+        </div>
+        <p class="joined" role="status">You're in, brother.</p>
+        <div class="stamp" aria-hidden="true">LET'S GO CHAMP</div>
+      </div>
+    </section>
 
-  <p class="small-print">Your progress is saved only on this device. Nobody else sees it. <button type="button" id="leaveBtn" hidden>Start over</button></p>
+    <section class="door" id="forumDoor" aria-labelledby="forumTitle">
+      <div class="door-head">
+        <span class="n" aria-hidden="true">2</span>
+        <div><h2 id="forumTitle">Join our Discord</h2><p class="sub">Talk it out with other men.</p></div>
+      </div>
+      <div class="sign">
+        <p class="sign-name" aria-hidden="true">The Brotherhood</p>
+        <p>Relationships, kids, work, money, health, the stuff nobody talks about. <b>No topic is off limits. Respect is.</b></p>
+        <ul class="rules" aria-label="House rules">
+          <li>Live by the code.</li>
+          <li>Disagree with the idea, never attack the man.</li>
+          <li>Don't name or share people who aren't public figures.</li>
+          <li>18 and over.</li>
+        </ul>
+        <div class="sign-foot">
+          <p class="locked">Join the brotherhood first</p>
+          <a class="btn" id="forumBtn" href="#" target="_blank" rel="noopener" hidden>Join The Brotherhood on Discord ↗</a>
+          <p class="soon" id="forumSoon">The Discord opens soon. Check back here.</p>
+          <p class="fine">Free Discord account needed. In crisis right now? Don't wait for a reply: <a href="plan.html#urgent">crisis lines and chats</a>.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="small-print">Joining is saved only on this device. Nobody else sees it. <button type="button" id="leaveBtn" hidden>Start over</button></p>
 </main>
 
 <footer class="wrap back">
@@ -318,15 +421,15 @@
 <script>
 (() => {
   // The brotherhood forum is a Discord server (owner, 14 Nov 2026). Paste its permanent invite link here;
-  // while empty, the page says the forum opens soon. Add Discord to privacy.html when the link goes live.
+  // while empty, the page says the Discord opens soon. Add Discord to privacy.html when the link goes live.
   const DISCORD_INVITE = 'https://discord.gg/4MAm4xAT48';
+  const forumBtn = document.getElementById('forumBtn');
   if (DISCORD_INVITE) {
-    const f = document.getElementById('forumBtn');
-    f.href = DISCORD_INVITE; f.hidden = false;
+    forumBtn.href = DISCORD_INVITE; forumBtn.hidden = false;
     document.getElementById('forumSoon').hidden = true;
   }
 
-  // Saved only in this browser: { joined: ISO date, sworn: ISO date }
+  // Saved only in this browser: { joined: ISO date } (older visits may also carry "sworn", which is ignored)
   const KEY = 'brotherhood';
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
   const save = s => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
@@ -334,34 +437,28 @@
   let state = load();
 
   const body = document.body;
-  const swearBtn = document.getElementById('swearBtn');
   const leaveBtn = document.getElementById('leaveBtn');
+  const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function paint() {
     body.classList.toggle('is-in', !!state.joined);
-    body.classList.toggle('is-sworn', !!state.sworn);
-    document.getElementById('joinedWhen').textContent = state.joined ? 'Brother since ' + day(state.joined) : '';
-    document.getElementById('swornWhen').textContent = state.sworn ? day(state.sworn) : '';
+    document.getElementById('sigLine').textContent = state.joined ? 'Sealed ' + day(state.joined) : '';
     leaveBtn.hidden = !state.joined;
   }
 
   document.getElementById('joinBtn').addEventListener('click', () => {
-    state.joined = new Date().toISOString(); save(state); paint();
-    document.getElementById('oathStep').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-  });
-  swearBtn.addEventListener('click', () => {
-    state.sworn = new Date().toISOString(); save(state);
-    body.classList.add('just-sworn'); paint();
-    // Straight to the forum (owner, 15 Nov 2026: no "Keep it" step), once the stamp has landed
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    state = { joined: new Date().toISOString() }; save(state);
+    body.classList.add('just-in'); paint();
+    // On a phone the doors are stacked: bring the Discord one into view once the stamp has landed
     setTimeout(() => {
-      document.getElementById('forumStep').scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
-      document.getElementById(DISCORD_INVITE ? 'forumBtn' : 'forumTitle').focus({ preventScroll: true });
-    }, still ? 0 : 600);
+      const door = document.getElementById('forumDoor');
+      if (door.getBoundingClientRect().top > innerHeight * 0.5) door.scrollIntoView({ behavior: still() ? 'auto' : 'smooth', block: 'start' });
+      (DISCORD_INVITE ? forumBtn : door).focus({ preventScroll: true });
+    }, still() ? 0 : 600);
   });
   leaveBtn.addEventListener('click', () => {
     state = {}; save(state);
-    body.classList.remove('just-sworn'); paint();
+    body.classList.remove('just-in'); paint();
     window.scrollTo({ top: 0 });
   });
   paint();

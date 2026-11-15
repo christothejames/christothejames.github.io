@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Design options for "We don't punch down. We pull people up." on the brotherhood.html plaque (15 Nov 2026). Neon was tried and dropped, then chrome; owner tried 3 with a red second line, then replaced the whole plaque with a parchment charter instead. Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Punch Line Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --cyan: #3ef2ff; --gold: #ffe66d; --pink: #ff3cc7; --steel-hi: #f2f4f7; --steel-lo: #7d8792; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse at top, #0d2a5c 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  .grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px 28px; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 13px; color: #7cc4ff; margin: 0 0 10px; }
+  .plaque {
+    position: relative; padding: 26px clamp(18px, 4vw, 32px) 30px; border-radius: 8px; text-align: center;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 4px), linear-gradient(180deg, #4a535e 0%, #2b3139 55%, #1d2228 100%);
+    border: 1px solid #6b7580;
+    box-shadow: inset 0 1px 0 #9aa3ad, inset 0 -2px 0 #11151a, 0 8px 0 #0a0d11, 0 14px 30px #000a;
+  }
+  .plaque::before, .plaque::after, .plaque > i::before, .plaque > i::after {
+    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--steel-hi), var(--steel-lo) 60%, #2b3139); box-shadow: 0 1px 1px #000;
+  }
+  .plaque::before { top: 12px; left: 12px; } .plaque::after { top: 12px; right: 12px; }
+  .plaque > i::before { bottom: 12px; left: 12px; } .plaque > i::after { bottom: 12px; right: 12px; }
+  .plaque p.body { margin: 0; font-size: 16px; line-height: 1.55; color: #dfe5ec; text-shadow: 0 1px 0 #000; }
+  .punch { margin: 20px 0 0; padding: 16px 0 0; border-top: 1px solid #9aa3ad55; font-family: 'Bungee', sans-serif; font-size: clamp(19px, 3vw, 24px); line-height: 1.25; letter-spacing: .02em; }
+
+  /* 0. Now: chrome */
+  .o0 .punch {
+    background: linear-gradient(180deg, #ffffff 0%, #e6eaee 30%, #8e98a3 50%, #f4f6f8 54%, #b9c1ca 75%, #6f7882 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 0 #000);
+  }
+
+  /* 1. Mirror chrome: sharper, brighter gradient with a hard horizon line and a dark outline so it lifts off the steel */
+  .o1 .punch { font-size: clamp(21px, 3.4vw, 27px);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 38%, #6f7882 49%, #2b3139 51%, #c9d0d8 72%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-text-stroke: 1px #11151a;
+    filter: drop-shadow(0 2px 0 #000) drop-shadow(0 0 10px #ffffff33); }
+
+  /* 2. Chrome on a dark band: the same chrome lettering set into a black inset strip, so the silver pops */
+  .o2 .punch { border-top: 0; margin-top: 22px; padding: 14px 10px; border-radius: 8px;
+    background: #0a0d11; box-shadow: inset 0 2px 6px #000, 0 1px 0 #9aa3ad66; }
+  .o2 .punch span {
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 38%, #8e98a3 49%, #3a424c 51%, #dfe4e9 75%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 6px #ffffff40); }
+
+  /* 3. 80s chrome: sky-blue top, hard horizon, the retro chrome from the Real Men heading options (no pink edge) */
+  .o3 .punch { font-style: italic; font-size: clamp(21px, 3.4vw, 27px);
+    background: linear-gradient(180deg, #0b3a7a 0%, #7cc4ff 40%, #ffffff 49%, #1d2228 51%, #9aa3ad 72%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+    filter: drop-shadow(2px 2px 0 #0a0d11) drop-shadow(0 0 8px #7cc4ff55); }
+
+  /* 4. Polished chrome strip: a mirror-chrome bar bolted to the plate, words stamped into it in black */
+  .o4 .punch { border-top: 0; margin-top: 22px; padding: 12px 10px; border-radius: 6px; color: #11151a;
+    background: linear-gradient(180deg, #ffffff 0%, #e6eaee 35%, #8e98a3 50%, #dfe4e9 58%, #b9c1ca 100%);
+    border: 1px solid #3a424c; box-shadow: inset 0 1px 0 #fff, 0 3px 0 #0a0d11, 0 0 14px #ffffff22;
+    text-shadow: 0 1px 0 #ffffffaa; }
+
+  /* 5. Chrome with a shine: mirror chrome plus a slow glint of light sweeping across it */
+  .o5 .punch { font-size: clamp(21px, 3.4vw, 27px); }
+  .o5 .punch span {
+    background:
+      linear-gradient(105deg, transparent 40%, #ffffffee 50%, transparent 60%) -200% 0 / 200% 100% no-repeat,
+      linear-gradient(180deg, #ffffff 0%, #ffffff 38%, #6f7882 49%, #2b3139 51%, #c9d0d8 72%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-text-stroke: 1px #11151a; filter: drop-shadow(0 2px 0 #000); }
+  @media (prefers-reduced-motion: no-preference) {
+    .o5 .punch span { animation: glint 4.5s ease-in-out infinite; }
+    @keyframes glint { 0%, 55% { background-position: -200% 0, 0 0; } 85%, 100% { background-position: 200% 0, 0 0; } }
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <section class="o0"><p class="tag">0 · Now (chrome)</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch">We don't punch down.<br>We pull people up.</p></div></section>
+
+    <section class="o1"><p class="tag">1 · Mirror chrome</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch">We don't punch down.<br>We pull people up.</p></div></section>
+
+    <section class="o2"><p class="tag">2 · Chrome on a dark band</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch"><span>We don't punch down.<br>We pull people up.</span></p></div></section>
+
+    <section class="o3"><p class="tag">3 · 80s chrome</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch">We don't punch down.<br>We pull people up.</p></div></section>
+
+    <section class="o4"><p class="tag">4 · Polished chrome strip</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch">We don't punch down.<br>We pull people up.</p></div></section>
+
+    <section class="o5"><p class="tag">5 · Chrome with a shine</p><div class="plaque"><i></i>
+      <p class="body">Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
+      <p class="punch"><span>We don't punch down.<br>We pull people up.</span></p></div></section>
+  </div>
+</body>
+</html>
