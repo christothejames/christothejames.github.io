@@ -364,6 +364,10 @@
   .say-hint { flex: 1 1 240px; margin: 0; font-size: 14px; color: var(--muted); }
   .say-reset { font-family: inherit; font-size: 13px; background: none; border: 0; padding: 0; color: var(--cyan); text-decoration: underline; cursor: pointer; }
   .say-reset[hidden] { display: none; }
+  .opinion-link { margin-left: auto; font-family: 'Bungee', sans-serif; font-size: 13px; color: var(--night); background: var(--gold);
+    padding: 8px 14px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
+  .opinion-link:hover { box-shadow: 0 0 16px #ffe66d88; }
+  .opinion-link:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
 
   .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
   .bad .poster { --pin: var(--red); --glow: #ff3b3b66; }
@@ -610,6 +614,8 @@
     </div>
     <p class="say-hint" id="sayHint"></p>
     <button type="button" class="say-reset" id="sayReset" hidden>Reset to our order</button>
+    <span data-say-account></span>
+    <a class="opinion-link" href="opinion.html">See public opinion: who's trending</a>
   </section>
 
   <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
@@ -747,7 +753,7 @@
   // ---------- Have your say: which order the boards show ----------
   let mode = 'ours', visible = {}, boardOurs = {};
   const HINTS = {
-    ours: 'Our ranking, from the public record. Vote ↑ if you agree with his place, ↓ if not.',
+    ours: 'Our ranking, from the public record. Vote ↑ if you agree with his place, ↓ if not. One vote per Google account.',
     mine: 'Your own order. Move men up or down; our order stays as it is. Saved in this browser only.',
     follow: 'The men you follow, in your order.',
   };
@@ -806,13 +812,13 @@
   const WP = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&';
   const WDQ = 'https://query.wikidata.org/sparql?format=json&query=';
   // Google sign-in: a signed-in request counts once per account and ranks above anonymous ones.
-  // Client ID is public, not a secret; it must match GOOGLE_CLIENT_ID in the admin repo. Empty = sign-in hidden.
-  const GOOGLE_CLIENT_ID = '958568316588-du1d98s3ghbpiudet67kvr5s0140stna.apps.googleusercontent.com';
+  // The sign-in itself (and its client ID) lives in say.js, shared with voting: one sign-in for both.
+  const GOOGLE_CLIENT_ID = SAY.auth.enabled;
   const RKEY = 'rmr_requested';
   // per man: 'a' = requested signed in, 'i' = requested anonymously (can still upgrade by signing in)
   let requested = {};
   try { requested = JSON.parse(localStorage.getItem(RKEY)) || {}; } catch {}
-  let credential = null; // Google sign-in token, kept only in memory (expires after an hour)
+  const credential = () => SAY.auth.token(); // kept only in memory by say.js (expires after an hour)
   let lastMen = [];
   const plain = n => n.replace(/\s*\(.*\)/, '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
   const onSite = new Set(window.PEOPLE.map(p => plain(p.name)));
@@ -853,39 +859,25 @@
     return menFrom('generator=search&gsrlimit=20&gsrsearch=' + encodeURIComponent(intitle));
   }
 
-  // Google's sign-in script loads only once the request card shows up, not on every visit.
+  // Google's sign-in script loads only once the request card shows up (or the visitor signs in to vote).
   const signinBox = document.getElementById('askSignin');
-  let gisLoading;
-  function loadGoogle() {
-    if (!GOOGLE_CLIENT_ID) return;
-    gisLoading ??= new Promise((ok, fail) => {
-      const s = document.createElement('script');
-      // English for now (owner, 27 Oct 2026), whatever the visitor's browser language
-      s.src = 'https://accounts.google.com/gsi/client?hl=en';
-      s.async = true;
-      s.onload = ok;
-      s.onerror = fail;
-      document.head.appendChild(s);
-    }).then(() => {
-      google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: r => { credential = r.credential; renderSignin(); rerenderRows(); } });
-      renderSignin();
-    }).catch(() => {});
-  }
+  const loadGoogle = () => { if (GOOGLE_CLIENT_ID) SAY.auth.load().then(renderSignin, () => {}); };
+  SAY.auth.onChange(() => { renderSignin(); rerenderRows(); });
 
   function renderSignin() {
     signinBox.hidden = !GOOGLE_CLIENT_ID || !window.google?.accounts?.id;
     if (signinBox.hidden) return;
-    if (credential) {
+    if (credential()) {
       signinBox.innerHTML = '<span><b>✓ Signed in with Google.</b> Your requests count fully.</span><button type="button" id="signout">sign out</button>';
-      signinBox.querySelector('#signout').addEventListener('click', () => { credential = null; google.accounts.id.disableAutoSelect(); renderSignin(); rerenderRows(); });
+      signinBox.querySelector('#signout').addEventListener('click', () => SAY.auth.signOut());
     } else {
       signinBox.innerHTML = '<span id="gbtn"></span><span>Signed-in requests count most. Without an account they still count, just less. We keep a scrambled ID only, never your name or email. <a href="privacy.html" style="color:inherit">Privacy</a></span>';
-      google.accounts.id.renderButton(signinBox.querySelector('#gbtn'), { theme: 'filled_black', size: 'medium', shape: 'pill', text: 'signin_with', locale: 'en' });
+      SAY.auth.renderButton(signinBox.querySelector('#gbtn'));
     }
   }
 
   function askRow(m) {
-    const done = requested[m.qid] === 'a' || (requested[m.qid] && !credential);
+    const done = requested[m.qid] === 'a' || (requested[m.qid] && !credential());
     return `<div class="ask-man" data-qid="${esc(m.qid)}" data-title="${esc(m.title)}">
       <span class="ini" aria-hidden="true">${esc(initials(m.title))}</span>
       <span class="who"><b>${esc(m.title)}</b><small>${esc(m.description)} · <a href="${esc(m.wiki)}" target="_blank" rel="noopener">Wikipedia</a></small></span>
@@ -920,9 +912,9 @@
     let msg = '';
     try {
       const r = await fetch(REQUEST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: row.dataset.title, ...(credential && { credential }) }) });
+        body: JSON.stringify({ name: row.dataset.title, ...(credential() && { credential: credential() }) }) });
       const d = await r.json().catch(() => ({}));
-      if (d.signin) { credential = null; renderSignin(); }
+      if (d.signin) SAY.auth.signOut();
       if (!r.ok) throw new Error(d.error || 'Something went wrong. Try again later.');
       requested[qid] = d.account ? 'a' : 'i';
       try { localStorage.setItem(RKEY, JSON.stringify(requested)); } catch {}
@@ -994,6 +986,7 @@
       <ul>
         <li><a href="home.html">The boards</a></li>
         <li><a href="web.html">Rankings</a></li>
+        <li><a href="opinion.html">Public opinion</a></li>
         <li><a href="skills.html">Learn a skill</a></li>
         <li><a href="plan.html">Mental health</a></li>
         <li><a href="chores.html">Home game plan</a></li>

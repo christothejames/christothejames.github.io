@@ -186,6 +186,7 @@
       <li>If you request a man to be ranked, we keep a scrambled code, not who you are, so each person counts once.</li>
       <li>Things you save on this site (reactions, skills, your home plan, test results) stay in your own browser. We never see them.</li>
       <li>Only if you choose <b>Save with Google</b> on the Skills page, we keep your skills list under a scrambled code so it follows you to other devices. You can delete it any time.</li>
+      <li>Votes (↑ and ↓ on the boards) need a Google sign-in, so each account votes once. We keep each vote under a scrambled code, never your name or email, and show only the totals.</li>
     </ul>
   </section>
 
@@ -235,14 +236,28 @@
     This is stored with <b>Cloudflare</b>, like ranking requests.</p>
   <p class="muted">Why: you asked us to keep it (consent, GDPR Art. 6(1)(a)). Without signing in, your skills stay in your browser only.</p>
 
+  <h2>VOTING</h2>
+  <p>Every man on the boards has ↑ and ↓ arrows: ↑ if you agree with his place, ↓ if not. To stop spam, a vote only counts if you sign in with Google, once per account per man. Then we keep:</p>
+  <table>
+    <thead><tr><th>What</th><th>Why</th><th>How long</th></tr></thead>
+    <tbody>
+      <tr><td>Your vote on each man (up or down) and when you cast it</td><td>To count the totals and show who's trending on the Public Opinion page</td><td>12 months after you cast or change it, or until you delete it</td></tr>
+      <tr><td>A scrambled code made from your Google account ID</td><td>So each account counts once per man, and you see your votes on any device</td><td>Kept with each vote</td></tr>
+      <tr><td>Your IP address</td><td>To stop spam (60 votes a minute)</td><td>60 seconds</td></tr>
+    </tbody>
+  </table>
+  <p>Only the totals are ever shown, never who voted. Press an arrow again to take a vote back, or press <b>Delete my votes</b> (on the boards or the Public Opinion page, once signed in) to remove all of them from our server straight away.
+    This is stored with <b>Cloudflare</b>, like ranking requests. Following men and your own board order don't need an account and stay in your browser.</p>
+  <p class="muted">Why: you chose to vote (consent, GDPR Art. 6(1)(a)), and to keep the counts fair (legitimate interest, GDPR Art. 6(1)(f)).</p>
+
   <h2>SIGNING IN WITH GOOGLE</h2>
-  <p>Signing in is optional. Google's sign-in script only loads once the request box appears, or when you press SAVE WITH GOOGLE on the Skills page (and on later visits to the Skills page if you stayed signed in there), not on every visit. When you sign in, Google tells us a permanent ID for your account, and we turn it straight into a scrambled code. Google will know you signed in to humbored.com.
-    Your sign-in only lasts while the page is open; we don't save it. The Skills page remembers in your browser that you signed in there, so Google can offer to sign you back in.
+  <p>Signing in is optional. Google's sign-in script only loads once the request box appears, when you press an arrow to vote or Sign in to vote, or when you press SAVE WITH GOOGLE on the Skills page (and on later visits if you stayed signed in), not on every visit. When you sign in, Google tells us a permanent ID for your account, and we turn it straight into a scrambled code. Google will know you signed in to humbored.com.
+    Your sign-in only lasts while the page is open; we don't save it. The Skills page, and pages with votes, remember in your browser that you signed in, so Google can offer to sign you back in.
     <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
 
   <h2>SAVED ONLY IN YOUR BROWSER</h2>
   <p>Some pages remember things in your browser's own storage on your device. It never leaves your device, and we can't see it:
-    profile reactions, your up and down votes, the men you follow and your own board order, which men you've requested, your skills list (also on our server only if you chose Save with Google), your home game plan, your Manly Test results, your Mental Health picks, and whether you've joined the brotherhood and signed up to its code (with the dates).
+    profile reactions, the men you follow and your own board order (plus a copy of your votes while you're signed in, so they show straight away), which men you've requested, your skills list (also on our server only if you chose Save with Google), your home game plan, your Manly Test results, your Mental Health picks, and whether you've joined the brotherhood and signed up to its code (with the dates).
     Clear your browser's site data to delete it.</p>
 
   <h2>VIDEOS AND LINKS</h2>
@@ -276,6 +291,7 @@
       <ul>
         <li><a href="home.html">The boards</a></li>
         <li><a href="web.html">Rankings</a></li>
+        <li><a href="opinion.html">Public opinion</a></li>
         <li><a href="skills.html">Learn a skill</a></li>
         <li><a href="plan.html">Mental health</a></li>
         <li><a href="chores.html">Home game plan</a></li>
