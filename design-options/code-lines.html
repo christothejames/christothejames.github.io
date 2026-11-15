@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<!-- Design options for the three lines under THE CODE on brotherhood.html (15 Nov 2026), shown in their lit state after "Hold my beer". Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Lines Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --gold: #ffe66d; --steel-hi: #f2f4f7; --steel-lo: #7d8792; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse at top, #0d2a5c 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  .opt { max-width: 760px; margin: 0 auto 30px; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 13px; color: #7cc4ff; margin: 0 0 10px; }
+  .plaque {
+    position: relative; padding: 26px clamp(16px, 5vw, 40px) 26px; border-radius: 8px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 4px), linear-gradient(180deg, #4a535e 0%, #2b3139 55%, #1d2228 100%);
+    border: 1px solid #6b7580;
+    box-shadow: inset 0 1px 0 #9aa3ad, inset 0 -2px 0 #11151a, 0 8px 0 #0a0d11, 0 14px 30px #000a;
+  }
+  .plaque::before, .plaque::after, .plaque > i::before, .plaque > i::after {
+    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--steel-hi), var(--steel-lo) 60%, #2b3139); box-shadow: 0 1px 1px #000;
+  }
+  .plaque::before { top: 12px; left: 12px; } .plaque::after { top: 12px; right: 12px; }
+  .plaque > i::before { bottom: 12px; left: 12px; } .plaque > i::after { bottom: 12px; right: 12px; }
+  .plaque h3 { margin: 0 0 16px; text-align: center; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .12em; color: #c9d1da; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px; font-size: clamp(17px, 4.2vw, 21px); line-height: 1.3; }
+  .num { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: 'Bungee', sans-serif; font-size: 14px; }
+
+  /* shared chrome lettering */
+  .chrome-text {
+    background: linear-gradient(180deg, #ffffff 0%, #e6eaee 30%, #8e98a3 50%, #f4f6f8 54%, #b9c1ca 75%, #6f7882 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .chrome-badge { background: radial-gradient(circle at 35% 30%, #ffffff, #c9d0d8 40%, #6f7882 85%); color: #1d2228; box-shadow: 0 1px 0 #0008, inset 0 -1px 0 #0006; }
+
+  /* 0. Now: gold */
+  .o0 li { background: #ffe66d14; border: 1px solid var(--gold); color: #fff; }
+  .o0 .num { background: var(--gold); color: var(--night); }
+
+  /* 1. Chrome lettering: chrome text and chrome number badges on dark bars with a steel edge */
+  .o1 li { background: #0d1116cc; border: 1px solid #9aa3ad; box-shadow: inset 0 1px 0 #ffffff14; }
+  .o1 li span.t { font-family: 'Bungee', sans-serif; font-size: clamp(15px, 3.6vw, 19px); letter-spacing: .02em; filter: drop-shadow(0 1px 0 #000); }
+
+  /* 2. Chrome bars: each line is a polished chrome bar with the words stamped in dark */
+  .o2 li {
+    background: linear-gradient(180deg, #f4f6f8 0%, #c9d0d8 45%, #8e98a3 52%, #d9dee4 60%, #9aa3ad 100%);
+    border: 1px solid #5c6570; color: #1d2228; box-shadow: inset 0 1px 0 #fff, 0 2px 0 #0a0d11;
+    text-shadow: 0 1px 0 #ffffff99;
+  }
+  .o2 li span.t { font-family: 'Bungee', sans-serif; font-size: clamp(15px, 3.6vw, 19px); }
+  .o2 .num { background: #1d2228; color: #e6eaee; box-shadow: inset 0 1px 2px #000; }
+
+  /* 3. Engraved steel: brushed steel bars with the words cut into the metal */
+  .o3 li {
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 3px), linear-gradient(180deg, #8e98a3 0%, #6f7882 100%);
+    border: 1px solid #3a424c; color: #2b3139; box-shadow: inset 0 1px 0 #c9d0d8, 0 2px 0 #0a0d11;
+    text-shadow: 0 1px 0 #c9d0d899, 0 -1px 0 #11151a;
+  }
+  .o3 li span.t { font-family: 'Bungee', sans-serif; font-size: clamp(15px, 3.6vw, 19px); letter-spacing: .03em; }
+  .o3 .num { background: #2b3139; color: #c9d0d8; box-shadow: inset 0 1px 2px #000, 0 1px 0 #c9d0d8; }
+
+  /* 4. Chrome with blue edge: chrome lettering with an electric-blue glow, tying in with the site */
+  .o4 li { background: #0a1426cc; border: 1px solid #1e90ff; box-shadow: 0 0 12px #1e90ff44, inset 0 0 10px #1e90ff22; }
+  .o4 li span.t { font-family: 'Bungee', sans-serif; font-size: clamp(15px, 3.6vw, 19px); filter: drop-shadow(0 0 4px #7cc4ff88); }
+
+  /* 5. Gunmetal plain: dark gunmetal bars, bright white text, chrome badges (quietest) */
+  .o5 li { background: linear-gradient(180deg, #3a424c, #23282f); border: 1px solid #6b7580; color: #f4f6f8; box-shadow: inset 0 1px 0 #9aa3ad55, 0 2px 0 #0a0d11; }
+  .o5 li span.t { font-weight: 400; letter-spacing: .01em; }
+</style>
+</head>
+<body>
+  <section class="opt o0"><p class="tag">0 · Now (gold)</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num">1</span><span class="t">Better yourself every day.</span></li>
+    <li><span class="num">2</span><span class="t">Learn from your mistakes.</span></li>
+    <li><span class="num">3</span><span class="t">Help a brother who is in need.</span></li></ul></div></section>
+
+  <section class="opt o1"><p class="tag">1 · Chrome lettering (chosen, live on brotherhood.html)</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num chrome-badge">1</span><span class="t chrome-text">Better yourself every day.</span></li>
+    <li><span class="num chrome-badge">2</span><span class="t chrome-text">Learn from your mistakes.</span></li>
+    <li><span class="num chrome-badge">3</span><span class="t chrome-text">Help a brother who is in need.</span></li></ul></div></section>
+
+  <section class="opt o2"><p class="tag">2 · Chrome bars</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num">1</span><span class="t">Better yourself every day.</span></li>
+    <li><span class="num">2</span><span class="t">Learn from your mistakes.</span></li>
+    <li><span class="num">3</span><span class="t">Help a brother who is in need.</span></li></ul></div></section>
+
+  <section class="opt o3"><p class="tag">3 · Engraved steel</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num">1</span><span class="t">Better yourself every day.</span></li>
+    <li><span class="num">2</span><span class="t">Learn from your mistakes.</span></li>
+    <li><span class="num">3</span><span class="t">Help a brother who is in need.</span></li></ul></div></section>
+
+  <section class="opt o4"><p class="tag">4 · Chrome with blue edge</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num chrome-badge">1</span><span class="t chrome-text">Better yourself every day.</span></li>
+    <li><span class="num chrome-badge">2</span><span class="t chrome-text">Learn from your mistakes.</span></li>
+    <li><span class="num chrome-badge">3</span><span class="t chrome-text">Help a brother who is in need.</span></li></ul></div></section>
+
+  <section class="opt o5"><p class="tag">5 · Gunmetal, quiet</p><div class="plaque"><i></i><h3>THE CODE</h3><ul>
+    <li><span class="num chrome-badge">1</span><span class="t">Better yourself every day.</span></li>
+    <li><span class="num chrome-badge">2</span><span class="t">Learn from your mistakes.</span></li>
+    <li><span class="num chrome-badge">3</span><span class="t">Help a brother who is in need.</span></li></ul></div></section>
+</body>
+</html>
