@@ -187,6 +187,7 @@
       <li>Things you save on this site (reactions, skills, your home plan, test results) stay in your own browser. We never see them.</li>
       <li>Only if you choose <b>Save with Google</b> on the Skills page, we keep your skills list under a scrambled code so it follows you to other devices. You can delete it any time.</li>
       <li>Votes (↑ and ↓ on the boards) need a Google sign-in, so each account votes once. We keep each vote under a scrambled code, never your name or email, and show only the totals.</li>
+      <li>If you make a profile, we keep the username you pick and the men you follow. Only you can see it, and you can delete it any time.</li>
     </ul>
   </section>
 
@@ -246,13 +247,28 @@
       <tr><td>Your IP address</td><td>To stop spam (60 votes a minute)</td><td>60 seconds</td></tr>
     </tbody>
   </table>
-  <p>Only the totals are ever shown, never who voted. Press an arrow again to take a vote back, or press <b>Delete my votes</b> (on the boards or the Public Opinion page, once signed in) to remove all of them from our server straight away.
-    This is stored with <b>Cloudflare</b>, like ranking requests. Following men doesn't need an account and stays in your browser.</p>
+  <p>Only the totals are ever shown, never who voted. Press an arrow again to take a vote back, or press <b>Delete my votes</b> (in the account menu at the top right of any page, once signed in) to remove all of them from our server straight away.
+    This is stored with <b>Cloudflare</b>, like ranking requests. Following men doesn't need an account and stays in your browser (and on your profile, if you make one).</p>
   <p class="muted">Why: you chose to vote (consent, GDPR Art. 6(1)(a)), and to keep the counts fair (legitimate interest, GDPR Art. 6(1)(f)).</p>
 
+  <h2>YOUR PROFILE (ACCOUNT)</h2>
+  <p>Once you've signed in with Google you can make a free profile by picking a username. It's optional: voting works without one. If you make one, we keep:</p>
+  <table>
+    <thead><tr><th>What</th><th>Why</th><th>How long</th></tr></thead>
+    <tbody>
+      <tr><td>Your username and the date you joined</td><td>To show your profile and keep each username unique</td><td>12 months after your last visit, or until you delete your account</td></tr>
+      <tr><td>The men you follow</td><td>So your list follows you to any phone or computer</td><td>Kept with your account</td></tr>
+      <tr><td>A scrambled code made from your Google account ID</td><td>To find your profile when you sign in</td><td>Kept with your account</td></tr>
+      <tr><td>Your IP address</td><td>To stop spam (30 profile changes a minute)</td><td>60 seconds</td></tr>
+    </tbody>
+  </table>
+  <p>Your profile is private: only you can see it, on the Your profile page. Pick a username that doesn't identify you if you'd rather not; offensive names aren't allowed.
+    Press <b>Delete my account</b> on Your profile to remove your username, your followed list and every vote you've cast straight away. This is stored with <b>Cloudflare</b>, like votes.</p>
+  <p class="muted">Why: you chose to make a profile (consent, GDPR Art. 6(1)(a)).</p>
+
   <h2>SIGNING IN WITH GOOGLE</h2>
-  <p>Signing in is optional. Google's sign-in script only loads once the request box appears, when you press an arrow to vote or Sign in to vote, or when you press SAVE WITH GOOGLE on the Skills page (and on later visits if you stayed signed in), not on every visit. When you sign in, Google tells us a permanent ID for your account, and we turn it straight into a scrambled code. Google will know you signed in to humbored.com.
-    Your sign-in only lasts while the page is open; we don't save it. The Skills page, and pages with votes, remember in your browser that you signed in, so Google can offer to sign you back in.
+  <p>Signing in is optional. Google's sign-in script only loads once the request box appears, when you press an arrow to vote, Log in or Sign up, or when you press SAVE WITH GOOGLE on the Skills page (and on later visits if you stayed signed in), not on every visit. When you sign in, Google tells us a permanent ID for your account, and we turn it straight into a scrambled code. Google will know you signed in to humbored.com.
+    Your sign-in only lasts while the page is open; we don't save it. The Skills page, and the rest of the site once you've logged in, remember in your browser that you signed in, so Google can offer to sign you back in.
     <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
 
   <h2>SAVED ONLY IN YOUR BROWSER</h2>
@@ -311,5 +327,6 @@
   </div>
 </footer>
 
+<script src="say.js"></script>
 </body>
 </html>

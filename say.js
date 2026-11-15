@@ -4,13 +4,17 @@
 // Votes count only when signed in with Google (owner, 15 Nov 2026: like Reddit, to stop spam votes): one vote per
 // account per man, sent to the private admin site (POST /public/vote; it keeps a scrambled account code, never a
 // name or email). Totals for the scores and the Public Opinion page come from GET /public/opinion.
-// Follow needs no account and stays only in this browser (localStorage `say`).
+// Follow needs no account and stays in this browser (localStorage `say`), and on the account once there is one.
+// Accounts (owner, 15 Nov 2026, light and private for now): after the first Google sign-in a "Pick a username" sheet
+// offers a free profile (POST /public/account); it keeps the username and followed men, so they follow the person
+// to any device. "Maybe later" stops the sheet coming back (localStorage `say-skip-name`). Profile page: me.html.
 // This file also runs Google sign-in for any page that loads it (home.html's request card uses SAY.auth).
 //
 //   SAY.strip(id, name, solo)  -> HTML for the vote + follow strip under a card
-//   SAY.vote(id), SAY.follows(id), SAY.following()
+//   SAY.vote(id), SAY.votes(), SAY.follows(id), SAY.following()
+//   SAY.account: get(), ask('create' | 'rename'), remove()
 //   SAY.opinion()              -> Promise of {updated, voters, men: {id: [up, down, upWeek, downWeek]}} (or null)
-//   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow or sign-in change
+//   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow, account or sign-in change
 //   SAY.auth: token(), load(), signOut(), erase(), ask(), renderButton(el), onChange(fn)
 (() => {
   // Public, not a secret; the same value as GOOGLE_CLIENT_ID in skills.html and the admin repo. Empty = no voting.
@@ -61,7 +65,6 @@
   .say-strip.solo { border-top: 2px solid #ffffff1f; border-radius: 10px; }
   @media (max-width: 520px) {
     .say-me .me-txt { display: none; }
-    .say-me summary { padding: 0 8px; }
     .say-vote button { flex-basis: 34px; }
     .say-n { min-width: 26px; }
     .say-strip:not(.solo) .say-follow .lbl { display: none; }
@@ -76,23 +79,46 @@
   .say-sheet .gbtn { min-height: 44px; }
   .say-sheet .close { margin-top: 12px; font: inherit; font-size: 14px; background: none; border: 0; padding: 4px 0; color: #7cc4ff; text-decoration: underline; cursor: pointer; }
   .say-sheet .msg { color: #ffb3b3; }
-  .say-sheet .close:focus-visible, .say-account button:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  .say-sheet .close:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
   .say-toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 50; max-width: calc(100% - 32px);
     padding: 10px 16px; border-radius: 12px; background: #2a0f14; border: 1px solid #ff3b3b; color: #ffd2d2; font-family: 'Righteous', system-ui, sans-serif; font-size: 14px; }
-  .say-account { font-size: 13px; color: #a9bfdc; }
-  .say-account b { color: #34e07a; font-weight: 400; }
-  .say-account button { font: inherit; background: none; border: 0; padding: 0; margin-left: 8px; color: #3ef2ff; text-decoration: underline; cursor: pointer; }
+  /* account corner (top right): Log in / Sign up, or the avatar menu */
+  .say-corner { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; font-family: 'Righteous', system-ui, sans-serif; }
+  .say-corner .cbtn { min-height: 36px; padding: 0 14px; border-radius: 999px; font-family: 'Bungee', sans-serif; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  .say-corner .login { border: 0; background: none; color: #3ef2ff; box-shadow: inset 0 0 0 1.5px #3ef2ff; }
+  .say-corner .signup { border: 0; background: #3ef2ff; color: #050b1a; box-shadow: 0 0 12px #3ef2ff55; }
+  .say-corner .cbtn:hover { filter: brightness(1.12); }
+  .say-corner .cbtn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  @media (max-width: 420px) { .say-corner .cbtn { padding: 0 10px; font-size: 11px; } .say-corner { gap: 6px; } }
   .say-me { position: relative; }
-  .say-me summary { list-style: none; cursor: pointer; white-space: nowrap; min-height: 40px; display: flex; align-items: center; padding: 0 12px;
-    border-radius: 999px; color: #34e07a; font-family: 'Bungee', sans-serif; font-size: 12px; }
+  .say-me summary { list-style: none; cursor: pointer; white-space: nowrap; min-height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 4px;
+    border-radius: 999px; color: #eef4ff; font-family: 'Bungee', sans-serif; font-size: 12px; }
+  .say-me summary:hover { background: #ffffff10; }
   .say-me summary::-webkit-details-marker { display: none; }
-  .say-me summary::after { content: '▾'; margin-left: 5px; }
+  .say-me summary::after { content: '▾'; color: #7cc4ff; }
+  .say-me .av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #ffe66d; color: #050b1a;
+    font-size: 15px; box-shadow: 0 0 10px #ffe66d55; }
+  .say-me .me-txt { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
   .say-me summary:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
   .say-me > div { position: absolute; right: 0; top: calc(100% + 6px); z-index: 30; display: grid; gap: 4px; padding: 8px; min-width: 170px;
     background: #0c1a36; border: 1.5px solid #3ef2ff66; border-radius: 12px; box-shadow: 0 10px 30px #000a; }
-  .say-me > div button { margin: 0; padding: 8px 10px; text-align: left; border-radius: 8px; text-decoration: none; color: #eef4ff; }
-  .say-me > div button:hover { background: #ffffff12; }
-  .say-account button.go { margin: 0; padding: 7px 14px; border-radius: 999px; background: #3ef2ff; color: #050b1a; text-decoration: none; font-family: 'Bungee', sans-serif; font-size: 12px; }`;
+  .say-me > div button, .say-me > div a { margin: 0; padding: 8px 10px; text-align: left; border: 0; border-radius: 8px; background: none;
+    text-decoration: none; color: #eef4ff; font-family: 'Righteous', system-ui, sans-serif; font-size: 13px; cursor: pointer; }
+  .say-me > div button:focus-visible, .say-me > div a:focus-visible { outline: 3px solid #ffe66d; outline-offset: -3px; }
+  .say-me > div button:hover, .say-me > div a:hover { background: #ffffff12; }
+  .say-me > div a { color: #3ef2ff; }
+  .say-sheet label { display: block; margin-bottom: 6px; font-family: 'Bungee', sans-serif; font-size: 13px; color: #7cc4ff; }
+  .say-sheet input { width: 100%; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 2px solid #3ef2ff66; background: #050b1a;
+    color: #fff; font: inherit; font-size: 17px; }
+  .say-sheet input:focus { outline: none; border-color: #3ef2ff; box-shadow: 0 0 12px #3ef2ff55; }
+  .say-sheet .rule { margin-top: 6px; }
+  .say-sheet .msg:empty { display: none; }
+  .say-sheet .msg { margin: 10px 0 0; }
+  .say-sheet .go { margin-top: 14px; min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: #3ef2ff; color: #050b1a;
+    font-family: 'Bungee', sans-serif; font-size: 14px; cursor: pointer; }
+  .say-sheet .go:disabled { opacity: .6; }
+  .say-sheet .go:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  .say-sheet form + .close { display: block; }`;
   document.head.appendChild(css);
 
   // ---------- Google sign-in (token kept in memory only; it lasts about an hour) ----------
@@ -109,25 +135,138 @@
     }).then(() => google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, auto_select: true, callback: r => signedIn(r.credential) }));
     return gis;
   }
-  const renderButton = el => load().then(() => google.accounts.id.renderButton(el,
-    { theme: 'filled_black', size: 'large', shape: 'pill', text: 'signin_with', locale: 'en' }));
+  const renderButton = (el, text = 'signin_with') => load().then(() => google.accounts.id.renderButton(el,
+    { theme: 'filled_black', size: 'large', shape: 'pill', text, locale: 'en' }));
 
   async function signedIn(t) {
     token = t;
     flag(true);
     const p = pending; // closing the sheet clears it, so keep the vote they were casting
+    const signup = wantsName; // pressed "Sign up": offer the username even if they said "Maybe later" before
     pending = null;
+    wantsName = false;
     sheet?.close();
     authChanged();
-    try { setVotes((await call({})).votes); } catch {}
-    if (p) castVote(p.id, p.act);
+    try {
+      const d = await call({ action: 'get' }, 'account');
+      setVotes(d.votes);
+      setAccount(d.account, true, signup);
+      if (signup && d.account) toast(`Welcome back, ${d.account.username}. You already have a profile.`);
+    } catch {}
+    if (p?.id) castVote(p.id, p.act);
   }
   function signOut() {
     token = null;
+    account = null;
     flag(false);
     window.google?.accounts?.id?.disableAutoSelect();
     setVotes({});
     authChanged();
+  }
+
+  // ---------- light accounts (owner, 15 Nov 2026): a username + the men you follow, on top of Google sign-in ----------
+  // Private for now: only the owner sees their profile (me.html). Voting doesn't need one.
+  let account = null;
+  const SKIP = 'say-skip-name'; // "Maybe later" on the username sheet: don't ask again on every sign-in
+  const skipped = () => { try { return !!localStorage.getItem(SKIP); } catch { return false; } };
+
+  function setAccount(a, fromSignIn, signup) {
+    account = a || null;
+    if (account) {
+      // Follows from this device and the account come together; the account then keeps the full list.
+      const merged = [...new Set([...s.follow, ...(account.follows || [])])];
+      const changedHere = merged.length !== s.follow.length;
+      s.follow = merged;
+      store();
+      if (changedHere) { document.querySelectorAll('.say-strip').forEach(paint); changed('follow'); }
+      if (merged.length !== (account.follows || []).length) syncFollows();
+    } else if (fromSignIn && (signup || !skipped())) {
+      askName('create');
+    }
+    paintAccounts();
+    changed('account');
+  }
+
+  let followTimer;
+  function syncFollows() {
+    if (!token || !account) return;
+    clearTimeout(followTimer);
+    followTimer = setTimeout(() => {
+      call({ action: 'follows', follows: s.follow }, 'account')
+        .then(d => { account = d.account; }, e => { if (!e.signin) toast(e.message); });
+    }, 800);
+  }
+
+  async function deleteAccount() {
+    if (!token || !account) return;
+    if (!confirm('Delete your account? Your username, the men you follow (on our server) and all your votes go, and it can’t be undone.')) return;
+    try {
+      const d = await call({ action: 'delete' }, 'account');
+      setVotes(d.votes);
+      account = null;
+      try { localStorage.setItem(SKIP, '1'); } catch {}
+      paintAccounts();
+      changed('account');
+      toast('Your account is deleted.');
+    } catch (e) { if (!e.signin) toast(e.message); }
+  }
+
+  // The "Pick a username" sheet: create (after first sign-in) or rename (from the profile page).
+  let nameSheet;
+  function askName(mode = 'create') {
+    if (!token) return ask();
+    if (!nameSheet) {
+      nameSheet = document.createElement('dialog');
+      nameSheet.className = 'say-sheet';
+      nameSheet.setAttribute('aria-labelledby', 'say-name-h');
+      nameSheet.innerHTML = `<h2 id="say-name-h"></h2>
+        <p class="lead"></p>
+        <form novalidate>
+          <label for="say-uname">Username</label>
+          <input id="say-uname" name="username" maxlength="20" autocomplete="username" autocapitalize="off" spellcheck="false">
+          <small class="rule">3 to 20 letters, numbers or _. Only you can see it for now.</small>
+          <p class="msg" role="alert"></p>
+          <button type="submit" class="go"></button>
+        </form>
+        <button type="button" class="close">Maybe later</button>`;
+      nameSheet.querySelector('.close').onclick = () => {
+        if (nameSheet.dataset.mode === 'create') { try { localStorage.setItem(SKIP, '1'); } catch {} }
+        nameSheet.close();
+      };
+      nameSheet.addEventListener('click', e => { if (e.target === nameSheet) nameSheet.close(); });
+      nameSheet.querySelector('form').addEventListener('submit', async e => {
+        e.preventDefault();
+        const input = nameSheet.querySelector('input'), msg = nameSheet.querySelector('.msg'), btn = nameSheet.querySelector('.go');
+        const username = input.value.trim();
+        if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) { msg.textContent = 'Use 3 to 20 letters, numbers or _.'; input.focus(); return; }
+        btn.disabled = true;
+        msg.textContent = '';
+        try {
+          const d = await call({ action: nameSheet.dataset.mode, username }, 'account');
+          nameSheet.close();
+          setAccount(d.account);
+          toast(nameSheet.dataset.mode === 'create' ? `Welcome, ${d.account.username}. Your profile is ready.` : `You're now ${d.account.username}.`);
+        } catch (err) {
+          msg.textContent = err.signin ? 'Your sign-in ran out. Sign in again.' : err.message;
+          input.focus();
+        }
+        btn.disabled = false;
+      });
+      document.body.appendChild(nameSheet);
+    }
+    const create = mode === 'create';
+    nameSheet.dataset.mode = create ? 'create' : 'rename';
+    nameSheet.querySelector('h2').textContent = create ? 'PICK A USERNAME' : 'CHANGE YOUR USERNAME';
+    nameSheet.querySelector('.lead').textContent = create
+      ? 'Make a free profile: the men you follow and your votes, on any phone or computer. Voting works without one.'
+      : 'Pick a new username.';
+    nameSheet.querySelector('.go').textContent = create ? 'Create my profile' : 'Save username';
+    nameSheet.querySelector('.close').textContent = create ? 'Maybe later' : 'Cancel';
+    nameSheet.querySelector('.msg').textContent = '';
+    const input = nameSheet.querySelector('input');
+    input.value = create ? '' : account?.username || '';
+    nameSheet.showModal();
+    input.focus();
   }
   async function erase() {
     if (!token) return ask();
@@ -135,36 +274,46 @@
     try { setVotes((await call({ erase: true })).votes); toast('Your votes are deleted.'); } catch (e) { toast(e.message); }
   }
 
-  async function call(body) {
-    const r = await fetch(API + '/vote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential: token, ...body }) });
+  async function call(body, path = 'vote') {
+    const r = await fetch(API + '/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential: token, ...body }) });
     const d = await r.json().catch(() => ({}));
     if (d.signin) { token = null; authChanged(); throw Object.assign(new Error('signin'), { signin: true }); }
-    if (!r.ok) throw new Error(d.error || 'Couldn’t reach the vote server. Try again in a bit.');
+    if (!r.ok) throw new Error(d.error || 'Couldn’t reach our server. Try again in a bit.');
     return d;
   }
 
-  // ---------- the "Sign in to vote" sheet ----------
-  let sheet, pending = null;
-  function ask(p) {
+  // ---------- the sign-in sheet: "Sign in to vote" (an arrow), "Log in" or "Sign up" (the corner buttons) ----------
+  // Log in and Sign up are both Google sign-in; Sign up then always offers the username (a free profile).
+  let sheet, pending = null, wantsName = false;
+  const SHEET = {
+    vote: ['SIGN IN TO VOTE', 'One vote per Google account keeps the counts honest. Following works without signing in.'],
+    login: ['LOG IN', 'Log in with your Google account to vote, and to see your profile on any phone or computer.'],
+    signup: ['SIGN UP', 'It’s free: sign in with Google, then pick a username for your profile. Vote on any man, and keep the men you follow on any device.'],
+  };
+  function ask(p, kind = 'vote') {
     pending = p || null;
     if (!GOOGLE_CLIENT_ID) return;
     if (!sheet) {
       sheet = document.createElement('dialog');
       sheet.className = 'say-sheet';
       sheet.setAttribute('aria-labelledby', 'say-sheet-h');
-      sheet.innerHTML = `<h2 id="say-sheet-h">SIGN IN TO VOTE</h2>
-        <p>One vote per Google account keeps the counts honest. Following works without signing in.</p>
+      sheet.innerHTML = `<h2 id="say-sheet-h"></h2>
+        <p class="lead"></p>
         <div class="gbtn"></div>
         <small>We keep a scrambled code, never your name or email. <a href="privacy.html">Privacy</a></small>
         <button type="button" class="close">Not now</button>`;
       sheet.querySelector('.close').onclick = () => sheet.close();
-      sheet.addEventListener('close', () => { pending = null; });
+      sheet.addEventListener('close', () => { pending = null; wantsName = false; });
       sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
       document.body.appendChild(sheet);
     }
+    wantsName = kind === 'signup';
+    const [title, lead] = SHEET[kind] || SHEET.vote;
+    sheet.querySelector('h2').textContent = title;
+    sheet.querySelector('.lead').textContent = lead;
     const g = sheet.querySelector('.gbtn');
     g.innerHTML = '';
-    renderButton(g).catch(() => { g.innerHTML = '<p class="msg">Couldn’t load Google sign-in. Try again in a bit.</p>'; });
+    renderButton(g, kind === 'signup' ? 'signup_with' : 'signin_with').catch(() => { g.innerHTML = '<p class="msg">Couldn’t load Google sign-in. Try again in a bit.</p>'; });
     sheet.showModal();
   }
 
@@ -238,21 +387,40 @@
   }
   const repaint = id => document.querySelectorAll('.say-strip').forEach(el => { if (el.dataset.id === id) paint(el); });
 
-  // A "signed in / sign in" line for pages that want one: <span data-say-account></span>.
-  // data-say-account="compact" (home's slim bar) shows nothing when signed out (the arrows ask for sign-in)
-  // and a small "✓ Signed in" menu with Sign out / Delete my votes when signed in.
+  // The account corner, top right of every page (owner, 15 Nov 2026: "like reddit"): <span data-say-account></span>.
+  // Signed out: Log in and Sign up (both Google sign-in; Sign up then offers a username). Signed in: an avatar with the
+  // username and a menu: Your profile (or Create your profile), Delete my votes, Log out.
+  // Pages with the shared top bar (.topnav .wrap) get it added automatically (mountCorner); others place the span.
   function paintAccounts() {
     document.querySelectorAll('[data-say-account]').forEach(el => {
-      el.classList.add('say-account');
+      el.classList.add('say-corner');
       if (!GOOGLE_CLIENT_ID) { el.hidden = true; return; }
-      const compact = el.dataset.sayAccount === 'compact';
-      el.innerHTML = token
-        ? compact
-          ? '<details class="say-me"><summary aria-label="Signed in: account menu">✓<span class="me-txt"> Signed in</span></summary><div><button type="button" data-say-do="out">Sign out</button><button type="button" data-say-do="erase">Delete my votes</button></div></details>'
-          : '<b>✓ Signed in to vote.</b><button type="button" data-say-do="out">Sign out</button><button type="button" data-say-do="erase">Delete my votes</button>'
-        : compact ? '' : '<button type="button" class="go" data-say-do="in">Sign in to vote</button>';
+      if (!token) {
+        el.innerHTML = '<button type="button" class="cbtn login" data-say-do="login">Log in</button>'
+          + '<button type="button" class="cbtn signup" data-say-do="signup">Sign up</button>';
+        return;
+      }
+      const who = account ? esc(account.username) : 'Signed in';
+      const initial = account ? esc(account.username[0].toUpperCase()) : '✓';
+      const profile = account
+        ? '<a href="me.html">Your profile</a>'
+        : '<button type="button" data-say-do="name">Create your profile</button>';
+      el.innerHTML = `<details class="say-me"><summary aria-label="Account menu: ${who}"><span class="av" aria-hidden="true">${initial}</span><span class="me-txt">${who}</span></summary>`
+        + `<div>${profile}<button type="button" data-say-do="erase">Delete my votes</button><button type="button" data-say-do="out">Log out</button></div></details>`;
     });
   }
+  function mountCorner() {
+    if (document.querySelector('[data-say-account]')) return;
+    const bar = document.querySelector('.topnav .wrap');
+    if (!bar) return;
+    const el = document.createElement('span');
+    el.dataset.sayAccount = '';
+    bar.appendChild(el);
+  }
+  // A click anywhere else closes the account menu.
+  document.addEventListener('click', e => {
+    document.querySelectorAll('.say-me[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+  });
 
   function strip(id, name, solo) {
     const who = esc(name || 'him');
@@ -274,13 +442,18 @@
     if (n.matches('[data-say-account]') || n.querySelector('[data-say-account]')) paintAccounts();
   };
   new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(seen))).observe(document.documentElement, { childList: true, subtree: true });
-  document.addEventListener('DOMContentLoaded', () => seen(document.body));
+  document.addEventListener('DOMContentLoaded', () => { mountCorner(); seen(document.body); paintAccounts(); });
 
   document.addEventListener('click', e => {
     const acc = e.target.closest('[data-say-do]');
     if (acc) {
       const d = acc.dataset.sayDo;
-      if (d === 'in') ask(); else if (d === 'out') signOut(); else erase();
+      if (d === 'in' || d === 'login') ask(null, 'login');
+      else if (d === 'signup') ask(null, 'signup');
+      else if (d === 'out') signOut();
+      else if (d === 'name') askName('create');
+      else erase();
+      acc.closest('.say-me')?.removeAttribute('open');
       return;
     }
     const b = e.target.closest('[data-say]');
@@ -293,6 +466,7 @@
       store();
       repaint(id);
       changed('follow', id);
+      syncFollows();
     } else if (!token) {
       ask({ id, act });
     } else {
@@ -308,8 +482,10 @@
     vote: id => s.votes[id],
     follows: id => s.follow.includes(id),
     following: () => s.follow.slice(),
+    votes: () => ({ ...s.votes }),
     opinion,
     onChange: fn => fns.push(fn),
+    account: { get: () => account, ask: mode => askName(mode), remove: deleteAccount },
     auth: { token: () => token, load, signOut, erase, ask: () => ask(), renderButton, onChange: fn => authFns.push(fn), enabled: !!GOOGLE_CLIENT_ID },
   };
 })();

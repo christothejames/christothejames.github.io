@@ -52,6 +52,7 @@
     line-height: 1.1;
   }
   .sub { margin: 0; font-size: 14px; color: var(--muted); flex: 1 1 260px; }
+  header .say-corner { order: 9; } /* account corner (say.js) stays top right, after the intro line */
 
   /* ---------- one control bar ---------- */
   .bar {
@@ -240,6 +241,7 @@
   <header>
     <a class="home-btn" href="home.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20h13V9.5"/></svg>Home</a>
     <h1>RANKINGS</h1>
+    <span data-say-account></span>
     <p class="sub">Good records float up, bad ones sink. The bigger the bubble, the stronger his record. Pick an area to rank everyone on that alone. Tap one to see why.</p>
   </header>
 

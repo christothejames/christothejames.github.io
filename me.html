@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Your Profile · The Real Man Report</title>
+<meta name="description" content="Your private profile on The Real Man Report: the men you follow and how you voted.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --blue: #1e90ff; --sky: #7cc4ff; --cyan: #3ef2ff; --gold: #ffe66d; --red: #ff3b3b; --amber: #ff9f1c; --green: #34e07a;
+    --night: #050b1a; --panel: #0c1a36; --line: #ffffff1f; --text: #eef4ff; --muted: #a9bfdc;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--night); }
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%), linear-gradient(to bottom, #050b1a, #0a1a3a 45%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: var(--cyan); }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+  main { padding: 36px 16px 10px; min-height: 50vh; }
+
+  /* Player card: the one loud thing on the page */
+  .card { position: relative; padding: 22px 22px 18px; border: 2px solid var(--cyan); border-radius: 18px;
+    background: linear-gradient(160deg, #12264d, var(--panel) 60%); box-shadow: 0 0 24px #3ef2ff33, inset 0 0 0 1px #ffffff10; }
+  .card .tag { margin: 0 0 4px; font-family: 'Bungee', sans-serif; font-size: 12px; color: var(--gold); }
+  .card h1 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(28px, 7vw, 46px); line-height: 1.05; color: #fff;
+    text-shadow: 0 0 8px #3ef2ff88; overflow-wrap: anywhere; }
+  .since { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 16px; }
+  .stat { padding: 10px 8px; border-radius: 12px; background: #050b1a; border: 1px solid var(--line); text-align: center; }
+  .stat b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 24px; line-height: 1.1; }
+  .stat span { font-size: 12px; color: var(--muted); }
+  .stat.f b { color: var(--gold); } .stat.l b { color: var(--green); } .stat.d b { color: #ff7a7a; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .btn { min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: var(--cyan); color: var(--night);
+    font-family: 'Bungee', sans-serif; font-size: 13px; cursor: pointer; }
+  .btn.ghost { background: none; color: var(--cyan); box-shadow: inset 0 0 0 2px var(--cyan); }
+  .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .private { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+
+  .ask { text-align: center; padding: 30px 20px; }
+  .ask h1 { font-size: clamp(24px, 6vw, 36px); }
+  .ask p { color: #cfe0f7; max-width: 460px; margin: 10px auto 18px; }
+  .ask .gbtn { display: flex; justify-content: center; min-height: 44px; }
+
+  section.list { margin-top: 34px; }
+  section.list h2 { margin: 0 0 12px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 22px; }
+  .following h2 { color: var(--gold); } .liked h2 { color: var(--green); } .disliked h2 { color: #ff7a7a; }
+  ol.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .row { display: grid; grid-template-columns: 52px 1fr 260px; align-items: center; gap: 14px; padding: 10px 14px 10px 10px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+  .face { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: linear-gradient(135deg, #0d2a5c, #1e90ff);
+    font-family: 'Bungee', sans-serif; font-size: 18px; color: #fff; text-decoration: none; border: 2px solid var(--tier, var(--sky)); }
+  .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .who a { font-family: 'Bungee', sans-serif; font-size: 16px; color: #fff; text-decoration: none; }
+  .who a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .who a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .tier { display: block; font-size: 12px; color: var(--tier); }
+  .good { --tier: var(--gold); } .mid { --tier: var(--amber); } .bad { --tier: #ff7a7a; }
+  .nobody { margin: 0; padding: 16px; border: 1.5px dashed #ffffff2a; border-radius: 14px; color: var(--muted); }
+
+  .danger { margin-top: 44px; padding: 16px 18px; border: 1.5px solid #ff3b3b66; border-radius: 14px; }
+  .danger h2 { margin: 0 0 4px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 16px; color: #ff7a7a; }
+  .danger p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+  .btn.red { background: none; color: #ff7a7a; box-shadow: inset 0 0 0 2px #ff7a7a; }
+
+  @media (max-width: 600px) {
+    .row { grid-template-columns: 44px 1fr; gap: 10px; }
+    .face { width: 44px; height: 44px; font-size: 15px; }
+    .row .say-strip { grid-column: 1 / -1; }
+    .card { padding: 18px 16px 16px; }
+  }
+
+/* ---------- Site footer (same on every page) ---------- */
+  .site-foot {
+    max-width: none;
+    margin: 48px 0 0;
+    padding: 40px 16px 56px;
+    background: #030812;
+    border-top: 3px solid #1e90ff;
+    box-shadow: 0 -1px 18px #1e90ff55;
+    font-family: 'Righteous', system-ui, sans-serif;
+    text-align: left;
+  }
+  .site-foot .cols { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px 48px; }
+  .site-foot h2 { margin: 0 0 12px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; letter-spacing: 0.02em; color: #fff; }
+  .site-foot ul { list-style: none; margin: 0; padding: 0; }
+  .site-foot li { margin: 0; font-size: 17px; line-height: 1.9; color: #fff; }
+  .site-foot a { font-family: inherit; font-size: inherit; letter-spacing: normal; color: #3ef2ff; text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .site-foot a:focus-visible { outline: 2px solid #ffe66d; outline-offset: 2px; border-radius: 2px; }
+  .site-foot .sep { margin: 0 6px; }
+  .site-foot a.crisis { color: #ff6b6b; }
+
+/* ---------- Top bar ---------- */
+  .topnav { position: sticky; top: 0; z-index: 20; background: #050b1af2; backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  .topnav .wrap { display: flex; align-items: center; gap: 10px; height: 56px; }
+  .brand {
+    font-family: 'Bungee', sans-serif; font-style: italic; font-size: 17px; text-decoration: none;
+    background: linear-gradient(to bottom, #fff, var(--sky) 55%, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  @media (max-width: 420px) { .brand { font-size: 14px; } }
+
+/* ---------- Home button (same on every page) ---------- */
+  .home-btn {
+    display: inline-flex; align-items: center; gap: 6px; flex: none;
+    font-family: 'Bungee', sans-serif; font-style: normal; font-size: 13px; letter-spacing: .5px; line-height: 1;
+    color: #7cc4ff; text-decoration: none; white-space: nowrap; padding: 7px 12px 7px 9px; border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px #7cc4ff66; transition: color .15s, background .15s, box-shadow .15s;
+  }
+  .home-btn svg { width: 16px; height: 16px; }
+  .home-btn:hover { color: #fff; background: #1e90ff26; box-shadow: inset 0 0 0 1.5px #7cc4ff; }
+  .home-btn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap">
+    <a class="home-btn" href="home.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20h13V9.5"/></svg>Home</a>
+    <a class="brand" href="home.html">THE REAL MAN REPORT</a>
+  </div>
+</nav>
+
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<footer class="site-foot">
+  <div class="cols">
+    <nav aria-label="The Real Man Report">
+      <h2>THE REAL MAN REPORT</h2>
+      <ul>
+        <li><a href="home.html">The boards</a></li>
+        <li><a href="web.html">Rankings</a></li>
+        <li><a href="opinion.html">Public opinion</a></li>
+        <li><a href="skills.html">Learn a skill</a></li>
+        <li><a href="plan.html">Mental health</a></li>
+        <li><a href="chores.html">Home game plan</a></li>
+        <li><a href="pickup.html">The pick up artist</a></li>
+        <li><a href="brotherhood.html">Join the brotherhood</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Humbored">
+      <h2>HUMBORED</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#contact">Contact us</a><span class="sep" aria-hidden="true">|</span><a href="privacy.html">Privacy</a></li>
+        <li><a class="crisis" href="plan.html#urgent">Crisis lines/chats</a></li>
+        <li><a href="index.html">Re-enter the manosphere</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script src="data/people.js"></script>
+<script src="data/wires.js"></script>
+<script src="say.js"></script>
+<script>
+// Your profile (owner, 15 Nov 2026): private, only the signed-in owner sees it. Username, member since, the men they
+// follow and the men they liked and disliked, each with the vote strip. Data comes from say.js (SAY.account, votes).
+(() => {
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const mids = window.CONTROVERSIAL || [];
+  const onBoards = new Set(window.ORDER || []);
+  const byId = Object.fromEntries(window.PEOPLE.filter(p => onBoards.has(p.id)).map(p => [p.id, p]));
+  const tier = p => (mids.includes(p.id) ? 'mid' : p.list);
+  const TIER = { good: 'Real Men', mid: 'Coin Toss', bad: 'Out of Service' };
+  const app = document.getElementById('app');
+
+  function row(id) {
+    const p = byId[id], t = tier(p), href = `profile.html?id=${encodeURIComponent(id)}`;
+    return `<li class="row ${t}">
+      <a class="face" href="${href}" tabindex="-1" aria-hidden="true">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy">` : esc(initials(p.name))}</a>
+      <div class="who"><a href="${href}">${esc(p.name)}</a><span class="tier">${TIER[t]}</span></div>
+      ${SAY.strip(id, p.name, true)}
+    </li>`;
+  }
+  const list = (cls, title, ids, empty) => `<section class="list ${cls}"><h2>${title} (${ids.length})</h2>
+    ${ids.length ? `<ol class="rows">${ids.map(row).join('')}</ol>` : `<p class="nobody">${empty}</p>`}</section>`;
+
+  function render() {
+    const signedIn = !!SAY.auth.token(), acc = SAY.account.get();
+    if (!signedIn) {
+      app.innerHTML = `<div class="card ask"><p class="tag">YOUR PROFILE</p><h1>Sign in to see your profile</h1>
+        <p>Your profile keeps the men you follow and your votes on any phone or computer. Only you can see it.</p>
+        <div class="gbtn" id="gbtn"></div></div>`;
+      SAY.auth.renderButton(document.getElementById('gbtn')).catch(() => {
+        document.getElementById('gbtn').innerHTML = '<p>Couldn’t load Google sign-in. Try again in a bit.</p>';
+      });
+      return;
+    }
+    if (!acc) {
+      app.innerHTML = `<div class="card ask"><p class="tag">YOUR PROFILE</p><h1>Pick a username</h1>
+        <p>You're signed in, but you haven't made a profile yet. It's free, and voting works either way.</p>
+        <button type="button" class="btn" data-do="create">Create my profile</button></div>`;
+      return;
+    }
+    const votes = SAY.votes();
+    const follows = SAY.following().filter(id => byId[id]);
+    const liked = Object.keys(votes).filter(id => votes[id] === 'up' && byId[id]);
+    const disliked = Object.keys(votes).filter(id => votes[id] === 'down' && byId[id]);
+    const since = new Date(acc.created).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    app.innerHTML = `
+      <div class="card">
+        <p class="tag">PLAYER</p>
+        <h1>${esc(acc.username)}</h1>
+        <p class="since">Member since ${since}</p>
+        <div class="stats">
+          <div class="stat f"><b>${follows.length}</b><span>Following</span></div>
+          <div class="stat l"><b>${liked.length}</b><span>Liked</span></div>
+          <div class="stat d"><b>${disliked.length}</b><span>Disliked</span></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn" data-do="rename">Change username</button>
+          <button type="button" class="btn ghost" data-do="out">Sign out</button>
+        </div>
+        <p class="private">🔒 Only you can see this page.</p>
+      </div>
+      ${list('following', 'FOLLOWING', follows, 'Nobody yet. Tap ☆ Follow under any poster on <a href="home.html">the boards</a>.')}
+      ${list('liked', 'LIKED', liked, 'No likes yet. Vote ↑ on a man you like.')}
+      ${list('disliked', 'DISLIKED', disliked, 'No dislikes yet. Vote ↓ on a man you don’t like.')}
+      <div class="danger">
+        <h2>DELETE MY ACCOUNT</h2>
+        <p>Removes your username, the men you follow from our server, and every vote you've cast. It can't be undone.</p>
+        <button type="button" class="btn red" data-do="delete">Delete my account</button>
+      </div>`;
+  }
+
+  app.addEventListener('click', e => {
+    const b = e.target.closest('[data-do]');
+    if (!b) return;
+    const d = b.dataset.do;
+    if (d === 'create') SAY.account.ask('create');
+    else if (d === 'rename') SAY.account.ask('rename');
+    else if (d === 'out') SAY.auth.signOut();
+    else if (d === 'delete') SAY.account.remove();
+  });
+  // Re-draw when the account or sign-in changes (not on every vote or follow, which would jump the page and lose focus).
+  SAY.onChange(kind => { if (kind === 'account' || kind === 'auth') render(); });
+  render();
+})();
+</script>
+
+</body>
+</html>
