@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join the Brotherhood · The Real Man Report</title>
-<meta name="description" content="No fees, no forms, no catch. Join the brotherhood and make one oath: better yourself every day, learn from your mistakes, and help a brother in need.">
+<meta name="description" content="No fees, no forms, no catch. Join the brotherhood and live by one code: better yourself every day, learn from your mistakes, and help a brother in need.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -89,11 +89,11 @@
   body.is-in #joinBtn { display: none; }
   .joined small { display: block; font-family: 'Righteous', sans-serif; font-size: 15px; color: var(--muted); text-shadow: none; }
 
-  /* The oath only opens once he has joined */
+  /* The code only opens once he has joined */
   #oathStep { opacity: .35; pointer-events: none; transition: opacity .4s; }
   body.is-in #oathStep { opacity: 1; pointer-events: auto; }
 
-  /* ---------- The oath plaque: the one loud thing on this page ---------- */
+  /* ---------- The code plaque: the one loud thing on this page ---------- */
   .plaque {
     position: relative;
     padding: 30px clamp(18px, 5vw, 44px) 28px;
@@ -113,20 +113,18 @@
   .plaque > i::before { bottom: 12px; left: 12px; } .plaque > i::after { bottom: 12px; right: 12px; }
   .plaque h3 { margin: 0 0 16px; text-align: center; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .12em; color: #c9d1da; }
 
+  /* The code: three plain lines, nothing to tap. They light up gold once he's in. */
   .vow { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .vow button {
-    display: flex; align-items: center; gap: 14px; width: 100%;
+  .vow li {
+    display: flex; align-items: center; gap: 14px;
     padding: 14px 16px; border-radius: 10px;
     background: #0d1116aa; border: 1px solid #ffffff1a;
-    color: #dfe5ec; text-align: left; cursor: pointer;
-    font: inherit; font-size: clamp(17px, 4.2vw, 21px); line-height: 1.3;
-    transition: background .2s, border-color .2s, color .2s;
+    color: #dfe5ec; font-size: clamp(17px, 4.2vw, 21px); line-height: 1.3;
+    transition: background .3s, border-color .3s, color .3s;
   }
-  .vow button:hover { border-color: #ffe66d66; }
-  .vow button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .vow .box { flex: none; width: 26px; height: 26px; border-radius: 6px; border: 2px solid #9aa3ad; display: grid; place-items: center; font-family: 'Bungee', sans-serif; font-size: 15px; color: transparent; }
-  .vow button[aria-pressed="true"] { background: #ffe66d14; border-color: var(--gold); color: #fff; }
-  .vow button[aria-pressed="true"] .box { background: var(--gold); border-color: var(--gold); color: var(--night); }
+  .vow .num { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: 'Bungee', sans-serif; font-size: 14px; color: #1d2228; background: radial-gradient(circle at 35% 30%, var(--steel-hi), var(--steel-lo) 70%); }
+  body.is-sworn .vow li { background: #ffe66d14; border-color: var(--gold); color: #fff; }
+  body.is-sworn .vow .num { background: var(--gold); color: var(--night); }
 
   .swear { margin: 22px 0 0; text-align: center; }
   .hint { margin: 10px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
@@ -164,7 +162,7 @@
   .keep b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; color: var(--cyan); font-size: 15px; }
   .keep span { color: var(--muted); font-size: 15px; }
 
-  /* ---------- Forum (opens after the oath) ---------- */
+  /* ---------- Forum (opens after Hold my beer) ---------- */
   #forumStep { display: none; }
   body.is-sworn #forumStep { display: block; }
   .forum { padding: 18px; border: 2px solid var(--gold); border-radius: 12px; background: #ffe66d10; }
@@ -239,7 +237,7 @@
 <header class="wrap">
   <p class="kicker">no fees. no forms. no catch.</p>
   <h1>JOIN THE BROTHERHOOD</h1>
-  <p class="lead">No membership card, no subscription, no sign-up. You're in the moment you decide you are. The only thing we ask is one oath.</p>
+  <p class="lead">No membership card, no subscription, no sign-up. You're in the moment you decide you are. All we ask is that you live by the code.</p>
   <ul class="terms" aria-label="What it costs">
     <li>Free, forever</li>
     <li>No email</li>
@@ -256,26 +254,24 @@
   </section>
 
   <section class="step" id="oathStep" aria-labelledby="oathTitle">
-    <h2 id="oathTitle">STEP 2: MAKE THE OATH</h2>
-    <p>Tap each line you mean. Then swear it.</p>
+    <h2 id="oathTitle">STEP 2: SET THE STANDARD</h2>
 
     <div class="plaque">
       <i aria-hidden="true"></i>
-      <h3>THE OATH</h3>
+      <h3>THE CODE</h3>
       <ul class="vow" id="vow">
-        <li><button type="button" aria-pressed="false"><span class="box" aria-hidden="true">✓</span>I will better myself every day.</button></li>
-        <li><button type="button" aria-pressed="false"><span class="box" aria-hidden="true">✓</span>I will learn from my mistakes.</button></li>
-        <li><button type="button" aria-pressed="false"><span class="box" aria-hidden="true">✓</span>I will help a brother who is in need.</button></li>
+        <li><span class="num" aria-hidden="true">1</span>Better yourself every day.</li>
+        <li><span class="num" aria-hidden="true">2</span>Learn from your mistakes.</li>
+        <li><span class="num" aria-hidden="true">3</span>Help a brother who is in need.</li>
       </ul>
-      <div class="swear"><button class="btn gold" type="button" id="swearBtn" disabled>I swear it</button></div>
-      <p class="hint" id="hint">Tap all three lines to swear the oath.</p>
-      <div class="stamp" id="stamp" aria-hidden="true">SWORN<small id="swornWhen"></small></div>
+      <div class="swear"><button class="btn gold" type="button" id="swearBtn">Hold my beer</button></div>
+      <div class="stamp" id="stamp" aria-hidden="true">LET'S GO CHAMP<small id="swornWhen"></small></div>
     </div>
   </section>
 
   <section class="step" id="keepStep" aria-labelledby="keepTitle">
     <h2 id="keepTitle">STEP 3: KEEP IT</h2>
-    <p>An oath is something you do, not something you say. Start here.</p>
+    <p>The code is something you do, not something you say. Start here.</p>
     <ul class="keep">
       <li><a href="skills.html"><b>Better yourself</b><span>Pick one skill and learn it this week.</span></a></li>
       <li><a href="plan.html#anger/regret"><b>Learn from your mistakes</b><span>What to do when you've got it wrong.</span></a></li>
@@ -288,7 +284,7 @@
     <p>The brotherhood forum: an open room for anything men deal with. Relationships, kids, work, money, health, modern-day problems, the challenges nobody talks about. No topic is off limits. Respect is.</p>
     <div class="forum">
       <ul class="house-rules" aria-label="Forum house rules">
-        <li><b>Keep the oath.</b> Better yourself, own your mistakes, help a brother out.</li>
+        <li><b>Live by the code.</b> Better yourself, own your mistakes, help a brother out.</li>
         <li><b>No hate, no harassment.</b> Disagree with the idea, never attack the man.</li>
         <li><b>Keep it real, keep it private.</b> Don't name or share people who aren't public figures.</li>
         <li><b>18 and over.</b></li>
@@ -302,7 +298,7 @@
     </div>
   </section>
 
-  <p class="small-print">Your oath is saved only on this device. Nobody else sees it. <button type="button" id="leaveBtn" hidden>Start over</button></p>
+  <p class="small-print">Your progress is saved only on this device. Nobody else sees it. <button type="button" id="leaveBtn" hidden>Start over</button></p>
 </main>
 
 <footer class="wrap back">
@@ -354,7 +350,6 @@
   let state = load();
 
   const body = document.body;
-  const vows = [...document.querySelectorAll('#vow button')];
   const swearBtn = document.getElementById('swearBtn');
   const leaveBtn = document.getElementById('leaveBtn');
 
@@ -363,25 +358,13 @@
     body.classList.toggle('is-sworn', !!state.sworn);
     document.getElementById('joinedWhen').textContent = state.joined ? 'Brother since ' + day(state.joined) : '';
     document.getElementById('swornWhen').textContent = state.sworn ? day(state.sworn) : '';
-    if (state.sworn) vows.forEach(v => { v.setAttribute('aria-pressed', 'true'); v.disabled = true; });
     leaveBtn.hidden = !state.joined;
-    updateSwear();
-  }
-  function updateSwear() {
-    const all = vows.every(v => v.getAttribute('aria-pressed') === 'true');
-    swearBtn.disabled = !all;
-    document.getElementById('hint').textContent = all ? 'Ready when you are.' : 'Tap all three lines to swear the oath.';
   }
 
   document.getElementById('joinBtn').addEventListener('click', () => {
     state.joined = new Date().toISOString(); save(state); paint();
     document.getElementById('oathStep').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   });
-  vows.forEach(v => v.addEventListener('click', () => {
-    if (state.sworn) return;
-    v.setAttribute('aria-pressed', v.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
-    updateSwear();
-  }));
   swearBtn.addEventListener('click', () => {
     state.sworn = new Date().toISOString(); save(state);
     body.classList.add('just-sworn'); paint();
@@ -389,7 +372,6 @@
   });
   leaveBtn.addEventListener('click', () => {
     state = {}; save(state);
-    vows.forEach(v => { v.setAttribute('aria-pressed', 'false'); v.disabled = false; });
     body.classList.remove('just-sworn'); paint();
     window.scrollTo({ top: 0 });
   });
