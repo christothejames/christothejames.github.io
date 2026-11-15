@@ -1282,6 +1282,189 @@ window.WIRES = {
     "community": 1,
     "conduct": -1,
     "people": -1
+  },
+  "guy-ritchie": {
+    "survival": 1,
+    "family": 1
+  },
+  "bruno-mars": {
+    "community": 1,
+    "conduct": -1
+  },
+  "josh-hartnett": {
+    "family": 1
+  },
+  "richard-e-grant": {
+    "family": 1
+  },
+  "matthew-rhys": {
+    "family": 1
+  },
+  "mike-flanagan": {
+    "family": 1
+  },
+  "charlie-hunnam": {
+    "family": 1
+  },
+  "sam-altman": {
+    "community": 1,
+    "conduct": -1
+  },
+  "woody-harrelson": {
+    "family": 1,
+    "conduct": -1
+  },
+  "peter-thiel": {
+    "conduct": -1
+  },
+  "shane-gillis": {
+    "conduct": -1
+  },
+  "riley-green": {
+    "conduct": -1
+  },
+  "chris-hansen": {
+    "trust": -1
+  },
+  "lawrence-bishnoi": {
+    "conduct": -1
+  },
+  "kai-cenat": {
+    "community": 1,
+    "conduct": -1
+  },
+  "adin-ross": {
+    "conduct": -1
+  },
+  "xqc": {
+    "conduct": -1
+  },
+  "ksi": {
+    "community": 1,
+    "conduct": -1
+  },
+  "andrew-schulz": {
+    "conduct": -1
+  },
+  "bryan-johnson": {
+    "conduct": -1
+  },
+  "hasan-piker": {
+    "conduct": -1
+  },
+  "dan-bilzerian": {
+    "conduct": -1
+  },
+  "tony-robbins": {
+    "community": 1,
+    "conduct": -1
+  },
+  "patrick-bet-david": {
+    "service": 1,
+    "conduct": -1
+  },
+  "grant-cardone": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "jason-fox": {
+    "survival": 1,
+    "service": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "travis-kelce": {
+    "body": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "giannis-antetokounmpo": {
+    "body": 1,
+    "conduct": -1
+  },
+  "nikola-jokic": {
+    "body": 1,
+    "conduct": -1
+  },
+  "jannik-sinner": {
+    "body": 1,
+    "conduct": -1
+  },
+  "ja-morant": {
+    "conduct": -1
+  },
+  "aaron-rodgers": {
+    "body": 1,
+    "trust": -1
+  },
+  "shannon-sharpe": {
+    "body": 1,
+    "conduct": -1
+  },
+  "timothee-chalamet": {
+    "conduct": -1
+  },
+  "jacob-elordi": {
+    "conduct": -1
+  },
+  "cillian-murphy": {
+    "family": 1
+  },
+  "kendrick-lamar": {
+    "family": -1
+  },
+  "zach-bryan": {
+    "service": 1,
+    "conduct": -1
+  },
+  "morgan-wallen": {
+    "conduct": -1
+  },
+  "jimmy-kimmel": {
+    "conduct": -1
+  },
+  "pete-davidson": {
+    "conduct": -1
+  },
+  "jeremy-renner": {
+    "service": 1,
+    "community": 1,
+    "conduct": -1
+  },
+  "jensen-huang": {
+    "community": 1,
+    "people": -1
+  },
+  "larry-ellison": {
+    "conduct": -1
+  },
+  "neil-degrasse-tyson": {
+    "community": 1,
+    "conduct": -1
+  },
+  "richard-hammond": {
+    "survival": 1,
+    "conduct": -1
+  },
+  "tony-hinchcliffe": {
+    "conduct": -1,
+    "people": -1
+  },
+  "wim-hof": {
+    "survival": 1,
+    "conduct": -1
+  },
+  "jude-bellingham": {
+    "community": 1,
+    "conduct": -1
+  },
+  "nelson-mandela": {
+    "community": 1,
+    "conduct": -1
+  },
+  "david-beckham": {
+    "community": 1,
+    "conduct": -1
   }
 };
 
@@ -1348,12 +1531,15 @@ window.ORDER = [
   "carlos-alcaraz",
   "scottie-scheffler",
   "jon-bon-jovi",
+  "richard-e-grant",
   "chris-hadfield",
   "joe-wicks",
   "mat-pritchard",
   "nathan-fielder",
   "jocko-willink",
   "deion-sanders",
+  "josh-hartnett",
+  "mike-flanagan",
   "tim-peake",
   "rick-stanton",
   "john-volanthen",
@@ -1373,6 +1559,7 @@ window.ORDER = [
   "tom-daley",
   "alexander-skarsgard",
   "tom-cruise",
+  "guy-ritchie",
   "captain-tom-moore",
   "patrick-mahomes",
   "karl-deisseroth",
@@ -1381,6 +1568,9 @@ window.ORDER = [
   "andrew-huberman",
   "david-attenborough",
   "steve-backshall",
+  "matthew-rhys",
+  "charlie-hunnam",
+  "cillian-murphy",
   "levison-wood",
   "prince-harry",
   "ray-mears",
@@ -1522,9 +1712,13 @@ window.ORDER = [
   "canelo-alvarez",
   "snoop-dogg",
   "armin-maiwald",
+  "bruno-mars",
+  "travis-kelce",
+  "jeremy-renner",
   "paul-mccartney",
   "michael-dell",
   "stormzy",
+  "jason-fox",
   "bear-grylls",
   "steve-irwin",
   "gary-oldman",
@@ -1532,12 +1726,22 @@ window.ORDER = [
   "max-verstappen",
   "khabib-nurmagomedov",
   "bill-gates",
+  "giannis-antetokounmpo",
+  "nikola-jokic",
+  "jannik-sinner",
   "marco-pierre-white",
   "hugh-fearnley-whittingstall",
   "brad-pitt",
   "pewdiepie",
+  "david-beckham",
   "jordan-peterson",
   "clint-eastwood",
+  "kai-cenat",
+  "aaron-rodgers",
+  "zach-bryan",
+  "richard-hammond",
+  "wim-hof",
+  "jude-bellingham",
   "ben-stokes",
   "johnny-depp",
   "jimmy-carr",
@@ -1566,9 +1770,11 @@ window.ORDER = [
   "jeff-bezos",
   "oscar-pistorius",
   "ed-matthews",
+  "tony-hinchcliffe",
   "gregg-wallace",
   "logan-paul",
   "matt-rife",
+  "lawrence-bishnoi",
   "ishowspeed",
   "kevin-hart",
   "tristan-tate",
@@ -1579,6 +1785,7 @@ window.ORDER = [
   "danny-masterson",
   "jay-z",
   "gino-dacampo",
+  "grant-cardone",
   "lance-armstrong",
   "ant-middleton",
   "lionel-messi",
@@ -1588,6 +1795,7 @@ window.ORDER = [
   "floyd-mayweather",
   "tiger-woods",
   "sylvester-stallone",
+  "hasan-piker",
   "myron-gaines",
   "mel-gibson",
   "charlie-sheen",
@@ -1597,17 +1805,43 @@ window.ORDER = [
   "jeremy-clarkson",
   "dana-white",
   "bernie-madoff",
+  "jensen-huang",
+  "xqc",
+  "ksi",
+  "tony-robbins",
+  "kendrick-lamar",
+  "jimmy-kimmel",
+  "neil-degrasse-tyson",
   "dave-chappelle",
   "bam-margera",
+  "morgan-wallen",
+  "patrick-bet-david",
   "sneako",
   "nick-fuentes",
+  "adin-ross",
+  "pete-davidson",
+  "ja-morant",
   "drake",
   "salt-bae",
   "kanye-west",
   "travis-scott",
+  "dan-bilzerian",
+  "sam-altman",
   "mark-wahlberg",
+  "bryan-johnson",
+  "woody-harrelson",
+  "shannon-sharpe",
+  "chris-hansen",
   "russell-crowe",
   "tom-brady",
+  "timothee-chalamet",
+  "shane-gillis",
+  "riley-green",
+  "peter-thiel",
+  "andrew-schulz",
+  "jacob-elordi",
+  "larry-ellison",
+  "nelson-mandela",
   "richard-branson"
 ];
 
@@ -1631,22 +1865,28 @@ window.AREA_ORDER = {
     "canelo-alvarez",
     "jon-jones",
     "anthony-joshua",
+    "travis-kelce",
     "khabib-nurmagomedov",
     "lamine-yamal",
     "oleksandr-usyk",
+    "jannik-sinner",
     "shohei-ohtani",
+    "giannis-antetokounmpo",
     "carlos-alcaraz",
     "rory-mcilroy",
     "jason-kelce",
     "alex-pereira",
     "scottie-scheffler",
+    "nikola-jokic",
     "valentino-rossi",
     "mike-tyson",
     "arnold-schwarzenegger",
     "shaquille-oneal",
     "stephen-curry",
+    "aaron-rodgers",
     "patrick-mahomes",
     "deion-sanders",
+    "shannon-sharpe",
     "teddy-riner",
     "remco-evenepoel",
     "luke-littler",
@@ -1675,6 +1915,7 @@ window.AREA_ORDER = {
     "alex-honnold",
     "chris-hadfield",
     "cristiano-ronaldo",
+    "jason-fox",
     "ant-middleton",
     "steve-backshall",
     "captain-tom-moore",
@@ -1684,10 +1925,13 @@ window.AREA_ORDER = {
     "ranulph-fiennes",
     "levison-wood",
     "idris-elba",
+    "richard-hammond",
     "lance-armstrong",
     "ben-parkinson",
     "bear-grylls",
+    "guy-ritchie",
     "alexander-skarsgard",
+    "wim-hof",
     "lionel-messi",
     "rick-stanton",
     "john-volanthen",
@@ -1702,10 +1946,12 @@ window.AREA_ORDER = {
     "pat-tillman",
     "jocko-willink",
     "michael-sheen",
+    "zach-bryan",
     "oleksandr-usyk",
     "ranulph-fiennes",
     "chris-hadfield",
     "prince-william",
+    "jeremy-renner",
     "james-blunt",
     "arnold-schwarzenegger",
     "danny-trejo",
@@ -1714,9 +1960,11 @@ window.AREA_ORDER = {
     "nidal-hasan",
     "jonathan-van-tam",
     "ben-parkinson",
+    "patrick-bet-david",
     "david-goggins",
     "ray-mears",
     "tim-peake",
+    "jason-fox",
     "ant-middleton",
     "bear-grylls",
     "alexander-skarsgard",
@@ -1768,6 +2016,7 @@ window.AREA_ORDER = {
     "jose-andres",
     "gareth-southgate",
     "mohamed-salah",
+    "bruno-mars",
     "ed-sheeran",
     "patrick-stewart",
     "chris-herren",
@@ -1801,6 +2050,7 @@ window.AREA_ORDER = {
     "logan-paul",
     "pewdiepie",
     "jeremy-clarkson",
+    "jeremy-renner",
     "andrew-huberman",
     "jay-z",
     "gary-lineker",
@@ -1810,6 +2060,7 @@ window.AREA_ORDER = {
     "ben-affleck",
     "anthony-joshua",
     "mark-zuckerberg",
+    "travis-kelce",
     "stephen-curry",
     "george-clooney",
     "lionel-messi",
@@ -1823,6 +2074,7 @@ window.AREA_ORDER = {
     "frank-gehry",
     "rory-mcilroy",
     "tom-daley",
+    "jensen-huang",
     "jason-kelce",
     "case-keenum",
     "will-smith",
@@ -1839,7 +2091,10 @@ window.AREA_ORDER = {
     "paul-mccartney",
     "sebastian-croft",
     "brad-pitt",
+    "ksi",
     "usain-bolt",
+    "neil-degrasse-tyson",
+    "sam-altman",
     "jordan-peterson",
     "prince",
     "alan-rickman",
@@ -1847,6 +2102,7 @@ window.AREA_ORDER = {
     "elon-musk",
     "justin-verlander",
     "josh-allen",
+    "kai-cenat",
     "deion-sanders",
     "khabib-nurmagomedov",
     "marco-pierre-white",
@@ -1910,6 +2166,8 @@ window.AREA_ORDER = {
     "sam-neill",
     "robin-williams",
     "piero-angela",
+    "david-beckham",
+    "jason-fox",
     "steve-backshall",
     "jason-sudeikis",
     "james-blunt",
@@ -1960,6 +2218,8 @@ window.AREA_ORDER = {
     "victor-wembanyama",
     "jean-reno",
     "gerard-butler",
+    "jude-bellingham",
+    "tony-robbins",
     "alexander-skarsgard",
     "ben-stokes",
     "bruce-willis",
@@ -1986,7 +2246,8 @@ window.AREA_ORDER = {
     "vincent-cassel",
     "javier-bardem",
     "jimmy-carr",
-    "armin-maiwald"
+    "armin-maiwald",
+    "nelson-mandela"
   ],
   "family": [
     "lebron-james",
@@ -1996,7 +2257,10 @@ window.AREA_ORDER = {
     "james-blunt",
     "russell-brand",
     "michael-dell",
+    "richard-e-grant",
     "ed-sheeran",
+    "mike-flanagan",
+    "josh-hartnett",
     "matthew-mcconaughey",
     "nick-saban",
     "snoop-dogg",
@@ -2014,6 +2278,7 @@ window.AREA_ORDER = {
     "jordan-peterson",
     "tyson-fury",
     "mark-hamill",
+    "woody-harrelson",
     "warren-buffett",
     "mark-zuckerberg",
     "jamie-oliver",
@@ -2023,11 +2288,15 @@ window.AREA_ORDER = {
     "volunteer-coach",
     "ninja",
     "eddie-hall",
+    "guy-ritchie",
     "tom-hardy",
+    "matthew-rhys",
     "pierce-brosnan",
     "shohei-ohtani",
+    "charlie-hunnam",
     "jon-bon-jovi",
     "alex-honnold",
+    "cillian-murphy",
     "paddy-pimblett",
     "rory-mcilroy",
     "jason-kelce",
@@ -2061,6 +2330,7 @@ window.AREA_ORDER = {
     "dr-disrespect",
     "jay-z",
     "floyd-mayweather",
+    "kendrick-lamar",
     "charlie-sheen",
     "kevin-hart",
     "shaquille-oneal",
@@ -2073,11 +2343,14 @@ window.AREA_ORDER = {
     "sylvester-stallone",
     "ant-middleton",
     "floyd-mayweather",
+    "aaron-rodgers",
     "jake-paul",
     "bernie-madoff",
     "gino-dacampo",
     "arnold-schwarzenegger",
+    "chris-hansen",
     "alex-jones",
+    "grant-cardone",
     "mike-tyson",
     "lance-armstrong",
     "jordan-belfort",
@@ -2107,17 +2380,27 @@ window.AREA_ORDER = {
     "paul-mccartney",
     "snoop-dogg",
     "hugh-fearnley-whittingstall",
+    "jason-fox",
+    "nelson-mandela",
+    "wim-hof",
+    "larry-ellison",
     "andrew-flintoff",
     "clint-eastwood",
     "brad-pitt",
+    "jacob-elordi",
+    "david-beckham",
+    "jude-bellingham",
     "anthony-joshua",
     "jason-momoa",
+    "richard-hammond",
+    "jeremy-renner",
     "sunny-balwani",
     "charlie-sheen",
     "stephen-curry",
     "ryan-reynolds",
     "gordon-ramsay",
     "arnold-schwarzenegger",
+    "bruno-mars",
     "michael-dell",
     "lewis-hamilton",
     "gary-oldman",
@@ -2126,24 +2409,34 @@ window.AREA_ORDER = {
     "russell-crowe",
     "marco-pierre-white",
     "alex-jones",
+    "nikola-jokic",
     "mark-wahlberg",
     "mel-gibson",
+    "giannis-antetokounmpo",
+    "jannik-sinner",
     "ben-stokes",
     "stormzy",
     "hank-green",
+    "andrew-schulz",
     "ninja",
     "lance-armstrong",
+    "peter-thiel",
     "terry-crews",
     "jamie-oliver",
     "matt-rife",
     "canelo-alvarez",
+    "kai-cenat",
     "max-verstappen",
     "theo-von",
+    "timothee-chalamet",
+    "riley-green",
     "martin-shkreli",
     "tom-brady",
     "shaquille-oneal",
     "matt-stone",
+    "grant-cardone",
     "trey-parker",
+    "shane-gillis",
     "sadio-mane",
     "liver-king",
     "johnny-depp",
@@ -2151,23 +2444,40 @@ window.AREA_ORDER = {
     "mike-tyson",
     "kylian-mbappe",
     "elon-musk",
+    "shannon-sharpe",
+    "bryan-johnson",
+    "travis-kelce",
     "salt-bae",
+    "woody-harrelson",
     "jay-z",
+    "ja-morant",
     "bernie-madoff",
+    "sam-altman",
+    "tony-hinchcliffe",
+    "dan-bilzerian",
     "dwayne-johnson",
     "gino-dacampo",
+    "pete-davidson",
+    "zach-bryan",
     "travis-scott",
     "ant-middleton",
+    "adin-ross",
     "kevin-hart",
     "dr-disrespect",
     "nick-fuentes",
     "drake",
+    "morgan-wallen",
     "sneako",
     "bam-margera",
     "kanye-west",
+    "patrick-bet-david",
     "dave-chappelle",
     "khabib-nurmagomedov",
+    "tony-robbins",
+    "xqc",
     "jordan-peterson",
+    "neil-degrasse-tyson",
+    "jimmy-kimmel",
     "tiger-woods",
     "pewdiepie",
     "novak-djokovic",
@@ -2175,10 +2485,12 @@ window.AREA_ORDER = {
     "will-smith",
     "bill-gates",
     "dana-white",
+    "ksi",
     "sylvester-stallone",
     "ed-matthews",
     "myron-gaines",
     "jeremy-clarkson",
+    "hasan-piker",
     "steven-bartlett",
     "mrbeast",
     "joe-rogan",
@@ -2193,6 +2505,7 @@ window.AREA_ORDER = {
     "ishowspeed",
     "gerard-depardieu",
     "hstikkytokky",
+    "lawrence-bishnoi",
     "nidal-hasan",
     "andrew-tate",
     "danny-masterson",
@@ -2225,6 +2538,8 @@ window.AREA_ORDER = {
     "gregg-wallace",
     "donald-trump",
     "alex-jones",
+    "tony-hinchcliffe",
+    "jensen-huang",
     "matt-rife",
     "conor-mcgregor",
     "andrew-tate",
@@ -2239,18 +2554,56 @@ window.CONTROVERSIAL = [
   "tom-cruise",
   "stephen-curry",
   "snoop-dogg",
+  "jeremy-renner",
   "richard-branson",
+  "jason-fox",
   "cristiano-ronaldo",
   "mark-wahlberg",
   "jordan-peterson",
+  "kai-cenat",
+  "aaron-rodgers",
+  "zach-bryan",
+  "richard-hammond",
+  "wim-hof",
+  "jude-bellingham",
+  "nelson-mandela",
   "jeff-bezos",
   "jimmy-carr",
+  "sam-altman",
+  "woody-harrelson",
+  "peter-thiel",
+  "andrew-schulz",
+  "shannon-sharpe",
+  "jacob-elordi",
+  "larry-ellison",
+  "shane-gillis",
+  "riley-green",
+  "ksi",
+  "bryan-johnson",
+  "dan-bilzerian",
+  "tony-robbins",
+  "patrick-bet-david",
+  "ja-morant",
+  "timothee-chalamet",
+  "jensen-huang",
+  "neil-degrasse-tyson",
   "will-smith",
   "dave-chappelle",
   "drake",
+  "chris-hansen",
+  "adin-ross",
+  "xqc",
+  "kendrick-lamar",
+  "morgan-wallen",
+  "jimmy-kimmel",
+  "pete-davidson",
+  "hasan-piker",
   "sylvester-stallone",
+  "grant-cardone",
   "ishowspeed",
-  "matt-rife"
+  "matt-rife",
+  "lawrence-bishnoi",
+  "tony-hinchcliffe"
 ];
 
 // Men shown in the home page's INCEL mode (the manosphere crowd), biggest live impact first
