@@ -337,37 +337,27 @@
   .slot { position: relative; display: flex; flex-direction: column; transform: rotate(var(--tilt, 0deg)); transition: transform 0.15s; }
   .slot:hover, .slot:focus-within { transform: translateY(-4px); }
   .slot .poster { border-radius: 6px 6px 0 0; }
-  .slot.bump { animation: bump 0.35s ease-out; }
-  @keyframes bump { from { transform: translateY(var(--from, 0)); } }
-  .rank, .moved { position: absolute; top: 20px; z-index: 1; font-family: 'Bungee', sans-serif; padding: 4px 8px 3px; pointer-events: none; }
-  .rank { left: 20px; font-size: 14px; background: var(--ink); color: var(--paper); border-radius: 0 0 8px 0; }
-  .moved { right: 20px; font-size: 11px; background: #34e07a; color: var(--night); border-radius: 0 0 0 8px; }
-  .moved.down { background: var(--red); color: #fff; }
-  .move { display: flex; background: #0a2a3a; border: 2px solid #3ef2ff66; border-top: 1px solid #ffffff1f; border-radius: 0 0 10px 10px; overflow: hidden; }
-  .slot.has-move .say-strip { border-radius: 0; border-color: #3ef2ff66; }
-  .move button { flex: 1; min-height: 40px; border: 0; background: none; color: var(--cyan); font-family: 'Righteous', sans-serif; font-size: 13px; cursor: pointer; }
-  .move button + button { border-left: 1px solid #ffffff1f; }
-  .move button:hover:not(:disabled) { background: #3ef2ff1a; }
-  .move button:disabled { opacity: 0.3; cursor: default; }
-  .move button:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
 
-  /* ---------- Have your say: Our order / My order / Following (saved in this browser by say.js) ---------- */
-  .say-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 28px; padding: 12px; border: 2px solid var(--cyan);
-    border-radius: 16px; background: #0c1a36cc; box-shadow: 0 0 18px #3ef2ff33; }
-  .say-bar h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 16px; color: var(--cyan); }
-  .modes { display: flex; background: var(--night); border-radius: 999px; padding: 4px; gap: 2px; }
-  .modes button { font-family: 'Bungee', sans-serif; font-size: 13px; border: 0; border-radius: 999px; padding: 9px 14px; background: none; color: var(--bubblegum); cursor: pointer; white-space: nowrap; }
-  .modes button[aria-pressed="true"] { background: var(--cyan); color: var(--night); }
-  .modes button:focus-visible, .say-reset:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .modes .n { display: inline-block; min-width: 18px; margin-left: 4px; padding: 0 5px; border-radius: 999px; background: var(--gold); color: var(--night); font-size: 11px; }
-  .modes .n[hidden] { display: none; }
-  .say-hint { flex: 1 1 240px; margin: 0; font-size: 14px; color: var(--muted); }
-  .say-reset { font-family: inherit; font-size: 13px; background: none; border: 0; padding: 0; color: var(--cyan); text-decoration: underline; cursor: pointer; }
-  .say-reset[hidden] { display: none; }
-  .opinion-link { margin-left: auto; font-family: 'Bungee', sans-serif; font-size: 13px; color: var(--night); background: var(--gold);
-    padding: 8px 14px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
-  .opinion-link:hover { box-shadow: 0 0 16px #ffe66d88; }
-  .opinion-link:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  /* ---------- Have your say: one slim row (owner, 15 Nov 2026: the three-tab panel took a third of a phone screen,
+     and My order was dropped). ★ Following filters the boards; Public opinion links to opinion.html; signed-in
+     voters get a small account menu (say.js fills [data-say-account]). ---------- */
+  .say-bar { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 6px 6px 6px 16px;
+    border: 1.5px solid #3ef2ff66; border-radius: 999px; background: #0c1a36cc; box-shadow: 0 0 14px #3ef2ff22; }
+  .say-label { font-family: 'Bungee', sans-serif; font-size: 14px; color: var(--cyan); white-space: nowrap; }
+  .say-tip { flex: 1; min-width: 0; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .say-tip .u { color: #34e07a; } .say-tip .d { color: #ff7a7a; }
+  .chip { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: 999px;
+    font-family: 'Bungee', sans-serif; font-size: 13px; white-space: nowrap; text-decoration: none; cursor: pointer; }
+  .chip svg { width: 16px; height: 16px; flex: none; }
+  .chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .follow-chip { border: 1.5px solid var(--gold); background: none; color: var(--gold); }
+  .follow-chip[aria-pressed="true"] { background: var(--gold); color: var(--night); }
+  .follow-chip .n { min-width: 18px; padding: 1px 5px; border-radius: 999px; background: var(--gold); color: var(--night); font-size: 11px; }
+  .follow-chip[aria-pressed="true"] .n { background: var(--night); color: var(--gold); }
+  .follow-chip .n[hidden] { display: none; }
+  .opinion-chip { border: 0; background: var(--cyan); color: var(--night); }
+  .opinion-chip:hover { box-shadow: 0 0 16px #3ef2ff88; }
+  .say-bar [data-say-account]:empty { display: none; }
 
   .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
   .bad .poster { --pin: var(--red); --glow: #ff3b3b66; }
@@ -499,13 +489,9 @@
     .poster .name { font-size: 16px; }
     .poster .for, .poster .role { font-size: 12px; }
     .mug .ini { font-size: 40px; }
-    .rank, .moved { top: 16px; }
-    .rank { left: 16px; font-size: 12px; }
-    .moved { right: 16px; }
-    .move .mw { display: none; }
-    .move button { text-transform: capitalize; }
-    .modes button { padding: 8px 10px; font-size: 12px; }
-    .say-bar h2 { flex-basis: 100%; }
+    .say-bar { margin-top: 18px; padding: 0; border: 0; background: none; box-shadow: none; gap: 8px; }
+    .say-label, .say-tip { display: none; }
+    .say-bar .chip { flex: 1; min-width: 0; padding: 0 10px; font-size: 12px; }
   }
 
   @media (max-width: 360px) {
@@ -606,16 +592,11 @@
   </section>
 
   <section class="say-bar" aria-label="Have your say">
-    <h2>HAVE YOUR SAY</h2>
-    <div class="modes">
-      <button type="button" data-mode="ours" aria-pressed="true">Our order</button>
-      <button type="button" data-mode="mine" aria-pressed="false">My order</button>
-      <button type="button" data-mode="follow" aria-pressed="false">Following<span class="n" id="followCount" hidden></span></button>
-    </div>
-    <p class="say-hint" id="sayHint"></p>
-    <button type="button" class="say-reset" id="sayReset" hidden>Reset to our order</button>
-    <span data-say-account></span>
-    <a class="opinion-link" href="opinion.html">See public opinion: who's trending</a>
+    <span class="say-label">Have your say</span>
+    <span class="say-tip">Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don't</span>
+    <button type="button" class="chip follow-chip" id="followChip" aria-pressed="false">★ Following<span class="n" id="followCount" hidden></span></button>
+    <a class="chip opinion-chip" href="opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</a>
+    <span data-say-account="compact"></span>
   </section>
 
   <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
@@ -673,16 +654,12 @@
 
   // The poster is the man: photo, tier, name, why, status.
   const TIER_LABEL = { good: 'Real Men', mid: 'Coin Toss', bad: 'Out of Service' };
-  // Under it: the Have your say strip (say.js), and in My order a rank, how far he moved, and Move up / Move down.
-  function poster(p, i, shown, at) {
+  // Under it: the Have your say strip (say.js): vote arrows and Follow.
+  function poster(p, i) {
     const respected = tier(p) === 'good' && passed(p);
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
-    const reorder = mode !== 'ours';
-    const diff = reorder ? at.ours - at.mine : 0;
     return `
-      <div class="slot${reorder ? ' has-move' : ''}" data-id="${esc(p.id)}" style="--tilt:${tilt}deg">
-      ${reorder ? `<span class="rank">#${at.mine + 1}</span>` : ''}
-      ${diff ? `<span class="moved${diff < 0 ? ' down' : ''}" title="Compared with our order">${diff > 0 ? '▲' : '▼'} ${Math.abs(diff)}</span>` : ''}
+      <div class="slot" data-id="${esc(p.id)}" style="--tilt:${tilt}deg">
       <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}">
         <div class="mug">
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
@@ -694,10 +671,6 @@
         <div class="status">${esc(p.status)}</div>
       </a>
       ${SAY.strip(p.id, p.name)}
-      ${reorder ? `<div class="move">
-        <button type="button" data-move="-1" aria-label="Move ${esc(p.name)} up in my order"${i === 0 ? ' disabled' : ''}>↑ <span class="mw">Move </span>up</button>
-        <button type="button" data-move="1" aria-label="Move ${esc(p.name)} down in my order"${i === shown - 1 ? ' disabled' : ''}>↓ <span class="mw">Move </span>down</button>
-      </div>` : ''}
       </div>`;
   }
 
@@ -718,27 +691,19 @@
     // While searching or filtering by age, a board with no matches is hidden (owner, 14 Nov 2026: only show
     // what's needed). If no board matches at all, one line says so instead of three empty boards.
     // Following shows only the men he follows, so empty boards hide like a search.
-    const following = mode === 'follow';
     const filtering = !!term || !!ageSel || following;
     let found = 0;
-    visible = {};
     ['good', 'mid', 'bad'].forEach(list => {
-      // Our order for the whole board, then his order (say.js) when he's looking at My order or Following
-      const ours = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list).sort(order).map(p => p.id);
-      boardOurs[list] = ours;
-      const mine = mode === 'ours' ? ours : SAY.order(list, ours);
-      const byId = id => window.PEOPLE.find(p => p.id === id);
-      const all = mine.map(byId).filter(p => match(p) && (!following || SAY.follows(p.id)));
+      const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)
+        && (!following || SAY.follows(p.id))).sort(order);
       // Each board shows its top 12 (fills full rows); the dropdown shows more. A search or Following shows every match.
       const pick = document.getElementById(list + 'Show');
       const n = term || following ? all.length : (pick.value === 'all' ? all.length : +pick.value);
       const shown = all.slice(0, n);
-      visible[list] = shown.map(p => p.id);
       pick.hidden = !!term || following || all.length <= 12;
       // After the age filter, "All" counts only the men left
       pick.querySelector('option[value="all"]').textContent = 'All ' + all.length;
-      document.getElementById(list + 'Grid').innerHTML = shown.map((p, i) =>
-        poster(p, i, shown.length, { ours: ours.indexOf(p.id), mine: mine.indexOf(p.id) })).join('') || '<p class="empty">Nobody matches.</p>';
+      document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
       document.getElementById(list + 'Count').textContent = shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
       document.getElementById(list).hidden = filtering && !all.length;
@@ -750,46 +715,17 @@
     renderSay();
   }
 
-  // ---------- Have your say: which order the boards show ----------
-  let mode = 'ours', visible = {}, boardOurs = {};
-  const HINTS = {
-    ours: 'Our ranking, from the public record. Vote ↑ if you agree with his place, ↓ if not. One vote per Google account.',
-    mine: 'Your own order. Move men up or down; our order stays as it is. Saved in this browser only.',
-    follow: 'The men you follow, in your order.',
-  };
+  // ---------- Have your say: ★ Following shows only the men he follows (always in our order) ----------
+  let following = false;
+  const followChip = document.getElementById('followChip');
   function renderSay() {
-    document.querySelectorAll('.modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === mode));
-    document.getElementById('sayHint').textContent = HINTS[mode];
-    document.getElementById('sayReset').hidden = mode === 'ours' || !SAY.custom();
+    followChip.setAttribute('aria-pressed', following);
     const n = SAY.following().length, fc = document.getElementById('followCount');
     fc.textContent = n; fc.hidden = !n;
   }
-  document.querySelector('.modes').addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if (b) { mode = b.dataset.mode; render(); }
-  });
-  document.getElementById('sayReset').addEventListener('click', () => { SAY.resetOrders(); render(); });
-  // Unfollowing in Following takes him off; elsewhere only the count changes.
-  SAY.onChange(kind => { if (kind === 'follow') mode === 'follow' ? render() : renderSay(); });
-
-  // Move up / Move down: swap with the next man you can see on that board (search and age filters respected).
-  document.querySelector('main').addEventListener('click', e => {
-    const b = e.target.closest('[data-move]');
-    if (!b) return;
-    const slot = b.closest('.slot'), id = slot.dataset.id, dir = +b.dataset.move;
-    const list = slot.closest('.board').id;
-    const seen = visible[list], other = seen[seen.indexOf(id) + dir];
-    if (!other) return;
-    const mine = SAY.order(list, boardOurs[list]), x = mine.indexOf(id), y = mine.indexOf(other);
-    [mine[x], mine[y]] = [mine[y], mine[x]];
-    SAY.setOrder(list, mine);
-    render();
-    const moved = [...document.querySelectorAll(`#${list}Grid .slot`)].find(s => s.dataset.id === id);
-    if (!moved) return;
-    moved.style.setProperty('--from', dir < 0 ? '30px' : '-30px');
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) moved.classList.add('bump');
-    (moved.querySelector(`[data-move="${dir}"]:not(:disabled)`) || moved.querySelector('[data-move]:not(:disabled)'))?.focus();
-  });
+  followChip.addEventListener('click', () => { following = !following; render(); });
+  // Unfollowing while on Following takes him off; otherwise only the count changes.
+  SAY.onChange(kind => { if (kind === 'follow') following ? render() : renderSay(); });
 
   // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns)
   ['good', 'mid', 'bad'].forEach(list => {

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Public Opinion · The Real Man Report</title>
-<meta name="description" content="Who's trending on The Real Man Report: what visitors think of our calls, one vote per Google account.">
+<meta name="description" content="Who's trending on The Real Man Report: the men visitors like and dislike most, one vote per Google account.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -48,8 +48,8 @@
   section.list { margin-top: 36px; }
   section.list h2 { margin: 0 0 2px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(22px, 4.5vw, 32px); }
   .trend h2 { color: var(--cyan); }
-  .agree h2 { color: var(--green); }
-  .push h2 { color: var(--red); }
+  .liked h2 { color: var(--green); }
+  .disliked h2 { color: var(--red); }
   section.list > p { margin: 0 0 14px; color: var(--muted); }
 
   ol.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
@@ -66,7 +66,7 @@
   .who a:focus-visible, .face:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
   .tier { display: inline-block; margin-left: 6px; font-size: 12px; color: var(--tier); vertical-align: 2px; white-space: nowrap; }
   .good { --tier: var(--gold); } .mid { --tier: var(--amber); } .bad { --tier: #ff7a7a; }
-  /* Health bar (owner, 15 Nov 2026: like a game): fill = % who agree, colour runs green → yellow → orange → red as it drops.
+  /* Health bar (owner, 15 Nov 2026: like a game): fill = % who like him, colour runs green → yellow → orange → red as it drops.
      --hp (0–100) and --c (the colour) are set per row. */
   .hp { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; max-width: 380px; }
   .hp-tag { flex: none; font-family: 'Bungee', sans-serif; font-size: 11px; color: var(--c); text-shadow: 0 0 6px var(--c); }
@@ -152,7 +152,7 @@
 
 <header class="wrap">
   <h1>Public Opinion</h1>
-  <p class="lead">Who's trending, and what you all think of our calls. ↑ means you agree with his place on the boards, ↓ means you don't. One vote per Google account.</p>
+  <p class="lead">Who's trending, and who you like. Vote ↑ if you like him, ↓ if you don't. One vote per Google account.</p>
 </header>
 
 <main class="wrap">
@@ -214,14 +214,14 @@
 
   // Lists:
   //   Trending       = most votes cast (up + down) in the period
-  //   Crowd agrees   = highest (up − down), at least one more up than down
-  //   Crowd pushes back = lowest (up − down), at least one more down than up
+  //   Most liked     = highest (up − down), at least one more up than down
+  //   Most disliked  = lowest (up − down), at least one more down than up
   const LISTS = [
     { key: 'trend', title: 'TRENDING', sub: { week: 'Most votes this week.', all: 'Most votes of all time.' },
       score: c => c.up + c.down, keep: c => c.up + c.down > 0 },
-    { key: 'agree', title: 'THE CROWD AGREES', sub: { week: 'The calls you backed most this week.', all: 'The calls you backed most.' },
+    { key: 'liked', title: 'MOST LIKED', sub: { week: 'The men you liked most this week.', all: 'The men you like most.' },
       score: c => c.up - c.down, keep: c => c.up > c.down },
-    { key: 'push', title: 'THE CROWD PUSHES BACK', sub: { week: 'The calls you disagreed with most this week.', all: 'The calls you disagreed with most.' },
+    { key: 'disliked', title: 'MOST DISLIKED', sub: { week: 'The men you disliked most this week.', all: 'The men you dislike most.' },
       score: c => c.down - c.up, keep: c => c.down > c.up },
   ];
 
@@ -248,7 +248,7 @@
       <a class="face" href="${href}" tabindex="-1" aria-hidden="true">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy" onerror="this.replaceWith('${esc(initials(p.name))}')">` : esc(initials(p.name))}</a>
       <div class="who">
         <a href="${href}">${esc(p.name)}</a><span class="tier">${TIER[t]}</span>
-        <div class="hp${pct < 25 ? ' low' : ''}" role="img" aria-label="Health ${pct}%: ${pct}% agree" style="--hp:${pct};--c:${hpColour(pct)}">
+        <div class="hp${pct < 25 ? ' low' : ''}" role="img" aria-label="Health ${pct}%: ${pct}% like him" style="--hp:${pct};--c:${hpColour(pct)}">
           <span class="hp-tag" aria-hidden="true">HP</span><span class="hp-bar"><i></i></span><span class="hp-num" aria-hidden="true">${pct}%</span>
         </div>
         <span class="counts"><span class="u">↑ ${c.up}</span> · <span class="d">↓ ${c.down}</span></span>
@@ -267,7 +267,7 @@
     const ids = Object.keys(data.men).filter(id => byId[id]);
     const any = ids.some(id => { const c = counts(id); return c.up + c.down > 0; });
     if (!any) {
-      out.innerHTML = `<p class="empty"><b>No votes ${period === 'week' ? 'this week' : 'yet'}</b>Head to <a href="home.html">the boards</a> and vote on a man: ↑ if you agree with his place, ↓ if not.</p>`;
+      out.innerHTML = `<p class="empty"><b>No votes ${period === 'week' ? 'this week' : 'yet'}</b>Head to <a href="home.html">the boards</a> and vote on a man: ↑ if you like him, ↓ if you don't.</p>`;
       return;
     }
     out.innerHTML = LISTS.map(L => {

@@ -1,17 +1,16 @@
-// Have your say (owner, 15 Nov 2026): Reddit-style up/down votes, Follow, and the viewer's own board order.
+// Have your say (owner, 15 Nov 2026): Reddit-style up/down votes and Follow.
 // Shared by home.html (every poster), web.html (the bubble card), profile.html and opinion.html.
 //
 // Votes count only when signed in with Google (owner, 15 Nov 2026: like Reddit, to stop spam votes): one vote per
 // account per man, sent to the private admin site (POST /public/vote; it keeps a scrambled account code, never a
 // name or email). Totals for the scores and the Public Opinion page come from GET /public/opinion.
-// Follow and My order need no account and stay only in this browser (localStorage `say`).
+// Follow needs no account and stays only in this browser (localStorage `say`).
 // This file also runs Google sign-in for any page that loads it (home.html's request card uses SAY.auth).
 //
 //   SAY.strip(id, name, solo)  -> HTML for the vote + follow strip under a card
 //   SAY.vote(id), SAY.follows(id), SAY.following()
-//   SAY.order(board, oursIds), SAY.setOrder(board, ids), SAY.resetOrders(), SAY.custom()
 //   SAY.opinion()              -> Promise of {updated, voters, men: {id: [up, down, upWeek, downWeek]}} (or null)
-//   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow, order or sign-in change
+//   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow or sign-in change
 //   SAY.auth: token(), load(), signOut(), erase(), ask(), renderButton(el), onChange(fn)
 (() => {
   // Public, not a secret; the same value as GOOGLE_CLIENT_ID in skills.html and the admin repo. Empty = no voting.
@@ -23,7 +22,8 @@
   let s = {};
   try { s = JSON.parse(localStorage.getItem(KEY)) || {}; } catch {}
   // votes: this browser's copy of the signed-in account's votes (the server has the real ones)
-  s = { votes: s.votes || {}, follow: s.follow || [], order: s.order || {} };
+  // (My order was dropped on 15 Nov 2026; any saved `order` from before is simply ignored and dropped on the next save.)
+  s = { votes: s.votes || {}, follow: s.follow || [] };
   const store = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
   const flag = on => { try { on ? localStorage.setItem(SIGNED, '1') : localStorage.removeItem(SIGNED); } catch {} };
   const flagged = () => { try { return !!localStorage.getItem(SIGNED); } catch { return false; } };
@@ -60,6 +60,8 @@
   .say-follow .ico { font-size: 17px; line-height: 1; }
   .say-strip.solo { border-top: 2px solid #ffffff1f; border-radius: 10px; }
   @media (max-width: 520px) {
+    .say-me .me-txt { display: none; }
+    .say-me summary { padding: 0 8px; }
     .say-vote button { flex-basis: 34px; }
     .say-n { min-width: 26px; }
     .say-strip:not(.solo) .say-follow .lbl { display: none; }
@@ -80,6 +82,16 @@
   .say-account { font-size: 13px; color: #a9bfdc; }
   .say-account b { color: #34e07a; font-weight: 400; }
   .say-account button { font: inherit; background: none; border: 0; padding: 0; margin-left: 8px; color: #3ef2ff; text-decoration: underline; cursor: pointer; }
+  .say-me { position: relative; }
+  .say-me summary { list-style: none; cursor: pointer; white-space: nowrap; min-height: 40px; display: flex; align-items: center; padding: 0 12px;
+    border-radius: 999px; color: #34e07a; font-family: 'Bungee', sans-serif; font-size: 12px; }
+  .say-me summary::-webkit-details-marker { display: none; }
+  .say-me summary::after { content: '▾'; margin-left: 5px; }
+  .say-me summary:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  .say-me > div { position: absolute; right: 0; top: calc(100% + 6px); z-index: 30; display: grid; gap: 4px; padding: 8px; min-width: 170px;
+    background: #0c1a36; border: 1.5px solid #3ef2ff66; border-radius: 12px; box-shadow: 0 10px 30px #000a; }
+  .say-me > div button { margin: 0; padding: 8px 10px; text-align: left; border-radius: 8px; text-decoration: none; color: #eef4ff; }
+  .say-me > div button:hover { background: #ffffff12; }
   .say-account button.go { margin: 0; padding: 7px 14px; border-radius: 999px; background: #3ef2ff; color: #050b1a; text-decoration: none; font-family: 'Bungee', sans-serif; font-size: 12px; }`;
   document.head.appendChild(css);
 
@@ -141,7 +153,7 @@
       sheet.className = 'say-sheet';
       sheet.setAttribute('aria-labelledby', 'say-sheet-h');
       sheet.innerHTML = `<h2 id="say-sheet-h">SIGN IN TO VOTE</h2>
-        <p>One vote per Google account keeps the counts honest. Following and your own order work without signing in.</p>
+        <p>One vote per Google account keeps the counts honest. Following works without signing in.</p>
         <div class="gbtn"></div>
         <small>We keep a scrambled code, never your name or email. <a href="privacy.html">Privacy</a></small>
         <button type="button" class="close">Not now</button>`;
@@ -226,14 +238,19 @@
   }
   const repaint = id => document.querySelectorAll('.say-strip').forEach(el => { if (el.dataset.id === id) paint(el); });
 
-  // A "signed in / sign in" line for pages that want one: <span data-say-account></span>
+  // A "signed in / sign in" line for pages that want one: <span data-say-account></span>.
+  // data-say-account="compact" (home's slim bar) shows nothing when signed out (the arrows ask for sign-in)
+  // and a small "✓ Signed in" menu with Sign out / Delete my votes when signed in.
   function paintAccounts() {
     document.querySelectorAll('[data-say-account]').forEach(el => {
       el.classList.add('say-account');
       if (!GOOGLE_CLIENT_ID) { el.hidden = true; return; }
+      const compact = el.dataset.sayAccount === 'compact';
       el.innerHTML = token
-        ? '<b>✓ Signed in to vote.</b><button type="button" data-say-do="out">Sign out</button><button type="button" data-say-do="erase">Delete my votes</button>'
-        : '<button type="button" class="go" data-say-do="in">Sign in to vote</button>';
+        ? compact
+          ? '<details class="say-me"><summary aria-label="Signed in: account menu">✓<span class="me-txt"> Signed in</span></summary><div><button type="button" data-say-do="out">Sign out</button><button type="button" data-say-do="erase">Delete my votes</button></div></details>'
+          : '<b>✓ Signed in to vote.</b><button type="button" data-say-do="out">Sign out</button><button type="button" data-say-do="erase">Delete my votes</button>'
+        : compact ? '' : '<button type="button" class="go" data-say-do="in">Sign in to vote</button>';
     });
   }
 
@@ -241,9 +258,9 @@
     const who = esc(name || 'him');
     return `<div class="say-strip${solo ? ' solo' : ''}" data-id="${esc(id)}">
       <div class="say-vote">
-        <button type="button" class="up" data-say="up" aria-pressed="false" aria-label="Upvote ${who}: agree with his place" title="Agree with his place">${UP}</button>
+        <button type="button" class="up" data-say="up" aria-pressed="false" aria-label="Upvote ${who}: I like him" title="I like him">${UP}</button>
         <span class="say-n none">Vote</span>
-        <button type="button" class="down" data-say="down" aria-pressed="false" aria-label="Downvote ${who}: disagree with his place" title="Disagree with his place">${DOWN}</button>
+        <button type="button" class="down" data-say="down" aria-pressed="false" aria-label="Downvote ${who}: I don't like him" title="I don't like him">${DOWN}</button>
       </div>
       <button type="button" class="say-follow" data-say="follow" aria-pressed="false" aria-label="Follow ${who}"><span class="ico">☆</span><span class="lbl">Follow</span></button>
     </div>`;
@@ -291,16 +308,6 @@
     vote: id => s.votes[id],
     follows: id => s.follow.includes(id),
     following: () => s.follow.slice(),
-    order(board, ours) {
-      const on = new Set(ours);
-      const out = (s.order[board] || []).filter(id => on.has(id));
-      const have = new Set(out);
-      ours.forEach((id, i) => { if (!have.has(id)) out.splice(Math.min(i, out.length), 0, id); });
-      return out;
-    },
-    setOrder(board, ids) { s.order[board] = ids; store(); changed('order'); },
-    resetOrders() { s.order = {}; store(); changed('order'); },
-    custom: () => Object.keys(s.order).length > 0,
     opinion,
     onChange: fn => fns.push(fn),
     auth: { token: () => token, load, signOut, erase, ask: () => ask(), renderButton, onChange: fn => authFns.push(fn), enabled: !!GOOGLE_CLIENT_ID },
