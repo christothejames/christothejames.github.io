@@ -1465,6 +1465,148 @@ window.WIRES = {
   "david-beckham": {
     "community": 1,
     "conduct": -1
+  },
+  "nigel-ng": {
+    "conduct": -1
+  },
+  "charles-leclerc": {
+    "community": 1
+  },
+  "tom-felton": {
+    "community": 1
+  },
+  "rupert-grint": {
+    "community": 1,
+    "people": -1
+  },
+  "asa-butterfield": {
+    "community": 1
+  },
+  "luke-evans": {
+    "community": 1
+  },
+  "ren-gill": {
+    "community": 1
+  },
+  "benjamin-netanyahu": {
+    "service": 1,
+    "conduct": -1
+  },
+  "claudio-bisio": {
+    "community": 1
+  },
+  "carlo-verdone": {
+    "community": 1
+  },
+  "alberto-angela": {
+    "community": 1
+  },
+  "gerry-scotti": {
+    "community": 1
+  },
+  "paolo-bonolis": {
+    "community": 1
+  },
+  "jackson-katz": {
+    "community": 1
+  },
+  "michael-kimmel": {
+    "community": 1,
+    "conduct": -1
+  },
+  "piers-linney": {
+    "community": 1
+  },
+  "matthew-syed": {
+    "community": 1
+  },
+  "simon-sinek": {
+    "community": 1
+  },
+  "chris-evans-actor": {
+    "community": 1
+  },
+  "daniel-amen": {
+    "community": 1,
+    "conduct": -1
+  },
+  "johnny-knoxville": {
+    "service": 1,
+    "conduct": -1,
+    "people": -1
+  },
+  "jo-koy": {
+    "community": 1,
+    "conduct": -1
+  },
+  "utkarsh-ambudkar": {
+    "conduct": 1
+  },
+  "kal-penn": {
+    "service": 1,
+    "community": 1
+  },
+  "bobby-lee": {
+    "conduct": 1
+  },
+  "randall-park": {
+    "community": 1
+  },
+  "simu-liu": {
+    "community": 1
+  },
+  "ken-jeong": {
+    "service": 1
+  },
+  "hasan-minhaj": {
+    "community": 1,
+    "trust": -1
+  },
+  "jimmy-o-yang": {
+    "community": 1
+  },
+  "ronny-chieng": {
+    "conduct": -1
+  },
+  "jeff-goldblum": {
+    "community": 1,
+    "conduct": -1
+  },
+  "marcus-mumford": {
+    "community": 1,
+    "family": 1
+  },
+  "elyas-mbarek": {
+    "community": 1
+  },
+  "lars-eidinger": {
+    "conduct": -1
+  },
+  "til-schweiger": {
+    "community": 1,
+    "conduct": -1
+  },
+  "romain-duris": {
+    "community": 1
+  },
+  "warren-zaire-emery": {
+    "body": 1
+  },
+  "damiano-david": {
+    "community": 1
+  },
+  "jack-black": {
+    "community": 1,
+    "family": 1
+  },
+  "barack-obama-sr": {
+    "trust": -1,
+    "conduct": -1
+  },
+  "napoleon": {
+    "service": 1,
+    "family": -1,
+    "conduct": -1
   }
 };
 
@@ -1571,12 +1713,17 @@ window.ORDER = [
   "matthew-rhys",
   "charlie-hunnam",
   "cillian-murphy",
+  "ren-gill",
   "levison-wood",
   "prince-harry",
   "ray-mears",
   "michael-douglas",
   "robert-pattinson",
   "bruce-willis",
+  "charles-leclerc",
+  "tom-felton",
+  "hasan-minhaj",
+  "marcus-mumford",
   "ben-parkinson",
   "andrew-pollard",
   "mo-farah",
@@ -1593,6 +1740,9 @@ window.ORDER = [
   "remco-evenepoel",
   "luke-littler",
   "luka-doncic",
+  "utkarsh-ambudkar",
+  "kal-penn",
+  "bobby-lee",
   "juan-mata",
   "sadio-mane",
   "ryan-reynolds",
@@ -1628,6 +1778,10 @@ window.ORDER = [
   "frank-gehry",
   "gino-strada",
   "alan-rickman",
+  "luke-evans",
+  "chris-evans-actor",
+  "warren-zaire-emery",
+  "jack-black",
   "everyday-dad",
   "volunteer-coach",
   "tony-adams",
@@ -1706,6 +1860,22 @@ window.ORDER = [
   "richard-reeves-writer",
   "steve-jobs",
   "gerard-butler",
+  "asa-butterfield",
+  "claudio-bisio",
+  "carlo-verdone",
+  "alberto-angela",
+  "gerry-scotti",
+  "paolo-bonolis",
+  "piers-linney",
+  "matthew-syed",
+  "simon-sinek",
+  "randall-park",
+  "simu-liu",
+  "ken-jeong",
+  "jimmy-o-yang",
+  "elyas-mbarek",
+  "romain-duris",
+  "damiano-david",
   "steve-o",
   "ranulph-fiennes",
   "tim-berners-lee",
@@ -1715,10 +1885,12 @@ window.ORDER = [
   "bruno-mars",
   "travis-kelce",
   "jeremy-renner",
+  "jackson-katz",
   "paul-mccartney",
   "michael-dell",
   "stormzy",
   "jason-fox",
+  "daniel-amen",
   "bear-grylls",
   "steve-irwin",
   "gary-oldman",
@@ -1734,6 +1906,7 @@ window.ORDER = [
   "brad-pitt",
   "pewdiepie",
   "david-beckham",
+  "michael-kimmel",
   "jordan-peterson",
   "clint-eastwood",
   "kai-cenat",
@@ -1742,6 +1915,7 @@ window.ORDER = [
   "richard-hammond",
   "wim-hof",
   "jude-bellingham",
+  "jo-koy",
   "ben-stokes",
   "johnny-depp",
   "jimmy-carr",
@@ -1798,6 +1972,7 @@ window.ORDER = [
   "hasan-piker",
   "myron-gaines",
   "mel-gibson",
+  "johnny-knoxville",
   "charlie-sheen",
   "jordan-belfort",
   "alex-pereira",
@@ -1806,6 +1981,8 @@ window.ORDER = [
   "dana-white",
   "bernie-madoff",
   "jensen-huang",
+  "til-schweiger",
+  "rupert-grint",
   "xqc",
   "ksi",
   "tony-robbins",
@@ -1824,9 +2001,11 @@ window.ORDER = [
   "drake",
   "salt-bae",
   "kanye-west",
+  "napoleon",
   "travis-scott",
   "dan-bilzerian",
   "sam-altman",
+  "benjamin-netanyahu",
   "mark-wahlberg",
   "bryan-johnson",
   "woody-harrelson",
@@ -1839,9 +2018,14 @@ window.ORDER = [
   "riley-green",
   "peter-thiel",
   "andrew-schulz",
+  "nigel-ng",
+  "ronny-chieng",
+  "lars-eidinger",
+  "jeff-goldblum",
   "jacob-elordi",
   "larry-ellison",
   "nelson-mandela",
+  "barack-obama-sr",
   "richard-branson"
 ];
 
@@ -1894,6 +2078,7 @@ window.AREA_ORDER = {
     "kimi-antonelli",
     "jakob-ingebrigtsen",
     "gianmarco-tamberi",
+    "warren-zaire-emery",
     "oscar-pistorius",
     "thomas-muller",
     "steve-redgrave",
@@ -1966,13 +2151,18 @@ window.AREA_ORDER = {
     "tim-peake",
     "jason-fox",
     "ant-middleton",
+    "ken-jeong",
+    "kal-penn",
     "bear-grylls",
     "alexander-skarsgard",
     "clint-eastwood",
     "prince-harry",
     "steve-irwin",
     "jose-andres",
-    "captain-tom-moore"
+    "johnny-knoxville",
+    "captain-tom-moore",
+    "benjamin-netanyahu",
+    "napoleon"
   ],
   "community": [
     "shaquille-oneal",
@@ -1998,6 +2188,7 @@ window.AREA_ORDER = {
     "joe-wicks",
     "bruce-springsteen",
     "jeff-bezos",
+    "hasan-minhaj",
     "louis-theroux",
     "arnold-schwarzenegger",
     "sadio-mane",
@@ -2021,6 +2212,7 @@ window.AREA_ORDER = {
     "patrick-stewart",
     "chris-herren",
     "mat-pritchard",
+    "ren-gill",
     "stormzy",
     "jamie-oliver",
     "idris-elba",
@@ -2030,6 +2222,8 @@ window.AREA_ORDER = {
     "ross-edgley",
     "richard-branson",
     "prince-harry",
+    "charles-leclerc",
+    "tom-felton",
     "matthew-mcconaughey",
     "prince-william",
     "nick-saban",
@@ -2038,9 +2232,11 @@ window.AREA_ORDER = {
     "brian-cox",
     "mrbeast",
     "steve-gleason",
+    "marcus-mumford",
     "jordan-stephens",
     "everyday-dad",
     "volunteer-coach",
+    "daniel-amen",
     "leonardo-dicaprio",
     "gary-oldman",
     "ian-mckellen",
@@ -2081,6 +2277,7 @@ window.AREA_ORDER = {
     "kanye-west",
     "juan-mata",
     "snoop-dogg",
+    "kal-penn",
     "jonathan-groff",
     "avi-schiffmann",
     "bukayo-saka",
@@ -2123,6 +2320,8 @@ window.AREA_ORDER = {
     "erling-haaland",
     "lenny-kravitz",
     "gino-strada",
+    "luke-evans",
+    "chris-evans-actor",
     "michael-dell",
     "ninja",
     "steve-irwin",
@@ -2147,6 +2346,7 @@ window.AREA_ORDER = {
     "tim-peake",
     "lance-armstrong",
     "luka-doncic",
+    "jack-black",
     "daniel-day-lewis",
     "markiplier",
     "bill-murray",
@@ -2166,6 +2366,8 @@ window.AREA_ORDER = {
     "sam-neill",
     "robin-williams",
     "piero-angela",
+    "alberto-angela",
+    "piers-linney",
     "david-beckham",
     "jason-fox",
     "steve-backshall",
@@ -2180,6 +2382,7 @@ window.AREA_ORDER = {
     "nicolas-cage",
     "john-amaechi",
     "luciano-pavarotti",
+    "carlo-verdone",
     "ray-mears",
     "ranulph-fiennes",
     "levison-wood",
@@ -2218,7 +2421,15 @@ window.AREA_ORDER = {
     "victor-wembanyama",
     "jean-reno",
     "gerard-butler",
+    "asa-butterfield",
+    "randall-park",
+    "simu-liu",
+    "jimmy-o-yang",
+    "damiano-david",
+    "michael-kimmel",
     "jude-bellingham",
+    "jo-koy",
+    "rupert-grint",
     "tony-robbins",
     "alexander-skarsgard",
     "ben-stokes",
@@ -2228,6 +2439,7 @@ window.AREA_ORDER = {
     "mark-wahlberg",
     "martin-shkreli",
     "richard-reeves-writer",
+    "til-schweiger",
     "rick-stanton",
     "steve-carell",
     "roberto-benigni",
@@ -2245,8 +2457,17 @@ window.AREA_ORDER = {
     "jean-dujardin",
     "vincent-cassel",
     "javier-bardem",
+    "claudio-bisio",
+    "gerry-scotti",
+    "paolo-bonolis",
+    "matthew-syed",
+    "simon-sinek",
+    "elyas-mbarek",
+    "romain-duris",
+    "jeff-goldblum",
     "jimmy-carr",
     "armin-maiwald",
+    "jackson-katz",
     "nelson-mandela"
   ],
   "family": [
@@ -2315,12 +2536,15 @@ window.AREA_ORDER = {
     "prince-william",
     "patrick-mahomes",
     "louis-theroux",
+    "marcus-mumford",
+    "jack-black",
     "prince-harry",
     "pat-tillman",
     "ant-middleton",
     "hugh-fearnley-whittingstall",
     "ray-mears",
     "bear-grylls",
+    "napoleon",
     "steve-irwin",
     "clavicular",
     "tiger-woods",
@@ -2337,8 +2561,10 @@ window.AREA_ORDER = {
     "chris-brown"
   ],
   "trust": [
+    "barack-obama-sr",
     "will-smith",
     "bear-grylls",
+    "hasan-minhaj",
     "mo-farah",
     "sylvester-stallone",
     "ant-middleton",
@@ -2367,6 +2593,8 @@ window.AREA_ORDER = {
   "conduct": [
     "jelly-roll",
     "chris-herren",
+    "utkarsh-ambudkar",
+    "bobby-lee",
     "stephen-fry",
     "tyson-fury",
     "tony-adams",
@@ -2374,7 +2602,10 @@ window.AREA_ORDER = {
     "alex-pereira",
     "steve-o",
     "danny-trejo",
+    "barack-obama-sr",
+    "michael-kimmel",
     "jimmy-carr",
+    "johnny-knoxville",
     "richard-branson",
     "ranulph-fiennes",
     "paul-mccartney",
@@ -2388,8 +2619,14 @@ window.AREA_ORDER = {
     "clint-eastwood",
     "brad-pitt",
     "jacob-elordi",
+    "daniel-amen",
     "david-beckham",
     "jude-bellingham",
+    "jo-koy",
+    "jeff-goldblum",
+    "nigel-ng",
+    "ronny-chieng",
+    "lars-eidinger",
     "anthony-joshua",
     "jason-momoa",
     "richard-hammond",
@@ -2397,6 +2634,7 @@ window.AREA_ORDER = {
     "sunny-balwani",
     "charlie-sheen",
     "stephen-curry",
+    "napoleon",
     "ryan-reynolds",
     "gordon-ramsay",
     "arnold-schwarzenegger",
@@ -2419,6 +2657,7 @@ window.AREA_ORDER = {
     "hank-green",
     "andrew-schulz",
     "ninja",
+    "benjamin-netanyahu",
     "lance-armstrong",
     "peter-thiel",
     "terry-crews",
@@ -2444,6 +2683,7 @@ window.AREA_ORDER = {
     "mike-tyson",
     "kylian-mbappe",
     "elon-musk",
+    "til-schweiger",
     "shannon-sharpe",
     "bryan-johnson",
     "travis-kelce",
@@ -2534,6 +2774,8 @@ window.AREA_ORDER = {
     "jesse-eisenberg",
     "russell-peters",
     "jimmy-carr",
+    "rupert-grint",
+    "johnny-knoxville",
     "jeff-bezos",
     "gregg-wallace",
     "donald-trump",
@@ -2557,6 +2799,7 @@ window.CONTROVERSIAL = [
   "jeremy-renner",
   "richard-branson",
   "jason-fox",
+  "michael-kimmel",
   "cristiano-ronaldo",
   "mark-wahlberg",
   "jordan-peterson",
@@ -2567,6 +2810,9 @@ window.CONTROVERSIAL = [
   "wim-hof",
   "jude-bellingham",
   "nelson-mandela",
+  "jo-koy",
+  "jeff-goldblum",
+  "barack-obama-sr",
   "jeff-bezos",
   "jimmy-carr",
   "sam-altman",
@@ -2576,6 +2822,12 @@ window.CONTROVERSIAL = [
   "shannon-sharpe",
   "jacob-elordi",
   "larry-ellison",
+  "nigel-ng",
+  "rupert-grint",
+  "benjamin-netanyahu",
+  "ronny-chieng",
+  "lars-eidinger",
+  "napoleon",
   "shane-gillis",
   "riley-green",
   "ksi",
@@ -2587,6 +2839,8 @@ window.CONTROVERSIAL = [
   "timothee-chalamet",
   "jensen-huang",
   "neil-degrasse-tyson",
+  "johnny-knoxville",
+  "til-schweiger",
   "will-smith",
   "dave-chappelle",
   "drake",
