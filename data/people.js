@@ -8763,6 +8763,24 @@ window.PEOPLE = [
       { date: "1806–10", text: "Had mistresses while married to Joséphine and acknowledged a son, Charles Léon, born to Eléonore Denuelle de La Plaigne.", source: "https://en.wikipedia.org/wiki/Napoleon" },
     ],
   },
+  {
+    id: "joey-swoll",
+    name: "Joey Swoll",
+    controversy_url: "https://en.wikipedia.org/wiki/Joey_Swoll",
+    controversy_match: false,
+    list: "good",
+    type: "public",
+    role: "Fitness influencer",
+    reason: "Calls out gym-goers who film or mock other people without their consent.",
+    status: "Active",
+    about: {},
+    posts: [
+      { date: "2022–", text: "Makes videos calling out gym-goers who film or mock other people without their consent, telling them to film with respect for others or not film at all.", source: "https://fitnessvolt.com/joey-swoll-female-tiktoker-recording-gym" },
+      { date: "2025", text: "Visited 21-year-old fan Anthony Challman in hospital after he was hit by a hit-and-run driver in Huntington Beach, after the young man's father reached out to him.", source: "https://abc7.com/post/fitness-influencer-joey-swoll-helping-victim-huntington-beach-hit-run-crash-road-recovery/16939779/" },
+      { date: "2023", text: "A woman he called out in a video said she then received death threats and malicious phone calls from his followers, and deleted her social media accounts.", source: "https://en.wikipedia.org/wiki/Joey_Swoll#History" },
+      { date: "2025", text: "Apologised for saying \"colored\" instead of \"people of color\" during a livestream about the backlash to his Hulk Hogan tribute.", source: "https://www.complex.com/sports/a/brad-appleton/fitness-influencer-joey-swoll-threatens-quit-social-media-hulk-hogan" },
+    ],
+  },
 ];
 
 // No free photo? Show his own public profile picture from Facebook or TikTok,

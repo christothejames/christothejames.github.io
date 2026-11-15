@@ -1607,6 +1607,11 @@ window.WIRES = {
     "service": 1,
     "family": -1,
     "conduct": -1
+  },
+  "joey-swoll": {
+    "community": 1,
+    "conduct": -1,
+    "people": 1
   }
 };
 
@@ -1907,6 +1912,7 @@ window.ORDER = [
   "pewdiepie",
   "david-beckham",
   "michael-kimmel",
+  "joey-swoll",
   "jordan-peterson",
   "clint-eastwood",
   "kai-cenat",
@@ -2427,6 +2433,7 @@ window.AREA_ORDER = {
     "jimmy-o-yang",
     "damiano-david",
     "michael-kimmel",
+    "joey-swoll",
     "jude-bellingham",
     "jo-koy",
     "rupert-grint",
@@ -2657,6 +2664,7 @@ window.AREA_ORDER = {
     "hank-green",
     "andrew-schulz",
     "ninja",
+    "joey-swoll",
     "benjamin-netanyahu",
     "lance-armstrong",
     "peter-thiel",
@@ -2772,6 +2780,7 @@ window.AREA_ORDER = {
     "keanu-reeves",
     "tom-hanks",
     "jesse-eisenberg",
+    "joey-swoll",
     "russell-peters",
     "jimmy-carr",
     "rupert-grint",
