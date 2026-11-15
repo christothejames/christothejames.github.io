@@ -17,7 +17,7 @@
 //   SAY.account: get(), ask('create' | 'rename'), remove()
 //   SAY.opinion()              -> Promise of {updated, voters, men: {id: [up, down, upWeek, downWeek]}} (or null)
 //   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow, account or sign-in change
-//   SAY.auth: token(), load(), signOut(), erase(), ask(), renderButton(el), onChange(fn)
+//   SAY.auth: token(), load(), signOut(), ask(), renderButton(el), onChange(fn)
 (() => {
   // Public, not a secret; the same value as GOOGLE_CLIENT_ID in skills.html and the admin repo. Empty = no voting.
   const GOOGLE_CLIENT_ID = '958568316588-du1d98s3ghbpiudet67kvr5s0140stna.apps.googleusercontent.com';
@@ -311,11 +311,6 @@
     nameSheet.showModal();
     input.focus();
   }
-  async function erase() {
-    if (!token) return ask();
-    if (!confirm('Delete all your votes from our server? This can’t be undone.')) return;
-    try { setVotes((await call({ erase: true })).votes); toast('Your votes are deleted.'); } catch (e) { toast(e.message); }
-  }
 
   async function call(body, path = 'vote') {
     const r = await fetch(API + '/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...(token && { session: token }), ...body }) });
@@ -436,7 +431,8 @@
 
   // The account corner, top right of every page (owner, 15 Nov 2026: "like reddit"): <span data-say-account></span>.
   // Signed out: Log in and Sign up (both Google sign-in; Sign up then offers a username). Signed in: an avatar with the
-  // username and a menu: Your profile (or Create your profile), Delete my votes, Log out.
+  // username and a menu: Your profile (or Create your profile), Log out. (Owner, 15 Nov 2026: "Delete my votes" was
+  // removed from the menu; a vote is taken back by pressing its arrow again, and Delete my account removes them all.)
   // Pages with the shared top bar (.topnav .wrap) get it added automatically (mountCorner); others place the span.
   function paintAccounts() {
     document.querySelectorAll('[data-say-account]').forEach(el => {
@@ -453,7 +449,7 @@
         ? '<a href="me.html">Your profile</a>'
         : '<button type="button" data-say-do="name">Create your profile</button>';
       el.innerHTML = `<details class="say-me"><summary aria-label="Account menu: ${who}"><span class="av" aria-hidden="true">${initial}</span><span class="me-txt">${who}</span></summary>`
-        + `<div>${profile}<button type="button" data-say-do="erase">Delete my votes</button><button type="button" data-say-do="out">Log out</button></div></details>`;
+        + `<div>${profile}<button type="button" data-say-do="out">Log out</button></div></details>`;
     });
   }
   function mountCorner() {
@@ -499,7 +495,6 @@
       else if (d === 'signup') ask(null, 'signup');
       else if (d === 'out') signOut();
       else if (d === 'name') askName('create');
-      else erase();
       acc.closest('.say-me')?.removeAttribute('open');
       return;
     }
@@ -535,6 +530,6 @@
     opinion,
     onChange: fn => fns.push(fn),
     account: { get: () => account, ask: mode => askName(mode), remove: deleteAccount },
-    auth: { token: () => token, load, signOut, erase, ask: () => ask(), renderButton, onChange: fn => authFns.push(fn), enabled: !!GOOGLE_CLIENT_ID },
+    auth: { token: () => token, load, signOut, ask: () => ask(), renderButton, onChange: fn => authFns.push(fn), enabled: !!GOOGLE_CLIENT_ID },
   };
 })();
