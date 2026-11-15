@@ -132,6 +132,7 @@
   .card .row b { font-weight: 400; }
   .card .row.plus b { color: var(--green); }
   .card .row.minus b { color: var(--red); }
+  .card .say { margin: 10px 0 2px; } /* Have your say strip (say.js) */
   .card .go {
     display: inline-block;
     margin-top: 10px;
@@ -294,6 +295,7 @@
 
 <script src="data/people.js"></script>
 <script src="data/wires.js"></script>
+<script src="say.js"></script>
 <script>
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -597,6 +599,7 @@
       ${plus.length ? `<p class="row plus"><b>Good record:</b> ${plus.map(esc).join(', ')}</p>` : ''}
       ${minus.length ? `<p class="row minus"><b>Black marks:</b> ${minus.map(esc).join(', ')}</p>` : ''}
       ${p.status ? `<p class="row">${esc(p.status)}</p>` : ''}
+      <div class="say">${SAY.strip(p.id, p.name, true)}</div>
       <a class="go" href="profile.html?id=${encodeURIComponent(p.id)}">FULL PROFILE</a>`;
     card.querySelector('.x').onclick = () => { sel = null; showCard(null); kick(0.3); };
   }

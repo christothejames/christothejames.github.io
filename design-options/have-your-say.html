@@ -18,6 +18,9 @@
   body { margin: 0; background: radial-gradient(ellipse at top, #0d2a5c 0%, var(--night) 60%) fixed; color: #eef4ff;
     font-family: 'Righteous', system-ui, sans-serif; padding: 24px 16px 80px; }
   .wrap { max-width: 1040px; margin: 0 auto; }
+  .home { display: inline-block; margin-bottom: 16px; font-family: 'Bungee', sans-serif; font-size: 14px; color: var(--cyan); text-decoration: none; }
+  .home:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .home:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
   .note { border: 1px dashed #1e90ff55; border-radius: 14px; padding: 14px 18px; margin-bottom: 28px; color: var(--muted); font-size: 15px; line-height: 1.5; }
   .note b { color: var(--sky); font-weight: 400; }
 
@@ -112,6 +115,7 @@
 </head>
 <body>
 <div class="wrap">
+  <a class="home" href="../home.html">← Back to the boards</a>
   <p class="note"><b>Mock-up: Have your say.</b> Real Out of Service board, top 12. Try the buttons: upvote or downvote each man (Reddit style), follow the ones you want to keep an eye on, then switch to <b>My order</b> and move men up or down. <b>Our order</b> always stays the default. Nothing is saved yet (reload resets it); the vote scores are made up to show the idea.</p>
 
   <h2>Out of Service.</h2>

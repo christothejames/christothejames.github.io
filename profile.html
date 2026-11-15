@@ -193,6 +193,7 @@
   .status-line { margin-top: 8px; font-size: 14px; color: var(--text); }
 
   .actions { display: flex; gap: 8px; padding-bottom: 6px; flex-wrap: wrap; }
+  .actions .say-strip { min-width: 220px; } /* Have your say strip (say.js), same as under the home posters */
 
   .btn {
     font: inherit;
@@ -511,6 +512,7 @@
 
 <script src="data/people.js"></script>
 <script src="data/wires.js"></script>
+<script src="say.js"></script>
 <script>
 (() => {
   const q = new URLSearchParams(location.search);
@@ -610,6 +612,7 @@
           <div class="status-line">${esc(p.status)}</div>
         </div>
         <div class="actions">
+          ${SAY.strip(p.id, p.name, true)}
           <button class="btn" id="respect" aria-pressed="false">${p.list === 'bad' ? '👎 Not for me' : '👍 Respect'}</button>
           <button class="btn" id="share">🔗 Share</button>
           ${wikiBtn}
