@@ -13,7 +13,7 @@
 // This file also runs Google sign-in for any page that loads it (home.html's request card uses SAY.auth).
 //
 //   SAY.strip(id, name, solo)  -> HTML for the vote + follow strip under a card
-//   SAY.vote(id), SAY.votes(), SAY.follows(id), SAY.following()
+//   SAY.vote(id), SAY.votes(), SAY.score(id), SAY.follows(id), SAY.following()
 //   SAY.account: get(), ask('create' | 'rename'), remove()
 //   SAY.opinion()              -> Promise of {updated, voters, men: {id: [up, down, upWeek, downWeek]}} (or null)
 //   SAY.onChange(fn)           -> fn(kind, id) after a vote, follow, account or sign-in change
@@ -529,6 +529,7 @@
     follows: id => s.follow.includes(id),
     following: () => s.follow.slice(),
     votes: () => ({ ...s.votes }),
+    score: id => score(id), // likes minus dislikes (with this visitor's latest vote), or null if nobody has voted
     opinion,
     onChange: fn => fns.push(fn),
     account: { get: () => account, ask: mode => askName(mode), remove: deleteAccount },

@@ -288,6 +288,13 @@
   .board.bad .show { color: var(--red); }
   .board.mid .show { color: var(--amber); }
   .show option { color: #fff; background: var(--night); }
+  /* "Public opinion" next to Top 12: re-orders that board by votes; cyan like the rest of Have your say */
+  .op-sort { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px; padding: 6px 12px;
+    border-radius: 999px; background: var(--night); color: var(--cyan); border: 2px solid var(--cyan); cursor: pointer; white-space: nowrap; }
+  .op-sort svg { width: 15px; height: 15px; }
+  .op-sort[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; }
+  .op-sort:hover { box-shadow: 0 0 14px #3ef2ff55; }
+  .op-sort:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
   /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
   .show.age { color: var(--cyan); }
 
@@ -598,26 +605,26 @@
     <span class="say-label">Have your say</span>
     <span class="say-tip">Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don't</span>
     <button type="button" class="chip follow-chip" id="followChip" aria-pressed="false">★ Following<span class="n" id="followCount" hidden></span></button>
-    <a class="chip opinion-chip" href="opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</a>
+    <a class="chip opinion-chip" href="opinion.html" title="Who's trending with voters (Public Opinion)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Trending</a>
   </section>
 
   <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
   <p class="empty no-match" id="noFollow" hidden>Nobody followed yet. Tap ☆ Follow under any poster and he shows up here.</p>
 
   <section class="board good" id="good">
-    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select></div>
+    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><button type="button" class="op-sort" data-board="good" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
     <div class="posters" id="goodGrid"></div>
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>COIN TOSS</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select></div>
+    <div class="board-head"><h2>COIN TOSS</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><button type="button" class="op-sort" data-board="mid" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
     <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select></div>
+    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><button type="button" class="op-sort" data-board="bad" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
     <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
     <div class="posters" id="badGrid"></div>
   </section>
@@ -698,6 +705,13 @@
     ['good', 'mid', 'bad'].forEach(list => {
       const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)
         && (!following || SAY.follows(p.id))).sort(order);
+      // Public opinion order (the board's toggle): by vote score, likes minus dislikes. Real Men and Coin Toss put the
+      // most liked first; Out of Service, like its own order, puts the most disliked first. No votes counts as 0, and
+      // ties keep our order.
+      if (byOpinion[list]) {
+        const sc = p => SAY.score(p.id) ?? 0;
+        all.sort(list === 'bad' ? (a, b) => sc(a) - sc(b) : (a, b) => sc(b) - sc(a));
+      }
       // Each board shows its top 12 (fills full rows); the dropdown shows more. A search or Following shows every match.
       const pick = document.getElementById(list + 'Show');
       const n = term || following ? all.length : (pick.value === 'all' ? all.length : +pick.value);
@@ -706,8 +720,11 @@
       // After the age filter, "All" counts only the men left
       pick.querySelector('option[value="all"]').textContent = 'All ' + all.length;
       document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
-      document.getElementById(list + 'Count').textContent = shown.length < all.length
-        ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men');
+      document.getElementById(list + 'Count').textContent = (shown.length < all.length
+        ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
+        + (byOpinion[list] ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '');
+      const op = document.querySelector(`.op-sort[data-board="${list}"]`);
+      op.setAttribute('aria-pressed', !!byOpinion[list]);
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
@@ -728,6 +745,16 @@
   followChip.addEventListener('click', () => { following = !following; render(); });
   // Unfollowing while on Following takes him off; otherwise only the count changes.
   SAY.onChange(kind => { if (kind === 'follow') following ? render() : renderSay(); });
+
+  // Each board's "Public opinion" button re-orders that board by votes (owner, 15 Nov 2026). The totals load in the
+  // background, so a board sorted before they arrive is sorted again once they do. A new vote doesn't re-sort
+  // straight away (cards jumping under the pointer); it counts the next time the board is drawn.
+  const byOpinion = {};
+  document.querySelectorAll('.op-sort').forEach(b => b.addEventListener('click', () => {
+    byOpinion[b.dataset.board] = !byOpinion[b.dataset.board];
+    render();
+  }));
+  SAY.opinion().then(() => { if (Object.values(byOpinion).some(Boolean)) render(); });
 
   // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns)
   ['good', 'mid', 'bad'].forEach(list => {
