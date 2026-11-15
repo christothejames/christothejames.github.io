@@ -97,7 +97,9 @@
   .say-corner .signup { border: 0; background: #3ef2ff; color: #050b1a; box-shadow: 0 0 12px #3ef2ff55; }
   .say-corner .cbtn:hover { filter: brightness(1.12); }
   .say-corner .cbtn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
-  @media (max-width: 420px) { .say-corner .cbtn { padding: 0 10px; font-size: 11px; } .say-corner { gap: 6px; } }
+  /* Phones: just Log in, like Reddit's mobile site (Sign up is the same Google sign-in, and a first sign-in is offered a
+     username anyway). Both didn't fit next to wide top-bar buttons such as Mental Health's Urgent Help. */
+  @media (max-width: 480px) { .say-corner .signup { display: none; } .say-corner .cbtn { padding: 0 12px; font-size: 11px; } }
   .say-me { position: relative; }
   .say-me summary { list-style: none; cursor: pointer; white-space: nowrap; min-height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 4px;
     border-radius: 999px; color: #eef4ff; font-family: 'Bungee', sans-serif; font-size: 12px; }

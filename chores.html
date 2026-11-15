@@ -645,6 +645,8 @@
   @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
   .topnav .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .topnav .brand ~ * { flex: none; }
+  /* Phones: no room for the title next to Home, Skills and Log in (it shrank to one letter) */
+  @media (max-width: 480px) { .topnav .brand { display: none; } .topnav .say-corner { margin-left: auto; } }
 </style>
 </head>
 <body>
@@ -764,7 +766,7 @@
   <footer>Your plan is saved only in this browser.</footer>
 </div>
 
-<div class="dock" id="dock" hidden>
+<div class="dock" id="dock" data-top-avoid hidden>
   <div class="sum"><b id="dockCount"></b><span id="dockLoad"></span></div>
   <div class="go">
     <a class="btn ghost" href="#plan">See plan</a>
@@ -1397,5 +1399,6 @@
 </footer>
 
 <script src="say.js"></script>
+<script src="top.js"></script>
 </body>
 </html>

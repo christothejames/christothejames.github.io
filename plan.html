@@ -594,6 +594,8 @@
   @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
   .topnav .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .topnav .brand ~ * { flex: none; }
+  /* Phones: no room for the title next to Home, Urgent help and Log in (it shrank to one letter) */
+  @media (max-width: 480px) { .topnav .brand { display: none; } .topnav .say-corner { margin-left: auto; } }
 </style>
 </head>
 <body>
@@ -868,5 +870,6 @@
 </footer>
 
 <script src="say.js"></script>
+<script src="top.js"></script>
 </body>
 </html>
