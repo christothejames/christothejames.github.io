@@ -183,15 +183,29 @@
   }
   section > .lede { margin: 0 0 20px; color: var(--muted); max-width: 620px; }
 
-  /* Each move: what they sell it as, then what it is */
-  .moves { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--line); }
-  .move {
-    display: grid;
-    grid-template-columns: 210px 1fr;
-    gap: 6px 24px;
-    padding: 18px 0;
-    border-bottom: 2px solid var(--line);
+  /* Jump bar: the five parts of the truth, so the reader can see how long it is and skip ahead */
+  .jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 26px 0 0; padding: 0; list-style: none; }
+  .jump a {
+    display: block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px #3ef2ff66;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
   }
+  .jump a:hover { box-shadow: inset 0 0 0 1.5px var(--cyan); background: #3ef2ff14; }
+  section { scroll-margin-top: 12px; }
+
+  /* Each move: a card with a verdict tag, then "they say" beside "it's really" */
+  .moves { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .move {
+    padding: 16px 18px;
+    background: #0c1a36cc;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+  }
+  .move header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 10px; }
   .move h3 {
     margin: 0;
     font-family: 'Bungee', sans-serif;
@@ -200,13 +214,32 @@
     line-height: 1.2;
     color: #fff;
   }
-  .move .sold { margin: 0; color: var(--muted); }
-  .move .sold i { color: var(--sleaze); font-style: normal; }
-  .move .real { margin: 6px 0 0; font-size: 17px; }
-  .move .real b { color: var(--cyan); font-weight: 400; }
-  .move.line { border-left: 4px solid var(--red); padding-left: 14px; background: #ff3b3b10; }
-  .move.line h3, .move.line .real b { color: #ff7a7a; }
-  .move.mild .real b { color: var(--gold); }
+  .verdict {
+    font-family: 'Bungee', sans-serif;
+    font-size: 12px;
+    padding: 2px 9px;
+    border-radius: 4px;
+    background: #3ef2ff1f;
+    color: var(--cyan);
+  }
+  .move .pair { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; }
+  .move .pair p { margin: 0; }
+  .move .pair span { display: block; font-size: 13px; margin-bottom: 2px; }
+  .move .sold { color: var(--muted); }
+  .move .sold span { color: var(--sleaze); }
+  .move .real { font-size: 17px; }
+  .move .real span { color: var(--cyan); }
+  .move.line { border-color: #ff3b3b99; background: #ff3b3b14; }
+  .move.line h3, .move.line .real span { color: #ff7a7a; }
+  .move.line .verdict { background: var(--red); color: #fff; }
+  .move.mild .verdict { background: #ffe66d24; color: var(--gold); }
+  .move.mild .real span { color: var(--gold); }
+
+  /* Sources folded away, still one tap from every claim */
+  details.src { margin-top: 10px; }
+  details.src summary { cursor: pointer; width: fit-content; }
+  details.src summary:hover { color: var(--text); }
+  details.src p { margin: 6px 0 0; }
 
   /* Who's playing who */
   .played { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -231,17 +264,18 @@
     box-shadow: 0 0 24px #3ef2ff33;
   }
 
-  /* Then and now: the pick up house (pink, the bait's colour) beside the War Room (red) */
-  .then-now { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .then-now article { padding: 18px 20px; border-radius: 14px; border: 2px solid; }
-  .then-now article:first-child { border-color: #ff3fb466; background: #ff3fb40d; }
-  .then-now article:last-child { border-color: #ff3b3b88; background: #ff3b3b10; }
-  .then-now h3 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 19px; }
-  .then-now article:first-child h3 { color: var(--sleaze); }
-  .then-now article:last-child h3 { color: #ff7a7a; }
-  .then-now .when { margin: 2px 0 10px; color: var(--muted); font-size: 14px; }
-  .then-now ul { margin: 0; padding-left: 18px; }
-  .then-now li + li { margin-top: 6px; }
+  /* Then and now: one row per point, so the match lines up (pink = the pick up house, red = the War Room) */
+  .then-now { width: 100%; border-collapse: separate; border-spacing: 0; }
+  .then-now th, .then-now td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .then-now thead th { border-bottom: 2px solid var(--line); }
+  .then-now thead b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; }
+  .then-now thead span { color: var(--muted); font-size: 14px; font-weight: 400; }
+  .then-now .t { background: #ff3fb40d; }
+  .then-now .n { background: #ff3b3b12; }
+  .then-now thead .t b { color: var(--sleaze); }
+  .then-now thead .n b { color: #ff7a7a; }
+  .then-now tbody th { width: 120px; font-weight: 400; color: var(--gold); font-size: 15px; }
+  .then-now .lbl { display: none; }
 
   .wizard { margin-top: 16px; padding: 18px 20px; background: linear-gradient(to bottom, #12264d, var(--panel)); border: 2px solid #3ef2ff40; border-radius: 14px; }
   .wizard h3 { margin: 0 0 6px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 17px; color: var(--sky); }
@@ -252,9 +286,9 @@
   .tells li { padding-left: 28px; position: relative; }
   .tells li::before { content: "!"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'Bungee', sans-serif; font-size: 12px; line-height: 20px; text-align: center; }
 
-  .works { list-style: none; margin: 0; padding: 0; }
-  .works li { padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .works b { color: var(--gold); font-weight: 400; }
+  .works { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .works li { padding: 14px 16px; border: 2px solid #ffe66d40; border-radius: 12px; background: #ffe66d0a; }
+  .works b { display: block; margin-bottom: 4px; color: var(--gold); font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 16px; }
 
   .next { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
   .next a {
@@ -272,8 +306,18 @@
   footer a { color: var(--sky); }
 
   @media (max-width: 640px) {
-    .move { grid-template-columns: 1fr; }
-    .played, .tells, .then-now { grid-template-columns: 1fr; }
+    .move .pair { grid-template-columns: 1fr; gap: 8px; }
+    .played, .tells, .works { grid-template-columns: 1fr; }
+    /* Then and now: each row becomes a small block with both sides labelled */
+    .then-now thead { display: none; }
+    .then-now, .then-now tbody, .then-now tr, .then-now th, .then-now td { display: block; width: auto; }
+    .then-now tr { margin-bottom: 12px; border: 2px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .then-now th, .then-now td { padding: 10px 14px; }
+    .then-now tbody th { border-bottom: 0; padding-bottom: 0; }
+    .then-now td:last-child { border-bottom: 0; }
+    .then-now .lbl { display: block; font-size: 13px; }
+    .then-now .t .lbl { color: var(--sleaze); }
+    .then-now .n .lbl { color: #ff7a7a; }
     .bait-btn { font-size: 16px; padding: 14px 22px; }
   }
 
@@ -358,59 +402,66 @@
       <div class="band"><h2>Got you.</h2></div>
       <p>There are no secret moves. There's a sales pitch, and the man it's aimed at is you.</p>
       <p>Here's the whole "system", for free, with what each move really is.</p>
+      <ul class="jump" aria-label="On this page">
+        <li><a href="#movesH">The 7 moves</a></li>
+        <li><a href="#playedH">Who's getting played</a></li>
+        <li><a href="#warroomH">Then and now</a></li>
+        <li><a href="#spotH">Spot the pitch</a></li>
+        <li><a href="#worksH">What works</a></li>
+      </ul>
     </div>
 
-    <section aria-labelledby="movesH">
+    <section aria-labelledby="movesH" id="moves">
       <h2 id="movesH">The moves, unmasked</h2>
       <p class="lede">Every one of these is sold as confidence. Look closer and it's a way to get round what she actually wants.</p>
       <ul class="moves">
         <li class="move">
-          <h3>Negging</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> a backhanded compliment that knocks her down a peg, so she works for your approval.</p>
-            <p class="real"><b>Really:</b> putting someone down on purpose so they feel worse about themselves. That's how bullies work.</p>
+          <header><h3>Negging</h3><span class="verdict">Put-down</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>A backhanded compliment that knocks her down a peg, so she works for your approval.</p>
+            <p class="real"><span>It's really</span>Putting someone down on purpose so they feel worse about themselves. That's how bullies work.</p>
           </div>
         </li>
         <li class="move">
-          <h3>Push-pull</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> run hot, then cold, so she never knows where she stands.</p>
-            <p class="real"><b>Really:</b> making someone anxious on purpose. Keeping a person off balance is control, not chemistry.</p>
+          <header><h3>Push-pull</h3><span class="verdict">Mind game</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Run hot, then cold, so she never knows where she stands.</p>
+            <p class="real"><span>It's really</span>Making someone anxious on purpose. Keeping a person off balance is control, not chemistry.</p>
           </div>
         </li>
         <li class="move">
-          <h3>Isolating the target</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> get her away from her friends, they'll only "block" you.</p>
-            <p class="real"><b>Really:</b> cutting her off from the people looking out for her. Her friends aren't obstacles. Notice the word "target". <a href="#warroomH">It turns up again in Andrew Tate's War Room.</a></p>
+          <header><h3>Isolating the target</h3><span class="verdict">Control</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Get her away from her friends, they'll only "block" you.</p>
+            <p class="real"><span>It's really</span>Cutting her off from the people looking out for her. Her friends aren't obstacles. Notice the word "target". <a href="#warroomH">It turns up again in Andrew Tate's War Room.</a></p>
           </div>
         </li>
         <li class="move">
-          <h3>Kino escalation</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> touch her a bit more each time and see what she lets you get away with.</p>
-            <p class="real"><b>Really:</b> testing how far you can push before she stops you. Touch needs a yes, not a lack of a no.</p>
+          <header><h3>Kino escalation</h3><span class="verdict">Pressure</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Touch her a bit more each time and see what she lets you get away with.</p>
+            <p class="real"><span>It's really</span>Testing how far you can push before she stops you. Touch needs a yes, not a lack of a no.</p>
           </div>
         </li>
         <li class="move">
-          <h3>False time limit</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> say "I can only stay a minute" so she drops her guard.</p>
-            <p class="real"><b>Really:</b> lying to get past her guard. If the opener is a lie, what's the rest?</p>
+          <header><h3>False time limit</h3><span class="verdict">A lie</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Say "I can only stay a minute" so she drops her guard.</p>
+            <p class="real"><span>It's really</span>Lying to get past her guard. If the opener is a lie, what's the rest?</p>
           </div>
         </li>
         <li class="move line">
-          <h3>"Last minute resistance"</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> her "no" is just a hurdle. Keep going and get past it.</p>
-            <p class="real"><b>Really:</b> a no is a no. Pushing past it is pressure, and it can be a crime. Anyone teaching this is teaching you to ignore consent.</p>
+          <header><h3>"Last minute resistance"</h3><span class="verdict">Crosses the line</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Her "no" is just a hurdle. Keep going and get past it.</p>
+            <p class="real"><span>It's really</span>A no is a no. Pushing past it is pressure, and it can be a crime. Anyone teaching this is teaching you to ignore consent.</p>
           </div>
         </li>
         <li class="move mild">
-          <h3>Peacocking</h3>
-          <div>
-            <p class="sold"><i>Sold as:</i> wear something loud so women can't ignore you.</p>
-            <p class="real"><b>Really:</b> the only harmless one on the list. Wear what you like. Just wear it because you like it.</p>
+          <header><h3>Peacocking</h3><span class="verdict">Harmless</span></header>
+          <div class="pair">
+            <p class="sold"><span>They say</span>Wear something loud so women can't ignore you.</p>
+            <p class="real"><span>It's really</span>The only harmless one on the list. Wear what you like. Just wear it because you like it.</p>
           </div>
         </li>
       </ul>
@@ -438,35 +489,27 @@
     <section aria-labelledby="warroomH">
       <h2 id="warroomH">From the mansion to the War Room</h2>
       <p class="lede">The pick up house never really closed. It moved online, got a new logo and raised its prices.</p>
-      <div class="then-now">
-        <article>
-          <h3>Project Hollywood</h3>
-          <p class="when">The Game, mid-2000s</p>
-          <ul>
-            <li>A Hollywood mansion where the top pick up gurus lived together</li>
-            <li>A guru at the top, and men paying to learn his moves</li>
-            <li>Women treated as targets to win</li>
-            <li>It fell apart in fights over money and ego</li>
-          </ul>
-        </article>
-        <article>
-          <h3>The War Room</h3>
-          <p class="when">Andrew Tate, 2020s</p>
-          <ul>
-            <li>A paid, secretive "brotherhood" of hundreds of men worldwide</li>
-            <li>"Generals" at the top, and men paying to learn their methods</li>
-            <li>Women treated as income: leaked chats show members taught to push women into webcam work</li>
-            <li>It's at the centre of criminal cases in Romania and the UK</li>
-          </ul>
-        </article>
-      </div>
+      <table class="then-now">
+        <thead>
+          <tr><td></td><th class="t" scope="col"><b>Project Hollywood</b><span>The Game, mid-2000s</span></th><th class="n" scope="col"><b>The War Room</b><span>Andrew Tate, 2020s</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">What it was</th><td class="t"><span class="lbl">Project Hollywood</span>A Hollywood mansion where the top pick up gurus lived together</td><td class="n"><span class="lbl">The War Room</span>A paid, secretive "brotherhood" of hundreds of men worldwide</td></tr>
+          <tr><th scope="row">Who's on top</th><td class="t"><span class="lbl">Project Hollywood</span>A guru at the top, and men paying to learn his moves</td><td class="n"><span class="lbl">The War Room</span>"Generals" at the top, and men paying to learn their methods</td></tr>
+          <tr><th scope="row">Women are</th><td class="t"><span class="lbl">Project Hollywood</span>Targets to win</td><td class="n"><span class="lbl">The War Room</span>Income: leaked chats show members taught to push women into webcam work</td></tr>
+          <tr><th scope="row">How it ended</th><td class="t"><span class="lbl">Project Hollywood</span>It fell apart in fights over money and ego</td><td class="n"><span class="lbl">The War Room</span>It's at the centre of criminal cases in Romania and the UK</td></tr>
+        </tbody>
+      </table>
 
       <div class="wizard">
         <h3>The "wizard" behind him</h3>
         <p>In 2023 the BBC read 12,000 pages of leaked War Room chats. A man calling himself "Iggy Semmelweis", a self-styled wizard, came across as its real teacher. A former member told them "Iggy is at the top."</p>
-        <p>The chats show him teaching men to take "sole authority" over a woman and "remove her entire support structure". That's <a href="#movesH">isolating the target</a>, the same move from the pick up books, taken much further. The BBC said members' chats described at least 45 women.</p>
+        <p>The chats show him teaching men to take "sole authority" over a woman and "remove her entire support structure". That's <a href="#movesH">isolating the target</a>, taken much further. The BBC said members' chats described at least 45 women.</p>
         <p class="src">Andrew Tate denies all wrongdoing and has not been convicted. His spokesperson called the BBC's reporting false. <a href="men/andrew-tate.html">His profile</a> has his current legal status.</p>
-        <p class="src">Sources: <a href="https://www.bellingcat.com/news/2023/08/10/revealing-andrew-tates-secretive-war-room-brothers/" target="_blank" rel="noopener">Bellingcat</a>, <a href="https://womensagenda.com.au/latest/andrew-tates-war-room-exploited-dozens-of-women-investigation-finds/" target="_blank" rel="noopener">Women's Agenda on the BBC investigation</a>, <a href="https://en.wikipedia.org/wiki/The_Game:_Penetrating_the_Secret_Society_of_Pickup_Artists" target="_blank" rel="noopener">The Game</a>, <a href="https://en.wikipedia.org/wiki/Andrew_Tate" target="_blank" rel="noopener">Andrew Tate</a> (Wikipedia)</p>
+        <details class="src">
+          <summary>Sources (4)</summary>
+          <p><a href="https://www.bellingcat.com/news/2023/08/10/revealing-andrew-tates-secretive-war-room-brothers/" target="_blank" rel="noopener">Bellingcat</a>, <a href="https://womensagenda.com.au/latest/andrew-tates-war-room-exploited-dozens-of-women-investigation-finds/" target="_blank" rel="noopener">Women's Agenda on the BBC investigation</a>, <a href="https://en.wikipedia.org/wiki/The_Game:_Penetrating_the_Secret_Society_of_Pickup_Artists" target="_blank" rel="noopener">The Game</a>, <a href="https://en.wikipedia.org/wiki/Andrew_Tate" target="_blank" rel="noopener">Andrew Tate</a> (Wikipedia)</p>
+        </details>
       </div>
 
       <p class="punch">Same blueprint, bigger price. A guru at the top, men paying at the bottom, and women as the product.</p>
@@ -489,10 +532,10 @@
       <h2 id="worksH">What actually works</h2>
       <p class="lede">No tricks. These work because they're real, and they work on friends, bosses and dates alike.</p>
       <ul class="works">
-        <li><b>Be curious.</b> Ask a real question and listen to the answer.</li>
-        <li><b>Say what you mean.</b> "I'd like to see you again" beats any line.</li>
-        <li><b>Take a no well.</b> Smile, say "no worries", move on. It's the most confident thing you can do.</li>
-        <li><b>Have your own life.</b> Skills, friends, something you care about. People notice.</li>
+        <li><b>Be curious</b>Ask a real question and listen to the answer.</li>
+        <li><b>Say what you mean</b>"I'd like to see you again" beats any line.</li>
+        <li><b>Take a no well</b>Smile, say "no worries", move on. It's the most confident thing you can do.</li>
+        <li><b>Have your own life</b>Skills, friends, something you care about. People notice.</li>
       </ul>
       <div class="next">
         <a href="plan.html#dating">Dating moves that respect her</a>
