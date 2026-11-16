@@ -45,7 +45,7 @@ for (const p of men) {
   const url = `${ORIGIN}/men/${p.id}.html`;
   const title = `${p.name} · ${SITE_NAME}`;
   const desc = clip(`${p.name}${p.role ? `, ${p.role}` : ''}. ${p.reason || ''} Every fact sourced.`.replace(/\s+/g, ' ').trim(), 160);
-  const img = p.photo ? (/^https:/.test(p.photo) ? p.photo : `${ORIGIN}/${p.photo}`) : '';
+  const img = p.photo ? (/^https:/.test(p.photo) ? p.photo : `${ORIGIN}/${p.photo}`) : `${ORIGIN}/images/share.png`;
 
   const head = [
     `<base href="/">`,

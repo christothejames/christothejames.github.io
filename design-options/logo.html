@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Design options for the site logo (16 Nov 2026). Owner chose C, bored neon (hb / humbored with one tube burnt out), now live; the rest are kept for a future revision. Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --deep: #0d2a5c; --blue: #1e90ff; --ice: #7cc4ff; --cyan: #3ef2ff; --gold: #ffe66d; }
+  body { margin: 0; background: radial-gradient(ellipse at top, var(--deep) 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  h1 { font-family: 'Bungee', sans-serif; font-weight: 400; text-align: center; color: #fff; margin: 0 0 6px; font-size: clamp(24px, 5vw, 36px); }
+  .note { text-align: center; margin: 0 auto 28px; max-width: 60ch; }
+  .opt { max-width: 900px; margin: 0 auto 26px; padding: 22px 20px; border: 1px dashed #1e90ff55; border-radius: 14px; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 15px; color: var(--ice); margin: 0 0 4px; }
+  .why { margin: 0 0 16px; font-size: 15px; }
+  .row { display: flex; align-items: end; gap: 22px; flex-wrap: wrap; }
+  .big svg { width: 200px; height: 200px; display: block; }
+  .sizes { display: flex; align-items: end; gap: 16px; }
+  .sizes figure { margin: 0; text-align: center; font-size: 12px; color: #7f9cc4; }
+  .sizes svg { display: block; margin: 0 auto 6px; }
+  .tab { display: flex; align-items: center; gap: 8px; background: #1b2333; border-radius: 8px 8px 0 0; padding: 7px 12px; font: 13px system-ui, sans-serif; color: #dde; width: 190px; }
+  .bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; background: #050b1acc; border: 1px solid #1e90ff44; flex: 1 1 260px; }
+  .bar span { font-family: 'Bungee', sans-serif; color: #fff; font-size: 17px; }
+  .pick { color: var(--gold); }
+</style>
+</head>
+<body>
+<h1>Logo options</h1>
+<p class="note">Each one shown big, at app-icon and browser-tab sizes, and in the site's top bar. The tab size is the real test: a logo has to survive at 16 pixels.</p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6f3ff"/><stop offset=".4" stop-color="#7cc4ff"/><stop offset="1" stop-color="#1e90ff"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#9aa3ad"/><stop offset=".5" stop-color="#f2f4f7"/><stop offset="1" stop-color="#7d8792"/>
+    </linearGradient>
+    <linearGradient id="goldchrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff6c4"/><stop offset=".48" stop-color="#e0b93a"/><stop offset=".52" stop-color="#fff2a0"/><stop offset="1" stop-color="#a9801a"/>
+    </linearGradient>
+    <clipPath id="sunClip"><circle cx="100" cy="100" r="78"/></clipPath>
+
+    <!-- A: neon tube HB -->
+    <symbol id="logoA" viewBox="0 0 200 200">
+      <rect x="6" y="6" width="188" height="188" rx="38" fill="#050b1a"/>
+      <rect x="16" y="16" width="168" height="168" rx="30" fill="none" stroke="#1e90ff" stroke-width="6" filter="url(#glow)"/>
+      <text x="100" y="128" text-anchor="middle" font-family="Monoton" font-size="76" fill="#3ef2ff" filter="url(#glow)">HB</text>
+    </symbol>
+
+    <!-- B: chrome HB over the striped sunset -->
+    <symbol id="logoB" viewBox="0 0 200 200">
+      <g clip-path="url(#sunClip)">
+        <rect x="0" y="0" width="200" height="200" fill="url(#sun)"/>
+        <g fill="#050b1a">
+          <rect x="0" y="112" width="200" height="5"/><rect x="0" y="126" width="200" height="7"/>
+          <rect x="0" y="142" width="200" height="9"/><rect x="0" y="160" width="200" height="12"/>
+        </g>
+      </g>
+      <circle cx="100" cy="100" r="78" fill="none" stroke="#3ef2ff" stroke-width="3" filter="url(#glow)"/>
+      <text x="100" y="128" text-anchor="middle" font-family="Bungee" font-size="78" fill="url(#chrome)" stroke="#050b1a" stroke-width="5" paint-order="stroke">HB</text>
+    </symbol>
+
+    <!-- C: neon wordmark with the dead O, plus its own small mark -->
+    <symbol id="logoC" viewBox="0 0 200 200">
+      <text x="100" y="140" text-anchor="middle" font-family="Righteous" font-size="120" fill="#3ef2ff" filter="url(#glow)">h<tspan fill="#0d2a5c" stroke="#3a6a9a" stroke-width="2" filter="none">b</tspan></text>
+    </symbol>
+
+    <!-- D: gold chrome crest -->
+    <symbol id="logoD" viewBox="0 0 200 200">
+      <path d="M100 10 L176 36 V96 C176 142 144 174 100 190 C56 174 24 142 24 96 V36 Z" fill="#0d2a5c" stroke="#3ef2ff" stroke-width="5" filter="url(#glow)"/>
+      <path d="M100 26 L162 47 V96 C162 132 137 158 100 172 C63 158 38 132 38 96 V47 Z" fill="#050b1a"/>
+      <text x="100" y="124" text-anchor="middle" font-family="Bungee" font-size="66" fill="url(#goldchrome)" stroke="#050b1a" stroke-width="4" paint-order="stroke">HB</text>
+    </symbol>
+
+    <!-- C wordmark -->
+    <symbol id="wordC" viewBox="0 0 330 70">
+      <text x="165" y="52" text-anchor="middle" font-family="Righteous" font-size="54" fill="#3ef2ff" filter="url(#glow)">humb<tspan fill="#0d2a5c" stroke="#3a6a9a" stroke-width="2" filter="none">o</tspan>red</text>
+    </symbol>
+  </defs>
+</svg>
+
+<section class="opt">
+  <p class="tag">A. Neon tube HB</p>
+  <p class="why">HB in Monoton, the striped neon-tube face from the entry screen, inside a glowing frame. The most "sign on a bar wall" of the four.</p>
+  <div class="row">
+    <div class="big"><svg><use href="#logoA"/></svg></div>
+    <div class="sizes">
+      <figure><svg width="64" height="64"><use href="#logoA"/></svg>64px</figure>
+      <figure><svg width="32" height="32"><use href="#logoA"/></svg>32px</figure>
+      <figure><svg width="16" height="16"><use href="#logoA"/></svg>16px</figure>
+    </div>
+    <div class="tab"><svg width="16" height="16"><use href="#logoA"/></svg>The Real Man Report</div>
+    <div class="bar"><svg width="40" height="40"><use href="#logoA"/></svg><span>THE REAL MAN REPORT</span></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag pick">B. Chrome HB on the sunset (my pick)</p>
+  <p class="why">The striped half-sun from the entry screen with chrome HB lettering across it. It ties the logo to the first thing visitors see, and the sun still reads as a blue circle at tab size.</p>
+  <div class="row">
+    <div class="big"><svg><use href="#logoB"/></svg></div>
+    <div class="sizes">
+      <figure><svg width="64" height="64"><use href="#logoB"/></svg>64px</figure>
+      <figure><svg width="32" height="32"><use href="#logoB"/></svg>32px</figure>
+      <figure><svg width="16" height="16"><use href="#logoB"/></svg>16px</figure>
+    </div>
+    <div class="tab"><svg width="16" height="16"><use href="#logoB"/></svg>The Real Man Report</div>
+    <div class="bar"><svg width="40" height="40"><use href="#logoB"/></svg><span>THE REAL MAN REPORT</span></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">C. Bored neon: one letter burnt out</p>
+  <p class="why">A lowercase neon sign where one tube has gone dark, like the dead V in Out of Service. The joke is in the name: the sign itself is bored. The full word works as a wordmark; the icon is "hb" with the b unlit.</p>
+  <div class="row">
+    <div class="big"><svg><use href="#logoC"/></svg></div>
+    <div class="sizes">
+      <figure><svg width="64" height="64"><use href="#logoC"/></svg>64px</figure>
+      <figure><svg width="32" height="32"><use href="#logoC"/></svg>32px</figure>
+      <figure><svg width="16" height="16"><use href="#logoC"/></svg>16px</figure>
+    </div>
+    <div class="tab"><svg width="16" height="16"><use href="#logoC"/></svg>The Real Man Report</div>
+    <div class="bar"><svg width="200" height="42"><use href="#wordC"/></svg></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">D. Gold crest</p>
+  <p class="why">A shield with gold chrome HB and a neon edge: a badge you earn, matching the gold used for Real Men. Heavier and more serious than the others.</p>
+  <div class="row">
+    <div class="big"><svg><use href="#logoD"/></svg></div>
+    <div class="sizes">
+      <figure><svg width="64" height="64"><use href="#logoD"/></svg>64px</figure>
+      <figure><svg width="32" height="32"><use href="#logoD"/></svg>32px</figure>
+      <figure><svg width="16" height="16"><use href="#logoD"/></svg>16px</figure>
+    </div>
+    <div class="tab"><svg width="16" height="16"><use href="#logoD"/></svg>The Real Man Report</div>
+    <div class="bar"><svg width="40" height="40"><use href="#logoD"/></svg><span>THE REAL MAN REPORT</span></div>
+  </div>
+</section>
+</body>
+</html>
