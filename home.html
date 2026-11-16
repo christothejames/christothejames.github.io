@@ -311,6 +311,22 @@
   .op-sort button[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; cursor: default; }
   .op-sort button[aria-pressed="false"]:hover { background: #3ef2ff22; }
   .op-sort button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  /* Your Choice (owner, 16 Nov 2026): the third switch option shuffles every board into a random order, so a
+     visitor can vote without scrolling the ranking. Randomise (next to Top 12, only while it's on) deals that board
+     a fresh hand: men already shown go to the back, so nobody repeats until the whole board has been through. */
+  .shuffle { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px;
+    padding: 7px 14px; border: 0; border-radius: 999px; cursor: pointer; color: var(--night); background: var(--cyan);
+    box-shadow: 0 0 14px #3ef2ff66; }
+  .shuffle[hidden] { display: none; }
+  .board.good .shuffle { background: var(--gold); box-shadow: 0 0 14px #ffe66d66; }
+  .board.mid .shuffle { background: var(--amber); box-shadow: 0 0 14px #ff9f1c66; }
+  .board.bad .shuffle { background: var(--red); color: #fff; box-shadow: 0 0 14px #ff3b3b66; }
+  .shuffle:hover { filter: brightness(1.1); }
+  .shuffle:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  .shuffle svg { width: 16px; height: 16px; }
+  .shuffle.spin svg { animation: dice .45s ease-out; }
+  @keyframes dice { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .shuffle.spin svg { animation: none; } }
   /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
   .show.age { color: var(--cyan); }
 
@@ -360,6 +376,29 @@
   .slot { position: relative; display: flex; flex-direction: column; transform: rotate(var(--tilt, 0deg)); transition: transform 0.15s; }
   .slot:hover, .slot:focus-within { transform: translateY(-4px); }
   .slot .poster { border-radius: 6px 6px 0 0; }
+  /* Your Choice: ✕ Skip on each card, top right. It asks first (owner, 16 Nov 2026: an accidental tap must not lose
+     anyone): the card is covered by "Skip him?" with Keep him (focused, the safe choice) and Yes, skip. */
+  .skip { position: absolute; top: 8px; right: 8px; z-index: 3; display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'Bungee', sans-serif; font-size: 12px; letter-spacing: .5px; line-height: 1; padding: 7px 12px 7px 9px;
+    min-height: 32px; border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); color: var(--cyan);
+    cursor: pointer; box-shadow: 0 0 10px #3ef2ff55; transition: background .15s, color .15s; }
+  .skip svg { width: 12px; height: 12px; }
+  .skip:hover { background: var(--cyan); color: var(--night); }
+  @media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
+  .skip:focus-visible, .skip-ask button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  .skip-ask { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 18px; text-align: center; border-radius: 6px; background: #050b1af0; border: 2px solid var(--cyan); }
+  .skip-ask b { font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 20px; color: #fff; line-height: 1.15; }
+  .skip-ask p { margin: 0; font-size: 14px; color: var(--muted); }
+  .skip-ask .row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px; }
+  .skip-ask button { font-family: 'Bungee', sans-serif; font-size: 13px; padding: 10px 16px; border-radius: 999px; cursor: pointer; }
+  .skip-ask .keep { background: var(--cyan); color: var(--night); border: 0; }
+  .skip-ask .yes { background: none; color: #fff; border: 2px solid #ffffff66; }
+  .skip-ask .yes:hover { border-color: #fff; }
+  /* A board in Your Choice that has been all the way through */
+  .done-deck { grid-column: 1 / -1; padding: 26px 18px; border: 2px dashed #3ef2ff55; border-radius: 14px; text-align: center; color: var(--muted); }
+  .done-deck b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 20px; color: var(--cyan); margin-bottom: 6px; }
+  .done-deck button { margin-top: 12px; }
 
   /* ---------- Have your say: one slim row (owner, 15 Nov 2026: the three-tab panel took a third of a phone screen,
      and My order was dropped). ★ Following filters the boards; Public opinion links to opinion.html; signed-in
@@ -646,19 +685,19 @@
   <p class="empty no-match" id="noFollow" hidden>Nobody followed yet. Tap ☆ Follow under any poster and he shows up here.</p>
 
   <section class="board good" id="good">
-    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="good" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="good" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><span class="count" id="goodCount"></span></div>
+    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="good" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="good" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="goodCount"></span></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
     <div class="posters" id="goodGrid"></div>
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>COIN TOSS</h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="mid" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="mid" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><span class="count" id="midCount"></span></div>
+    <div class="board-head"><h2>COIN TOSS</h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="mid" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="mid" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="midCount"></span></div>
     <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="bad" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="bad" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><span class="count" id="badCount"></span></div>
+    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="bad" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="bad" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="badCount"></span></div>
     <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
     <div class="posters" id="badGrid"></div>
   </section>
@@ -720,6 +759,7 @@
         <p class="for">${esc(p.reason)}</p>
         <div class="status">${esc(p.status)}</div>
       </a>
+      ${byChoice ? `<button type="button" class="skip" data-skip="${esc(p.id)}" aria-label="Skip ${esc(p.name)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Skip</button>` : ''}
       ${SAY.strip(p.id, p.name)}
       </div>`;
   }
@@ -748,13 +788,21 @@
     const place = p => (byOpinion ? SAY.board(p.id, tier(p)) : tier(p));
     ['good', 'mid', 'bad'].forEach(list => {
       const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && place(p) === list && match(p)
-        && (!following || SAY.follows(p.id)))
+        && (!following || SAY.follows(p.id))
+        // Your Choice keeps it fresh: men he has voted on or skipped don't come round again
+        && !(byChoice && (SAY.vote(p.id) || skipped.has(p.id))))
         .sort((a, b) => TIER_N[tier(a)] - TIER_N[tier(b)] || order(a, b));
       // Public opinion order: by vote score, likes minus dislikes. Real Men and Coin Toss put the most liked first;
       // Out of Service, like its own order, puts the most disliked first. No votes counts as 0, and ties keep our order.
       if (byOpinion) {
         const sc = p => SAY.score(p.id) ?? 0;
         all.sort(list === 'bad' ? (a, b) => sc(a) - sc(b) : (a, b) => sc(b) - sc(a));
+      }
+      // Your Choice: a random order. Each man's place is how many hands he's been in plus a random number, so a
+      // Randomise sends the men just shown to the back until everyone on the board has had a turn.
+      if (byChoice) {
+        const luck = p => (luckSeen[p.id] || 0) + (luckRoll[p.id] ??= Math.random());
+        all.sort((a, b) => luck(a) - luck(b));
       }
       // Each board shows its top 12 (fills full rows); the dropdown shows more. A search or Following shows every match.
       const pick = document.getElementById(list + 'Show');
@@ -764,14 +812,17 @@
       const shown = all.slice(0, n);
       pick.hidden = !!term || following || all.length <= 12;
       document.getElementById(list + 'Grid').innerHTML = shown.map((p, i) => poster(p, i, place(p))).join('')
-        || '<p class="empty">Nobody matches.</p>';
+        || (byChoice ? doneDeck(list) : '<p class="empty">Nobody matches.</p>');
       const moved = byOpinion ? all.filter(p => place(p) !== tier(p)).length : 0;
-      document.getElementById(list + 'Count').textContent = (shown.length < all.length
-        ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
+      handShown[list] = shown.map(p => p.id);
+      document.getElementById(list + 'Count').textContent = byChoice
+        ? (shown.length < all.length ? `${shown.length} at random, ${all.length} left` : `${all.length} ${all.length === 1 ? 'man' : 'men'} left`)
+        : (shown.length < all.length ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
         + (byOpinion ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '')
         + (moved ? `, ${moved} moved here by voters` : '');
-      document.querySelectorAll(`.op-sort button[data-board="${list}"]`).forEach(b =>
-        b.setAttribute('aria-pressed', (b.dataset.mode === 'opinion') === byOpinion));
+      const board = document.getElementById(list);
+      board.querySelectorAll('.op-sort button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === sortMode));
+      board.querySelector('.shuffle').hidden = !byChoice || all.length < 2;
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
@@ -803,19 +854,81 @@
   // moves leaves one board for another. The totals load in the background, so boards drawn before they arrive are
   // drawn again once they do. A new vote doesn't move or re-sort anyone straight away (cards jumping under the
   // pointer); it counts the next time the boards are drawn.
-  let byOpinion = false;
+  // Your Choice is the switch's third option: every board in a random order, dealt fresh each time it's picked.
+  let sortMode = 'ours', byOpinion = false, byChoice = false;
+  let luckRoll = {}, luckSeen = {};
+  const handShown = {};
   document.querySelectorAll('.op-sort button').forEach(b => b.addEventListener('click', () => {
-    const want = b.dataset.mode === 'opinion';
-    if (byOpinion === want) return;
-    byOpinion = want;
+    if (sortMode === b.dataset.mode) return;
+    sortMode = b.dataset.mode;
+    byOpinion = sortMode === 'opinion';
+    byChoice = sortMode === 'choice';
+    if (byChoice) { luckRoll = {}; luckSeen = {}; }
     render();
+  }));
+  // Skipped men (Your Choice): left out for the rest of this visit (sessionStorage, so a reload keeps them out but a
+  // new visit brings them back). Voted men stay out for good, as long as he's signed in (his votes are known).
+  const SKIP_KEY = 'say-skipped';
+  const skipped = new Set((() => { try { return JSON.parse(sessionStorage.getItem(SKIP_KEY)) || []; } catch { return []; } })());
+  const saveSkipped = () => { try { sessionStorage.setItem(SKIP_KEY, JSON.stringify([...skipped])); } catch {} };
+  const BOARD_NAME = { good: 'Real Man', mid: 'Coin Toss man', bad: 'Out of Service man' };
+  function doneDeck(list) {
+    const anySkipped = window.PEOPLE.some(p => skipped.has(p.id) && tier(p) === list);
+    return `<div class="done-deck"><b>That's the lot</b>You've been through every ${BOARD_NAME[list]}.`
+      + (anySkipped ? `<br><button type="button" class="shuffle again" data-again="${list}">Bring back the ones I skipped</button>` : '')
+      + '</div>';
+  }
+  // A vote never pulls the card away under his finger (he may want to change it); it's gone at the next Randomise.
+  // Signing in loads his votes, so the boards are dealt again without the men he's voted on.
+  SAY.onChange((kind, id) => { if (byChoice && ((kind === 'vote' && !id) || kind === 'auth')) render(); });
+
+  document.addEventListener('click', e => {
+    const skip = e.target.closest('.skip');
+    if (skip) {
+      // Are you sure? Covers the card; Keep him is focused so Enter or a stray second tap does no harm.
+      const slot = skip.closest('.slot'), name = slot.querySelector('.name').textContent;
+      if (slot.querySelector('.skip-ask')) return;
+      slot.insertAdjacentHTML('beforeend', `<div class="skip-ask" role="alertdialog" aria-label="Skip ${esc(name)}?">
+        <b>Skip ${esc(name)}?</b><p>He won't come up again this visit.</p>
+        <div class="row"><button type="button" class="keep">Keep him</button><button type="button" class="yes">Yes, skip</button></div></div>`);
+      slot.querySelector('.skip-ask .keep').focus();
+      return;
+    }
+    const ask = e.target.closest('.skip-ask');
+    if (ask) {
+      const slot = ask.closest('.slot');
+      if (e.target.closest('.yes')) { skipped.add(slot.dataset.id); saveSkipped(); render(); }
+      else if (e.target.closest('.keep')) { ask.remove(); slot.querySelector('.skip')?.focus(); }
+      return;
+    }
+    const again = e.target.closest('.again');
+    if (again) {
+      window.PEOPLE.forEach(p => { if (tier(p) === again.dataset.again) { skipped.delete(p.id); delete luckSeen[p.id]; } });
+      saveSkipped();
+      render();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    const ask = e.key === 'Escape' && e.target.closest?.('.skip-ask');
+    if (ask) { const slot = ask.closest('.slot'); ask.remove(); slot.querySelector('.skip')?.focus(); }
+  });
+
+  // Randomise: the men on show have had their turn; the rest of that board is rolled again.
+  document.querySelectorAll('.shuffle').forEach(b => b.addEventListener('click', () => {
+    const list = b.closest('.board').id;
+    (handShown[list] || []).forEach(id => { luckSeen[id] = (luckSeen[id] || 0) + 1; });
+    window.PEOPLE.forEach(p => { if (handShown[list]?.includes(p.id) || tier(p) === list) delete luckRoll[p.id]; });
+    render();
+    b.classList.remove('spin'); void b.offsetWidth; b.classList.add('spin');
   }));
   SAY.opinion().then(() => { if (byOpinion) render(); });
 
   // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns). "All" counts the men
   // left after a filter. Rebuilt on each draw, since Public opinion changes how many men each board has.
   function setSteps(pick, total) {
-    const keep = pick.dataset.want || pick.value; // the viewer's own pick, kept through searches that shrink a board
+    // The viewer's own pick, kept through searches that shrink a board. Without one it's Top 12, not whatever a
+    // shrunk board fell back to (a board emptied by Your Choice used to come back showing All).
+    const keep = pick.dataset.want || '12';
     const steps = [12, 24, 36, 48].filter(s => s < total);
     const html = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
     if (pick.innerHTML === html) return;
