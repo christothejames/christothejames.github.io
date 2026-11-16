@@ -111,6 +111,10 @@
     color: var(--muted); font-size: 15px; pointer-events: none;
   }
   .empty.on { display: flex; }
+  /* Why an Area shows fewer bubbles: pinned under the field, quiet */
+  .mix-note { position: absolute; left: 12px; right: 12px; bottom: 8px; margin: 0; text-align: center;
+    font-size: 13px; line-height: 1.4; color: var(--muted); pointer-events: none; }
+  .mix-note[hidden] { display: none; }
 
   .card {
     position: absolute;
@@ -285,6 +289,7 @@
   <div class="stage">
     <canvas id="field" aria-label="Bubbles of men sized by how strong their record is. A list version is below the field."></canvas>
     <div class="empty" id="empty">No one here yet.</div>
+    <p class="mix-note" id="mixNote" hidden></p>
     <div class="card" id="card" role="dialog" aria-live="polite"></div>
   </div>
 
@@ -393,16 +398,26 @@
       list.forEach((n, i) => { n.aw = 1 - 0.85 * (list.length > 1 ? i / (list.length - 1) : 0); });
     });
     shown.sort((a, b) => b.aw - a.aw);
-    // Fair mix (owner, 16 Nov 2026): with an Area picked and All tiers on, each board (Real Men, Coin Toss,
-    // Out of Service) gets a third of the places, its strongest records there first. A board with too few men
-    // in that area leaves its spare places to the others.
-    if (state.count && areaOrder && state.tier === 'all') {
-      const pools = ['good', 'mid', 'bad'].map(t => shown.filter(n => n.t === t));
-      const pick = [];
-      for (let i = 0; pick.length < state.count && pools.some(p => p.length); i = (i + 1) % 3)
-        if (pools[i].length) pick.push(pools[i].shift());
+    // Fair mix (owner, 16 Nov 2026: "30% green, 30% orange and 30% red in each category"): with All tiers on, in
+    // Any area and every Area, each board (Real Men, Coin Toss, Out of Service) gets the same number of places, its
+    // strongest records there first. Strict: when a board has few men with a record in the area, the others show
+    // no more than it does (fewer bubbles), and a line under the field says why. A board with nobody is left out.
+    let short = null;
+    if (state.count && state.tier === 'all') {
+      const pools = ['good', 'mid', 'bad'].map(t => shown.filter(n => n.t === t)).filter(p => p.length);
+      const want = Math.ceil(state.count / (pools.length || 1));
+      const lim = Math.min(want, ...pools.map(p => p.length));
+      const low = pools.find(p => p.length === lim);
+      if (low && lim < want) short = { n: lim, t: low[0].t };
+      const take = pools.map(() => 0), pick = [];
+      for (let i = 0; pick.length < state.count && take.some((k, j) => k < Math.min(lim, pools[j].length)); i = (i + 1) % pools.length)
+        if (take[i] < lim && take[i] < pools[i].length) pick.push(pools[i][take[i]++]);
       shown = pick.sort((a, b) => b.aw - a.aw);
     } else if (state.count) shown = shown.slice(0, state.count);
+    const note = document.getElementById('mixNote');
+    note.hidden = !short;
+    if (short) note.textContent = `Only ${short.n} ${TIER_NAME[short.t]} ${short.n === 1 ? 'man has' : 'men have'} a record in `
+      + `${state.area ? areaSel.selectedOptions[0].text : 'this view'}, so each board shows ${short.n}, to keep it a fair three-way split.`;
     const on = new Set(shown);
     // size by place among the men on screen, per side, so there's always a big-to-small spread
     ['good', 'mid', 'bad'].forEach(t => {
@@ -491,7 +506,7 @@
   }
 
   function drawBubble(n) {
-    const { sx: x, sy: y, r } = n, c = COL[n.t === 'mid' ? 'mid' : n.side]; // Coin Toss stays orange in every view (owner, 16 Nov 2026)
+    const { sx: x, sy: y, r } = n, c = COL[n.t]; // always his board's colour; in an Area his height shows his record there (owner, 16 Nov 2026)
     const focus = n === sel || n === hover;
     ctx.globalAlpha = sel && n !== sel ? 0.45 : 1;
 
