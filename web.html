@@ -265,7 +265,6 @@
         <option value="25">Top 25</option>
         <option value="50">Top 50</option>
         <option value="100">Top 100</option>
-        <option value="0">Everyone</option>
       </select>
     </label>
     <label><span class="lbl">Area</span>
@@ -460,21 +459,22 @@
         // a red bubble wedged above a green one squeezes past it (and vice versa), so the sides sort cleanly
         const [hi, lo] = a.y < b.y ? [a, b] : [b, a];
         const wrong = DEPTH[hi.side] > DEPTH[lo.side];
-        const push = (min - d) * (wrong ? 0.1 : 0.5);
+        // soft pushes (owner, 16 Nov 2026: bubbles shook in crowded views): overlaps resolve over a few frames
+        const push = (min - d) * (wrong ? 0.06 : 0.25);
         const ma = a === drag ? 0 : 1, mb = b === drag ? 0 : 1, tot = ma + mb || 1;
         a.x -= dx * push * 2 * ma / tot; a.y -= dy * push * 2 * ma / tot;
         b.x += dx * push * 2 * mb / tot; b.y += dy * push * 2 * mb / tot;
-        a.vx -= dx * 0.08 * ma; a.vy -= dy * 0.08 * ma;
-        b.vx += dx * 0.08 * mb; b.vy += dy * 0.08 * mb;
+        a.vx -= dx * 0.02 * ma; a.vy -= dy * 0.02 * ma;
+        b.vx += dx * 0.02 * mb; b.vy += dy * 0.02 * mb;
         if (wrong) {
-          if (hi !== drag) hi.vy += 0.3;
-          if (lo !== drag) lo.vy -= 0.3;
+          if (hi !== drag) hi.vy += 0.12;
+          if (lo !== drag) lo.vy -= 0.12;
         }
       }
     }
     live.forEach(n => {
       if (n === drag) return;
-      n.vx *= 0.9; n.vy *= 0.9;
+      n.vx *= 0.82; n.vy *= 0.82;
       n.x += n.vx; n.y += n.vy;
       if (n.x < n.r) { n.x = n.r; n.vx = Math.abs(n.vx) * 0.5; }
       if (n.x > W - n.r) { n.x = W - n.r; n.vx = -Math.abs(n.vx) * 0.5; }
@@ -491,7 +491,7 @@
   }
 
   function drawBubble(n) {
-    const { x, y, r } = n, c = COL[n.t === 'mid' ? 'mid' : n.side]; // Coin Toss stays orange in every view (owner, 16 Nov 2026)
+    const { sx: x, sy: y, r } = n, c = COL[n.t === 'mid' ? 'mid' : n.side]; // Coin Toss stays orange in every view (owner, 16 Nov 2026)
     const focus = n === sel || n === hover;
     ctx.globalAlpha = sel && n !== sel ? 0.45 : 1;
 
@@ -536,6 +536,11 @@
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
+    // drawn position eases after the physics one; a dragged bubble follows the pointer exactly
+    nodes.forEach(n => {
+      if (n.sx == null || n === drag || n.r < 1) { n.sx = n.x; n.sy = n.y; return; }
+      n.sx += (n.x - n.sx) * 0.25; n.sy += (n.y - n.sy) * 0.25;
+    });
     // biggest at the back so small bubbles never hide behind them
     nodes.filter(n => n.r > 1).sort((a, b) => b.r - a.r).forEach(drawBubble);
     if (sel && sel.r > 1) drawBubble(sel);
