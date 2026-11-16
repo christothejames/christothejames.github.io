@@ -374,6 +374,11 @@
   .follow-chip .n[hidden] { display: none; }
   .opinion-chip { border: 0; background: var(--cyan); color: var(--night); }
   .opinion-chip:hover { box-shadow: 0 0 16px #3ef2ff88; }
+  /* Shown while Public opinion is on: how voters move men, and that our ranking is unchanged */
+  .op-note { margin: 18px 0 0; padding: 10px 14px; border-left: 4px solid var(--cyan); border-radius: 0 8px 8px 0;
+    background: #0c1a36cc; color: var(--muted); font-size: 14px; }
+  .op-note b { color: var(--cyan); font-family: 'Bungee', sans-serif; font-weight: 400; }
+  .op-note[hidden] { display: none; }
   .acct-row { display: flex; justify-content: flex-end; padding-top: 12px; position: relative; z-index: 20; }
 
   .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
@@ -392,6 +397,15 @@
 
   .bad .mug { background: linear-gradient(135deg, #2a1236, #6b1020); }
   .mid .mug { background: linear-gradient(135deg, #3a2208, #a05a00); }
+
+  /* Public opinion: a man the voters moved to another board gets a stamp on his photo (▲ up / ▼ down, and from
+     which of our boards). */
+  .mug .moved { position: absolute; left: 8px; bottom: 8px; display: flex; flex-direction: column; padding: 4px 9px 5px;
+    border-radius: 4px; font-family: 'Bungee', sans-serif; font-size: 13px; line-height: 1.15; color: #fff;
+    box-shadow: 0 2px 8px #0009; transform: rotate(-3deg); }
+  .mug .moved small { font-family: 'Righteous', sans-serif; font-size: 11px; opacity: 0.92; }
+  .mug .moved.up { background: #138a4a; }
+  .mug .moved.down { background: #b3121a; }
 
   .mug img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.15) contrast(1.05); }
 
@@ -619,6 +633,7 @@
   </section>
 
   <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
+  <p class="op-note" id="opNote" hidden></p>
   <p class="empty no-match" id="noFollow" hidden>Nobody followed yet. Tap ☆ Follow under any poster and he shows up here.</p>
 
   <section class="board good" id="good">
@@ -651,7 +666,7 @@
 
 <script src="data/people.js"></script>
 <script src="data/wires.js"></script>
-<script src="say.js?v=2026-11-15b"></script>
+<script src="say.js?v=2026-11-16a"></script>
 <script>
 (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -674,14 +689,21 @@
   // The poster is the man: photo, tier, name, why, status.
   const TIER_LABEL = { good: 'Real Men', mid: 'Coin Toss', bad: 'Out of Service' };
   // Under it: the Have your say strip (say.js): vote arrows and Follow.
-  function poster(p, i) {
-    const respected = tier(p) === 'good' && passed(p);
+  // `board` is where he's shown: our tier, or the voters' board under Public opinion. A man the voters moved gets a
+  // stamp on his photo saying which way and from which of our boards.
+  const TIER_N = { good: 0, mid: 1, bad: 2 };
+  function poster(p, i, board = tier(p)) {
+    const respected = board === 'good' && passed(p);
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
+    const up = TIER_N[board] < TIER_N[tier(p)];
+    const moved = board === tier(p) ? ''
+      : `<span class="moved ${up ? 'up' : 'down'}">${up ? '▲ Voted up' : '▼ Voted down'}<small>from ${TIER_LABEL[tier(p)]}</small></span>`;
     return `
       <div class="slot" data-id="${esc(p.id)}" style="--tilt:${tilt}deg">
       <a class="poster" href="men/${encodeURIComponent(p.id)}.html">
         <div class="mug">
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
+          ${moved}
         </div>
         ${respected ? '<div class="tierlbl">Respected</div>' : ''}
         <div class="name">${esc(p.name)}</div>
@@ -712,32 +734,43 @@
     // Following shows only the men he follows, so empty boards hide like a search.
     const filtering = !!term || !!ageSel || following;
     let found = 0;
+    // Public opinion (owner, 16 Nov 2026): voters place each man on a board (SAY.board: by the share who like him,
+    // once he has enough votes) and order it. Our ranking is untouched; switching back shows our boards again.
+    const place = p => (byOpinion ? SAY.board(p.id, tier(p)) : tier(p));
     ['good', 'mid', 'bad'].forEach(list => {
-      const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list && match(p)
-        && (!following || SAY.follows(p.id))).sort(order);
-      // Public opinion order (the board's toggle): by vote score, likes minus dislikes. Real Men and Coin Toss put the
-      // most liked first; Out of Service, like its own order, puts the most disliked first. No votes counts as 0, and
-      // ties keep our order.
-      if (byOpinion[list]) {
+      const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && place(p) === list && match(p)
+        && (!following || SAY.follows(p.id)))
+        .sort((a, b) => TIER_N[tier(a)] - TIER_N[tier(b)] || order(a, b));
+      // Public opinion order: by vote score, likes minus dislikes. Real Men and Coin Toss put the most liked first;
+      // Out of Service, like its own order, puts the most disliked first. No votes counts as 0, and ties keep our order.
+      if (byOpinion) {
         const sc = p => SAY.score(p.id) ?? 0;
         all.sort(list === 'bad' ? (a, b) => sc(a) - sc(b) : (a, b) => sc(b) - sc(a));
       }
       // Each board shows its top 12 (fills full rows); the dropdown shows more. A search or Following shows every match.
       const pick = document.getElementById(list + 'Show');
+      // Board sizes change with filters and Public opinion, so the Top options are rebuilt to fit
+      setSteps(pick, all.length);
       const n = term || following ? all.length : (pick.value === 'all' ? all.length : +pick.value);
       const shown = all.slice(0, n);
       pick.hidden = !!term || following || all.length <= 12;
-      // After the age filter, "All" counts only the men left
-      pick.querySelector('option[value="all"]').textContent = 'All ' + all.length;
-      document.getElementById(list + 'Grid').innerHTML = shown.map(poster).join('') || '<p class="empty">Nobody matches.</p>';
+      document.getElementById(list + 'Grid').innerHTML = shown.map((p, i) => poster(p, i, place(p))).join('')
+        || '<p class="empty">Nobody matches.</p>';
+      const moved = byOpinion ? all.filter(p => place(p) !== tier(p)).length : 0;
       document.getElementById(list + 'Count').textContent = (shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
-        + (byOpinion[list] ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '');
+        + (byOpinion ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '')
+        + (moved ? `, ${moved} moved here by voters` : '');
       document.querySelectorAll(`.op-sort button[data-board="${list}"]`).forEach(b =>
-        b.setAttribute('aria-pressed', (b.dataset.mode === 'opinion') === !!byOpinion[list]));
+        b.setAttribute('aria-pressed', (b.dataset.mode === 'opinion') === byOpinion));
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
+    const op = SAY.OPINION_BOARDS, opNote = document.getElementById('opNote');
+    opNote.hidden = !byOpinion;
+    opNote.innerHTML = `<b>Public opinion:</b> the boards as voters see them. Once a man has ${op.MIN_VOTES}+ votes, `
+      + `${op.UP_AT}% or more liking him puts him on Real Men, ${op.DOWN_AT}% or less on Out of Service, anything between on Coin Toss. `
+      + `Our ranking doesn't change.`;
     const noneFollowed = following && !SAY.following().length;
     document.getElementById('noFollow').hidden = !noneFollowed;
     document.getElementById('noMatch').hidden = noneFollowed || !filtering || found > 0;
@@ -756,25 +789,35 @@
   // Unfollowing while on Following takes him off; otherwise only the count changes.
   SAY.onChange(kind => { if (kind === 'follow') following ? render() : renderSay(); });
 
-  // Each board's "Public opinion" button re-orders that board by votes (owner, 15 Nov 2026). The totals load in the
-  // background, so a board sorted before they arrive is sorted again once they do. A new vote doesn't re-sort
-  // straight away (cards jumping under the pointer); it counts the next time the board is drawn.
-  const byOpinion = {};
+  // The "Public opinion" switch on any board turns all three boards over to the voters (owner, 16 Nov 2026: men move
+  // up and down between boards by votes; Our ranking stays ours). It's one switch for all three, since a man who
+  // moves leaves one board for another. The totals load in the background, so boards drawn before they arrive are
+  // drawn again once they do. A new vote doesn't move or re-sort anyone straight away (cards jumping under the
+  // pointer); it counts the next time the boards are drawn.
+  let byOpinion = false;
   document.querySelectorAll('.op-sort button').forEach(b => b.addEventListener('click', () => {
     const want = b.dataset.mode === 'opinion';
-    if (!!byOpinion[b.dataset.board] === want) return;
-    byOpinion[b.dataset.board] = want;
+    if (byOpinion === want) return;
+    byOpinion = want;
     render();
   }));
-  SAY.opinion().then(() => { if (Object.values(byOpinion).some(Boolean)) render(); });
+  SAY.opinion().then(() => { if (byOpinion) render(); });
 
-  // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns)
+  // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns). "All" counts the men
+  // left after a filter. Rebuilt on each draw, since Public opinion changes how many men each board has.
+  function setSteps(pick, total) {
+    const keep = pick.dataset.want || pick.value; // the viewer's own pick, kept through searches that shrink a board
+    const steps = [12, 24, 36, 48].filter(s => s < total);
+    const html = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
+    if (pick.innerHTML === html) return;
+    pick.innerHTML = html;
+    pick.value = [...pick.options].some(o => o.value === keep) ? keep : (steps[0] ? String(steps[0]) : 'all');
+  }
   ['good', 'mid', 'bad'].forEach(list => {
     const total = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list).length;
     const pick = document.getElementById(list + 'Show');
-    const steps = [12, 24, 36, 48].filter(s => s < total);
-    pick.innerHTML = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
-    pick.addEventListener('change', render);
+    setSteps(pick, total);
+    pick.addEventListener('change', () => { pick.dataset.want = pick.value; render(); });
   });
 
   const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit);
@@ -983,6 +1026,6 @@
   </div>
 </footer>
 
-<script src="top.js?v=2026-11-15b"></script>
+<script src="top.js?v=2026-11-16a"></script>
 </body>
 </html>

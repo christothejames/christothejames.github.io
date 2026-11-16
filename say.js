@@ -385,6 +385,27 @@
     if (!b && !s.votes[id]) return null;
     return (b ? b[0] - b[1] : 0) - val(counted[id]) + val(s.votes[id]);
   };
+  // Up and down votes (all time), with this visitor's latest vote. /public/opinion gives [up, down, weekUp, weekDown].
+  const counts = id => {
+    const b = base[id] || [0, 0], was = counted[id], now = s.votes[id];
+    return {
+      up: b[0] - (was === 'up') + (now === 'up'),
+      down: b[1] - (was === 'down') + (now === 'down'),
+    };
+  };
+
+  // ---------- public opinion boards (owner, 16 Nov 2026) ----------
+  // With the boards' Public opinion switch on, voters decide which board a man sits on; Our ranking never changes.
+  // A man needs MIN_VOTES votes before voters can move him (so a handful of votes can't); until then he stays on our
+  // board. Then the share who like him picks the board, in the same bands as the HP bar on opinion.html:
+  // UP_AT% or more = Real Men, DOWN_AT% or less = Out of Service, in between = Coin Toss.
+  const OPINION_BOARDS = { MIN_VOTES: 10, UP_AT: 66, DOWN_AT: 33 };
+  const board = (id, ours) => {
+    const c = counts(id), n = c.up + c.down;
+    if (n < OPINION_BOARDS.MIN_VOTES) return ours;
+    const pct = (c.up / n) * 100;
+    return pct >= OPINION_BOARDS.UP_AT ? 'good' : pct <= OPINION_BOARDS.DOWN_AT ? 'bad' : 'mid';
+  };
   const fmt = n => (Math.abs(n) >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n));
 
   function setVotes(v) {
@@ -530,6 +551,9 @@
     following: () => s.follow.slice(),
     votes: () => ({ ...s.votes }),
     score: id => score(id), // likes minus dislikes (with this visitor's latest vote), or null if nobody has voted
+    counts: id => counts(id), // { up, down }, all time, with this visitor's latest vote
+    board: (id, ours) => board(id, ours), // 'good' | 'mid' | 'bad' by public opinion; `ours` until he has enough votes
+    OPINION_BOARDS,
     opinion,
     onChange: fn => fns.push(fn),
     account: { get: () => account, ask: mode => askName(mode), remove: deleteAccount },
