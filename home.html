@@ -136,6 +136,12 @@
   .console .hint { margin: 0; padding: 0 18px 14px; color: var(--muted); font-size: 14px; }
   .console .hint b { color: var(--cyan); font-weight: 400; }
   .console .hint .u { color: #34e07a; } .console .hint .d { color: #ff7a7a; }
+  /* The short line and its More button are for phones only (see the phone styles) */
+  .console .hint .short, .console .hint-more, .trend.trend-mini { display: none; }
+  /* More/Less: padded for a bigger tap area, pulled back by the same amount so the line doesn't grow */
+  .hint-more { border: 0; background: none; padding: 6px 6px; margin: -6px -6px; color: var(--cyan); font: inherit; cursor: pointer;
+    text-decoration: underline dotted; text-underline-offset: 3px; }
+  .hint-more:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 3px; }
   .pill-select { font-family: 'Bungee', sans-serif; font-size: 13px; padding: 9px 12px; min-height: 40px; border-radius: 999px;
     background: var(--night); color: var(--cyan); border: 2px solid var(--cyan); cursor: pointer; }
   .pill-select option { color: #fff; background: var(--night); }
@@ -197,7 +203,7 @@
     text-underline-offset: 4px; text-decoration-color: #3ef2ff77; }
   .trend:hover { text-decoration-color: var(--cyan); }
   .trend svg { width: 16px; height: 16px; flex: none; }
-  .jumps a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .jumps a:focus-visible, .trend:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
 
   /* ---------- Boards ---------- */
   .board { padding: 64px 0 10px; scroll-margin-top: -24px; }
@@ -551,15 +557,58 @@
     .poster .name { font-size: 16px; }
     .poster .for, .poster .role { font-size: 12px; }
     .mug .ini { font-size: 40px; }
-    /* Console on phones: each row's name above its controls; the order switch as three equal buttons in one row */
-    .console .row { padding: 12px 14px; gap: 8px 10px; }
-    .console .lbl { width: 100%; font-size: 14px; }
-    .console .hint { padding: 0 14px 12px; }
-    .op-sort { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
-    .op-sort button { justify-content: center; padding: 8px 4px; font-size: 11.5px; white-space: normal; line-height: 1.15; text-align: center; }
+  }
+
+  /* ---------- Compact console (owner, 16 Nov 2026: on phones it took over half the screen). For narrow screens
+     (phones, small tablets, split screen) and short ones (a phone on its side). Search, age and "Only men I follow"
+     explain themselves, so their row names hide and the rows lose their dividers; search shares a line with age and
+     Follow when there's room. "Order the boards" stays as a small caption with Trending beside it. The line under
+     the switch is the short one, with More for the full text. Jump to wraps rather than hiding anything. ---------- */
+  @media (max-width: 700px), (max-height: 500px) {
+    .console { display: flex; flex-wrap: wrap; align-items: center; border-radius: 14px; }
+    .console .row { padding: 10px 12px 0; gap: 8px; }
+    .console .row + .row { border-top: 0; }
+    .console .row:not(.order) .lbl { display: none; }
+    .console .row.find { flex: 3 1 200px; }
+    .console .row.filters { flex: 1 1 auto; }
+    .console .row.order { flex: 1 1 100%; padding-top: 12px; gap: 5px; }
+    .console .hint { flex: 1 1 100%; padding: 7px 12px 10px; font-size: 13px; line-height: 1.35; }
+    .console .lbl { width: auto; flex: 1; font-size: 12px; }
+    .console .row.order .op-sort { flex-basis: 100%; }
+    .trend.trend-mini { display: inline-flex; flex: none; margin: -8px -6px; padding: 8px 6px; font-size: 12px; gap: 4px; }
+    .trend.trend-mini svg { width: 14px; height: 14px; }
+    .jumps .trend { display: none; }
+    .console .hint .long { display: none; }
+    .console .hint .short { display: inline; }
+    .console .hint-more { display: inline-block; }
+    .console .hint.open .long { display: inline; }
+    .console .hint.open .short { display: none; }
+    .search { padding-top: 8px; padding-bottom: 8px; }
+    .pill-select { min-height: 36px; padding: 6px 10px; font-size: 12px; }
+    .follow-chip { flex: 1 1 auto; min-height: 36px; font-size: 12px; padding: 0 12px; }
+    .op-sort { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 520px; }
+    .op-sort button { justify-content: center; padding: 7px 4px; font-size: 11.5px; white-space: normal; line-height: 1.15; text-align: center; }
     .op-sort svg { display: none; }
-    .follow-chip { font-size: 12px; padding: 0 12px; }
-    .trend { margin-left: 0; width: 100%; }
+    .jumps { gap: 6px; margin-top: 10px; }
+    .jumps .lbl { font-size: 13px; }
+    .jumps a.j { padding: 5px 9px; font-size: 13px; white-space: nowrap; }
+  }
+  /* A phone on its side: plenty of width, little height. The switch sits beside its caption on one line, and
+     Trending goes back to the end of the Jump to row, where there's room for its full name. */
+  @media (max-height: 500px) and (min-width: 560px) {
+    .console .row.order { flex-wrap: nowrap; gap: 12px; }
+    .console .row.order .lbl { flex: none; }
+    .console .row.order .op-sort { flex: 0 1 460px; }
+    .trend.trend-mini { display: none; }
+    .jumps .trend { display: inline-flex; }
+  }
+  /* The smallest phones (under 360px wide): a little tighter, so the Show controls and Jump to keep one line each */
+  @media (max-width: 359px) {
+    .pill-select { padding: 6px 6px; font-size: 11px; }
+    .follow-chip { font-size: 11px; padding: 0 9px; }
+    .jumps { gap: 4px; }
+    .jumps .lbl, .jumps a.j { font-size: 12px; }
+    .jumps a.j { padding: 5px 7px; }
   }
 
   @media (max-width: 360px) {
@@ -636,7 +685,7 @@
   <!-- The console (owner, 16 Nov 2026: option A in design-options/board-controls.html). Everything that changes all
        three boards sits here, each row named for what it does; each board keeps only its own controls. -->
   <section class="console" aria-label="Find and sort the men">
-    <div class="row"><span class="lbl">Find</span>
+    <div class="row find"><span class="lbl">Find</span>
       <form class="search-box" id="search-form" role="search">
       <input class="search" id="search" type="search" enterkeyhint="search" placeholder="Search for a man…" aria-label="Search">
       <button class="search-go" type="submit" aria-label="Search">
@@ -645,7 +694,7 @@
       </button>
     </form>
     </div>
-    <div class="row"><span class="lbl">Show</span>
+    <div class="row filters"><span class="lbl">Show</span>
       <select class="pill-select" id="age" aria-label="Filter the boards by age">
       <option value="">Any age</option>
       <option value="0-29">Under 30</option>
@@ -656,7 +705,8 @@
     </select>
       <button type="button" class="chip follow-chip" id="followChip" aria-pressed="false">☆ Only men I follow<span class="n" id="followCount" hidden></span></button>
     </div>
-    <div class="row"><span class="lbl">Order the boards</span>
+    <div class="row order"><span class="lbl">Order the boards</span>
+      <a class="trend trend-mini" href="opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Trending</a>
       <div class="op-sort" role="group" aria-label="Order the boards"><button type="button" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div>
     </div>
     <p class="hint" id="opNote" aria-live="polite"></p>
@@ -798,7 +848,7 @@
         all.sort(list === 'bad' ? (a, b) => sc(a) - sc(b) : (a, b) => sc(b) - sc(a));
       }
       // Your Choice: a random order. Each man's place is how many hands he's been in plus a random number, so a
-      // Randomise sends the men just shown to the back until everyone on the board has had a turn.
+      // Deal 12 new sends the men just shown to the back until everyone on the board has had a turn.
       if (byChoice) {
         const luck = p => (luckSeen[p.id] || 0) + (luckRoll[p.id] ??= Math.random());
         all.sort((a, b) => luck(a) - luck(b));
@@ -833,14 +883,24 @@
     });
     // The console's switch, and the line under it: what the chosen order means
     document.querySelectorAll('.op-sort button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === sortMode));
-    const op = SAY.OPINION_BOARDS;
-    document.getElementById('opNote').innerHTML = byOpinion
-      ? `<b>Public opinion:</b> the boards as voters see them. Once a man has ${op.MIN_VOTES}+ votes, `
-        + `${op.UP_AT}% or more liking him puts him on Real Men, ${op.DOWN_AT}% or less on Out of Service, anything between on Coin Toss. `
-        + `Our ranking doesn't change.`
+    // Phones get the short line (the console has to stay small there) with "More" for the full one
+    const op = SAY.OPINION_BOARDS, hint = document.getElementById('opNote');
+    const [long, short] = byOpinion
+      ? [`<b>Public opinion:</b> the boards as voters see them. Once a man has ${op.MIN_VOTES}+ votes, `
+          + `${op.UP_AT}% or more liking him puts him on Real Men, ${op.DOWN_AT}% or less on Out of Service, anything between on Coin Toss. `
+          + `Our ranking doesn't change.`,
+         '<b>Public opinion:</b> voters move men between boards. Our ranking doesn\'t change.']
       : byChoice
-        ? '<b>Your Choice:</b> every board shuffled, 12 at a time. Vote <span class="u">↑</span> or <span class="d">↓</span>, skip, or deal 12 new on any board. Men you\'ve voted on or skipped don\'t come round again.'
-        : '<b>Our ranking</b>, from the public record. Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don\'t.';
+        ? ['<b>Your Choice:</b> every board shuffled, 12 at a time. Vote <span class="u">↑</span> or <span class="d">↓</span>, skip, or deal 12 new on any board. Men you\'ve voted on or skipped don\'t come round again.',
+           '<b>Your Choice:</b> shuffled, 12 at a time. Vote, skip or deal 12 new.']
+        : ['<b>Our ranking</b>, from the public record. Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don\'t.', null];
+    if (hint.dataset.mode !== sortMode) {
+      hint.dataset.mode = sortMode;
+      hint.classList.remove('open');
+      hint.innerHTML = short
+        ? `<span class="long">${long}</span><span class="short">${short}</span> <button type="button" class="hint-more" aria-expanded="false">More</button>`
+        : long;
+    }
     const noneFollowed = following && !SAY.following().length;
     document.getElementById('noFollow').hidden = !noneFollowed;
     document.getElementById('noMatch').hidden = noneFollowed || !filtering || found > 0;
@@ -869,14 +929,23 @@
   let sortMode = 'ours', byOpinion = false, byChoice = false;
   let luckRoll = {}, luckSeen = {};
   const handShown = {};
+  // Phones: "More" under the switch swaps the short line for the full one (and "Less" back)
+  document.getElementById('opNote').addEventListener('click', e => {
+    const b = e.target.closest('.hint-more');
+    if (!b) return;
+    const open = e.currentTarget.classList.toggle('open');
+    b.setAttribute('aria-expanded', open);
+    b.textContent = open ? 'Less' : 'More';
+  });
   // How many each board shows in Our ranking and Public opinion: 12, then 12 more per tap of Show 12 more
   const showN = { good: 12, mid: 12, bad: 12 };
-  document.querySelectorAll('.more-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.more-btn').forEach(b => b.addEventListener('click', e => {
     const list = b.dataset.more, before = showN[list];
     showN[list] += 12;
     render();
-    // Keyboard users land on the first new poster rather than back at the top of the board
-    document.querySelectorAll(`#${list}Grid .poster`)[before]?.focus({ preventScroll: true });
+    // Keyboard users (Enter or Space: a click with no pointer, detail 0) land on the first new poster rather than
+    // back at the top of the board. Not after a tap or mouse click: focus would lift and straighten that one card.
+    if (e.detail === 0) document.querySelectorAll(`#${list}Grid .poster`)[before]?.focus({ preventScroll: true });
   }));
   document.querySelectorAll('.op-sort button').forEach(b => b.addEventListener('click', () => {
     if (sortMode === b.dataset.mode) return;
@@ -921,7 +990,7 @@
       + (hid ? `<br><button type="button" class="shuffle again" data-again="${list}">Bring back the ${hid} hidden</button>` : '')
       + '</div>';
   }
-  // A vote never pulls the card away under his finger (he may want to change it); it's gone at the next Randomise.
+  // A vote never pulls the card away under his finger (he may want to change it); it's gone at the next Deal 12 new.
   // Signing in loads his votes, so the boards are dealt again without the men he's voted on.
   SAY.onChange((kind, id) => { if (byChoice && ((kind === 'vote' && !id) || kind === 'auth')) render(); });
 
@@ -956,7 +1025,7 @@
     if (ask) { const slot = ask.closest('.slot'); ask.remove(); slot.querySelector('.skip')?.focus(); }
   });
 
-  // Randomise: the men on show have had their turn; the rest of that board is rolled again.
+  // Deal 12 new: the men on show have had their turn; the rest of that board is rolled again.
   document.querySelectorAll('.shuffle').forEach(b => b.addEventListener('click', () => {
     const list = b.closest('.board').id;
     (handShown[list] || []).forEach(id => { luckSeen[id] = (luckSeen[id] || 0) + 1; });
