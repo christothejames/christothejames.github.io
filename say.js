@@ -56,7 +56,9 @@
     display: flex; align-items: center; justify-content: center; gap: 5px; padding: 4px 2px; }
   .say-strip button:focus-visible { outline: 3px solid #ffe66d; outline-offset: -3px; }
   .say-vote { flex: 1.4; display: flex; align-items: center; justify-content: center; gap: 2px; }
-  .say-vote button { flex: 0 0 40px; border-radius: 8px; }
+  /* Arrows and "Vote" in the site's neon cyan (owner, 16 Nov 2026: same blue as the buttons); green / red still
+     show on hover and once he has voted */
+  .say-vote button { flex: 0 0 40px; border-radius: 8px; color: #3ef2ff; }
   .say-vote svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
   .say-vote .up:hover { color: #34e07a; background: #34e07a1a; }
   .say-vote .down:hover { color: #ff3b3b; background: #ff3b3b1a; }
@@ -64,7 +66,7 @@
   .say-vote .down[aria-pressed="true"] { color: #ff3b3b; }
   .say-vote [aria-pressed="true"] svg { fill: currentColor; }
   .say-n { min-width: 34px; text-align: center; font-family: 'Bungee', sans-serif; font-size: 12px; color: #eef4ff; }
-  .say-n.none { color: #a9bfdc; }
+  .say-n.none { color: #3ef2ff; }
   .say-n.up { color: #34e07a; } .say-n.down { color: #ff3b3b; }
   .say-strip .say-follow { flex: 1; border-left: 1px solid #ffffff1f; color: #7cc4ff; }
   .say-strip .say-follow:hover { background: #ffffff0d; }
