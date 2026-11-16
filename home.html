@@ -124,30 +124,25 @@
     font-size: 16px;
   }
 
-  /* ---------- Search (the one call to action) + tier links ---------- */
-  .toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #050b1af2;
-    backdrop-filter: blur(6px);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .toolbar .wrap {
-    display: flex;
-    gap: 8px 24px;
-    align-items: center;
-    justify-content: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    flex-wrap: wrap;
-  }
+  /* ---------- The console (owner, 16 Nov 2026: "a lot of actions, not clear what they refer to"; option A in
+     design-options/board-controls.html). Where a control sits says what it changes: everything that changes all
+     three boards is in this one panel, a row each, named for what it does. Each board keeps only its own controls
+     (its count, Deal 12 new, Show 12 more), in its own colour. ---------- */
+  .console { border: 2px solid #3ef2ff55; border-radius: 18px; background: #0c1a36cc; box-shadow: 0 0 28px #3ef2ff1a; }
+  .console .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 14px 18px; }
+  .console .row + .row { border-top: 1px solid var(--line); }
+  .console .lbl { flex: none; width: 96px; color: var(--muted); font-size: 15px; line-height: 1.25; }
+  /* Under the switch: what the chosen order means (and how to vote) */
+  .console .hint { margin: 0; padding: 0 18px 14px; color: var(--muted); font-size: 14px; }
+  .console .hint b { color: var(--cyan); font-weight: 400; }
+  .console .hint .u { color: #34e07a; } .console .hint .d { color: #ff7a7a; }
+  .pill-select { font-family: 'Bungee', sans-serif; font-size: 13px; padding: 9px 12px; min-height: 40px; border-radius: 999px;
+    background: var(--night); color: var(--cyan); border: 2px solid var(--cyan); cursor: pointer; }
+  .pill-select option { color: #fff; background: var(--night); }
+  .pill-select:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
   .search-box {
     flex: 1 1 320px;
-    max-width: 560px;
     position: relative;
     margin: 0;
   }
@@ -189,16 +184,23 @@
 
   .search-go svg { width: 14px; height: 14px; }
 
-  /* Jump to a board: coloured text in the board's own colour, not buttons */
-  .tiers { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 15px; }
-  .tiers a { text-decoration: none; }
-  .tiers a:hover, .tiers a:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
-  .tiers .good { color: var(--gold); }
-  .tiers .mid { color: var(--amber); }
-  .tiers .bad { color: #ff7a7a; } /* the board red is too dark for small text on navy */
+  /* Under the console: "Jump to" a board (shortcuts down the page, in each board's colour, not filters) and the
+     trending link (it opens another page, so it's a link, not a switch) */
+  .jumps { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 16px; }
+  .jumps .lbl { color: var(--muted); font-size: 15px; margin-right: 2px; }
+  .jumps a.j { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 15px; background: #ffffff0a; }
+  .jumps a.j:hover { background: #ffffff17; }
+  .jumps .good { color: var(--gold); }
+  .jumps .mid { color: var(--amber); }
+  .jumps .bad { color: #ff7a7a; } /* the board red is too dark for small text on navy */
+  .trend { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; color: var(--cyan); white-space: nowrap;
+    text-underline-offset: 4px; text-decoration-color: #3ef2ff77; }
+  .trend:hover { text-decoration-color: var(--cyan); }
+  .trend svg { width: 16px; height: 16px; flex: none; }
+  .jumps a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
   /* ---------- Boards ---------- */
-  .board { padding: 64px 0 10px; scroll-margin-top: 70px; }
+  .board { padding: 64px 0 10px; scroll-margin-top: -24px; }
 
   .board-head {
     display: flex;
@@ -284,36 +286,30 @@
 
   .board-sub { color: var(--muted); margin: 0 0 30px; max-width: 640px; }
 
-  .count { font-size: 14px; color: var(--muted); }
+  .count { font-size: 15px; color: var(--muted); }
+  .count b { font-weight: 400; color: var(--tc, #fff); }
+  .board.good { --tc: var(--gold); } .board.mid { --tc: var(--amber); } .board.bad { --tc: #ff7a7a; }
 
-  /* How many posters each board shows (top 12 by default) */
-  .show {
-    font-family: 'Bungee', sans-serif;
-    font-size: 13px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: var(--night);
-    color: #fff;
-    border: 2px solid currentColor;
-    cursor: pointer;
-  }
-  .board.good .show { color: var(--gold); }
-  .board.bad .show { color: var(--red); }
-  .board.mid .show { color: var(--amber); }
-  .show option { color: #fff; background: var(--night); }
-  /* Board order switch right after the heading: Our ranking | Public opinion (owner, 16 Nov 2026: one button that
-     toggled wasn't obvious, and it moved when the count grew). Both halves always visible; the lit one is the order
-     in use. The count sits after the switch and Top 12 so its changing text never shifts them. */
-  .op-sort { display: inline-flex; padding: 2px; gap: 2px; border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); }
-  .op-sort button { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px;
-    padding: 5px 12px; border: 0; border-radius: 999px; background: transparent; color: var(--cyan); cursor: pointer; white-space: nowrap; }
+  /* Under each board: Show 12 more (owner, 16 Nov 2026: replaced the Top 12 dropdown, so it sits under the cards
+     it adds to), in the board's colour */
+  .more { display: flex; justify-content: center; margin-top: 28px; }
+  .more-btn { font-family: 'Bungee', sans-serif; font-size: 13px; padding: 11px 22px; border-radius: 999px; cursor: pointer;
+    background: var(--night); color: var(--tc); border: 2px solid var(--tc); }
+  .more-btn:hover { background: color-mix(in srgb, var(--tc) 14%, var(--night)); }
+  .more-btn:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  .more-btn[hidden] { display: none; }
+  /* Order the boards (in the console): Our ranking | Public opinion | Your Choice, for all three boards at once.
+     All three always visible; the lit one is the order in use. */
+  .op-sort { display: inline-flex; flex-wrap: wrap; padding: 3px; gap: 3px; border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); }
+  .op-sort button { display: inline-flex; align-items: center; gap: 7px; font-family: 'Bungee', sans-serif; font-size: 13px;
+    padding: 8px 14px; border: 0; border-radius: 999px; background: transparent; color: var(--cyan); cursor: pointer; white-space: nowrap; }
   .op-sort svg { width: 15px; height: 15px; }
   .op-sort button[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; cursor: default; }
   .op-sort button[aria-pressed="false"]:hover { background: #3ef2ff22; }
   .op-sort button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
   /* Your Choice (owner, 16 Nov 2026): the third switch option shuffles every board into a random order, so a
-     visitor can vote without scrolling the ranking. Randomise (next to Top 12, only while it's on) deals that board
-     a fresh hand: men already shown go to the back, so nobody repeats until the whole board has been through. */
+     visitor can vote without scrolling the ranking. Deal 12 new (by the board's count, only while it's on) deals that
+     board a fresh hand: men already shown go to the back, so nobody repeats until the whole board has been through. */
   .shuffle { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px;
     padding: 7px 14px; border: 0; border-radius: 999px; cursor: pointer; color: var(--night); background: var(--cyan);
     box-shadow: 0 0 14px #3ef2ff66; }
@@ -327,8 +323,6 @@
   .shuffle.spin svg { animation: dice .45s ease-out; }
   @keyframes dice { to { transform: rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .shuffle.spin svg { animation: none; } }
-  /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
-  .show.age { color: var(--cyan); }
 
   .posters {
     display: grid;
@@ -405,14 +399,8 @@
   .unhide:hover { text-decoration-style: solid; }
   .unhide:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
 
-  /* ---------- Have your say: one slim row (owner, 15 Nov 2026: the three-tab panel took a third of a phone screen,
-     and My order was dropped). ★ Following filters the boards; Public opinion links to opinion.html; signed-in
-     voters get a small account menu (say.js fills [data-say-account]). ---------- */
-  .say-bar { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 6px 6px 6px 16px;
-    border: 1.5px solid #3ef2ff66; border-radius: 999px; background: #0c1a36cc; box-shadow: 0 0 14px #3ef2ff22; }
-  .say-label { font-family: 'Bungee', sans-serif; font-size: 14px; color: var(--cyan); white-space: nowrap; }
-  .say-tip { flex: 1; min-width: 0; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .say-tip .u { color: #34e07a; } .say-tip .d { color: #ff7a7a; }
+  /* "Only men I follow" in the console's Show row: filters the boards like age does (owner, 16 Nov 2026: was the
+     ★ Following button in the Have your say bar, which the console replaced) */
   .chip { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: 999px;
     font-family: 'Bungee', sans-serif; font-size: 13px; white-space: nowrap; text-decoration: none; cursor: pointer; }
   .chip svg { width: 16px; height: 16px; flex: none; }
@@ -422,13 +410,6 @@
   .follow-chip .n { min-width: 18px; padding: 1px 5px; border-radius: 999px; background: var(--gold); color: var(--night); font-size: 11px; }
   .follow-chip[aria-pressed="true"] .n { background: var(--night); color: var(--gold); }
   .follow-chip .n[hidden] { display: none; }
-  .opinion-chip { border: 0; background: var(--cyan); color: var(--night); }
-  .opinion-chip:hover { box-shadow: 0 0 16px #3ef2ff88; }
-  /* Shown while Public opinion is on: how voters move men, and that our ranking is unchanged */
-  .op-note { margin: 18px 0 0; padding: 10px 14px; border-left: 4px solid var(--cyan); border-radius: 0 8px 8px 0;
-    background: #0c1a36cc; color: var(--muted); font-size: 14px; }
-  .op-note b { color: var(--cyan); font-family: 'Bungee', sans-serif; font-weight: 400; }
-  .op-note[hidden] { display: none; }
   .acct-row { display: flex; justify-content: flex-end; padding-top: 12px; position: relative; z-index: 20; }
 
   .good .poster { --pin: var(--hot-pink); --glow: #ffe66d66; }
@@ -570,9 +551,15 @@
     .poster .name { font-size: 16px; }
     .poster .for, .poster .role { font-size: 12px; }
     .mug .ini { font-size: 40px; }
-    .say-bar { margin-top: 18px; padding: 0; border: 0; background: none; box-shadow: none; gap: 8px; }
-    .say-label, .say-tip { display: none; }
-    .say-bar .chip { flex: 1; min-width: 0; padding: 0 10px; font-size: 12px; }
+    /* Console on phones: each row's name above its controls; the order switch as three equal buttons in one row */
+    .console .row { padding: 12px 14px; gap: 8px 10px; }
+    .console .lbl { width: 100%; font-size: 14px; }
+    .console .hint { padding: 0 14px 12px; }
+    .op-sort { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
+    .op-sort button { justify-content: center; padding: 8px 4px; font-size: 11.5px; white-space: normal; line-height: 1.15; text-align: center; }
+    .op-sort svg { display: none; }
+    .follow-chip { font-size: 12px; padding: 0 12px; }
+    .trend { margin-left: 0; width: 100%; }
   }
 
   @media (max-width: 360px) {
@@ -645,16 +632,21 @@
   <p class="intro">The manosphere and beyond: notable men, ranked from the public record. Every fact is sourced. Tap any poster for the full profile.</p>
 </header>
 
-<div class="toolbar">
-  <div class="wrap">
-    <form class="search-box" id="search-form" role="search">
+<div class="wrap">
+  <!-- The console (owner, 16 Nov 2026: option A in design-options/board-controls.html). Everything that changes all
+       three boards sits here, each row named for what it does; each board keeps only its own controls. -->
+  <section class="console" aria-label="Find and sort the men">
+    <div class="row"><span class="lbl">Find</span>
+      <form class="search-box" id="search-form" role="search">
       <input class="search" id="search" type="search" enterkeyhint="search" placeholder="Search for a man…" aria-label="Search">
       <button class="search-go" type="submit" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
         SEARCH
       </button>
     </form>
-    <select class="show age" id="age" aria-label="Filter the boards by age">
+    </div>
+    <div class="row"><span class="lbl">Show</span>
+      <select class="pill-select" id="age" aria-label="Filter the boards by age">
       <option value="">Any age</option>
       <option value="0-29">Under 30</option>
       <option value="30-39">30s</option>
@@ -662,12 +654,18 @@
       <option value="50-59">50s</option>
       <option value="60-999">60+</option>
     </select>
-    <nav class="tiers" aria-label="Boards">
-      <a class="good" href="#good">Real Men</a>
-      <a class="mid" href="#mid">Coin Toss</a>
-      <a class="bad" href="#bad">Out of Service</a>
-    </nav>
-  </div>
+      <button type="button" class="chip follow-chip" id="followChip" aria-pressed="false">☆ Only men I follow<span class="n" id="followCount" hidden></span></button>
+    </div>
+    <div class="row"><span class="lbl">Order the boards</span>
+      <div class="op-sort" role="group" aria-label="Order the boards"><button type="button" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div>
+    </div>
+    <p class="hint" id="opNote" aria-live="polite"></p>
+  </section>
+  <nav class="jumps" aria-label="Jump to a board">
+    <span class="lbl">Jump to</span>
+    <a class="j good" href="#good">Real Men</a><a class="j mid" href="#mid">Coin Toss</a><a class="j bad" href="#bad">Out of Service</a>
+    <a class="trend" href="opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>See who's trending with voters</a>
+  </nav>
 </div>
 
 <main class="wrap">
@@ -678,33 +676,29 @@
     <div class="ask-list" id="askList"></div>
   </section>
 
-  <section class="say-bar" aria-label="Have your say">
-    <span class="say-label">Have your say</span>
-    <span class="say-tip">Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don't</span>
-    <button type="button" class="chip follow-chip" id="followChip" aria-pressed="false">★ Following<span class="n" id="followCount" hidden></span></button>
-    <a class="chip opinion-chip" href="opinion.html" title="Who's trending with voters (Public Opinion)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Trending</a>
-  </section>
 
   <p class="empty no-match" id="noMatch" hidden>Nobody on the boards matches that.</p>
-  <p class="op-note" id="opNote" hidden></p>
   <p class="empty no-match" id="noFollow" hidden>Nobody followed yet. Tap ☆ Follow under any poster and he shows up here.</p>
 
   <section class="board good" id="good">
-    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="good" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="good" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="goodCount"></span></div>
+    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button><span class="count" id="goodCount"></span></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
     <div class="posters" id="goodGrid"></div>
+    <div class="more"><button type="button" class="more-btn" data-more="good" hidden>Show 12 more</button></div>
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>COIN TOSS</h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="mid" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="mid" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="midCount"></span></div>
+    <div class="board-head"><h2>COIN TOSS</h2><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button><span class="count" id="midCount"></span></div>
     <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
+    <div class="more"><button type="button" class="more-btn" data-more="mid" hidden>Show 12 more</button></div>
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="bad" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="bad" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button><button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button></div><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Randomise</button><span class="count" id="badCount"></span></div>
+    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><button type="button" class="shuffle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button><span class="count" id="badCount"></span></div>
     <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
     <div class="posters" id="badGrid"></div>
+    <div class="more"><button type="button" class="more-btn" data-more="bad" hidden>Show 12 more</button></div>
   </section>
 </main>
 
@@ -809,48 +803,56 @@
         const luck = p => (luckSeen[p.id] || 0) + (luckRoll[p.id] ??= Math.random());
         all.sort((a, b) => luck(a) - luck(b));
       }
-      // Each board shows its top 12 (fills full rows); the dropdown shows more. A search or Following shows every match.
-      const pick = document.getElementById(list + 'Show');
-      // Board sizes change with filters and Public opinion, so the Top options are rebuilt to fit
-      setSteps(pick, all.length);
-      const n = term || following ? all.length : (pick.value === 'all' ? all.length : +pick.value);
+      // Each board shows 12 (fills full rows); Show 12 more under it adds 12 at a time. A search or "Only men I
+      // follow" shows every match. Your Choice always deals 12 (Deal 12 new for the next hand).
+      const n = term || following ? all.length : (byChoice ? 12 : showN[list]);
       const shown = all.slice(0, n);
-      pick.hidden = !!term || following || all.length <= 12;
+      const rest = all.length - shown.length, more = document.querySelector(`[data-more="${list}"]`);
+      more.hidden = !rest || byChoice || !!term || following;
+      more.textContent = rest > 12 ? 'Show 12 more' : `Show the last ${rest}`;
       document.getElementById(list + 'Grid').innerHTML = shown.map((p, i) => poster(p, i, place(p))).join('')
         || (byChoice ? doneDeck(list) : '<p class="empty">Nobody matches.</p>');
       const moved = byOpinion ? all.filter(p => place(p) !== tier(p)).length : 0;
       handShown[list] = shown.map(p => p.id);
-      document.getElementById(list + 'Count').textContent = byChoice
-        ? (shown.length < all.length ? `${shown.length} at random, ${all.length} left` : `${all.length} ${all.length === 1 ? 'man' : 'men'} left`)
-        : (shown.length < all.length ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
-        + (byOpinion ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '')
-        + (moved ? `, ${moved} moved here by voters` : '');
+      // The count says what's on screen and in what order, in plain words
+      const ORDER_WORDS = { good: 'best first', mid: '', bad: 'worst first' };
+      const how = byOpinion ? (list === 'bad' ? 'most disliked first' : 'most liked first') : ORDER_WORDS[list];
+      const men = k => `${k} ${k === 1 ? 'man' : 'men'}`;
+      document.getElementById(list + 'Count').innerHTML = byChoice
+        ? (rest ? `${shown.length} at random, <b>${all.length}</b> left` : `<b>${men(all.length)}</b> left`)
+        : (rest ? `Top ${shown.length} of <b>${all.length}</b>` : (term || following || ageSel ? `<b>${men(all.length)}</b>` : `All <b>${all.length}</b>`))
+          + (how ? `, ${how}` : '') + (moved ? `, ${moved} moved here by voters` : '');
       const board = document.getElementById(list);
-      board.querySelectorAll('.op-sort button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === sortMode));
       board.querySelector('.shuffle').hidden = !byChoice || all.length < 2;
-      // "↺ N hidden · bring back": only in Your Choice, only when this board has men skipped or voted out of it
+      // "↺ N hidden, bring back": only in Your Choice, only when this board has men skipped or voted out of it
       const hid = byChoice ? hiddenOn(list) : 0, unhide = board.querySelector('.unhide');
       unhide.hidden = !hid;
-      unhide.textContent = `↺ ${hid} hidden · bring back`;
+      unhide.textContent = `↺ ${hid} hidden, bring back`;
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
-    const op = SAY.OPINION_BOARDS, opNote = document.getElementById('opNote');
-    opNote.hidden = !byOpinion;
-    opNote.innerHTML = `<b>Public opinion:</b> the boards as voters see them. Once a man has ${op.MIN_VOTES}+ votes, `
-      + `${op.UP_AT}% or more liking him puts him on Real Men, ${op.DOWN_AT}% or less on Out of Service, anything between on Coin Toss. `
-      + `Our ranking doesn't change.`;
+    // The console's switch, and the line under it: what the chosen order means
+    document.querySelectorAll('.op-sort button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === sortMode));
+    const op = SAY.OPINION_BOARDS;
+    document.getElementById('opNote').innerHTML = byOpinion
+      ? `<b>Public opinion:</b> the boards as voters see them. Once a man has ${op.MIN_VOTES}+ votes, `
+        + `${op.UP_AT}% or more liking him puts him on Real Men, ${op.DOWN_AT}% or less on Out of Service, anything between on Coin Toss. `
+        + `Our ranking doesn't change.`
+      : byChoice
+        ? '<b>Your Choice:</b> every board shuffled, 12 at a time. Vote <span class="u">↑</span> or <span class="d">↓</span>, skip, or deal 12 new on any board. Men you\'ve voted on or skipped don\'t come round again.'
+        : '<b>Our ranking</b>, from the public record. Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don\'t.';
     const noneFollowed = following && !SAY.following().length;
     document.getElementById('noFollow').hidden = !noneFollowed;
     document.getElementById('noMatch').hidden = noneFollowed || !filtering || found > 0;
     renderSay();
   }
 
-  // ---------- Have your say: ★ Following shows only the men he follows (always in our order) ----------
+  // ---------- "Only men I follow" (console, Show row): only the men he follows, in the chosen order ----------
   let following = false;
   const followChip = document.getElementById('followChip');
   function renderSay() {
     followChip.setAttribute('aria-pressed', following);
+    followChip.firstChild.nodeValue = (following ? '★' : '☆') + ' Only men I follow';
     const n = SAY.following().length, fc = document.getElementById('followCount');
     fc.textContent = n; fc.hidden = !n;
   }
@@ -858,7 +860,7 @@
   // Unfollowing while on Following takes him off; otherwise only the count changes.
   SAY.onChange(kind => { if (kind === 'follow') following ? render() : renderSay(); });
 
-  // The "Public opinion" switch on any board turns all three boards over to the voters (owner, 16 Nov 2026: men move
+  // The console's "Public opinion" turns all three boards over to the voters (owner, 16 Nov 2026: men move
   // up and down between boards by votes; Our ranking stays ours). It's one switch for all three, since a man who
   // moves leaves one board for another. The totals load in the background, so boards drawn before they arrive are
   // drawn again once they do. A new vote doesn't move or re-sort anyone straight away (cards jumping under the
@@ -867,6 +869,15 @@
   let sortMode = 'ours', byOpinion = false, byChoice = false;
   let luckRoll = {}, luckSeen = {};
   const handShown = {};
+  // How many each board shows in Our ranking and Public opinion: 12, then 12 more per tap of Show 12 more
+  const showN = { good: 12, mid: 12, bad: 12 };
+  document.querySelectorAll('.more-btn').forEach(b => b.addEventListener('click', () => {
+    const list = b.dataset.more, before = showN[list];
+    showN[list] += 12;
+    render();
+    // Keyboard users land on the first new poster rather than back at the top of the board
+    document.querySelectorAll(`#${list}Grid .poster`)[before]?.focus({ preventScroll: true });
+  }));
   document.querySelectorAll('.op-sort button').forEach(b => b.addEventListener('click', () => {
     if (sortMode === b.dataset.mode) return;
     sortMode = b.dataset.mode;
@@ -955,24 +966,6 @@
   }));
   SAY.opinion().then(() => { if (byOpinion) render(); });
 
-  // Dropdown options: top 12, top 24, ... and all (multiples of 12 fill 2, 3, 4 or 6 columns). "All" counts the men
-  // left after a filter. Rebuilt on each draw, since Public opinion changes how many men each board has.
-  function setSteps(pick, total) {
-    // The viewer's own pick, kept through searches that shrink a board. Without one it's Top 12, not whatever a
-    // shrunk board fell back to (a board emptied by Your Choice used to come back showing All).
-    const keep = pick.dataset.want || '12';
-    const steps = [12, 24, 36, 48].filter(s => s < total);
-    const html = steps.map(s => `<option value="${s}">Top ${s}</option>`).join('') + `<option value="all">All ${total}</option>`;
-    if (pick.innerHTML === html) return;
-    pick.innerHTML = html;
-    pick.value = [...pick.options].some(o => o.value === keep) ? keep : (steps[0] ? String(steps[0]) : 'all');
-  }
-  ['good', 'mid', 'bad'].forEach(list => {
-    const total = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && tier(p) === list).length;
-    const pick = document.getElementById(list + 'Show');
-    setSteps(pick, total);
-    pick.addEventListener('change', () => { pick.dataset.want = pick.value; render(); });
-  });
 
   const cr = window.PEOPLE.filter(p => p.photo && p.photoCredit);
   document.getElementById('credits').innerHTML = cr.map(p =>
@@ -1110,21 +1103,19 @@
   document.getElementById('search-form').addEventListener('submit', e => {
     e.preventDefault();
     document.getElementById('search').blur();
-    const top = document.querySelector('main').getBoundingClientRect().top + scrollY
-      - document.querySelector('.toolbar').offsetHeight;
+    const top = document.querySelector('main').getBoundingClientRect().top + scrollY - 16;
     scrollTo({ top, behavior: 'smooth' });
   });
 
   // Opening a poster remembers the spot (scroll, search, how many shown); the profile's
   // "← Back" link (home.html#back) lands back there.
   const SPOT = 'homeSpot';
-  const shows = ['good', 'mid', 'bad'].map(l => document.getElementById(l + 'Show'));
   document.querySelector('main').addEventListener('click', e => {
     const a = e.target.closest('a.poster');
     if (!a) return;
     // Keep the tapped poster at the same height on screen (fonts and photos can shift raw scroll numbers)
     const spot = { href: a.getAttribute('href'), top: a.getBoundingClientRect().top, y: scrollY,
-      search: document.getElementById('search').value, age: document.getElementById('age').value, shows: shows.map(s => s.value) };
+      search: document.getElementById('search').value, age: document.getElementById('age').value, showN: { ...showN } };
     try { sessionStorage.setItem(SPOT, JSON.stringify(spot)); } catch {}
   });
   let spot = null;
@@ -1135,7 +1126,7 @@
   if (spot) {
     document.getElementById('search').value = spot.search || '';
     document.getElementById('age').value = spot.age || '';
-    shows.forEach((s, i) => { if ([...s.options].some(o => o.value === spot.shows?.[i])) s.value = spot.shows[i]; });
+    Object.keys(showN).forEach(l => { if (+spot.showN?.[l] >= 12) showN[l] = +spot.showN[l]; });
   }
   render();
   if (spot) {

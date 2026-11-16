@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Mock-up, 16 Nov 2026: the controls above and on the home boards, regrouped so it's clear what each one changes.
+     Owner: "a lot of actions, not clear what they refer to". Rule used: where a control sits says what it changes.
+     Option A puts everything that changes all three boards in one console; option B keeps the toolbar and adds a
+     slim bar that stays at the top while scrolling. Not linked from the site. Owner hasn't picked yet. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board Controls Mockup</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root {
+    --blue: #1e90ff; --sky: #7cc4ff; --cyan: #3ef2ff; --gold: #ffe66d; --amber: #ff9f1c; --red: #ff3b3b; --green: #34e07a;
+    --night: #050b1a; --panel: #0c1a36; --line: #ffffff1f; --text: #eef4ff; --muted: #a9bfdc; --paper: #f8f1e1; --ink: #14161c;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--night); }
+  body { margin: 0; color: var(--text); font-family: 'Righteous', system-ui, sans-serif; line-height: 1.45;
+    background: radial-gradient(ellipse at 50% -10%, #1e90ff3a 0%, transparent 50%), linear-gradient(#050b1a, #0a1a3a 45%, #050b1a); background-attachment: fixed; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
+  a { color: var(--cyan); }
+  button, select, input { font: inherit; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  .intro { padding: 34px 0 6px; }
+  .intro h1 { margin: 0; font-family: 'Monoton', cursive; font-weight: 400; font-size: clamp(30px, 7vw, 56px); color: #e6fbff;
+    text-shadow: 0 0 6px var(--cyan), 0 0 18px #3ef2ffaa; }
+  .intro p { max-width: 660px; color: var(--muted); }
+  .back { display: inline-block; margin-top: 4px; }
+
+  .option { margin: 46px 0 70px; }
+  .option > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; border-bottom: 2px solid var(--line);
+    padding-bottom: 10px; margin-bottom: 18px; }
+  .option > header h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 26px; color: #fff; }
+  .option > header p { margin: 0; color: var(--muted); max-width: 640px; }
+  .why { margin: 0 0 22px; padding-left: 18px; color: var(--muted); max-width: 720px; }
+  .why li { margin: 3px 0; }
+  .why b { color: #fff; font-weight: 400; }
+
+  /* ---------- shared bits ---------- */
+  .search { display: flex; flex: 1 1 320px; min-width: 0; background: var(--night); border: 2px solid #3ef2ff66; border-radius: 999px; padding: 4px; }
+  .search input { flex: 1; min-width: 0; border: 0; background: none; color: #fff; padding: 8px 14px; font-size: 16px; }
+  .search input::placeholder { color: #7f93b3; }
+  .search button { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; padding: 8px 16px;
+    background: var(--cyan); color: var(--night); font-family: 'Bungee', sans-serif; font-size: 13px; cursor: pointer; }
+  .search svg, .chip svg, .seg svg, .deal svg, .trend svg { width: 16px; height: 16px; flex: none; }
+  .pill-select { font-family: 'Bungee', sans-serif; font-size: 13px; padding: 9px 12px; border-radius: 999px; background: var(--night);
+    color: var(--cyan); border: 2px solid var(--cyan); cursor: pointer; }
+  .pill-select option { color: #fff; background: var(--night); }
+  .chip { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; cursor: pointer;
+    font-family: 'Bungee', sans-serif; font-size: 13px; background: var(--night); color: var(--gold); border: 2px solid #ffe66d88; }
+  .chip[aria-pressed="true"] { background: var(--gold); color: var(--night); border-color: var(--gold); }
+  .chip .n { font-family: 'Righteous', sans-serif; font-size: 12px; padding: 0 7px; border-radius: 999px; background: #ffe66d33; }
+  .chip[aria-pressed="true"] .n { background: #050b1a33; }
+
+  /* The order switch: the one control that changes all three boards at once */
+  .seg { display: inline-flex; flex-wrap: wrap; padding: 3px; gap: 3px; border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); }
+  .seg button { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer;
+    font-family: 'Bungee', sans-serif; font-size: 13px; background: none; color: var(--cyan); white-space: nowrap; }
+  .seg button[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; }
+  .seg button[aria-pressed="false"]:hover { background: #3ef2ff1f; }
+  .trend { display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); text-decoration: underline; text-underline-offset: 4px;
+    text-decoration-color: #3ef2ff77; white-space: nowrap; }
+  .trend:hover { text-decoration-color: var(--cyan); }
+
+  /* ---------- a board ---------- */
+  .board { margin-top: 30px; --c: var(--gold); }
+  .board.bad { --c: var(--red); }
+  .bhead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .plate { position: relative; padding: 8px 28px 10px; border-radius: 6px; border: 1px solid #6b7580;
+    background: linear-gradient(180deg, #4a535e, #2b3139 55%, #1d2228); box-shadow: inset 0 1px 0 #9aa3ad, 0 5px 0 #0a0d11, 0 9px 20px #000a; }
+  .plate h3 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(24px, 4.6vw, 38px); line-height: 1.05;
+    background: linear-gradient(180deg, #fff, #d9dee4 22%, #9aa3ad 46%, #f2f4f7 50%, #b8c0c9 68%, #7d8792); -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-text-stroke: 1px #3a424c; }
+  .board.bad h3.neon { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(24px, 4.6vw, 38px); color: #ffd2d2;
+    text-shadow: 0 0 4px var(--red), 0 0 12px var(--red), 0 0 28px #ff1a1a; }
+  .board-state { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  .count { color: var(--muted); font-size: 15px; }
+  .count b { color: var(--c); font-weight: 400; }
+  .deal { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 999px; padding: 8px 15px; cursor: pointer;
+    font-family: 'Bungee', sans-serif; font-size: 13px; background: var(--c); color: var(--night); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 40%, transparent); }
+  .board.bad .deal { color: #fff; }
+  .unhide { border: 0; background: none; color: var(--cyan); cursor: pointer; padding: 4px 2px; text-decoration: underline dotted; text-underline-offset: 4px; }
+  .sub { color: var(--muted); margin: 8px 0 22px; max-width: 640px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 24px 20px; }
+  .card { position: relative; display: flex; flex-direction: column; }
+  .card .p { background: var(--paper); color: var(--ink); border-radius: 6px 6px 0 0; padding: 10px 10px 12px; text-align: center; box-shadow: 0 10px 24px #0008; }
+  .card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border: 3px solid var(--ink); }
+  .card .nm { font-family: 'Bungee', sans-serif; font-size: 16px; margin-top: 8px; }
+  .card .rl { font-size: 13px; color: #555; }
+  .strip { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: var(--panel);
+    border: 2px solid var(--line); border-top: 0; border-radius: 0 0 10px 10px; font-family: 'Bungee', sans-serif; font-size: 12px; color: var(--cyan); }
+  .strip .f { font-family: 'Righteous', sans-serif; font-size: 13px; color: var(--sky); }
+  .skip { position: absolute; top: 6px; right: 6px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 11px 6px 8px;
+    border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); color: var(--cyan); font-family: 'Bungee', sans-serif; font-size: 11px; }
+  .skip svg { width: 11px; height: 11px; }
+  .more { display: flex; justify-content: center; margin-top: 22px; }
+  .more button { padding: 11px 22px; border-radius: 999px; cursor: pointer; font-family: 'Bungee', sans-serif; font-size: 13px;
+    background: var(--night); color: var(--c); border: 2px solid var(--c); }
+  .more button:hover { background: color-mix(in srgb, var(--c) 14%, var(--night)); }
+
+  /* Shuffle-only bits appear only in Your Choice */
+  [data-order]:not([data-order="choice"]) .if-choice { display: none !important; }
+  [data-order="choice"] .if-not-choice { display: none !important; }
+
+  /* ---------- Option A: one console ---------- */
+  .console { border: 2px solid #3ef2ff55; border-radius: 18px; background: #0c1a36cc; box-shadow: 0 0 28px #3ef2ff1a; overflow: hidden; }
+  .console .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 14px 18px; }
+  .console .row + .row { border-top: 1px solid var(--line); }
+  .console .lbl { flex: 0 0 auto; width: 92px; color: var(--muted); font-size: 15px; }
+  .console .hint { margin: 0; padding: 0 18px 14px; color: var(--muted); font-size: 14px; }
+  .console .hint .u { color: var(--green); } .console .hint .d { color: #ff7a7a; }
+  .jumps { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 16px; }
+  .jumps .lbl { color: var(--muted); font-size: 15px; margin-right: 2px; }
+  .jumps a.j { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 15px; background: #ffffff0a; }
+  .jumps a.j.good { color: var(--gold); } .jumps a.j.mid { color: var(--amber); } .jumps a.j.bad { color: #ff7a7a; }
+  .jumps a.j:hover { background: #ffffff17; }
+  .jumps .trend { margin-left: auto; }
+
+  /* ---------- Option B: toolbar + a bar that stays up while scrolling ---------- */
+  .tool { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+  .rail { position: sticky; top: 0; z-index: 5; margin: 14px -16px 0; padding: 10px 16px; background: #050b1af2; backdrop-filter: blur(6px);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+  .tabs { display: flex; gap: 4px; }
+  .tabs a { padding: 7px 12px; border-radius: 8px; text-decoration: none; font-size: 15px; border-bottom: 3px solid transparent; }
+  .tabs a.good { color: var(--gold); } .tabs a.mid { color: var(--amber); } .tabs a.bad { color: #ff7a7a; }
+  .tabs a[aria-current="true"] { background: #ffffff12; border-bottom-color: currentColor; }
+  .rail .order { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .rail .order span { color: var(--muted); font-size: 15px; }
+  .b-hint { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+  .b-hint .u { color: var(--green); } .b-hint .d { color: #ff7a7a; }
+
+  @media (max-width: 640px) {
+    .console .row { padding: 12px 14px; }
+    .console .lbl { width: 100%; font-size: 14px; }
+    .seg { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
+    .seg button { justify-content: center; padding: 8px 4px; font-size: 11.5px; white-space: normal; line-height: 1.15; text-align: center; }
+    .seg svg { display: none; }
+    .jumps .trend { margin-left: 0; width: 100%; }
+    .rail { gap: 8px; }
+    .rail .order { margin-left: 0; width: 100%; }
+    .rail .order span { display: none; }
+    .tabs a { font-size: 14px; padding: 6px 8px; }
+    .cards { grid-template-columns: 1fr 1fr; gap: 18px 12px; }
+    .card .nm { font-size: 13px; }
+    .card .rl { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="wrap intro">
+  <h1>Board controls</h1>
+  <p>Two ways to make the controls on the home boards clearer. The rule in both: where a control sits tells you what it changes. Anything that changes all three boards sits in one place, above them. Anything that changes one board sits on that board, in its colour. Try the switches: pick Your Choice to see the shuffle buttons appear.</p>
+  <a class="back" href="../home.html">Back to the boards</a>
+</header>
+
+<main class="wrap">
+
+<!-- ================= OPTION A ================= -->
+<section class="option" data-order="ours" aria-labelledby="a-title">
+  <header><h2 id="a-title">A. One console</h2><p>Search, filters and the board order live together in one panel, each row named for what it does.</p></header>
+  <ul class="why">
+    <li><b>Order the boards</b> appears once, not three times. Today the same switch sits on every board, but it changes all of them.</li>
+    <li><b>Only men I follow</b> moves in with the other filters, since it filters the boards like search and age do.</li>
+    <li><b>Who's trending</b> becomes a link: it opens another page, so it shouldn't look like a switch.</li>
+    <li>The board names under the console say <b>Jump to</b>, so they read as shortcuts, not filters.</li>
+    <li>Top 12 becomes <b>Show 12 more</b> under the cards it adds to.</li>
+  </ul>
+
+  <div class="console">
+    <div class="row">
+      <span class="lbl">Find</span>
+      <form class="search" role="search" onsubmit="return false"><input type="search" placeholder="Search for a man…" aria-label="Search for a man"><button type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>Search</button></form>
+    </div>
+    <div class="row">
+      <span class="lbl">Show</span>
+      <select class="pill-select" aria-label="Age"><option>Any age</option><option>Under 30</option><option>30s</option><option>40s</option><option>50s</option><option>60+</option></select>
+      <button type="button" class="chip" aria-pressed="false" data-toggle>☆ Only men I follow<span class="n">3</span></button>
+    </div>
+    <div class="row">
+      <span class="lbl">Order the boards</span>
+      <div class="seg" role="group" aria-label="Order the boards">
+        <button type="button" data-mode="ours" aria-pressed="true">Our ranking</button>
+        <button type="button" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button>
+        <button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button>
+      </div>
+    </div>
+    <p class="hint" data-hint></p>
+  </div>
+
+  <nav class="jumps" aria-label="Jump to a board">
+    <span class="lbl">Jump to</span>
+    <a class="j good" href="#a-good">Real Men</a><a class="j mid" href="#a-good">Coin Toss</a><a class="j bad" href="#a-bad">Out of Service</a>
+    <a class="trend" href="../opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>See who's trending with voters</a>
+  </nav>
+
+  <div class="board good" id="a-good" data-board>
+    <div class="bhead">
+      <div class="plate"><h3>REAL MEN</h3></div>
+      <div class="board-state">
+        <span class="count" data-count></span>
+        <button type="button" class="deal if-choice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button>
+        <button type="button" class="unhide if-choice">↺ 2 hidden, bring back</button>
+      </div>
+    </div>
+    <p class="sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
+    <div class="cards" data-cards></div>
+    <div class="more if-not-choice"><button type="button">Show 12 more</button></div>
+  </div>
+</section>
+
+<!-- ================= OPTION B ================= -->
+<section class="option" data-order="ours" aria-labelledby="b-title">
+  <header><h2 id="b-title">B. A bar that follows you</h2><p>The toolbar keeps search and filters. Under it, a slim bar stays at the top as you scroll: which board you're on, and the order.</p></header>
+  <ul class="why">
+    <li>The boards are long, so the order switch and board names stay in reach the whole way down.</li>
+    <li>The board names become <b>tabs</b>: the one you're scrolling through lights up, so it's clear they're places, not filters.</li>
+    <li><b>Have your say</b> shrinks to one line of help under the bar, with the trending link at its end.</li>
+    <li>Each board keeps only its own controls: its count, and in Your Choice its deal button.</li>
+  </ul>
+
+  <div class="tool">
+    <form class="search" role="search" onsubmit="return false"><input type="search" placeholder="Search for a man…" aria-label="Search for a man"><button type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>Search</button></form>
+    <select class="pill-select" aria-label="Age"><option>Any age</option><option>Under 30</option><option>30s</option><option>40s</option><option>50s</option><option>60+</option></select>
+    <button type="button" class="chip" aria-pressed="false" data-toggle>☆ Only men I follow<span class="n">3</span></button>
+  </div>
+
+  <div class="rail">
+    <nav class="tabs" aria-label="Boards">
+      <a class="good" href="#b-good" aria-current="true">Real Men</a><a class="mid" href="#b-good">Coin Toss</a><a class="bad" href="#b-bad">Out of Service</a>
+    </nav>
+    <div class="order">
+      <span>Order</span>
+      <div class="seg" role="group" aria-label="Order the boards">
+        <button type="button" data-mode="ours" aria-pressed="true">Our ranking</button>
+        <button type="button" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button>
+        <button type="button" data-mode="choice" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Your Choice</button>
+      </div>
+    </div>
+  </div>
+  <p class="b-hint"><span data-hint></span><a class="trend" href="../opinion.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>See who's trending</a></p>
+
+  <div class="board good" id="b-good" data-board>
+    <div class="bhead">
+      <div class="plate"><h3>REAL MEN</h3></div>
+      <div class="board-state">
+        <span class="count" data-count></span>
+        <button type="button" class="deal if-choice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button>
+        <button type="button" class="unhide if-choice">↺ 2 hidden, bring back</button>
+      </div>
+    </div>
+    <p class="sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
+    <div class="cards" data-cards></div>
+    <div class="more if-not-choice"><button type="button">Show 12 more</button></div>
+  </div>
+
+  <div class="board bad" id="b-bad" data-board>
+    <div class="bhead">
+      <h3 class="neon">OUT OF SERVICE.</h3>
+      <div class="board-state">
+        <span class="count" data-count></span>
+        <button type="button" class="deal if-choice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>Deal 12 new</button>
+      </div>
+    </div>
+    <p class="sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
+    <div class="cards" data-cards data-bad></div>
+    <div class="more if-not-choice"><button type="button">Show 12 more</button></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(() => {
+  const GOOD = [['Bear Grylls', 'Adventurer, Chief Scout', 'bear-grylls'], ['Marcus Rashford', 'Footballer', 'marcus-rashford'], ['Steve Irwin', 'Wildlife expert', 'steve-irwin']];
+  const BAD = [['Andrew Tate', 'Influencer', 'andrew-tate'], ['Conor McGregor', 'Fighter', 'conor-mcgregor']];
+  const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  const card = ([n, r, img]) => `<div class="card"><div class="p"><img src="../images/${img}.jpg" alt="${n}"><div class="nm">${n}</div><div class="rl">${r}</div></div>
+    <span class="skip if-choice">${X}Skip</span><div class="strip"><span>↑ Vote ↓</span><span class="f">☆ Follow</span></div></div>`;
+  const HINT = {
+    ours: 'Our ranking, from the public record. Vote <span class="u">↑</span> if you like him, <span class="d">↓</span> if you don\'t.',
+    opinion: 'The boards as voters see them. Men with enough votes move to the board voters put them on. Our ranking doesn\'t change.',
+    choice: 'Every board shuffled, 12 at a time. Vote, skip, or deal 12 new on any board.',
+  };
+  const COUNT = {
+    ours: t => `Top 12 of <b>${t}</b>, best first`,
+    opinion: t => `Top 12 of <b>${t}</b>, most liked first`,
+    choice: t => `12 at random, <b>${t - 2}</b> left`,
+  };
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.querySelectorAll('[data-cards]').forEach(c => { c.innerHTML = (c.hasAttribute('data-bad') ? BAD : GOOD).map(card).join(''); });
+    const draw = () => {
+      const m = opt.dataset.order;
+      opt.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+      opt.querySelectorAll('[data-hint]').forEach(h => { h.innerHTML = HINT[m]; });
+      opt.querySelectorAll('[data-board]').forEach(b => {
+        const t = b.classList.contains('bad') ? 56 : 295;
+        b.querySelector('[data-count]').innerHTML = COUNT[m](t).replace('most liked', b.classList.contains('bad') ? 'most disliked' : 'most liked').replace('best first', b.classList.contains('bad') ? 'worst first' : 'best first');
+      });
+    };
+    opt.addEventListener('click', e => {
+      const b = e.target.closest('.seg button');
+      if (b) { opt.dataset.order = b.dataset.mode; draw(); }
+      const t = e.target.closest('[data-toggle]');
+      if (t) t.setAttribute('aria-pressed', t.getAttribute('aria-pressed') !== 'true');
+    });
+    draw();
+  });
+})();
+</script>
+</body>
+</html>
