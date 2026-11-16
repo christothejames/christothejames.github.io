@@ -154,7 +154,8 @@ window.WIRES = {
   "prince-harry": {
     "service": 1,
     "community": 1,
-    "family": 1
+    "family": 1,
+    "trust": 1
   },
   "justin-verlander": {
     "body": 1,
@@ -414,7 +415,8 @@ window.WIRES = {
     "conduct": -1
   },
   "roger-federer": {
-    "community": 1
+    "community": 1,
+    "trust": 1
   },
   "lebron-james": {
     "community": 1,
@@ -854,7 +856,8 @@ window.WIRES = {
   },
   "carlos-alcaraz": {
     "body": 1,
-    "community": 1
+    "community": 1,
+    "trust": 1
   },
   "novak-djokovic": {
     "body": 1,
@@ -911,7 +914,8 @@ window.WIRES = {
   },
   "warren-buffett": {
     "community": 1,
-    "family": 1
+    "family": 1,
+    "trust": 1
   },
   "david-attenborough": {
     "community": 1
@@ -940,7 +944,8 @@ window.WIRES = {
     "conduct": -1
   },
   "gary-lineker": {
-    "community": 1
+    "community": 1,
+    "trust": 1
   },
   "michael-gove": {
     "community": 1
@@ -1460,6 +1465,7 @@ window.WIRES = {
   },
   "nelson-mandela": {
     "community": 1,
+    "trust": 1,
     "conduct": -1
   },
   "david-beckham": {
@@ -1656,10 +1662,13 @@ window.ORDER = [
   "matthew-mcconaughey",
   "nick-saban",
   "mohamed-salah",
+  "warren-buffett",
   "chris-herren",
   "paddy-pimblett",
+  "carlos-alcaraz",
   "gareth-southgate",
   "louis-theroux",
+  "roger-federer",
   "shohei-ohtani",
   "idris-elba",
   "ezra-frech",
@@ -1669,13 +1678,11 @@ window.ORDER = [
   "jason-kelce",
   "leonardo-dicaprio",
   "the-weeknd",
-  "warren-buffett",
   "ross-edgley",
   "jose-andres",
   "tom-hardy",
   "ben-affleck",
   "david-goggins",
-  "carlos-alcaraz",
   "scottie-scheffler",
   "jon-bon-jovi",
   "richard-e-grant",
@@ -1685,6 +1692,7 @@ window.ORDER = [
   "nathan-fielder",
   "jocko-willink",
   "deion-sanders",
+  "gary-lineker",
   "josh-hartnett",
   "mike-flanagan",
   "tim-peake",
@@ -1692,7 +1700,6 @@ window.ORDER = [
   "john-volanthen",
   "danny-trejo",
   "pat-tillman",
-  "roger-federer",
   "prince-william",
   "usain-bolt",
   "lamine-yamal",
@@ -1701,7 +1708,7 @@ window.ORDER = [
   "josh-allen",
   "brian-cox",
   "ben-fogle",
-  "gary-lineker",
+  "prince-harry",
   "arnold-schwarzenegger",
   "tom-daley",
   "alexander-skarsgard",
@@ -1720,7 +1727,6 @@ window.ORDER = [
   "cillian-murphy",
   "ren-gill",
   "levison-wood",
-  "prince-harry",
   "ray-mears",
   "michael-douglas",
   "robert-pattinson",
@@ -2568,6 +2574,12 @@ window.AREA_ORDER = {
     "chris-brown"
   ],
   "trust": [
+    "roger-federer",
+    "warren-buffett",
+    "carlos-alcaraz",
+    "prince-harry",
+    "gary-lineker",
+    "nelson-mandela",
     "barack-obama-sr",
     "will-smith",
     "bear-grylls",

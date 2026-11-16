@@ -21,7 +21,7 @@
     --sky: #7cc4ff;
     --cyan: #3ef2ff;
     --green: #3dff8b;
-    --yellow: #ffe66d;
+    --amber: #ff9f1c;
     --red: #ff3b3b;
     --panel: #0b1630;
     --muted: #a9bfdc;
@@ -126,14 +126,14 @@
   }
   .card.on { display: block; }
   .card.good { border-color: var(--green); }
-  .card.mid { border-color: var(--yellow); }
+  .card.mid { border-color: var(--amber); }
   .card.bad { border-color: var(--red); }
   @media (max-width: 551px) {
     .card { position: fixed; left: 16px; right: 16px; bottom: 16px; width: auto; z-index: 10; }
   }
   .card h2 { margin: 0 28px 2px 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; }
   .card.good h2 { color: var(--green); }
-  .card.mid h2 { color: var(--yellow); }
+  .card.mid h2 { color: var(--amber); }
   .card.bad h2 { color: var(--red); }
   .card .role { margin: 0 0 8px; font-size: 13px; color: var(--sky); }
   .card .reason { margin: 0 0 10px; font-size: 15px; line-height: 1.35; }
@@ -257,7 +257,7 @@
     <div class="tiers" role="group" aria-label="Show">
       <button type="button" data-tier="all" aria-pressed="true">All</button>
       <button type="button" data-tier="good" aria-pressed="false"><i style="background:var(--green)"></i>Real Men</button>
-      <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--yellow)"></i>Coin toss</button>
+      <button type="button" data-tier="mid" aria-pressed="false"><i style="background:var(--amber)"></i>Coin toss</button>
       <button type="button" data-tier="bad" aria-pressed="false"><i style="background:var(--red)"></i>Out of Service</button>
     </div>
     <label><span class="lbl">Show</span>
@@ -311,7 +311,7 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const shortName = n => n.replace(/\s*\(.*\)$/, '');
-  const COL = { good: '#3dff8b', mid: '#ffe66d', bad: '#ff3b3b' };
+  const COL = { good: '#3dff8b', mid: '#ff9f1c', bad: '#ff3b3b' };
   const TIER_NAME = { good: 'Real Men', mid: 'Coin toss', bad: 'Out of service' };
   const CONTRO = window.CONTROVERSIAL || [];
   const tier = p => CONTRO.includes(p.id) ? 'mid' : p.list;
@@ -394,7 +394,16 @@
       list.forEach((n, i) => { n.aw = 1 - 0.85 * (list.length > 1 ? i / (list.length - 1) : 0); });
     });
     shown.sort((a, b) => b.aw - a.aw);
-    if (state.count) shown = shown.slice(0, state.count);
+    // Fair mix (owner, 16 Nov 2026): with an Area picked and All tiers on, each board (Real Men, Coin Toss,
+    // Out of Service) gets a third of the places, its strongest records there first. A board with too few men
+    // in that area leaves its spare places to the others.
+    if (state.count && areaOrder && state.tier === 'all') {
+      const pools = ['good', 'mid', 'bad'].map(t => shown.filter(n => n.t === t));
+      const pick = [];
+      for (let i = 0; pick.length < state.count && pools.some(p => p.length); i = (i + 1) % 3)
+        if (pools[i].length) pick.push(pools[i].shift());
+      shown = pick.sort((a, b) => b.aw - a.aw);
+    } else if (state.count) shown = shown.slice(0, state.count);
     const on = new Set(shown);
     // size by place among the men on screen, per side, so there's always a big-to-small spread
     ['good', 'mid', 'bad'].forEach(t => {
@@ -482,7 +491,7 @@
   }
 
   function drawBubble(n) {
-    const { x, y, r } = n, c = COL[n.side];
+    const { x, y, r } = n, c = COL[n.t === 'mid' ? 'mid' : n.side]; // Coin Toss stays orange in every view (owner, 16 Nov 2026)
     const focus = n === sel || n === hover;
     ctx.globalAlpha = sel && n !== sel ? 0.45 : 1;
 

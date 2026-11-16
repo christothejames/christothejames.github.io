@@ -636,6 +636,7 @@ window.PEOPLE = [
     status: "Active · Married, father of two",
     about: {},
     posts: [
+      { date: "2023", text: "Took Mirror Group Newspapers to court and won: the High Court found in December 2023 that his phone was hacked and that senior staff knew about the hacking.", source: "https://www.nbcnews.com/news/rcna129906" },
       { date: "2007–13", text: "Served two tours in Afghanistan, including as an Apache pilot.", source: "https://en.wikipedia.org/wiki/Prince_Harry,_Duke_of_Sussex" },
       { date: "2008", text: "Received the Operational Service Medal for Afghanistan.", source: "https://en.wikipedia.org/wiki/Prince_Harry,_Duke_of_Sussex" },
       { date: "2014", text: "Founded the Invictus Games for wounded service members.", source: "https://en.wikipedia.org/wiki/Prince_Harry,_Duke_of_Sussex" },
@@ -1934,6 +1935,7 @@ window.PEOPLE = [
     status: "Retired",
     about: {},
     posts: [
+      { date: "2004–2021", text: "Won the ATP Stefan Edberg Sportsmanship Award, voted by his fellow players, 13 times.", source: "https://en.wikipedia.org/wiki/ATP_Awards" },
       { date: "", text: "Founded the Roger Federer Foundation for children in southern Africa.", source: "https://en.wikipedia.org/wiki/Roger_Federer" },
     ],
   },
@@ -4319,6 +4321,7 @@ window.PEOPLE = [
     status: "Active",
     about: {},
     posts: [
+      { date: "2023, 2025", text: "Won the ATP Stefan Edberg Sportsmanship Award, voted by his fellow players, in 2023 and 2025.", source: "https://www.atptour.com/en/news/alcaraz-atp-awards-2025-stefan-edberg-sportsmanship-award" },
       { date: "2024", text: "Set up the Carlos Alcaraz Garfia Foundation in El Palmar, focused on improving the lives of children in need.", source: "https://www.atptour.com/en/news/best-of-2024-charity" },
       { date: "2022–", text: "Multiple Grand Slam titles; youngest man ever ranked world No. 1.", source: "https://en.wikipedia.org/wiki/Carlos_Alcaraz" },
     ],
@@ -4595,6 +4598,7 @@ window.PEOPLE = [
     status: "Retired as CEO 2025 · billionaire",
     about: {},
     posts: [
+      { date: "2006–", text: "Pledged most of his Berkshire Hathaway shares to charity in 2006 and has paid every yearly instalment since, over $50 billion by 2023.", source: "https://www.philanthropy.com/news/warren-buffett-has-given-50-7-billion-toward-historic-multibillion-dollar-pledges-to-the-gates-foundation-and-others/" },
       { date: "2011", text: "Presidential Medal of Freedom.", source: "https://en.wikipedia.org/wiki/Warren_Buffett" },
       { date: "2006–", text: "Pledged most of his fortune, tens of billions, to charity.", source: "https://en.wikipedia.org/wiki/Warren_Buffett" },
       { date: "1952–", text: "Married Susan until her death in 2004; married Astrid Menks in 2006.", source: "https://en.wikipedia.org/wiki/Warren_Buffett" },
@@ -4746,6 +4750,7 @@ window.PEOPLE = [
     status: "Active · OBE",
     about: {},
     posts: [
+      { date: "1990", text: "Never shown a yellow or red card in his whole playing career, and won the FIFA Fair Play Award in 1990.", source: "https://en.wikipedia.org/wiki/Gary_Lineker" },
       { date: "2020", text: "Gave £140,000 to the British Red Cross for COVID research.", source: "https://en.wikipedia.org/wiki/Gary_Lineker" },
       { date: "1994–2005", text: "Patron of Leukaemia Busters for over a decade.", source: "https://en.wikipedia.org/wiki/Gary_Lineker" },
     ],
@@ -7893,6 +7898,7 @@ window.PEOPLE = [
     status: "Died 5 December 2013",
     about: {},
     posts: [
+      { date: "1996–1999", text: "Said in 1996 he would serve only one term as president, and stepped down in 1999 although the constitution allowed him a second.", source: "https://en.wikipedia.org/wiki/Presidency_of_Nelson_Mandela" },
       { date: "1993", text: "Awarded the Nobel Peace Prize.", source: "https://www.nobelprize.org/prizes/peace/1993/mandela/facts/" },
       { date: "1952", text: "Sentenced to nine months of hard labour, suspended, under the Suppression of Communism Act.", source: "https://www.nelsonmandela.org/content/page/biography" },
       { date: "1962", text: "Convicted of leaving the country without a permit and inciting workers to strike; sentenced to five years' imprisonment.", source: "https://www.nelsonmandela.org/content/page/biography" },
