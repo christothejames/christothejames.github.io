@@ -6,6 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Real Man Report · humbored.com</title>
 <meta name="description" content="Real Men, Coin Toss and Out of Service: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
+<link rel="canonical" href="https://humbored.com/home.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Real Man Report">
+<meta property="og:title" content="The Real Man Report · humbored.com">
+<meta property="og:description" content="Real Men, Coin Toss and Out of Service: notable men ranked from the public record. Profiles of notable men, good and bad, with every fact sourced.">
+<meta property="og:url" content="https://humbored.com/home.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -669,7 +676,7 @@
     const tilt = [-1.6, 1.2, -0.6, 1.8, -1.1, 0.7][i % 6];
     return `
       <div class="slot" data-id="${esc(p.id)}" style="--tilt:${tilt}deg">
-      <a class="poster" href="profile.html?id=${encodeURIComponent(p.id)}">
+      <a class="poster" href="men/${encodeURIComponent(p.id)}.html">
         <div class="mug">
           ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" data-ini="${esc(initials(p.name))}">` : `<span class="ini" aria-hidden="true">${esc(initials(p.name))}</span>`}
         </div>

@@ -5,6 +5,14 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rankings · The Real Man Report</title>
+<meta name="description" content="Every man on The Real Man Report as a floating bubble: Real Men rise, Out of Service sink. Filter by area to see who has a good record or black marks where.">
+<link rel="canonical" href="https://humbored.com/web.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Real Man Report">
+<meta property="og:title" content="Rankings · The Real Man Report">
+<meta property="og:description" content="Every man on The Real Man Report as a floating bubble: Real Men rise, Out of Service sink. Filter by area to see who has a good record or black marks where.">
+<meta property="og:url" content="https://humbored.com/web.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -602,14 +610,14 @@
       ${minus.length ? `<p class="row minus"><b>Black marks:</b> ${minus.map(esc).join(', ')}</p>` : ''}
       ${p.status ? `<p class="row">${esc(p.status)}</p>` : ''}
       <div class="say">${SAY.strip(p.id, p.name, true)}</div>
-      <a class="go" href="profile.html?id=${encodeURIComponent(p.id)}">FULL PROFILE</a>`;
+      <a class="go" href="men/${encodeURIComponent(p.id)}.html">FULL PROFILE</a>`;
     card.querySelector('.x').onclick = () => { sel = null; showCard(null); kick(0.3); };
   }
 
   // ---------- text version for screen readers and no-canvas ----------
   document.getElementById('list').innerHTML =
     '<p style="margin:0 0 8px">' + men.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p =>
-      `<a href="profile.html?id=${encodeURIComponent(p.id)}">${esc(p.name)}</a>`).join(' · ') + '</p>';
+      `<a href="men/${encodeURIComponent(p.id)}.html">${esc(p.name)}</a>`).join(' · ') + '</p>';
 
   size();
   apply();

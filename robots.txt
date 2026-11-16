@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /design-options/
+
+Sitemap: https://humbored.com/sitemap.xml

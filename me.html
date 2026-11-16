@@ -179,7 +179,7 @@
   const app = document.getElementById('app');
 
   function row(id) {
-    const p = byId[id], t = tier(p), href = `profile.html?id=${encodeURIComponent(id)}`;
+    const p = byId[id], t = tier(p), href = `men/${encodeURIComponent(id)}.html`;
     return `<li class="row ${t}">
       <a class="face" href="${href}" tabindex="-1" aria-hidden="true">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy">` : esc(initials(p.name))}</a>
       <div class="who"><a href="${href}">${esc(p.name)}</a><span class="tier">${TIER[t]}</span></div>

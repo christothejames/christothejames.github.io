@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/">
+<title>Shannon Sharpe · The Real Man Report</title>
+<meta name="description" content="Shannon Sharpe, Former American football player, broadcaster. Won three Super Bowls; Admitted a sex livestream on his Instagram was real; apologised Every…">
+<link rel="canonical" href="https://humbored.com/men/shannon-sharpe.html">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="The Real Man Report">
+<meta property="og:title" content="Shannon Sharpe · The Real Man Report">
+<meta property="og:description" content="Shannon Sharpe, Former American football player, broadcaster. Won three Super Bowls; Admitted a sex livestream on his Instagram was real; apologised Every…">
+<meta property="og:url" content="https://humbored.com/men/shannon-sharpe.html">
+<meta property="og:image" content="https://humbored.com/images/shannon-sharpe.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --hot-pink: #1e90ff;
+    --bubblegum: #7cc4ff;
+    --cyan: #3ef2ff;
+    --gold: #ffe66d;
+    --red: #ff3b3b;
+    --night: #050b1a;
+    --purple: #0d2a5c;
+    --panel: #0c1a36;
+    --panel-2: #12244a;
+    --line: #ffffff1f;
+    --text: #eef4ff;
+    --muted: #a9bfdc;
+    --accent: var(--hot-pink);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #050b1a; }
+
+  body {
+    margin: 0;
+    background: linear-gradient(to bottom, #050b1a, #0a1836 50%, #050b1a);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Righteous', system-ui, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  body.bad { --accent: var(--red); }
+  body.mid { --accent: #ff9f1c; }
+
+  a { color: var(--cyan); }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Top bar ---------- */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #050b1af2;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topnav .wrap {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    height: 54px;
+  }
+
+  /* Home button + account corner (say.js) share the right-hand cell */
+  .top-right { justify-self: end; display: flex; align-items: center; gap: 10px; }
+  .top-right .say-corner { margin-left: 0; }
+  @media (max-width: 480px) { .topnav .brand { visibility: hidden; } } /* no room next to Back, Home, Log in, Sign up */
+
+  .wanted-btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #050b1a;
+    background: var(--gold);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 0 14px #ffe66d66;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .wanted-btn:hover { transform: scale(1.06); box-shadow: 0 0 22px #ffe66daa; }
+
+  @media (max-width: 560px) {
+    .topnav .wrap { grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; }
+    .brand { font-size: 13px; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+    .wanted-btn { font-size: 11px; padding: 6px 10px; letter-spacing: .5px; }
+    .back .long { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wanted-btn { transition: none; }
+    .wanted-btn:hover { transform: none; }
+  }
+
+  .brand {
+    font-family: 'Bungee', sans-serif;
+    font-style: italic;
+    font-size: 18px;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #fff, var(--bubblegum) 55%, var(--hot-pink));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .brand { justify-self: center; }
+  .wanted-btn { justify-self: end; }
+  .back { justify-self: start; }
+
+  /* ---------- Cover + header ---------- */
+  .cover {
+    position: relative;
+    height: clamp(150px, 28vw, 300px);
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
+    background:
+      linear-gradient(to bottom, transparent 55%, #050b1acc),
+      repeating-linear-gradient(to bottom, transparent 0 14px, #0d2a5c55 14px 20px),
+      linear-gradient(to bottom, #0b1f4a 0%, #1a4a9a 45%, #1e90ff 75%, #4fb3ff 100%);
+  }
+
+  .bad .cover {
+    background:
+      linear-gradient(to bottom, transparent 55%, #050b1acc),
+      repeating-linear-gradient(-45deg, #00000033 0 18px, transparent 18px 36px),
+      linear-gradient(to bottom, #1a0518 0%, #4a0b1e 50%, #8b1020 100%);
+  }
+
+  .head {
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    padding: 12px 8px 16px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .avatar {
+    flex: none;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    border: 5px solid var(--night);
+    outline: 3px solid var(--accent);
+    background: linear-gradient(135deg, var(--purple), var(--hot-pink));
+    display: grid;
+    place-items: center;
+    font-family: 'Bungee', sans-serif;
+    font-size: 54px;
+    color: #fff;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    margin-top: -96px;
+  }
+
+  .bad .avatar { background: linear-gradient(135deg, #2a1236, #6b1020); }
+
+  .who { flex: 1; min-width: 220px; padding-bottom: 6px; }
+
+  .who h1 {
+    margin: 0;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: clamp(26px, 5vw, 40px);
+    line-height: 1.05;
+  }
+
+  .verified {
+    display: inline-grid;
+    place-items: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--cyan);
+    color: var(--night);
+    font-size: 13px;
+    vertical-align: 6px;
+    margin-left: 4px;
+  }
+
+  .who .role { color: var(--muted); }
+
+  /* Tier label: plain coloured text like the home posters' label, so it doesn't read as a button */
+  .list-badge {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Bungee', sans-serif;
+    font-size: 15px;
+    letter-spacing: .06em;
+    color: var(--gold);
+  }
+
+  .bad .list-badge, .list-badge.respected { color: var(--red); }
+  .mid .list-badge { color: #ff9f1c; }
+
+  .status-line { margin-top: 8px; font-size: 14px; color: var(--text); }
+
+  .actions { display: flex; gap: 8px; padding-bottom: 6px; flex-wrap: wrap; }
+  .actions .say-strip { min-width: 220px; } /* Have your say strip (say.js), same as under the home posters */
+
+  .btn {
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #ffffff33;
+    background: var(--panel-2);
+    color: var(--text);
+  }
+
+  .btn:hover, .btn:focus-visible { border-color: var(--cyan); outline: none; }
+
+  .btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  /* Same "Dig Deeper" warning button on every profile; the matched Wikipedia section is the hover hint */
+  .wiki-btn {
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    text-decoration: none;
+    color: #ffd21f;
+    background: #2a2108;
+    border: 1.5px dashed #ffd21f;
+  }
+  .wiki-btn:hover, .wiki-btn:focus-visible { border-color: #ffd21f; background: #3a2e0a; outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+  /* ---------- Instagram: follow good men, unfollow bad ones ---------- */
+  .ig { display: flex; flex-direction: column; gap: 4px; flex-basis: 100%; }
+  .ig-btn {
+    align-self: flex-start;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 999px;
+    color: var(--night);
+    background: var(--gold);
+    box-shadow: 0 0 14px #ffe66d66;
+  }
+  .bad .ig-btn { color: #ffe3e3; background: #9e1f28; box-shadow: none; }
+  .ig-btn:hover, .ig-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .ig-btn.banned { background: var(--panel-2); color: var(--muted); box-shadow: none; border: 1px dashed #ffffff33; }
+  .ig small { font-size: 12px; color: var(--muted); }
+
+  /* A good man's follow is an invite, not a badge: a warm card that says what he adds to your feed */
+  .ig-invite {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 440px;
+    padding: 12px 12px 12px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    background: linear-gradient(120deg, #3fe08a1f, #3ef2ff0d);
+    border: 1px solid #3fe08a59;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+  }
+  .ig-invite:hover, .ig-invite:focus-visible {
+    transform: translateY(-2px);
+    border-color: #3fe08a;
+    box-shadow: 0 8px 24px #3fe08a2e;
+    outline: none;
+  }
+  .ig-invite:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .ig-invite .copy { flex: 1; text-align: left; }
+  .ig-invite b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 15px; color: #3fe08a; }
+  .ig-invite .copy span { font-size: 13px; color: var(--muted); }
+  .ig-invite .handle { font-family: 'Righteous', sans-serif; color: var(--text); }
+  @media (max-width: 480px) {
+    .ig-invite { flex-direction: column; align-items: stretch; text-align: center; padding: 14px; }
+    .ig-invite .copy { text-align: center; }
+    .ig-invite .go { text-align: center; }
+  }
+  .ig-invite .go {
+    flex: none;
+    font-family: 'Bungee', sans-serif;
+    font-size: 13px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    color: #04210f;
+    background: #3fe08a;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ig-invite { transition: none; }
+    .ig-invite:hover, .ig-invite:focus-visible { transform: none; }
+  }
+
+  /* ---------- Tabs ---------- */
+  .tabs { display: flex; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+
+  .tab {
+    font: inherit;
+    font-size: 15px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); border-radius: 8px 8px 0 0; }
+
+  /* ---------- Layout ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 18px;
+    padding: 18px 0 60px;
+    align-items: start;
+  }
+
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .box h2 {
+    margin: 0 0 10px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .reason { font-size: 16px; margin: 0 0 12px; }
+
+  .facts { margin: 0; display: grid; gap: 8px; }
+  .facts div { display: grid; grid-template-columns: 26px 1fr; gap: 6px; font-size: 14px; }
+  .facts dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .facts dd { margin: 0; }
+
+  .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+  .person {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.25;
+    padding: 8px 4px;
+    border-radius: 10px;
+    min-width: 0;
+  }
+
+  .person span { overflow-wrap: anywhere; }
+  .person .mini { width: 52px; height: 52px; }
+
+  .all-boards {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .person:hover { background: var(--panel-2); }
+
+  .mini {
+    flex: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--hot-pink));
+    display: grid;
+    place-items: center;
+    font-family: 'Bungee', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    object-fit: cover;
+  }
+
+  .mini.bad { background: linear-gradient(135deg, #2a1236, #6b1020); }
+
+
+  /* ---------- Posts ---------- */
+  .post {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+
+  .post-head { display: flex; gap: 10px; align-items: center; padding: 14px 16px 6px; }
+  .post-head .nm { font-size: 15px; }
+  .post-head .dt { font-size: 12px; color: var(--muted); }
+
+  .post-text { padding: 4px 16px 12px; font-size: 16px; }
+
+  .src {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 16px 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .src:hover { border-color: var(--cyan); }
+  .src .ic { font-size: 18px; }
+  .src small { display: block; color: var(--muted); font-size: 12px; }
+
+  .react {
+    display: flex;
+    border-top: 1px solid var(--line);
+  }
+
+  .react button {
+    flex: 1;
+    font: inherit;
+    font-size: 14px;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .react button:hover { background: #ffffff0a; color: var(--text); }
+  .react button[aria-pressed="true"] { color: var(--accent); }
+
+  .upcoming { font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--cyan); color: var(--night); margin-left: 6px; }
+
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; }
+
+  .muted { color: var(--muted); }
+
+  .note { font-size: 13px; color: var(--muted); }
+
+  .missing { text-align: center; padding: 80px 16px; }
+  .missing h1 { font-family: 'Bungee', sans-serif; font-weight: 400; }
+
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    .head { justify-content: center; text-align: center; }
+    .avatar { width: 140px; height: 140px; font-size: 44px; margin-top: -84px; }
+    .actions { justify-content: center; width: 100%; }
+    .ig { align-items: center; }
+    .ig-btn, .ig-invite { align-self: center; }
+    .who { text-align: center; }
+    .side { order: 2; }
+  }
+/* ---------- Site footer (same on every page) ---------- */
+  .site-foot {
+    max-width: none;
+    margin: 48px 0 0;
+    padding: 40px 16px 56px;
+    background: #030812;
+    border-top: 3px solid #1e90ff;
+    box-shadow: 0 -1px 18px #1e90ff55;
+    font-family: 'Righteous', system-ui, sans-serif;
+    text-align: left;
+  }
+  .site-foot .cols { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px 48px; }
+  .site-foot h2 { margin: 0 0 12px; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 18px; letter-spacing: 0.02em; color: #fff; }
+  .site-foot ul { list-style: none; margin: 0; padding: 0; }
+  .site-foot li { margin: 0; font-size: 17px; line-height: 1.9; color: #fff; }
+  .site-foot a { font-family: inherit; font-size: inherit; letter-spacing: normal; color: #3ef2ff; text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .site-foot a:focus-visible { outline: 2px solid #ffe66d; outline-offset: 2px; border-radius: 2px; }
+  .site-foot .sep { margin: 0 6px; }
+  .site-foot a.crisis { color: #ff6b6b; }
+
+/* ---------- Home button (same on every page) ---------- */
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+    font-family: 'Bungee', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: .5px;
+    line-height: 1;
+    color: #7cc4ff;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 7px 12px 7px 9px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px #7cc4ff66;
+    transition: color .15s, background .15s, box-shadow .15s;
+  }
+  .home-btn svg { width: 16px; height: 16px; }
+  .home-btn:hover { color: #fff; background: #1e90ff26; box-shadow: inset 0 0 0 1.5px #7cc4ff; }
+  .home-btn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .home-btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="wrap">
+    <a class="home-btn back" href="home.html#back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>Back<span class="long"> to posters</span></a>
+    <a class="brand" href="home.html">THE REAL MAN REPORT</a>
+    <span class="top-right"><a class="wanted-btn" href="home.html#good">Home</a><span data-say-account></span></span>
+  </div>
+</div>
+
+<div id="app"><div class="wrap seo-static" style="padding:24px 16px">
+<h1>Shannon Sharpe</h1>
+<p>Former American football player, broadcaster</p>
+<p><b>Coin Toss.</b> Won three Super Bowls; Admitted a sex livestream on his Instagram was real; apologised</p>
+<p>Active · left ESPN 2025</p>
+
+<h2>Timeline</h2><ul><li><b>1997–2001</b> Won three Super Bowls. <a href="https://en.wikipedia.org/wiki/Shannon_Sharpe" rel="noopener">source</a></li><li><b>2025</b> Sued for sexual assault; he denied it and settled. ESPN then cut ties. <a href="https://en.wikipedia.org/wiki/Shannon_Sharpe" rel="noopener">source</a></li><li><b>2024</b> Admitted a sex livestream on his Instagram was real; apologised. <a href="https://en.wikipedia.org/wiki/Shannon_Sharpe" rel="noopener">source</a></li></ul>
+<p>Profiles are our opinion, drawn from the public record. Charges are not convictions. <a href="home.html">See all the men on the boards</a></p>
+</div></div>
+
+<script>window.PROFILE_ID = "shannon-sharpe";</script>
+<script src="data/people.js"></script>
+<script src="data/wires.js"></script>
+<script src="say.js?v=2026-11-15b"></script>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const PEOPLE = window.PEOPLE;
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const initials = n => n.replace(/\s*\(.*\)/, '').replace(/^The\s+/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
+  const app = document.getElementById('app');
+
+  // men/<id>.html (made by tools/seo-pages.mjs) sets PROFILE_ID; profile.html?id=<id> still works.
+  const p = PEOPLE.find(x => x.id === (window.PROFILE_ID || q.get('id')) && (x.list === 'good' || x.list === 'bad'));
+  if (!p) {
+    app.innerHTML = `<div class="wrap missing"><h1>No profile here</h1><p class="muted">That man isn't on our boards.</p><p><a href="home.html">← Back to the posters</a></p></div>`;
+    return;
+  }
+
+  // Tier: good / mid (Controversial, a split record, from data/wires.js) / bad
+  const tierOf = x => (window.CONTROVERSIAL || []).includes(x.id) ? 'mid' : x.list;
+  const tier = tierOf(p);
+  const good = tier === 'good', mid = tier === 'mid';
+  const NAME = { good: 'Real Men', mid: 'Coin Toss', bad: 'Out of Service' };
+  // A good man who has died gets RESPECTED instead of REAL MEN (death is read from his status or role).
+  const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
+  document.body.classList.add(tier === 'bad' || tier === 'mid' ? tier : 'good');
+  document.title = `${p.name} · The Real Man Report`;
+  // The men/ page is the one search engines should list.
+  if (!window.PROFILE_ID) {
+    const c = document.createElement('link');
+    c.rel = 'canonical'; c.href = `https://humbored.com/men/${encodeURIComponent(p.id)}.html`;
+    document.head.appendChild(c);
+  }
+
+  const big = p.photo
+    ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}" data-ini="${esc(initials(p.name))}">`
+    : `<div class="avatar" aria-hidden="true">${esc(initials(p.name))}</div>`;
+  const small = (x, cls = '') => x.photo
+    ? `<img class="mini ${cls}" src="${esc(x.photo)}" alt="" data-ini="${esc(initials(x.name))}">`
+    : `<div class="mini ${cls}" aria-hidden="true">${esc(initials(x.name))}</div>`;
+
+  // A live social profile picture can fail to load: show his initials instead (or drop it from Photos).
+  document.addEventListener('error', e => {
+    const img = e.target;
+    if (img.tagName !== 'IMG') return;
+    if (img.dataset.ini) img.outerHTML = `<div class="${esc(img.className)}" aria-hidden="true">${esc(img.dataset.ini)}</div>`;
+    else if (img.closest('.photo-grid')) img.closest('[data-panel="photos"]').querySelector('.photo-grid').outerHTML = '<p class="muted">No photos yet.</p>';
+  }, true);
+
+  // ---------- reactions (saved only in this browser) ----------
+  const RKEY = 'rmr_reactions';
+  let reactions = {};
+  try { reactions = JSON.parse(localStorage.getItem(RKEY) || '{}'); } catch {}
+  const saveReactions = () => { try { localStorage.setItem(RKEY, JSON.stringify(reactions)); } catch {} };
+
+  const icons = { "Known for": "⭐", "Served": "🎖️", "Family": "❤️", "Causes": "🤝", "Campaign": "📣", "Honour": "🏅",
+                  "Raised": "💷", "Followers": "👥", "Before fame": "🥊", "Banned from": "🚫", "Legal status": "⚖️" };
+
+  // Instagram: follow good men to train your feed; unfollow bad ones (Instagram can't let us do it for you).
+  // Controversial men get no button: the call is the viewer's.
+  const igBanned = !p.instagram && /instagram/i.test((p.about || {})['Banned from'] + ' ' + p.status);
+  const igUrl = p.instagram && `https://www.instagram.com/${encodeURIComponent(p.instagram)}/`;
+  const igBlock = mid ? '' : p.instagram && !respected
+    ? good
+      ? `<div class="ig">
+          <a class="ig-invite" href="${igUrl}" target="_blank" rel="noopener">
+            <span class="copy"><b>Follow on Instagram <span class="handle">@${esc(p.instagram)}</span></b><span>A good one for your feed.</span></span>
+            <span class="go">Open Instagram <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>`
+      : `<div class="ig">
+          <a class="ig-btn" href="${igUrl}" target="_blank" rel="noopener" aria-label="Unfollow @${esc(p.instagram)} on Instagram">🚫 Unfollow on Instagram</a>
+        </div>`
+    : igBanned && !good
+      ? `<div class="ig"><span class="ig-btn banned">🚫 Banned from Instagram</span><small>Nothing to unfollow. Instagram already did it.</small></div>`
+      : '';
+
+  // Wikipedia: one "Dig Deeper" label for everyone; the matched section's heading (from the #anchor) is the hover hint.
+  const wikiSection = p.controversy_match !== false && (p.controversy_url || '').split('#')[1];
+  let wikiLabel = 'Wikipedia article';
+  if (wikiSection) try { wikiLabel = 'Wikipedia: ' + decodeURIComponent(wikiSection).replace(/_/g, ' '); } catch {}
+  const wikiBtn = p.controversy_url
+    ? `<a class="btn wiki-btn" href="${esc(p.controversy_url)}" target="_blank" rel="noopener" title="${esc(wikiLabel)}" aria-label="Dig Deeper: ${esc(wikiLabel)} (opens Wikipedia)">⚠ Dig Deeper ↗</a>` : '';
+
+  // "Also on the board": the 6 men closest to him in board order on his own tier, not the whole list.
+  const rank = id => { const i = (window.ORDER || []).indexOf(id); return i < 0 ? 1e9 : i; };
+  const board = PEOPLE.filter(x => (x.list === 'good' || x.list === 'bad') && tierOf(x) === tier)
+    .sort((a, b) => rank(a.id) - rank(b.id));
+  const at = Math.max(0, board.findIndex(x => x.id === p.id));
+  const others = board.filter(x => x.id !== p.id)
+    .map(x => [x, Math.abs(board.indexOf(x) - at)])
+    .sort((a, b) => a[1] - b[1]).slice(0, 6)
+    .sort((a, b) => board.indexOf(a[0]) - board.indexOf(b[0])).map(([x]) => x);
+  const today = new Date();
+  const isFuture = d => { const t = Date.parse(d); return !isNaN(t) && t > today.getTime(); };
+
+  app.innerHTML = `
+    <div class="wrap">
+      <div class="cover"></div>
+      <div class="head">
+        ${big}
+        <div class="who">
+          <h1>${esc(p.name)}${p.type === 'public' ? '<span class="verified" title="Real public figure">✓</span>' : ''}</h1>
+          <div class="role">${esc(p.role)}</div>
+          <span class="list-badge${respected ? ' respected' : ''}">${respected ? 'RESPECTED' : NAME[tier].toUpperCase()}</span>
+          <div class="status-line">${esc(p.status)}</div>
+        </div>
+        <div class="actions">
+          ${SAY.strip(p.id, p.name, true)}
+          <button class="btn" id="respect" aria-pressed="false">${p.list === 'bad' ? '👎 Not for me' : '👍 Respect'}</button>
+          <button class="btn" id="share">🔗 Share</button>
+          ${wikiBtn}
+          ${igBlock}
+        </div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="posts">Posts</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="photos">Photos</button>
+      </div>
+
+      <div class="layout">
+        <aside class="side">
+          <div class="box">
+            <h2>Intro</h2>
+            <p class="reason"><b style="color:var(--accent)">${respected ? 'Respected for:' : good ? 'Rated for:' : mid ? 'Debated for:' : 'Caution for:'}</b> ${esc(p.reason)}</p>
+            <dl class="facts">
+              ${Object.entries(p.about || {}).map(([k, v]) => `
+                <div><span aria-hidden="true">${icons[k] || '•'}</span><span><dt>${esc(k)}</dt><dd>${esc(v)}</dd></span></div>`).join('')}
+            </dl>
+            ${p.type === 'composite' ? '<p class="note" style="margin-top:12px">This is a composite, not a real person.</p>' : ''}
+            <p class="note" style="margin-top:12px">Every post on this profile links to its source. Being on the ${NAME[tier]} board is our opinion${good ? '.' : ', not a finding of guilt. Charges are allegations until proven in court.'}</p>
+          </div>
+          <div class="box">
+            <h2>Also on the ${NAME[tier]} board</h2>
+            <div class="people">
+              ${others.map(x => `
+                <a class="person" href="men/${encodeURIComponent(x.id)}.html" title="${esc(x.name)}, ${esc(x.role)}">
+                  ${small(x, x.list === 'bad' ? 'bad' : '')}
+                  <span>${esc(x.name)}</span>
+                </a>`).join('')}
+            </div>
+            <a class="all-boards" href="home.html">See every board</a>
+          </div>
+        </aside>
+
+        <main>
+          <div data-panel="posts">
+            ${(p.posts || []).map((post, i) => {
+              const key = p.id + ':' + i;
+              const r = reactions[key];
+              return `
+              <article class="post">
+                <div class="post-head">
+                  ${small(p, p.list === 'bad' ? 'bad' : '')}
+                  <div><div class="nm">${esc(p.name)}</div><div class="dt">${esc(post.date)}${isFuture(post.date) ? '<span class="upcoming">Upcoming</span>' : ''}</div></div>
+                </div>
+                <div class="post-text">${esc(post.text)}</div>
+                ${post.source ? `
+                  <a class="src" href="${esc(post.source)}" target="_blank" rel="noopener">
+                    <span class="ic" aria-hidden="true">📰</span>
+                    <span>Read the source<small>${esc(host(post.source))}</small></span>
+                  </a>` : ''}
+                <div class="react">
+                  <button data-r="${esc(key)}" data-v="up" aria-pressed="${r === 'up'}">👍 Respect</button>
+                  <button data-r="${esc(key)}" data-v="down" aria-pressed="${r === 'down'}">😠 Not cool</button>
+                </div>
+              </article>`;
+            }).join('')}
+          </div>
+
+          <div data-panel="photos" hidden>
+            <div class="box">
+              <h2>Photos</h2>
+              ${p.photo
+                ? `<div class="photo-grid"><img src="${esc(p.photo)}" alt="${esc(p.name)}"></div>${p.photoCredit ? `<p class="note">Photo: ${p.photoSource ? `<a href="${esc(p.photoSource)}" target="_blank" rel="noopener">${esc(p.photoCredit)}</a>` : esc(p.photoCredit)}</p>` : ''}`
+                : '<p class="muted">No photos yet.</p>'}
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>`;
+
+  // tabs
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    document.querySelectorAll('[data-panel]').forEach(el => el.hidden = el.dataset.panel !== t.dataset.tab);
+  }));
+
+  // profile-level reaction
+  const respect = document.getElementById('respect');
+  respect.setAttribute('aria-pressed', String(!!reactions[p.id]));
+  respect.addEventListener('click', () => {
+    reactions[p.id] = !reactions[p.id];
+    respect.setAttribute('aria-pressed', String(reactions[p.id]));
+    saveReactions();
+  });
+
+  // post reactions
+  app.addEventListener('click', e => {
+    const b = e.target.closest('[data-r]');
+    if (!b) return;
+    const key = b.dataset.r;
+    reactions[key] = reactions[key] === b.dataset.v ? null : b.dataset.v;
+    app.querySelectorAll(`[data-r="${CSS.escape(key)}"]`).forEach(x => x.setAttribute('aria-pressed', String(reactions[key] === x.dataset.v)));
+    saveReactions();
+  });
+
+  // share
+  document.getElementById('share').addEventListener('click', async () => {
+    const url = location.origin + '/men/' + encodeURIComponent(p.id) + '.html';
+    try {
+      if (navigator.share) await navigator.share({ title: p.name + ' · The Real Man Report', url });
+      else { await navigator.clipboard.writeText(url); document.getElementById('share').textContent = '✓ Link copied'; }
+    } catch {}
+  });
+})();
+</script>
+
+<footer class="site-foot">
+  <div class="cols">
+    <nav aria-label="The Real Man Report">
+      <h2>THE REAL MAN REPORT</h2>
+      <ul>
+        <li><a href="home.html">The boards</a></li>
+        <li><a href="web.html">Rankings</a></li>
+        <li><a href="opinion.html">Public opinion</a></li>
+        <li><a href="skills.html">Learn a skill</a></li>
+        <li><a href="plan.html">Mental health</a></li>
+        <li><a href="chores.html">Home game plan</a></li>
+        <li><a href="pickup.html">The pick up artist</a></li>
+        <li><a href="brotherhood.html">Join the brotherhood</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Humbored">
+      <h2>HUMBORED</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#contact">Contact us</a><span class="sep" aria-hidden="true">|</span><a href="privacy.html">Privacy</a></li>
+        <li><a class="crisis" href="plan.html#urgent">Crisis lines/chats</a></li>
+        <li><a href="index.html">Re-enter the manosphere</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<script src="top.js?v=2026-11-15b"></script>
+</body>
+</html>

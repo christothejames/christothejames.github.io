@@ -6,6 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Public Opinion · The Real Man Report</title>
 <meta name="description" content="Who's trending on The Real Man Report: the men visitors like and dislike most, one vote per Google account.">
+<link rel="canonical" href="https://humbored.com/opinion.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Real Man Report">
+<meta property="og:title" content="Public Opinion · The Real Man Report">
+<meta property="og:description" content="Who's trending on The Real Man Report: the men visitors like and dislike most, one vote per Google account.">
+<meta property="og:url" content="https://humbored.com/opinion.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
@@ -241,7 +248,7 @@
   function row(id, i) {
     const p = byId[id], c = counts(id), total = c.up + c.down, t = tier(p);
     const pct = total ? Math.round((c.up / total) * 100) : 0;
-    const href = `profile.html?id=${encodeURIComponent(id)}`;
+    const href = `men/${encodeURIComponent(id)}.html`;
     return `<li class="row ${t}">
       <span class="pos">${i + 1}</span>
       <a class="face" href="${href}" tabindex="-1" aria-hidden="true">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy" onerror="this.replaceWith('${esc(initials(p.name))}')">` : esc(initials(p.name))}</a>

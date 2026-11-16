@@ -527,7 +527,8 @@
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return 'source'; } };
   const app = document.getElementById('app');
 
-  const p = PEOPLE.find(x => x.id === q.get('id') && (x.list === 'good' || x.list === 'bad'));
+  // men/<id>.html (made by tools/seo-pages.mjs) sets PROFILE_ID; profile.html?id=<id> still works.
+  const p = PEOPLE.find(x => x.id === (window.PROFILE_ID || q.get('id')) && (x.list === 'good' || x.list === 'bad'));
   if (!p) {
     app.innerHTML = `<div class="wrap missing"><h1>No profile here</h1><p class="muted">That man isn't on our boards.</p><p><a href="home.html">← Back to the posters</a></p></div>`;
     return;
@@ -542,6 +543,12 @@
   const respected = good && (/^died\b/i.test(p.status || '') || /\((died \d{4}|\d{4}[–-]\d{4})\)/i.test(p.role || ''));
   document.body.classList.add(tier === 'bad' || tier === 'mid' ? tier : 'good');
   document.title = `${p.name} · The Real Man Report`;
+  // The men/ page is the one search engines should list.
+  if (!window.PROFILE_ID) {
+    const c = document.createElement('link');
+    c.rel = 'canonical'; c.href = `https://humbored.com/men/${encodeURIComponent(p.id)}.html`;
+    document.head.appendChild(c);
+  }
 
   const big = p.photo
     ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}" data-ini="${esc(initials(p.name))}">`
@@ -645,7 +652,7 @@
             <h2>Also on the ${NAME[tier]} board</h2>
             <div class="people">
               ${others.map(x => `
-                <a class="person" href="profile.html?id=${encodeURIComponent(x.id)}" title="${esc(x.name)}, ${esc(x.role)}">
+                <a class="person" href="men/${encodeURIComponent(x.id)}.html" title="${esc(x.name)}, ${esc(x.role)}">
                   ${small(x, x.list === 'bad' ? 'bad' : '')}
                   <span>${esc(x.name)}</span>
                 </a>`).join('')}
@@ -718,7 +725,7 @@
 
   // share
   document.getElementById('share').addEventListener('click', async () => {
-    const url = location.origin + location.pathname + '?id=' + encodeURIComponent(p.id);
+    const url = location.origin + '/men/' + encodeURIComponent(p.id) + '.html';
     try {
       if (navigator.share) await navigator.share({ title: p.name + ' · The Real Man Report', url });
       else { await navigator.clipboard.writeText(url); document.getElementById('share').textContent = '✓ Link copied'; }
