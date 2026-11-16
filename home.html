@@ -399,6 +399,11 @@
   .done-deck { grid-column: 1 / -1; padding: 26px 18px; border: 2px dashed #3ef2ff55; border-radius: 14px; text-align: center; color: var(--muted); }
   .done-deck b { display: block; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 20px; color: var(--cyan); margin-bottom: 6px; }
   .done-deck button { margin-top: 12px; }
+  .unhide { font-family: 'Righteous', sans-serif; font-size: 14px; color: var(--cyan); background: none; border: 0; padding: 6px 2px;
+    min-height: 32px; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 4px; }
+  .unhide[hidden] { display: none; }
+  .unhide:hover { text-decoration-style: solid; }
+  .unhide:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
 
   /* ---------- Have your say: one slim row (owner, 15 Nov 2026: the three-tab panel took a third of a phone screen,
      and My order was dropped). ★ Following filters the boards; Public opinion links to opinion.html; signed-in
@@ -790,7 +795,7 @@
       const all = window.PEOPLE.filter(p => (p.list === 'good' || p.list === 'bad') && place(p) === list && match(p)
         && (!following || SAY.follows(p.id))
         // Your Choice keeps it fresh: men he has voted on or skipped don't come round again
-        && !(byChoice && (SAY.vote(p.id) || skipped.has(p.id))))
+        && !(byChoice && isHidden(p.id)))
         .sort((a, b) => TIER_N[tier(a)] - TIER_N[tier(b)] || order(a, b));
       // Public opinion order: by vote score, likes minus dislikes. Real Men and Coin Toss put the most liked first;
       // Out of Service, like its own order, puts the most disliked first. No votes counts as 0, and ties keep our order.
@@ -823,6 +828,10 @@
       const board = document.getElementById(list);
       board.querySelectorAll('.op-sort button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === sortMode));
       board.querySelector('.shuffle').hidden = !byChoice || all.length < 2;
+      // "↺ N hidden · bring back": only in Your Choice, only when this board has men skipped or voted out of it
+      const hid = byChoice ? hiddenOn(list) : 0, unhide = board.querySelector('.unhide');
+      unhide.hidden = !hid;
+      unhide.textContent = `↺ ${hid} hidden · bring back`;
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
@@ -870,12 +879,35 @@
   // new visit brings them back). Voted men stay out for good, as long as he's signed in (his votes are known).
   const SKIP_KEY = 'say-skipped';
   const skipped = new Set((() => { try { return JSON.parse(sessionStorage.getItem(SKIP_KEY)) || []; } catch { return []; } })());
-  const saveSkipped = () => { try { sessionStorage.setItem(SKIP_KEY, JSON.stringify([...skipped])); } catch {} };
+  // Brought back (owner, 16 Nov 2026): "↺ N hidden · bring back" by the count puts a board's skipped and voted men
+  // back in the shuffle. It shows only when that board has someone hidden. Votes stay as they are; voted men brought
+  // back are remembered for the visit (`say-revived`) so they don't drop out again at the next draw.
+  const REVIVE_KEY = 'say-revived';
+  const readSet = k => new Set((() => { try { return JSON.parse(sessionStorage.getItem(k)) || []; } catch { return []; } })());
+  const revived = readSet(REVIVE_KEY);
+  const saveSkipped = () => { try {
+    sessionStorage.setItem(SKIP_KEY, JSON.stringify([...skipped]));
+    sessionStorage.setItem(REVIVE_KEY, JSON.stringify([...revived]));
+  } catch {} };
+  const isHidden = id => skipped.has(id) || (!!SAY.vote(id) && !revived.has(id));
+  const onBoards = p => p.list === 'good' || p.list === 'bad';
+  const hiddenOn = list => window.PEOPLE.filter(p => onBoards(p) && tier(p) === list && isHidden(p.id)).length;
+  function bringBack(list) {
+    window.PEOPLE.forEach(p => {
+      if (!onBoards(p) || tier(p) !== list) return;
+      skipped.delete(p.id);
+      if (SAY.vote(p.id)) revived.add(p.id);
+    });
+    saveSkipped();
+    render();
+  }
+  document.querySelectorAll('.board-head').forEach(h =>
+    h.insertAdjacentHTML('beforeend', '<button type="button" class="unhide" hidden></button>'));
   const BOARD_NAME = { good: 'Real Man', mid: 'Coin Toss man', bad: 'Out of Service man' };
   function doneDeck(list) {
-    const anySkipped = window.PEOPLE.some(p => skipped.has(p.id) && tier(p) === list);
+    const hid = hiddenOn(list);
     return `<div class="done-deck"><b>That's the lot</b>You've been through every ${BOARD_NAME[list]}.`
-      + (anySkipped ? `<br><button type="button" class="shuffle again" data-again="${list}">Bring back the ones I skipped</button>` : '')
+      + (hid ? `<br><button type="button" class="shuffle again" data-again="${list}">Bring back the ${hid} hidden</button>` : '')
       + '</div>';
   }
   // A vote never pulls the card away under his finger (he may want to change it); it's gone at the next Randomise.
@@ -901,11 +933,11 @@
       else if (e.target.closest('.keep')) { ask.remove(); slot.querySelector('.skip')?.focus(); }
       return;
     }
-    const again = e.target.closest('.again');
+    const again = e.target.closest('.again, .unhide');
     if (again) {
-      window.PEOPLE.forEach(p => { if (tier(p) === again.dataset.again) { skipped.delete(p.id); delete luckSeen[p.id]; } });
-      saveSkipped();
-      render();
+      const board = again.closest('.board');
+      bringBack(board.id);
+      board.querySelector('.shuffle:not([hidden])')?.focus(); // the link he pressed is gone; keep focus on the board
     }
   });
   document.addEventListener('keydown', e => {
