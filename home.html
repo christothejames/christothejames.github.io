@@ -295,13 +295,16 @@
   .board.bad .show { color: var(--red); }
   .board.mid .show { color: var(--amber); }
   .show option { color: #fff; background: var(--night); }
-  /* "Public opinion" next to Top 12: re-orders that board by votes; cyan like the rest of Have your say */
-  .op-sort { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px; padding: 6px 12px;
-    border-radius: 999px; background: var(--night); color: var(--cyan); border: 2px solid var(--cyan); cursor: pointer; white-space: nowrap; }
+  /* Board order switch right after the heading: Our ranking | Public opinion (owner, 16 Nov 2026: one button that
+     toggled wasn't obvious, and it moved when the count grew). Both halves always visible; the lit one is the order
+     in use. The count sits after the switch and Top 12 so its changing text never shifts them. */
+  .op-sort { display: inline-flex; padding: 2px; gap: 2px; border-radius: 999px; border: 2px solid var(--cyan); background: var(--night); }
+  .op-sort button { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bungee', sans-serif; font-size: 13px;
+    padding: 5px 12px; border: 0; border-radius: 999px; background: transparent; color: var(--cyan); cursor: pointer; white-space: nowrap; }
   .op-sort svg { width: 15px; height: 15px; }
-  .op-sort[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; }
-  .op-sort:hover { box-shadow: 0 0 14px #3ef2ff55; }
-  .op-sort:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .op-sort button[aria-pressed="true"] { background: var(--cyan); color: var(--night); box-shadow: 0 0 14px #3ef2ff66; cursor: default; }
+  .op-sort button[aria-pressed="false"]:hover { background: #3ef2ff22; }
+  .op-sort button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
   /* Age filter in the toolbar: same pill as Top 12, in cyan; it filters all three boards */
   .show.age { color: var(--cyan); }
 
@@ -619,19 +622,19 @@
   <p class="empty no-match" id="noFollow" hidden>Nobody followed yet. Tap ☆ Follow under any poster and he shows up here.</p>
 
   <section class="board good" id="good">
-    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><span class="count" id="goodCount"></span><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><button type="button" class="op-sort" data-board="good" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
+    <div class="board-head"><div class="plate"><i aria-hidden="true"></i><h2 class="metal">REAL MEN</h2></div><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="good" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="good" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="goodShow" aria-label="How many Real Men to show"></select><span class="count" id="goodCount"></span></div>
     <p class="board-sub">Barbecue with these dudes. Eat ribs and whatnot, and listen to salsa music, you see where I'm coming from?</p>
     <div class="posters" id="goodGrid"></div>
   </section>
 
   <section class="board mid" id="mid">
-    <div class="board-head"><h2>COIN TOSS</h2><span class="count" id="midCount"></span><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><button type="button" class="op-sort" data-board="mid" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
+    <div class="board-head"><h2>COIN TOSS</h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="mid" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="mid" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="midShow" aria-label="How many Coin Toss men to show"></select><span class="count" id="midCount"></span></div>
     <p class="board-sub">Fun at the party until he isn’t. Great stories, questionable choices. Your call.</p>
     <div class="posters" id="midGrid"></div>
   </section>
 
   <section class="board bad" id="bad">
-    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><span class="count" id="badCount"></span><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><button type="button" class="op-sort" data-board="bad" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div>
+    <div class="board-head"><h2 class="neon"><span class="f1">O</span>UT O<span class="f2">F</span> SER<span class="dead">V</span>I<span class="f3">C</span>E<span class="f4">.</span></h2><div class="op-sort" role="group" aria-label="Order this board by"><button type="button" data-board="bad" data-mode="ours" aria-pressed="true">Our ranking</button><button type="button" data-board="bad" data-mode="opinion" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-9"/></svg>Public opinion</button></div><select class="show" id="badShow" aria-label="How many Out of Service men to show"></select><span class="count" id="badCount"></span></div>
     <p class="board-sub">Shows up uninvited to your BBQ, finishes your beers, blasts his Bluetooth speaker, and walks through your house with dirty shoes on.</p>
     <div class="posters" id="badGrid"></div>
   </section>
@@ -730,8 +733,8 @@
       document.getElementById(list + 'Count').textContent = (shown.length < all.length
         ? `top ${shown.length} of ${all.length}` : all.length + (all.length === 1 ? ' man' : ' men'))
         + (byOpinion[list] ? (list === 'bad' ? ', most disliked first' : ', most liked first') : '');
-      const op = document.querySelector(`.op-sort[data-board="${list}"]`);
-      op.setAttribute('aria-pressed', !!byOpinion[list]);
+      document.querySelectorAll(`.op-sort button[data-board="${list}"]`).forEach(b =>
+        b.setAttribute('aria-pressed', (b.dataset.mode === 'opinion') === !!byOpinion[list]));
       document.getElementById(list).hidden = filtering && !all.length;
       found += all.length;
     });
@@ -757,8 +760,10 @@
   // background, so a board sorted before they arrive is sorted again once they do. A new vote doesn't re-sort
   // straight away (cards jumping under the pointer); it counts the next time the board is drawn.
   const byOpinion = {};
-  document.querySelectorAll('.op-sort').forEach(b => b.addEventListener('click', () => {
-    byOpinion[b.dataset.board] = !byOpinion[b.dataset.board];
+  document.querySelectorAll('.op-sort button').forEach(b => b.addEventListener('click', () => {
+    const want = b.dataset.mode === 'opinion';
+    if (!!byOpinion[b.dataset.board] === want) return;
+    byOpinion[b.dataset.board] = want;
     render();
   }));
   SAY.opinion().then(() => { if (Object.values(byOpinion).some(Boolean)) render(); });
