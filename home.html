@@ -84,12 +84,19 @@
   /* Six tiles: one row on wide screens, 3 + 3 on tablets, 2 + 2 + 2 on phones */
   @media (max-width: 1200px) { .topnav { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 680px) { .topnav { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) {
-    .topnav { gap: 10px; }
-    .topnav a { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px; }
-    .topnav svg { width: 26px; height: 26px; }
+  /* Phones, and a phone on its side (owner, 17 Nov 2026: the tiles took half a phone screen, and more than all of it
+     on the smallest): the icon sits beside a shorter title and the one-line description is hidden (screen readers
+     still read it). Two across on phones, three across on a phone on its side; one across only under 300px. */
+  @media (max-width: 520px), (max-height: 500px) {
+    .topnav { gap: 8px; padding-top: 14px; }
+    .topnav a { gap: 9px; min-height: 48px; padding: 8px 10px; border-radius: 12px;
+      box-shadow: 0 3px 0 #03122b, 0 0 14px #1e90ff22; }
+    .topnav svg { width: 22px; height: 22px; }
+    .topnav .t { font-size: 14px; line-height: 1.15; }
+    .topnav .d { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   }
-  @media (max-width: 360px) { .topnav { grid-template-columns: 1fr; } }
+  @media (max-height: 500px) and (min-width: 521px) { .topnav { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 299px) { .topnav { grid-template-columns: 1fr; } }
 
   /* ---------- Masthead: the neon title is the one loud thing ---------- */
   .masthead { text-align: center; padding: 44px 0 36px; }
