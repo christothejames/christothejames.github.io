@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://humbored-admin.pages.dev https://en.wikipedia.org https://query.wikidata.org https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com https://www.youtube.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="robots" content="noindex">
+<!-- Design options for the "humbored" footer wordmark (16 Nov 2026). The old one (unlit o) read as "humb red". Owner chose F (h and b as navy glass tubes, the rest lit), now live in images/logo-wordmark.svg. Not linked from the site. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wordmark Options</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root { --night: #050b1a; --foot: #030812; --deep: #0d2a5c; --blue: #1e90ff; --ice: #7cc4ff; --cyan: #3ef2ff; --gold: #ffe66d; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse at top, var(--deep) 0%, var(--night) 60%); color: #cfe3ff; font-family: 'Righteous', sans-serif; padding: 24px 16px 60px; }
+  h1 { font-family: 'Bungee', sans-serif; font-weight: 400; text-align: center; color: #fff; margin: 0 0 6px; font-size: clamp(24px, 5vw, 36px); }
+  .note { text-align: center; margin: 0 auto 28px; max-width: 60ch; }
+  .opt { max-width: 900px; margin: 0 auto 22px; padding: 20px; border: 1px dashed #1e90ff55; border-radius: 14px; }
+  .opt.now { border-color: #ff3b3b66; }
+  .tag { font-family: 'Bungee', sans-serif; font-size: 15px; color: var(--ice); margin: 0 0 4px; }
+  .now .tag { color: #ff7a7a; }
+  .why { margin: 0 0 16px; font-size: 15px; max-width: 62ch; }
+  .row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .stage { flex: 1 1 380px; padding: 22px 20px; background: var(--foot); border-radius: 10px; text-align: center; overflow: hidden; }
+  .foot { flex: 0 1 260px; padding: 16px 18px; background: var(--foot); border-top: 3px solid var(--blue); border-radius: 6px; }
+  .foot small { display: block; margin-top: 8px; font-size: 12px; color: #7f9cc4; }
+  .foot ul { margin: 6px 0 0; padding: 0; list-style: none; color: var(--cyan); font-size: 15px; line-height: 1.8; }
+
+  /* ---- the wordmark, as live text for the mock-ups (the chosen one gets redrawn as outlined paths) ---- */
+  .wm { font-family: 'Righteous', sans-serif; line-height: 1; letter-spacing: .01em; color: #e9fdff; white-space: nowrap; display: inline-block;
+        text-shadow: 0 0 1px #fff, 0 0 4px var(--cyan), 0 0 10px #3ef2ffcc, 0 0 22px #3ef2ff66; }
+  .stage .wm { font-size: clamp(52px, 11vw, 92px); }
+  .foot .wm { font-size: 34px; }
+  .wm span { display: inline-block; }
+
+  /* NOW: o unlit */
+  .w-now .o { color: var(--deep); -webkit-text-stroke: .03em #3a6a9a; text-shadow: none; }
+
+  /* A: dim, not dead. The o is on, just tired, and stutters now and then */
+  .w-a .o { color: #9fdde6; text-shadow: 0 0 1px #cfffff, 0 0 4px #3ef2ff88, 0 0 10px #3ef2ff44; animation: tired 6s steps(1) infinite; }
+  @keyframes tired { 0%, 70%, 100% { opacity: .78; } 72% { opacity: .35; } 74% { opacity: .8; } 76% { opacity: .3; } 79% { opacity: .78; } }
+
+  /* B: glass tube. The o is off, but its glass tube is clearly there, so the word still reads */
+  .w-b .o { color: transparent; -webkit-text-stroke: .045em #8fd3ff; text-shadow: 0 0 6px #7cc4ff55; }
+
+  /* C: hanging letter. All lit, but the o has come loose and dropped */
+  .w-c .o { transform: translateY(.13em); }
+
+  /* D: half power. "hum" full cyan, "bored" running on a lazy low-power blue */
+  .w-d .lo { color: #b9dcff; text-shadow: 0 0 1px #e6f3ff, 0 0 4px #1e90ff, 0 0 10px #1e90ffaa, 0 0 20px #1e90ff55; }
+
+  /* E: broken underline. Every letter lit; the burnt-out tube moves to the underline */
+  .w-e { position: relative; padding-bottom: .22em; }
+  .w-e::before, .w-e::after { content: ""; position: absolute; bottom: 0; height: .065em; border-radius: 99px; }
+  .w-e::before { left: 0; right: 0; background: #1d3a64; }
+  .w-e::after { left: 0; width: 58%; background: #e9fdff; box-shadow: 0 0 4px var(--cyan), 0 0 10px #3ef2ffcc, 0 0 20px #3ef2ff66; }
+  .w-e .spark { position: absolute; bottom: -.04em; left: 58%; width: .14em; height: .14em; border-radius: 50%; background: #fff; box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold); animation: spark 3s steps(1) infinite; }
+  @keyframes spark { 0%, 88%, 100% { opacity: 0; } 90% { opacity: 1; } 93% { opacity: 0; } 95% { opacity: .8; } }
+
+  /* F and G: glass tubes on the letters of the hb icon */
+  .w-f .g, .w-g .g { color: var(--deep); -webkit-text-stroke: .045em #8fd3ff; paint-order: stroke fill; text-shadow: 0 0 6px #7cc4ff55; }
+  .opt.new { border-color: #ffe66d88; }
+  .new .tag { color: var(--gold); }
+  .icon { width: 64px; height: 64px; flex: none; }
+
+  @media (prefers-reduced-motion: reduce) { .w-a .o, .w-e .spark { animation: none; } .w-e .spark { opacity: 0; } }
+</style>
+</head>
+<body>
+<h1>Wordmark options</h1>
+<p class="note">The current one turns the o off, so it reads "humb red". Each option keeps the bored neon sign but leaves every letter readable. Shown big and at real footer size.</p>
+
+<section class="opt now">
+  <p class="tag">Now: unlit o</p>
+  <p class="why">For comparison. At footer size the dark o disappears.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-now">humb<span class="o">o</span>red</span></div>
+    <div class="foot"><span class="wm w-now">humb<span class="o">o</span>red</span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+
+<section class="opt new">
+  <p class="tag">F: Glass h and b (your idea)</p>
+  <p class="why">The h and b are glass tubes filled with the icon's navy and the rest is lit, so the two letters from the hb icon stand out in the name.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-f"><span class="g">h</span>um<span class="g">b</span>ored</span></div>
+    <div class="foot"><span class="wm w-f"><span class="g">h</span>um<span class="g">b</span>ored</span><ul><li>About us</li><li>Contact us</li></ul></div>
+    <img class="icon" src="../images/logo-mark.svg" alt="The hb icon, for comparison">
+  </div>
+</section>
+
+<section class="opt new">
+  <p class="tag">G: Glass b only, like the icon</p>
+  <p class="why">A copy of the icon: the h is lit and the b is a glass tube, so the icon and the name match exactly.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-g">hum<span class="g">b</span>ored</span></div>
+    <div class="foot"><span class="wm w-g">hum<span class="g">b</span>ored</span><ul><li>About us</li><li>Contact us</li></ul></div>
+    <img class="icon" src="../images/logo-mark.svg" alt="The hb icon, for comparison">
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">A: Dim, not dead</p>
+  <p class="why">The o is still on, just tired. Every few seconds it stutters like a tube on its way out. Reads clearly, keeps the joke.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-a">humb<span class="o">o</span>red</span></div>
+    <div class="foot"><span class="wm w-a">humb<span class="o">o</span>red</span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">B: Glass tube</p>
+  <p class="why">The o is still off, but you can see its pale glass tube, so it reads as an o, not a gap. Closest to the logo you have now.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-b">humb<span class="o">o</span>red</span></div>
+    <div class="foot"><span class="wm w-b">humb<span class="o">o</span>red</span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">C: Dropped letter</p>
+  <p class="why">Every letter lit, but the o has slipped down its bracket. The sign is too bored to fix itself.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-c">humb<span class="o">o</span>red</span></div>
+    <div class="foot"><span class="wm w-c">humb<span class="o">o</span>red</span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">D: Half power</p>
+  <p class="why">"hum" in full cyan, "bored" in a lower-energy blue. All lit, and the two halves of the name show.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-d">hum<span class="lo">bored</span></span></div>
+    <div class="foot"><span class="wm w-d">hum<span class="lo">bored</span></span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+
+<section class="opt">
+  <p class="tag">E: Broken underline</p>
+  <p class="why">The whole word lights up. The burnt-out tube moves to the underline, which gives up halfway with the odd spark.</p>
+  <div class="row">
+    <div class="stage"><span class="wm w-e">humbored<span class="spark"></span></span></div>
+    <div class="foot"><span class="wm w-e">humbored<span class="spark"></span></span><ul><li>About us</li><li>Contact us</li></ul></div>
+  </div>
+</section>
+</body>
+</html>
