@@ -1610,6 +1610,10 @@ window.WIRES = {
     "community": 1,
     "conduct": -1,
     "people": 1
+  },
+  "phil-campion": {
+    "service": 1,
+    "community": 1
   }
 };
 
@@ -1785,6 +1789,7 @@ window.ORDER = [
   "chris-evans-actor",
   "warren-zaire-emery",
   "jack-black",
+  "phil-campion",
   "tony-adams",
   "jamie-oliver",
   "stephen-curry",
@@ -2155,6 +2160,7 @@ window.AREA_ORDER = {
     "ant-middleton",
     "ken-jeong",
     "kal-penn",
+    "phil-campion",
     "bear-grylls",
     "alexander-skarsgard",
     "clint-eastwood",
@@ -2347,6 +2353,7 @@ window.AREA_ORDER = {
     "lance-armstrong",
     "luka-doncic",
     "jack-black",
+    "phil-campion",
     "daniel-day-lewis",
     "markiplier",
     "bill-murray",

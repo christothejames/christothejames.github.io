@@ -8763,6 +8763,22 @@ window.PEOPLE = [
       { date: "2025", text: "Apologised for saying \"colored\" instead of \"people of color\" during a livestream about the backlash to his Hulk Hogan tribute.", source: "https://www.complex.com/sports/a/brad-appleton/fitness-influencer-joey-swoll-threatens-quit-social-media-hulk-hogan" },
     ],
   },
+  {
+    id: "phil-campion",
+    name: "Phil Campion",
+    list: "good",
+    type: "public",
+    born: 1969, // about: his publisher calls him 42 (c. 2011) and fifty (2019)
+    role: "Former SAS soldier, author",
+    reason: "Passed SAS Selection in 1997 and fought charity boxing bouts that raised money for military charities.",
+    status: "Active",
+    about: {},
+    posts: [
+      { date: "1997", text: "Joined the British Army at 16 and served with the Royal Hampshires, passing the Royal Marines Commando course and Parachute Regiment training. Passed SAS Selection in 1997 and served in Northern Ireland, West Africa and the Balkans.", source: "https://www.marjacq.com/phil-campion" },
+      { date: "2016–17", text: "Fought in the Remembrance Rumble charity boxing events in London; the 2016 event raised £60,000 for military charities, and the 2017 event supported Pilgrim Bandits, Talking2Minds and Save Our Soldiers.", source: "https://www.forcesnews.com/heritage/remembrance/remembrance-rumble-big-phil-campion-dares-return-after-last-years-bust" },
+      { date: "", text: "Served as an ambassador for the Army Cadet Force.", source: "https://www.marjacq.com/phil-campion" },
+    ],
+  },
 ];
 
 // No free photo? Show his own public profile picture from Facebook or TikTok,
