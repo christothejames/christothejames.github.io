@@ -50,32 +50,36 @@
 
   const css = document.createElement('style');
   css.textContent = `
-  .say-strip { display: flex; align-items: stretch; background: #0c1a36; border: 2px solid #ffffff1f; border-top: 0;
-    border-radius: 0 0 10px 10px; overflow: hidden; font-family: 'Righteous', system-ui, sans-serif; }
+  /* The strip is a lit control tray under the card (owner, 17 Nov 2026: the old navy strip melted into the page, so
+     people didn't see they could vote): brighter blue, a cyan outline and a soft glow, and the arrows as round buttons */
+  .say-strip { display: flex; align-items: stretch; background: linear-gradient(to bottom, #1a3f78, #11295a);
+    border: 2px solid #3ef2ff73; border-top: 0; border-radius: 0 0 10px 10px; overflow: hidden;
+    box-shadow: inset 0 1px 0 #3ef2ff4d, 0 0 14px #3ef2ff26; font-family: 'Righteous', system-ui, sans-serif; }
   .say-strip button { min-height: 44px; border: 0; background: none; color: #a9bfdc; font: inherit; font-size: 13px; cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 5px; padding: 4px 2px; }
   .say-strip button:focus-visible { outline: 3px solid #ffe66d; outline-offset: -3px; }
-  .say-vote { flex: 1.4; display: flex; align-items: center; justify-content: center; gap: 2px; }
-  /* Arrows and "Vote" in the site's neon cyan (owner, 16 Nov 2026: same blue as the buttons); green / red still
-     show on hover and once he has voted */
-  .say-vote button { flex: 0 0 40px; border-radius: 8px; color: #3ef2ff; }
-  .say-vote svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
-  .say-vote .up:hover { color: #34e07a; background: #34e07a1a; }
-  .say-vote .down:hover { color: #ff3b3b; background: #ff3b3b1a; }
-  .say-vote .up[aria-pressed="true"] { color: #34e07a; }
-  .say-vote .down[aria-pressed="true"] { color: #ff3b3b; }
+  .say-vote { flex: 1.4; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  /* Arrows and "Vote" in the site's neon cyan (owner, 16 Nov 2026: same blue as the buttons), each arrow in a round
+     tinted chip so it reads as a button; green / red still show on hover and once he has voted */
+  /* The chip is painted (a 36px disc and ring), so the button keeps its full 40 x 44 tap area */
+  .say-vote button { --fill: #3ef2ff1f; --ring: #3ef2ff80; --r: 18px; flex: 0 0 40px; padding: 0; border-radius: 10px; color: #3ef2ff;
+    background: radial-gradient(circle, var(--fill) 0 calc(var(--r) - 1.5px), var(--ring) calc(var(--r) - 1.5px) var(--r), transparent calc(var(--r) + .5px)); }
+  .say-vote svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linejoin: round; }
+  .say-vote .up:hover, .say-vote .up[aria-pressed="true"] { color: #34e07a; --fill: #34e07a2e; --ring: #34e07a; }
+  .say-vote .down:hover, .say-vote .down[aria-pressed="true"] { color: #ff5252; --fill: #ff3b3b2e; --ring: #ff5252; }
   .say-vote [aria-pressed="true"] svg { fill: currentColor; }
-  .say-n { min-width: 34px; text-align: center; font-family: 'Bungee', sans-serif; font-size: 12px; color: #eef4ff; }
+  .say-n { min-width: 34px; text-align: center; font-family: 'Bungee', sans-serif; font-size: 13px; color: #fff; }
   .say-n.none { color: #3ef2ff; }
   .say-n.up { color: #34e07a; } .say-n.down { color: #ff3b3b; }
-  .say-strip .say-follow { flex: 1; border-left: 1px solid #ffffff1f; color: #7cc4ff; }
-  .say-strip .say-follow:hover { background: #ffffff0d; }
+  .say-strip .say-follow { flex: 1; border-left: 1px solid #3ef2ff40; color: #9fd6ff; }
+  .say-strip .say-follow:hover { background: #ffffff14; }
   .say-strip .say-follow[aria-pressed="true"] { background: #ffe66d; color: #050b1a; }
   .say-follow .ico { font-size: 17px; line-height: 1; }
-  .say-strip.solo { border-top: 2px solid #ffffff1f; border-radius: 10px; }
+  .say-strip.solo { border-top: 2px solid #3ef2ff73; border-radius: 10px; }
   @media (max-width: 520px) {
     .say-me .me-txt { display: none; }
-    .say-vote button { flex-basis: 34px; }
+    .say-vote button { flex-basis: 36px; --r: 16px; }
+    .say-vote svg { width: 19px; height: 19px; }
     .say-n { min-width: 26px; }
     .say-strip:not(.solo) .say-follow .lbl { display: none; }
   }
