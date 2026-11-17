@@ -8,12 +8,12 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="No fees, no strings. Join the brotherhood, live by one code (better yourself every day, learn from your mistakes, help a brother in need) and talk it out with other men on our Discord, The Brotherhood.">
+<meta name="description" content="No fees, no strings. Talk it out with other men on our Discord, The Brotherhood: relationships, kids, work, money, health, the stuff nobody talks about.">
 <link rel="canonical" href="https://humbored.com/brotherhood.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Real Man Report">
 <meta property="og:title" content="Join the Brotherhood · The Real Man Report">
-<meta property="og:description" content="No fees, no strings. Join the brotherhood, live by one code (better yourself every day, learn from your mistakes, help a brother in need) and talk it out with other men on our Discord, The Brotherhood.">
+<meta property="og:description" content="No fees, no strings. Talk it out with other men on our Discord, The Brotherhood: relationships, kids, work, money, health, the stuff nobody talks about.">
 <meta property="og:url" content="https://humbored.com/brotherhood.html">
 <meta property="og:image" content="https://humbored.com/images/share.png">
 <meta property="og:image:width" content="1200">
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
-  /* Two doors (owner, 15 Nov 2026: "simply Join the brotherhood and Join our discord channel"):
-     a parchment charter you seal with one tap, then a neon sign that switches on and leads to Discord. */
+  /* One lit neon sign leading to Discord (owner, 17 Nov 2026: the parchment code and wax seal on the left were removed,
+     "more streamlined and less nonsense"; they were the 15 Nov 2026 "two doors" design). */
   :root {
     --blue: #1e90ff;
     --sky: #7cc4ff;
@@ -73,22 +73,9 @@
   .lead { max-width: 600px; margin: 18px auto 0; font-size: clamp(17px, 2.4vw, 20px); color: #d6e4f7; }
   .lead b { color: #fff; font-weight: 400; }
 
-  /* ---------- The two doors ---------- */
-  .doors {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-    align-items: stretch; margin: 44px 0 0;
-  }
-  @media (max-width: 820px) { .doors { grid-template-columns: 1fr; gap: 40px; } }
-  .door { display: flex; flex-direction: column; scroll-margin-top: 76px; }
-  .door-head { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; }
-  .door-head .n {
-    flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-    font-family: 'Bungee', sans-serif; font-size: 16px; color: #1d2228;
-    background: radial-gradient(circle at 35% 30%, #ffffff, #c9d0d8 40%, #6f7882 85%);
-    box-shadow: 0 1px 0 #0008, inset 0 -1px 0 #0006;
-  }
-  .door-head h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.2; color: #fff; }
-  .door-head .sub { margin: 0; font-size: 15px; line-height: 1.3; color: var(--muted); }
+  /* ---------- One card (owner, 17 Nov 2026: "more streamlined and less nonsense"; the parchment code, wax seal and
+     the join step were removed, so the Discord card is the page) ---------- */
+  .single { max-width: 580px; margin: 40px auto 0; }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -112,94 +99,7 @@
   .btn.chrome:active { box-shadow: 0 2px 0 #3a424c, inset 0 1px 0 #fff; }
   .btn[hidden] { display: none; }
 
-  /* ---------- Door 1: the charter (owner, 15 Nov 2026: "some kind of medieval transcript, like something you would sign
-     if you was joining an old fashioned cult"). A parchment scroll in brown and red ink, signed with a wax seal. ---------- */
-  .charter {
-    --ink: #3a2614; --red: #8b1a1a;
-    position: relative; flex: 1;
-    display: flex; flex-direction: column;
-    margin: 14px 0;
-    padding: 34px clamp(20px, 4.5vw, 40px) 30px;
-    border-radius: 3px;
-    color: var(--ink);
-    font-family: Georgia, 'Times New Roman', serif;
-    background:
-      radial-gradient(ellipse at 20% 15%, #ffffff33 0%, transparent 35%),
-      radial-gradient(ellipse at 80% 90%, #8a5a2a22 0%, transparent 40%),
-      repeating-linear-gradient(0deg, #00000006 0 2px, transparent 2px 5px),
-      radial-gradient(ellipse at 50% 45%, #f6ead0 0%, #efdfba 50%, #dfc48f 82%, #c29a5e 100%);
-    box-shadow: inset 0 0 38px #7a4a1a66, inset 0 0 6px #5a3410aa, 0 12px 30px #000b;
-  }
-  /* rolled ends of the scroll */
-  .charter::before, .charter::after {
-    content: ''; position: absolute; left: -8px; right: -8px; height: 22px; border-radius: 12px;
-    background: linear-gradient(180deg, #e9d3a3 0%, #c9a46a 45%, #8a6232 75%, #b88c52 100%);
-    box-shadow: 0 3px 6px #0008, inset 0 1px 0 #fff6;
-  }
-  .charter::before { top: -14px; }
-  .charter::after { bottom: -14px; }
-  .charter h3 {
-    margin: 0; text-align: center; font-weight: 400; font-size: clamp(26px, 4vw, 34px); line-height: 1.1;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--red);
-    text-shadow: 0 1px 0 #ffffff66;
-  }
-  .charter .of { margin: 2px 0 0; text-align: center; font-style: italic; font-size: 17px; color: var(--ink); }
-  .charter .flourish { margin: 8px 0 18px; text-align: center; color: var(--red); font-size: 20px; line-height: 1; }
-
-  .creed p { margin: 0 0 14px; font-size: clamp(16px, 2.2vw, 18px); line-height: 1.6; text-align: justify; hyphens: auto; }
-  .creed p b { font-weight: 700; }
-  .creed p.first::first-letter {
-    float: left; margin: 4px 8px 0 0; font-size: 3.3em; line-height: .8; color: var(--red);
-    text-shadow: 1px 1px 0 #00000022;
-  }
-  .creed .punch {
-    margin: 18px 0 0; text-align: center;
-    font-style: italic; font-weight: 700; font-size: clamp(20px, 3vw, 24px); line-height: 1.3; color: var(--red);
-  }
-
-  .sign-off { margin-top: auto; padding-top: 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
-  .sigline { flex: 1; min-width: 0; }
-  .sigline .line { display: block; min-height: 34px; border-bottom: 1.5px solid var(--ink); font-style: italic; font-size: 20px; line-height: 34px; color: #1f2a5a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sigline small { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #6b4a2a; }
-
-  /* The join button is a blob of melted red wax (owner, 15 Nov 2026: "Press to Enlist"); once pressed it becomes a red wax fingerprint */
-  .seal {
-    position: relative; flex: none; width: 128px; height: 128px; padding: 0; margin: 0 -6px -10px 0;
-    display: grid; place-items: center; border: 0; background: none; cursor: pointer;
-    font-family: Georgia, 'Times New Roman', serif; font-weight: 700; text-transform: uppercase; line-height: 1.05; color: #ffe1d6;
-    text-shadow: 0 -1px 0 #3a0000, 0 1px 0 #ff9a8a55;
-    filter: drop-shadow(0 4px 0 #4a0609) drop-shadow(0 8px 10px #0009);
-    transition: transform .15s, filter .15s;
-  }
-  .seal svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .seal .words { position: relative; display: block; text-align: center; transform: rotate(-6deg); }
-  .seal .words small { display: block; font-size: 11px; letter-spacing: .14em; }
-  .seal .words b { display: block; font-size: 19px; letter-spacing: .08em; }
-  button.seal:hover { transform: translateY(-2px) rotate(-3deg); }
-  button.seal:active { transform: translateY(3px) scale(.97); filter: drop-shadow(0 1px 0 #4a0609) drop-shadow(0 3px 5px #0009); }
-  button.seal:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 50%; }
-  .seal.done { display: none; cursor: default; }
-  body.is-in #joinBtn { display: none; }
-  body.is-in .seal.done { display: grid; }
-  @media (prefers-reduced-motion: no-preference) {
-    body.just-in .seal.done { animation: squish .35s cubic-bezier(.3, 1.6, .5, 1) both; }
-    @keyframes squish { from { transform: scale(1.25, .8); } to { transform: none; } }
-  }
-  .joined { display: none; margin: 14px 0 0; text-align: center; font-weight: 700; font-size: 18px; color: var(--red); }
-  body.is-in .joined { display: block; }
-
-  /* Red ink rubber stamp, slammed onto the charter once he joins */
-  .stamp {
-    display: none;
-    position: absolute; left: 50%; top: 18px; white-space: nowrap;
-    padding: 5px 12px 3px; border: 3px solid #b3121a; border-radius: 6px;
-    font-family: 'Bungee', sans-serif; font-size: clamp(13px, 3.2vw, 16px); line-height: 1.2; text-align: center;
-    color: #b3121a; transform: translateX(-50%) rotate(-4deg); opacity: .85; mix-blend-mode: multiply;
-  }
-  body.is-in .stamp { display: block; }
-  body.is-in .charter { padding-top: 70px; } /* room for the stamp above the title */
-
-  /* ---------- Door 2: the neon sign (Discord) ---------- */
+  /* ---------- The neon sign (Discord): always lit ---------- */
   .sign {
     flex: 1; display: flex; flex-direction: column;
     padding: 28px clamp(18px, 4vw, 32px) 26px;
@@ -222,34 +122,15 @@
   .sign-foot .fine { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
   .sign-foot .fine a { color: #ff6b6b; }
   .soon { margin: 0; font-family: 'Bungee', sans-serif; color: var(--gold); }
-  .locked { margin: 0; font-family: 'Bungee', sans-serif; font-size: 15px; color: #6f8aa8; }
-  #forumBtn { display: none; }
-  body.is-in .locked { display: none; }
-  body.is-in #forumBtn:not([hidden]) { display: inline-flex; }
-
-  /* Lit once he has joined */
-  body.is-in .sign {
+  .sign {
     border-color: var(--cyan);
     box-shadow: 0 0 8px var(--cyan), 0 0 26px #3ef2ff55, inset 0 0 22px #3ef2ff1f;
   }
-  body.is-in .sign-name {
+  /* .sign .sign-name, so the card's muted paragraph colour (.sign p) doesn't win over the lit sign */
+  .sign .sign-name {
     color: #e9fdff;
     text-shadow: 0 0 4px #fff, 0 0 10px var(--cyan), 0 0 22px var(--cyan), 0 0 40px #1e90ff;
   }
-
-  @media (prefers-reduced-motion: no-preference) {
-    body.just-in .stamp { animation: slam .28s cubic-bezier(.5, 0, .9, .4) both; }
-    @keyframes slam { from { opacity: 0; transform: translateX(-50%) rotate(-4deg) scale(2); } to { opacity: .85; transform: translateX(-50%) rotate(-4deg); } }
-    /* the sign flickers on, once, after the stamp lands */
-    body.just-in .sign, body.just-in .sign-name { animation: flicker-on .9s .35s both; }
-    @keyframes flicker-on {
-      0%, 12%, 22%, 38% { opacity: .35; }
-      8%, 18%, 30%, 100% { opacity: 1; }
-    }
-  }
-
-  .small-print { margin: 44px 0 0; font-size: 14px; color: var(--muted); text-align: center; }
-  .small-print button { font: inherit; color: var(--muted); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
 
   footer.back { margin-top: 40px; padding: 24px 0 0; border-top: 3px double #7cc4ff77; text-align: center; }
   footer.back a { font-family: 'Bungee', sans-serif; text-decoration: none; }
@@ -297,7 +178,7 @@
   .home-btn svg { width: 16px; height: 16px; }
   .home-btn:hover { color: #fff; background: #1e90ff26; box-shadow: inset 0 0 0 1.5px #7cc4ff; }
   .home-btn:focus-visible { outline: 3px solid #ffe66d; outline-offset: 2px; }
-  @media (prefers-reduced-motion: reduce) { .home-btn, .btn, .sign, .sign-name { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .home-btn, .btn { transition: none; } }
   .brand .logo { width: 26px; height: 26px; margin-right: 8px; vertical-align: -6px; }
   @media (max-width: 420px) { .brand .logo { width: 22px; height: 22px; margin-right: 6px; vertical-align: -5px; } }
   .site-foot h2 .wordmark { display: block; width: 150px; height: auto; margin-left: -6px; }
@@ -314,94 +195,27 @@
 
 <header class="wrap">
   <h1>JOIN THE BROTHERHOOD</h1>
-  <p class="lead">Men getting better, owning their mistakes and backing each other up. <b>No fees. No strings.</b> Two taps and you're in.</p>
+  <p class="lead">Men getting better, owning their mistakes and backing each other up. <b>No fees. No strings.</b> One tap and you're in.</p>
 </header>
 
 <main class="wrap">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <radialGradient id="waxFill" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#e2463d"/><stop offset=".45" stop-color="#a8141b"/><stop offset="1" stop-color="#650910"/></radialGradient>
-      <radialGradient id="waxDip" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#b81a20"/><stop offset="1" stop-color="#7a0b12"/></radialGradient>
-      <path id="sealedArc" d="M19 64A43 43 0 0 0 105 64"/>
-      <clipPath id="printClip"><ellipse cx="62" cy="62" rx="28" ry="34"/></clipPath>
-    </defs>
-  </svg>
-  <div class="doors">
-    <section class="door" id="joinDoor" aria-labelledby="joinTitle">
-      <div class="door-head">
-        <span class="n" aria-hidden="true">1</span>
-        <div><h2 id="joinTitle">Join the brotherhood</h2><p class="sub">Read the code. Press the seal.</p></div>
+  <section class="single" aria-label="The Brotherhood on Discord">
+    <div class="sign">
+      <p class="sign-name" aria-hidden="true">The<br>Brotherhood</p>
+      <p>Relationships, kids, work, money, health, the stuff nobody talks about. <b>No topic is off limits. Respect is.</b></p>
+      <ul class="rules" aria-label="House rules">
+        <li>Keep working to be a better man.</li>
+        <li>Disagree with the idea, never attack the man.</li>
+        <li>Don't name or share people who aren't public figures.</li>
+        <li>18 and over.</li>
+      </ul>
+      <div class="sign-foot">
+        <a class="btn" id="forumBtn" href="#" target="_blank" rel="noopener" hidden>Join The Brotherhood on Discord ↗</a>
+        <p class="soon" id="forumSoon">The Discord opens soon. Check back here.</p>
+        <p class="fine">Free Discord account needed. In crisis right now? Don't wait for a reply: <a href="plan.html#urgent">crisis lines and chats</a>.</p>
       </div>
-      <div class="charter">
-        <h3>The Code</h3>
-        <p class="of">of the Brotherhood</p>
-        <p class="flourish" aria-hidden="true">&#10086;</p>
-        <div class="creed">
-          <p class="first">You found your way here, so you're welcome to join. There's one condition: <b>keep working to be a better man.</b></p>
-          <p>Share what you've been through with a brother. Recognise and respect each other, so we all get better and set the example for others.</p>
-          <p class="punch">We don't punch down.<br>We pull people up.</p>
-        </div>
-        <div class="sign-off">
-          <div class="sigline">
-            <span class="line" id="sigLine"></span>
-            <small>Signed, a brother</small>
-          </div>
-          <button class="seal" type="button" id="joinBtn" aria-label="Press to enlist and join the brotherhood">
-            <svg viewBox="0 0 124 124" aria-hidden="true"><g fill="url(#waxFill)"><path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z"/><path d="M94 103c3 6 5 11 3 15-2 4-7 3-7-2 0-4 2-8 4-13z"/><path d="M30 104c-1 5-3 9-6 10-3 1-5-2-3-5 2-3 5-4 9-5z"/><circle cx="118" cy="30" r="3.5"/><circle cx="8" cy="60" r="2.6"/></g>
-            <path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z" fill="none" stroke="#ff8a7a" stroke-opacity=".35" stroke-width="1.5" transform="translate(-1 -1)"/>
-            <circle cx="62" cy="61" r="36" fill="url(#waxDip)"/>
-            <circle cx="62" cy="61" r="36" fill="none" stroke="#4a0609" stroke-opacity=".45" stroke-width="2"/>
-            <circle cx="62" cy="61" r="36" fill="none" stroke="#ff9a8a" stroke-opacity=".35" stroke-width="1.2" transform="translate(1 1.5)"/></svg>
-            <span class="words" aria-hidden="true"><small>Press to</small><b>Enlist</b></span>
-          </button>
-          <div class="seal done" aria-hidden="true">
-            <svg viewBox="0 0 124 124"><g fill="url(#waxFill)"><path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z"/><path d="M94 103c3 6 5 11 3 15-2 4-7 3-7-2 0-4 2-8 4-13z"/><path d="M30 104c-1 5-3 9-6 10-3 1-5-2-3-5 2-3 5-4 9-5z"/><circle cx="118" cy="30" r="3.5"/><circle cx="8" cy="60" r="2.6"/></g>
-            <path d="M64 7C78 4 90 11 97 19C108 20 117 31 115 43C124 52 123 67 114 76C117 89 107 101 94 103C88 115 72 119 63 112C51 120 35 115 30 104C17 103 6 91 10 78C1 68 3 52 12 44C9 31 20 18 33 18C41 8 53 4 64 7Z" fill="none" stroke="#ff8a7a" stroke-opacity=".35" stroke-width="1.5" transform="translate(-1 -1)"/>
-            <circle cx="62" cy="61" r="36" fill="url(#waxDip)"/>
-            <circle cx="62" cy="61" r="36" fill="none" stroke="#4a0609" stroke-opacity=".45" stroke-width="2"/>
-            <circle cx="62" cy="61" r="36" fill="none" stroke="#ff9a8a" stroke-opacity=".35" stroke-width="1.2" transform="translate(1 1.5)"/>
-            <g clip-path="url(#printClip)" fill="none" stroke-linecap="round" transform="rotate(-12 62 61)">
-              <path d="M60.5 59C60.5 53 64.5 53 64.5 59M57.6 64.1C57.6 49.1 66.4 49.1 66.4 63.1M54.7 66.2C54.7 44.8 69.3 44.8 69.3 65.2M51.8 68.3C51.8 40.4 72.2 40.4 72.2 67.3M48.9 70.4C48.9 36.0 75.1 36.0 75.1 69.4M46.0 72.5C46.0 31.6 78.0 31.6 78.0 71.5M43.1 74.6C43.1 27.3 80.9 27.3 80.9 73.6M40.2 76.7C40.2 22.9 83.8 22.9 83.8 75.7M37.3 78.8C37.3 18.5 86.7 18.5 86.7 77.8M34.4 80.9C34.4 14.1 89.6 14.1 89.6 79.9M30 81.0Q62 92.0 95 78.0M30 84.8Q62 95.8 95 81.8M30 88.6Q62 99.6 95 85.6M30 92.4Q62 103.4 95 89.4M30 96.2Q62 107.2 95 93.2" stroke="#ff9a8a" stroke-opacity=".4" stroke-width="1.3" transform="translate(.8 1)" stroke-dasharray="46 2.5 30 3 70 2"/>
-              <path d="M60.5 59C60.5 53 64.5 53 64.5 59M57.6 64.1C57.6 49.1 66.4 49.1 66.4 63.1M54.7 66.2C54.7 44.8 69.3 44.8 69.3 65.2M51.8 68.3C51.8 40.4 72.2 40.4 72.2 67.3M48.9 70.4C48.9 36.0 75.1 36.0 75.1 69.4M46.0 72.5C46.0 31.6 78.0 31.6 78.0 71.5M43.1 74.6C43.1 27.3 80.9 27.3 80.9 73.6M40.2 76.7C40.2 22.9 83.8 22.9 83.8 75.7M37.3 78.8C37.3 18.5 86.7 18.5 86.7 77.8M34.4 80.9C34.4 14.1 89.6 14.1 89.6 79.9M30 81.0Q62 92.0 95 78.0M30 84.8Q62 95.8 95 81.8M30 88.6Q62 99.6 95 85.6M30 92.4Q62 103.4 95 89.4M30 96.2Q62 107.2 95 93.2" stroke="#3d0306" stroke-opacity=".7" stroke-width="1.7" stroke-dasharray="46 2.5 30 3 70 2"/>
-            </g>
-            <text class="sealed-word" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="700" letter-spacing="2.5" text-anchor="middle">
-              <textPath href="#sealedArc" startOffset="50%" fill="#3d0306" fill-opacity=".55" dy="1">SEALED</textPath>
-            </text>
-            <text font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="700" letter-spacing="2.5" text-anchor="middle">
-              <textPath href="#sealedArc" startOffset="50%" fill="#ffe1d6">SEALED</textPath>
-            </text></svg>
-          </div>
-        </div>
-        <p class="joined" role="status">You're in, brother.</p>
-        <div class="stamp" aria-hidden="true">LET'S GO CHAMP</div>
-      </div>
-    </section>
-
-    <section class="door" id="forumDoor" aria-labelledby="forumTitle">
-      <div class="door-head">
-        <span class="n" aria-hidden="true">2</span>
-        <div><h2 id="forumTitle">Join our Discord</h2><p class="sub">Talk it out with other men.</p></div>
-      </div>
-      <div class="sign">
-        <p class="sign-name" aria-hidden="true">The Brotherhood</p>
-        <p>Relationships, kids, work, money, health, the stuff nobody talks about. <b>No topic is off limits. Respect is.</b></p>
-        <ul class="rules" aria-label="House rules">
-          <li>Live by the code.</li>
-          <li>Disagree with the idea, never attack the man.</li>
-          <li>Don't name or share people who aren't public figures.</li>
-          <li>18 and over.</li>
-        </ul>
-        <div class="sign-foot">
-          <p class="locked">Join the brotherhood first</p>
-          <a class="btn" id="forumBtn" href="#" target="_blank" rel="noopener" hidden>Join The Brotherhood on Discord ↗</a>
-          <p class="soon" id="forumSoon">The Discord opens soon. Check back here.</p>
-          <p class="fine">Free Discord account needed. In crisis right now? Don't wait for a reply: <a href="plan.html#urgent">crisis lines and chats</a>.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <p class="small-print">Joining is saved only on this device. Nobody else sees it. <button type="button" id="leaveBtn" hidden>Start over</button></p>
+    </div>
+  </section>
 </main>
 
 <footer class="wrap back">
@@ -446,39 +260,6 @@
     document.getElementById('forumSoon').hidden = true;
   }
 
-  // Saved only in this browser: { joined: ISO date } (older visits may also carry "sworn", which is ignored)
-  const KEY = 'brotherhood';
-  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
-  const save = s => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
-  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
-  let state = load();
-
-  const body = document.body;
-  const leaveBtn = document.getElementById('leaveBtn');
-  const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function paint() {
-    body.classList.toggle('is-in', !!state.joined);
-    document.getElementById('sigLine').textContent = state.joined ? 'Sealed ' + day(state.joined) : '';
-    leaveBtn.hidden = !state.joined;
-  }
-
-  document.getElementById('joinBtn').addEventListener('click', () => {
-    state = { joined: new Date().toISOString() }; save(state);
-    body.classList.add('just-in'); paint();
-    // On a phone the doors are stacked: bring the Discord one into view once the stamp has landed
-    setTimeout(() => {
-      const door = document.getElementById('forumDoor');
-      if (door.getBoundingClientRect().top > innerHeight * 0.5) door.scrollIntoView({ behavior: still() ? 'auto' : 'smooth', block: 'start' });
-      (DISCORD_INVITE ? forumBtn : door).focus({ preventScroll: true });
-    }, still() ? 0 : 600);
-  });
-  leaveBtn.addEventListener('click', () => {
-    state = {}; save(state);
-    body.classList.remove('just-in'); paint();
-    window.scrollTo({ top: 0 });
-  });
-  paint();
 })();
 </script>
 
