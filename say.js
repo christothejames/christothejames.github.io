@@ -78,9 +78,14 @@
   .say-strip.solo { border-top: 2px solid #3ef2ff73; border-radius: 10px; }
   @media (max-width: 520px) {
     .say-me .me-txt { display: none; }
-    .say-vote button { flex-basis: 36px; --r: 16px; }
-    .say-vote svg { width: 19px; height: 19px; }
+    /* Phones (owner, 17 Nov 2026: the left circle was cut off and the Follow divider ran through the down arrow, as
+       the arrows filled their whole half of a narrow card): under a card Follow is a fixed star button, so the vote
+       half gets the rest, with smaller circles and a little room at each edge */
+    .say-vote { gap: 3px; padding: 0 4px; min-width: 0; }
+    .say-vote button { flex-basis: 34px; --r: 15px; }
+    .say-vote svg { width: 18px; height: 18px; }
     .say-n { min-width: 26px; }
+    .say-strip:not(.solo) .say-follow { flex: 0 0 44px; }
     .say-strip:not(.solo) .say-follow .lbl { display: none; }
   }
   .say-sheet { max-width: 420px; width: calc(100% - 32px); padding: 22px 20px 18px; border: 2px solid #3ef2ff; border-radius: 16px;
