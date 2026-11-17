@@ -4,10 +4,11 @@
 //
 // Each men/<id>.html is a copy of profile.html with his own title, description,
 // canonical link and share-preview tags, and his facts written into the page as
-// plain HTML (so search engines and no-JS visitors see them). The full profile
-// still draws itself from data/people.js, so later edits to his facts show up
-// without re-running this. Re-run it whenever men join or leave the boards, or
-// profile.html changes (the admin's publish.mjs runs it for you).
+// plain HTML (so search engines and no-JS visitors see them). For speed, his data
+// (and the 6 men in his "Also on the board" strip) is built into the page instead
+// of loading all of data/people.js and data/wires.js (~118 KB compressed). So
+// re-run this after ANY change to people.js, wires.js or profile.html (the
+// admin's publish.mjs runs it for you); profile.html?id= always reads live data.
 // Pages for men no longer on the boards are deleted.
 
 import fs from 'node:fs';
@@ -58,8 +59,30 @@ function jsonLd(p, url, title, img) {
 const safeJson = o => JSON.stringify(o).replace(/</g, '\\u003c');
 
 const template = fs.readFileSync(path.join(site, 'profile.html'), 'utf8');
-const need = ['<title>Profile · The Real Man Report</title>', '<div id="app"></div>', '<script src="data/people.js"></script>'];
+const need = ['<title>Profile · The Real Man Report</title>', '<div id="app"></div>', '<script src="data/people.js"></script>', '<script src="data/wires.js"></script>'];
+const ORDER_ALL = ctx.window.ORDER || [];
+// Same rule as profile.html's "Also on the board": the 6 men closest to him in board order on his tier.
+function neighbours(p) {
+  const rank = id => { const i = ORDER_ALL.indexOf(id); return i < 0 ? 1e9 : i; };
+  const board = men.filter(x => tierOf(x) === tierOf(p)).sort((a, b) => rank(a.id) - rank(b.id));
+  const at = Math.max(0, board.findIndex(x => x.id === p.id));
+  return board.filter(x => x.id !== p.id).map(x => [x, Math.abs(board.indexOf(x) - at)])
+    .sort((a, b) => a[1] - b[1]).slice(0, 6).map(([x]) => x);
+}
+// Only what the page script reads about the men in the strip
+const slim = x => ({ id: x.id, name: x.name, role: x.role, list: x.list, type: x.type, photo: x.photo });
 need.forEach(s => { if (!template.includes(s)) throw new Error(`profile.html no longer contains ${s}; update tools/seo-pages.mjs`); });
+
+function profileData(p) {
+  const near = neighbours(p);
+  const ids = [p.id, ...near.map(x => x.id)];
+  return [
+    `window.PROFILE_ID = ${JSON.stringify(p.id)};`,
+    `window.PEOPLE = ${safeJson([p, ...near.map(slim)])};`,
+    `window.ORDER = ${safeJson(ORDER_ALL.filter(id => ids.includes(id)))};`,
+    `window.CONTROVERSIAL = ${safeJson(CONTROVERSIAL.filter(id => ids.includes(id)))};`,
+  ].join('\n');
+}
 
 const outDir = path.join(site, 'men');
 fs.mkdirSync(outDir, { recursive: true });
@@ -104,7 +127,8 @@ ${posts ? `<h2>Timeline</h2><ul>${posts}</ul>` : ''}
   const html = template
     .replace(need[0], head)
     .replace(need[1], body)
-    .replace(need[2], `<script>window.PROFILE_ID = ${JSON.stringify(p.id)};</script>\n${need[2]}`);
+    .replace(need[2], `<script>${profileData(p)}</script>`)
+    .replace(need[3], '');
   const file = `${p.id}.html`;
   keep.add(file);
   const target = path.join(outDir, file);
