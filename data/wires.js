@@ -52,14 +52,6 @@ window.WIRES = {
     "community": 1,
     "family": 1
   },
-  "everyday-dad": {
-    "community": 1,
-    "family": 1
-  },
-  "volunteer-coach": {
-    "community": 1,
-    "family": 1
-  },
   "andrew-tate": {
     "body": 1,
     "trust": -1,
@@ -1793,8 +1785,6 @@ window.ORDER = [
   "chris-evans-actor",
   "warren-zaire-emery",
   "jack-black",
-  "everyday-dad",
-  "volunteer-coach",
   "tony-adams",
   "jamie-oliver",
   "stephen-curry",
@@ -2246,8 +2236,6 @@ window.AREA_ORDER = {
     "steve-gleason",
     "marcus-mumford",
     "jordan-stephens",
-    "everyday-dad",
-    "volunteer-coach",
     "daniel-amen",
     "leonardo-dicaprio",
     "gary-oldman",
@@ -2518,8 +2506,6 @@ window.AREA_ORDER = {
     "jamie-oliver",
     "terry-crews",
     "guy-fieri",
-    "everyday-dad",
-    "volunteer-coach",
     "ninja",
     "eddie-hall",
     "guy-ritchie",

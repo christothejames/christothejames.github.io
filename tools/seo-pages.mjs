@@ -31,6 +31,32 @@ const TIER = { good: 'Real Men', mid: 'Coin Toss', bad: 'Out of Service' };
 const tierOf = p => (CONTROVERSIAL.includes(p.id) ? 'mid' : p.list);
 const safeId = id => /^[a-z0-9-]+$/.test(id);
 
+// Structured data (schema.org): tells search engines and AI answer tools that the page is a
+// profile of this person, and which other pages are about the same man. Only facts already in
+// people.js; our verdict (board, card line) stays out. Composites are not real people, so they
+// are marked as a plain web page with no Person.
+function jsonLd(p, url, title, img) {
+  const page = { '@context': 'https://schema.org', url, name: title, isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${ORIGIN}/` } };
+  if (p.type !== 'public') return safeJson({ ...page, '@type': 'WebPage' });
+  const sameAs = [];
+  if (/^https:\/\/en\.wikipedia\.org\/wiki\//.test(p.controversy_url || '')) sameAs.push(p.controversy_url.split('#')[0]);
+  if (p.instagram) sameAs.push(`https://www.instagram.com/${p.instagram}/`);
+  if (p.tiktok) sameAs.push(`https://www.tiktok.com/@${p.tiktok}`);
+  if (p.facebook) sameAs.push(`https://www.facebook.com/${p.facebook}`);
+  const person = {
+    '@type': 'Person',
+    name: p.name,
+    ...(p.role && { description: p.role }),
+    ...(img && p.photo && { image: img }),
+    ...(p.born && { birthDate: String(p.born) }),
+    ...(p.died && { deathDate: String(p.died) }),
+    ...(sameAs.length && { sameAs }),
+  };
+  return safeJson({ ...page, '@type': 'ProfilePage', mainEntity: person });
+}
+// "<" escaped so text in the data can never close the <script> tag.
+const safeJson = o => JSON.stringify(o).replace(/</g, '\\u003c');
+
 const template = fs.readFileSync(path.join(site, 'profile.html'), 'utf8');
 const need = ['<title>Profile · The Real Man Report</title>', '<div id="app"></div>', '<script src="data/people.js"></script>'];
 need.forEach(s => { if (!template.includes(s)) throw new Error(`profile.html no longer contains ${s}; update tools/seo-pages.mjs`); });
@@ -59,6 +85,7 @@ for (const p of men) {
     `<meta property="og:url" content="${url}">`,
     img && `<meta property="og:image" content="${esc(img)}">`,
     `<meta name="twitter:card" content="summary">`,
+    `<script type="application/ld+json">${jsonLd(p, url, title, img)}</script>`,
   ].filter(Boolean).join('\n');
 
   // Plain-HTML version of the profile; the page script replaces it when it runs.

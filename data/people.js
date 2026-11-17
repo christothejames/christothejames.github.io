@@ -122,41 +122,6 @@ window.PEOPLE = [
     ],
   },
   {
-    id: "everyday-dad",
-    name: "The Everyday Dad",
-    list: "good",
-    type: "composite",
-    role: "Composite of ordinary men",
-    photo: "",
-    photoCredit: "",
-    reason: "Shows up. Every day. Nobody films it.",
-    status: "Not a real person · Stands for millions of ordinary men",
-    about: {
-      "Known for": "School runs, packed lunches, being there",
-      "Followers": "None. Doesn't need them",
-    },
-    posts: [
-      { date: "Every day", text: "A composite, not a real person: the ordinary men who share the load at home and treat their partners as equals.", source: "" },
-    ],
-  },
-  {
-    id: "volunteer-coach",
-    name: "The Volunteer Coach",
-    list: "good",
-    type: "composite",
-    role: "Composite of ordinary men",
-    photo: "",
-    photoCredit: "",
-    reason: "Gives up his Saturdays so other people's kids can play.",
-    status: "Not a real person · Stands for millions of volunteers",
-    about: {
-      "Known for": "Youth football, food banks, unpaid hours",
-    },
-    posts: [
-      { date: "Every weekend", text: "A composite, not a real person: the men who coach, mentor and volunteer for nothing.", source: "" },
-    ],
-  },
-  {
     id: "andrew-tate",
     name: "Andrew Tate",
     controversy_url: "https://en.wikipedia.org/wiki/Andrew_Tate#Criminal_investigations_and_civil_cases",
