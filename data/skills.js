@@ -82,6 +82,15 @@ window.SKILLS = [
     by: "InnerBark Outdoors"
   },
   {
+    id: "rucking",
+    cat: "outdoors",
+    name: "Go rucking",
+    why: "Walk with a weighted pack. Builds legs, back and lungs, no gym needed, and it's how soldiers train.",
+    tips: ["Start light: a few kilos is plenty", "Pack the weight high and tight to your back", "Good boots, and add distance slowly"],
+    video: "https://www.youtube.com/watch?v=AjvzRz7TJz0",
+    by: "Billy Billingham, ex-SAS (Mulligan Brothers)"
+  },
+  {
     id: "shelf",
     cat: "home",
     name: "Put up a shelf",
