@@ -8770,6 +8770,9 @@ window.PEOPLE = [
     type: "public",
     born: 1969, // about: his publisher calls him 42 (c. 2011) and fifty (2019)
     role: "Former SAS soldier, author",
+    // not on Wikidata: linked from his own site bigphilcampion.com and his agent's page (marjacq.com)
+    facebook: "bigphilcampion",
+    instagram: "bigphilcampion",
     reason: "Passed SAS Selection in 1997 and fought charity boxing bouts that raised money for military charities.",
     status: "Active",
     about: {},
